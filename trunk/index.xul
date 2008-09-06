@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window xmlns:html="http://www.w3.org/1999/xhtml"
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<script src="library/js/interface.js"/>
+	<script src="library/js/svgAgentSchema.js"/>
+
+<hbox >
+	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
+	<label hidden="true" value="Towards an ontology of the field of digital poetry" />
+	<image src="design/arponum.gif" />
+</hbox>
+<hbox flex='1' >
+	<vbox >
+		<hbox hidden="true" id="saisie_fig_21_indexer" >
+			<label value="Name : " />
+			<textbox id="saisie_fig_21_indexer_name" value="" />
+			<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexer','fig_21_indexing');"/>
+		</hbox>
+		<vbox hidden="true" id="saisie_fig_21_indexing" >
+			<label value="Date : " />
+			<textbox id="saisie_fig_21_indexing_date" value="" />
+			<label value="Place : " />
+			<textbox id="saisie_fig_21_indexing_place" value="" />
+			<label value="Id : " />
+			<textbox id="saisie_fig_21_indexing_id" value="" />
+			<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexing','fig_21_document');"/>
+		</vbox>
+		<hbox hidden="true" id="saisie_fig_21_document" >
+			<label value="Afficher la figure 18" />
+			<button label="Valider" onclick="AfficheSvg('ModeleEA3.svg');MontrerCacherXul('saisie_fig_21_document');"/>
+		</hbox>
+	</vbox>
+	<vbox flex='1' >
+		<iframe id="svgFrame" flex='1' hidden="false" src="library/svg/fig_21.svg" />
+	</vbox>
+</hbox>
+
+</window>

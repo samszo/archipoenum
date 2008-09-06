@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="../../design/svg.css" type="text/css"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="376.975px" height="333.55px" viewBox="0 0 376.975 333.55" enable-background="new 0 0 376.975 333.55">
+<script xlink:href="../js/interface.js" />  
+
+<g id="fig_21_document" onclick="Saisir(this.id)" fill="red" visibility="hidden">
+	<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
+		0.5,202.325 72.5,202.325 72.5,256.325 0.5,256.325 0.5,202.325 "/>
+	<text transform="matrix(1 0 0 1 14.2202 233.2061)"><tspan x="0" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">do</tspan><tspan x="11.25" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">c</tspan><tspan x="16.199" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">u</tspan><tspan x="21.824" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">m</tspan><tspan x="30.368" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">en</tspan><tspan x="41.617" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">t</tspan></text>
+	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="72.5" y1="229.325" x2="113.9" y2="229.325"/>
+</g>
+<g id="fig_21_indexing" visibility="hidden" onclick="Saisir(this.id)" fill="red" >
+	<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="171.725,215.825 177.125,216.95 
+		179.6,218.075 181.625,219.875 183.425,221.9 184.775,224.15 185.675,226.625 185.9,229.325 184.775,234.726 183.425,236.976 
+		181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 
+		120.2,240.575 118.175,239 116.375,236.976 115.025,234.726 114.125,232.025 113.9,229.325 115.025,224.15 116.375,221.9 
+		118.175,219.875 120.2,218.3 122.675,216.95 125.375,216.05 128.075,215.825 165.2,215.825 171.725,215.825 "/>
+	<text transform="matrix(1 0 0 1 130.9937 233.2061)" class="styleTxtTitre" ><tspan x="0" y="0" >indexer</tspan></text>
+	<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="
+		M116.825,251.601c0-4.875,3.9-8.775,8.775-8.775h48.6c4.875,0,8.775,3.9,8.775,8.775v22.05c0,4.875-3.9,8.774-8.775,8.774h-48.6
+		c-4.875,0-8.775-3.899-8.775-8.774V247.7V251.601z"/>
+	<text id="fig_21_indexing_date" class="styleTxtAttribut" transform="matrix(1 0 0 1 137.0718 255.2607)">***</text>
+	<text id="fig_21_indexing_place" class="styleTxtAttribut" transform="matrix(1 0 0 1 134.8218 267.1826)">***</text>
+	<text id="fig_21_indexing_id" class="styleTxtAttribut" transform="matrix(1 0 0 1 142.9233 279.1045)">***</text>
+	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="185.9" y1="229.325" x2="233.6" y2="229.55"/>
+</g>
+<g id="fig_21_indexer" onclick="Saisir(this.id)" fill="red" >
+	<path stroke="#231F20" stroke-linecap="square"
+		stroke-miterlimit="10"
+		d="M227.75,166.775
+	C227.75,74.4,260.8,0.5,302.113,0.5c41.313,0,74.361,73.9,74.361,166.275S343.426,333.05,302.113,333.05
+	C260.8,333.05,227.75,259.15,227.75,166.775L227.75,166.775z" />
+	<text class="styleTxtTitre" transform="matrix(1 0 0 1 279.4941 167.2764)"><tspan x="0" y="0" >indexer</tspan></text>
+	<text id="fig_21_indexer_name" class="styleTxtAttribut" transform="matrix(1 0 0 1 279.4941 179.2139)">***</text>
+</g>
+</svg>

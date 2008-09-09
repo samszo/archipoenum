@@ -108,7 +108,7 @@
 		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="white" points="1100.351,28.572 1100.351,15.4 1114.659,15.4 
 			1114.659,28.572 1100.351,28.572 	"/>
 		<text transform="matrix(1 0 0 1 1100.3398 25.3535)"><tspan x="0" y="0" font-family="'ArialMT'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="'ArialMT'" font-size="9.9">n</tspan></text>
-		<polyline fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1016.875,21.475 
+		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1016.875,21.475 
 			365.95,21.475 365.95,60.175 	"/>
 	</g>
 
@@ -247,15 +247,9 @@
 		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 756.7695 379.7285)">Analyse</text>
 	</g>
 			
-	
-
-	
-		<line fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="921.7" y1="288.999" x2="654.175" y2="287.2"/>
-	
-		<line fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="218.125" y1="81.1" x2="338.05" y2="81.1"/>
-
-	
-		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="
+	<line fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="921.7" y1="288.999" x2="654.175" y2="287.2"/>
+	<line fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="218.125" y1="81.1" x2="338.05" y2="81.1"/>
+	<polygon fill-rule="evenodd" clip-rule="evenodd" fill="red" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="
 		20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 	"/>
 	<text transform="matrix(1 0 0 1 25.7461 320.3379)"><tspan x="0" y="0" font-family="'ArialMT'" font-size="9.9">do</tspan><tspan x="11.25" y="0" font-family="'ArialMT'" font-size="9.9">c</tspan><tspan x="16.199" y="0" font-family="'ArialMT'" font-size="9.9">u</tspan><tspan x="21.824" y="0" font-family="'ArialMT'" font-size="9.9">m</tspan><tspan x="30.368" y="0" font-family="'ArialMT'" font-size="9.9">en</tspan><tspan x="41.617" y="0" font-family="'ArialMT'" font-size="9.9">t</tspan></text>
 	

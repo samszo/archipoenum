@@ -1,9 +1,23 @@
 <?xml version="1.0"?>
-<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xul-overlay href="library/xul/OntoActeur.xul" ?>
+<?xul-overlay href="library/xul/treeDicoIeml.xul" ?>
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<script src="library/js/interface.js"/>
 	<script src="library/js/svgAgentSchema.js"/>
+ <html:style>
+ treechildren::-moz-tree-checkbox
+ {
+   /* css pour les cellules non cochées */
+   list-style-image: url("");
+ }
+ treechildren::-moz-tree-checkbox(checked)
+ {
+   /* css pour les cellules cochées */
+   list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
+ }
+ </html:style>
 
 <hbox >
 	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
@@ -11,29 +25,145 @@
 	<image src="design/arponum.gif" />
 </hbox>
 <hbox flex='1' >
-	<vbox >
-		<hbox hidden="true" id="saisie_fig_21_indexer" >
-			<label value="Name : " />
-			<textbox id="saisie_fig_21_indexer_name" value="" />
-			<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexer','fig_21_indexing');"/>
-		</hbox>
-		<vbox hidden="true" id="saisie_fig_21_indexing" >
-			<label value="Date : " />
-			<textbox id="saisie_fig_21_indexing_date" value="" />
-			<label value="Place : " />
-			<textbox id="saisie_fig_21_indexing_place" value="" />
-			<label value="Id : " />
-			<textbox id="saisie_fig_21_indexing_id" value="" />
-			<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexing','fig_21_document');"/>
+	<groupbox orient="horizontal" flex="1" >
+		<vbox >
+			<hbox hidden="true" id="saisie_fig_21_indexer" >
+				<label value="Name : " />
+				<textbox id="saisie_fig_21_indexer_name" value="" />
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexer','fig_21_indexing','');"/>
+			</hbox>
+			<vbox hidden="true" id="saisie_fig_21_indexing" >
+				<label value="Date : " />
+				<textbox id="saisie_fig_21_indexing_date" value="" />
+				<label value="Place : " />
+				<textbox id="saisie_fig_21_indexing_place" value="" />
+				<label value="Id : " />
+				<textbox id="saisie_fig_21_indexing_id" value="" />
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_21_indexing','fig_21_document','');"/>
+			</vbox>
+			<hbox hidden="true" id="saisie_fig_21_document" >
+				<label value="Afficher la figure 18" />
+				<button label="Valider" onclick="AfficheSvg('fig_18.svg');MontrerCacherXul('saisie_fig_21_document');"/>
+			</hbox>
+			<vbox hidden="true" id="saisie_fig_18_type" >
+				<label value="Type : " />
+				<menulist id="saisie_fig_18_type_name" editable="true">
+				  <menupopup>
+				    <menuitem label="Text" value="Text"/>
+				    <menuitem label="Listing" value="Listing"/>
+				    <menuitem label="Pg" value="Pg"/>
+				    <menuitem label="Video" value="Bats"/>
+				    <menuitem label="Photo" value="Photo"/>
+				    <menuitem label="Sound" value="Sound"/>
+				    <menuitem label="Objet" value="Objet"/>
+				  </menupopup>
+				</menulist>
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_type','fig_18_section;fig_18_nature','fig_18_document;fig_18_format');"/>
+			</vbox>
+			<vbox hidden="true" id="saisie_fig_18_document" >
+				<label value="Title : " />
+				<textbox id="saisie_fig_18_document_titre" value="" />
+				<label value="Author : " />
+				<textbox id="saisie_fig_18_document_auteur" value="" />
+				<label value="Date : " />
+				<datepicker id="saisie_fig_18_document_date" type="popup" value=""/>
+				<label value="Adresse : " />
+				<textbox id="saisie_fig_18_document_adresse" value="" />
+				<label value="Circonstance : " />
+				<menulist id="saisie_fig_18_document_circonstance" editable="true">
+				  <menupopup>
+				    <menuitem label="Expo" value="Expo"/>
+				    <menuitem label="Interview" value="Interview"/>
+				    <menuitem label="Conference" value="Conference"/>
+				  </menupopup>
+				</menulist>
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_document','fig_18_section;fig_18_nature','fig_18_type;fig_18_format');"/>
+			</vbox>
+			<vbox hidden="true" id="saisie_fig_18_format" >
+				<label value="Format : " />
+				<menulist id="saisie_fig_18_format_name" editable="true">
+				  <menupopup>
+				    <menuitem label="mpeg" value="Mpeg"/>
+				    <menuitem label="avi" value="avi"/>
+				    <menuitem label="wawe" value="wawe"/>
+				    <menuitem label="mp3" value="mp3"/>
+				    <menuitem label="jpeg" value="jpeg"/>
+				  </menupopup>
+				</menulist>
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_format','fig_18_section;fig_18_nature','fig_18_document;fig_18_type');"/>
+			</vbox>
+			<vbox hidden="true" id="saisie_fig_18_section" >
+				<label value="Begining : " />
+				<textbox id="saisie_fig_18_section_begin" value="" />
+				<label value="End : " />
+				<textbox id="saisie_fig_18_section_end" value="" />
+				<label value="Id : " />
+				<textbox id="saisie_fig_18_section_id" value="" />
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_section','fig_18_work;fig_18_actor','fig_18_nature');"/>
+			</vbox>
+			<vbox hidden="true" id="saisie_fig_18_nature" >
+				<label value="Nature : " />
+				<menulist id="saisie_fig_18_nature_name" editable="true">
+				  <menupopup>
+				    <menuitem label="action" value="action"/>
+				    <menuitem label="interview" value="interview"/>
+				    <menuitem label="simulation" value="simulation"/>
+				    <menuitem label="analyse" value="analyse"/>
+				    <menuitem label="storage" value="storage"/>
+				  </menupopup>
+				</menulist>
+				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_nature','fig_18_work;fig_18_actor','fig_18_section');"/>
+			</vbox>
+			<hbox hidden="true" id="saisie_fig_18_actor" >
+				<label value="Afficher la figure 19" />
+				<button label="Valider" onclick="AfficheSvg('fig_19.svg');MontrerCacherXul('saisie_fig_18_actor');"/>
+			</hbox>
+			<hbox hidden="true" id="saisie_fig_18_work" >
+				<label value="Title : " />
+				<textbox id="saisie_fig_18_work_titre" value="" />
+				<button label="Valider" onclick="Valider('fig_18_work','fig_18_instance','');"/>
+			</hbox>
+			<vbox hidden="true" id="saisie_fig_18_instance" >
+				<label value="Id : " />
+				<textbox id="saisie_fig_18_instance_id" value="" />
+				<label value="Authors : " />
+				<textbox id="saisie_fig_18_instance_authors" value="" />
+				<label value="Date : " />
+				<datepicker id="saisie_fig_18_instance_date" type="popup" value=""/>
+				<label value="Duration : " />
+				<textbox id="saisie_fig_18_instance_duration" value="" />
+				<label value="Place : " />
+				<textbox id="saisie_fig_18_instance_place" value="" />
+				<button label="Valider" onclick="Valider('fig_18_instance','fig_18_physicpart','');"/>
+			</vbox>
+			<vbox hidden="true" id="saisie_fig_18_ontoactor" >
+				<label value="Id : " />
+				<textbox id="saisie_fig_18_ontoactor_id" value="" />
+				<label value="Date : " />
+				<datepicker id="saisie_fig_18_ontoactor_date" type="popup" value=""/>
+				<label value="Place : " />
+				<textbox id="saisie_fig_18_ontoactor_place" value="" />
+				<button label="Valider" onclick="Valider('fig_18_ontoactor','fig_18_concept','');"/>
+			</vbox>
+			<hbox hidden="true" id="saisie_fig_18_physicpart" >
+				<label value="Afficher la figure 19" />
+				<button label="Valider" onclick="AfficheSvg('fig_19.svg');MontrerCacherXul('saisie_fig_18_physicpart');"/>
+			</hbox>
+			<hbox hidden="true" id="saisie_fig_18_concept" >
+				<label value="Name : " />
+				<textbox id="saisie_fig_18_concept_name" value="" />
+				<button label="Valider" onclick="Valider('fig_18_concept','fig_18_instance','');"/>
+			</hbox>
 		</vbox>
-		<hbox hidden="true" id="saisie_fig_21_document" >
-			<label value="Afficher la figure 18" />
-			<button label="Valider" onclick="AfficheSvg('ModeleEA3.svg');MontrerCacherXul('saisie_fig_21_document');"/>
-		</hbox>
-	</vbox>
-	<vbox flex='1' >
-		<iframe id="svgFrame" flex='1' hidden="false" src="library/svg/fig_21.svg" />
-	</vbox>
+		<vbox id="OntoActeur" hidden="true" />
+		<vbox id="treeDicoIeml" hidden="true" flex="1"  />
+        <splitter collapse="before" resizeafter="farthest" >
+			<grippy/>
+		</splitter>
+		<vbox flex='1' >
+			<iframe id="svgFrame" flex='1' hidden="false" src="library/svg/fig_21.svg" />
+		</vbox>
+	</groupbox>
 </hbox>
 
 </window>

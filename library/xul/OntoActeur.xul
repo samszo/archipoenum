@@ -1,0 +1,228 @@
+<?xml version="1.0" ?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+
+<vbox id="OntoActeur" flex="1" >
+<tree id="TreeOntoActeur"
+	onselect="Select_Dictio('ieml','treecol_ieml','treecol_descp');"
+	flex="1"
+	editable="true"
+	>
+<treecols >
+<treecol id="treecol_Tagdel"  primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" />
+<treecol id="treecol_descp"  label="concept" flex="1" persist="width ordinal hidden" editable="false" />
+<treecol type="checkbox" label="select" editable="true" />
+</treecols>
+
+<treechildren>
+    <treeitem container="true" open="true">
+      <treerow>
+        <treecell label="Actor ontology"/>
+        <treecell label=""/>
+      </treerow>
+      <treechildren>
+
+        <treeitem container="true" open="true">
+          <treerow>
+            <treecell label="litterature analyst" />
+            <treecell label="" />
+          </treerow>
+	      <treechildren>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="potentiel" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="virtuel" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="potentiel-virtuel" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oulipo" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="palindrome" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	      </treechildren>
+        </treeitem>
+        <treeitem container="true" open="true">
+          <treerow>
+            <treecell label="semiotic analyst" />
+            <treecell label="" />
+          </treerow>
+	      <treechildren>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="transitoire observable" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="programme" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération combinatoire" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération automatique de texte" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération adaptative" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération avec modèle physique" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération graphique" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre interactive" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre hypertextuelle" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre collaborative" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre participative" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre utilisant une Base de Données" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre utilisant une gestion des flux" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="oeuvre performative" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	      </treechildren>
+        </treeitem>
+
+        <treeitem container="true" open="true">
+          <treerow>
+            <treecell label="reader" />
+            <treecell label="" />
+          </treerow>
+	      <treechildren>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="transitoire observable" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="programme" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="animation" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	      </treechildren>
+        </treeitem>
+
+        <treeitem container="true" open="true">
+          <treerow>
+            <treecell label="autor" />
+            <treecell label="" />
+          </treerow>
+	      <treechildren>
+	        <treeitem>
+	          <treerow>
+	            <treecell label="" />
+	            <treecell label="génération adaptative" />
+	            <treecell value="false" />
+	          </treerow>
+	        </treeitem>
+	      </treechildren>
+        </treeitem>
+
+      </treechildren>
+    </treeitem>
+  </treechildren>
+</tree>
+
+
+</vbox>
+
+</overlay>

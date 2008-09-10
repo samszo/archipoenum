@@ -8,8 +8,10 @@
 	editable="true"
 	>
 <treecols >
-<treecol id="treecol_Tagdel"  primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" />
-<treecol id="treecol_descp"  label="concept" flex="1" persist="width ordinal hidden" editable="false" />
+<treecol id="treecol_Tagdel" flex="1" primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" />
+<splitter class="tree-splitter"/>
+<treecol id="treecol_descp" flex="1" label="concept" persist="width ordinal hidden" editable="false" />
+<splitter class="tree-splitter"/>
 <treecol type="checkbox" label="select" editable="true" />
 </treecols>
 
@@ -21,7 +23,7 @@
       </treerow>
       <treechildren>
 
-        <treeitem container="true" open="true">
+        <treeitem container="true" open="false">
           <treerow>
             <treecell label="litterature analyst" />
             <treecell label="" />
@@ -171,7 +173,7 @@
 	      </treechildren>
         </treeitem>
 
-        <treeitem container="true" open="true">
+        <treeitem container="true" open="false">
           <treerow>
             <treecell label="reader" />
             <treecell label="" />
@@ -201,7 +203,7 @@
 	      </treechildren>
         </treeitem>
 
-        <treeitem container="true" open="true">
+        <treeitem container="true" open="false">
           <treerow>
             <treecell label="autor" />
             <treecell label="" />

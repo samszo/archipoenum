@@ -123,3 +123,39 @@ function MontrerCacherXul(idsDst){
 		}
 	} catch(ex2){alert("interface:MontrerXul:"+ex2);}
 }
+
+function serialize(doc,file,extra) {
+
+  try {
+    //http://developer.mozilla.org/fr/docs/Extraits_de_code:Fichiers_E/S
+    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+    
+    //alert(file.path);    
+    var serializer = new XMLSerializer();
+    var xml = serializer.serializeToString(doc);
+    //si le fichier n'est pas préciser on renvoit le xml
+    if(!file)
+        return xml;
+    
+    if(extra){
+        //supprime le namespace
+        var debTree = xml.indexOf("onselect",0);
+        //alert(debBody+','+finBody);
+        xml = xml.substring(debTree,xml.length);
+        //ajoute l'encoding et le debut du tree
+        //xml = "<?xml version='1.0' encoding='UTF-8' ?><tree "+xml;
+        xml = "<?xml version='1.0' encoding='ISO-8859-1' ?><tree "+xml;
+    }
+        
+    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
+                   .createInstance(Components.interfaces.nsIFileOutputStream);
+    foStream.init(file, 0x02 | 0x08 | 0x20, 0666, 0); // write, create, truncate
+    //serializer.serializeToStream(doc, foStream, "");   // rememeber, doc is the DOM tree
+    foStream.write(xml, xml.length);
+    foStream.close();
+        
+  } catch(ex2){ alert("interface:serialize:"+ex2); }
+}
+
+
+

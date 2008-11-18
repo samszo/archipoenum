@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml" >
+	<tree flex="1">
+
+   	<treecols>  
+     	<treecol id="nom" label="Nom" flex="1"/>  
+    	<treecol id="lien" label="Liend e parenté" flex="3"/>  
+   	</treecols>
+   	<treechildren>
+     <treeitem container="true" open="false">  
+   			<treerow>
+   				<treecell label="Mr toutou" />
+   				<treecell label="Le papa" />
+   			</treerow>
+		   	<treechildren>
+			     <treeitem container="true" open="false">  
+		   			<treerow>
+		   				<treecell label="Mr tatat" />
+		   				<treecell label="l'enfant" />
+		   			</treerow>
+				   	<treechildren>
+					     <treeitem >  
+					   			<treerow>
+					   				<treecell label="Mr toto" />
+					   				<treecell label="Le petit enfant" />
+					   			</treerow>
+				   		</treeitem>		   		
+				   	</treechildren>
+	   			</treeitem>
+		   	</treechildren>
+   		</treeitem>
+   	</treechildren>
+
+
+
+	</tree>
+
+
+
+</window>

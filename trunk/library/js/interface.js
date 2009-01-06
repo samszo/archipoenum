@@ -168,7 +168,7 @@ function Save (){
 		if (res == nsIFilePicker.returnOK){
 			var fichier = fp.file;
 			var doc = getSVG();
-			serialize(doc,fichier,1);		
+			serialize(doc,fichier,0);		
 		}
 		
 	}catch(ex2){ alert("interface:Save:"+ex2); }
@@ -201,7 +201,7 @@ function Open(){
 function getSVG(){
 	try {
 		var svg;
-		svg=document.getElementById("svgFrame");
+		svg=document.getElementById("fig_21").firstChild;
 		return svg;
 		
 	} catch(ex2){alert("interface:GetSVG:"+ex2); }

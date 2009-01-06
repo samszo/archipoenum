@@ -157,5 +157,54 @@ function serialize(doc,file,extra) {
   } catch(ex2){ alert("interface:serialize:"+ex2); }
 }
 
+function Save (){
+	try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var nsIFilePicker = Components.interfaces.nsIFilePicker;
+		var fp = Components.classes["@mozilla.org/filepicker;1"]
+				  .createInstance(nsIFilePicker);
+		fp.init(window, "Select a File", nsIFilePicker.modeSave);
+		var res = fp.show();
+		if (res == nsIFilePicker.returnOK){
+			var fichier = fp.file;
+			var doc = getSVG();
+			serialize(doc,fichier,1);		
+		}
+		
+	}catch(ex2){ alert("interface:Save:"+ex2); }
+} 
+
+function Open(){
+	try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var nsIFilePicker = Components.interfaces.nsIFilePicker;
+		var fp = Components.classes["@mozilla.org/filepicker;1"]
+				  .createInstance(nsIFilePicker);
+		fp.init(window, "Select a File", nsIFilePicker.modeOpen);
+		var res = fp.show();
+		if (res == nsIFilePicker.returnOK){
+			var fichier = fp.file;
+			document.getElementById("svgFrame").setAttribute("src","");
+			var chemin = fichier.path;
+			//serialize(chemin,'C:\Program Files\EasyPHP 2.0b1\www\archipoenum\temp.svg',1);
+			//var s=chemin.replace(/(C:\Program Files\EasyPHP 2.0b1\www)/,'http://localhost/');
+			document.getElementById("svgFrame").setAttribute("src",'http://localhost/archipoenum/test1.svg');
+			document.getElementById("svgFrame").setAttribute("hidden","false");
+			alert ('chemin ='+s);
+		}
+
+		
+	}catch(ex2){ alert("interface:Open:"+ex2); }
+} 
+
+
+function getSVG(){
+	try {
+		var svg;
+		svg=document.getElementById("svgFrame");
+		return svg;
+		
+	} catch(ex2){alert("interface:GetSVG:"+ex2); }
+}
 
 

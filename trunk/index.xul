@@ -22,15 +22,35 @@
    list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
  }
  </html:style>
-
+<toolbox id="navigator-toolbox" hidden="false" >
+<toolbar id="nav-toolbar" >
 <hbox >
+	
 	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
 	<label hidden="true" value="Towards an ontology of the field of digital poetry" />
 	<image src="design/arponum.gif" />
+	<label hidden="false" value="                         					   " />
+	<hbox hidden="false" id="save" >
+		<button label="Sauvgarder" onclick="Save();"/>
+		<button label="Ouvrir" onclick="Open();"/>
+		<label hidden="false" value="                         					   " />
+		<vbox>
+		<hbox>
+			<label value="Login : " />
+			<textbox id="login" value="" />
+			<label value="Mot de passe : " />
+			<textbox id="Mot de passe" value="" />
+		</hbox>
+		</vbox >
+    </hbox>
 </hbox>
+</toolbar>
+</toolbox>
 <hbox flex='1' >
+
 	<groupbox orient="horizontal" flex="1" >
 		<vbox flex="1" >
+			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
@@ -39,6 +59,8 @@
 			<grippy/>
 		</splitter>
 		<vbox flex='1' >
+			
+		
 			<iframe id="svgFrame" flex='1' hidden="true" src="library/svg/fig_21.svg" />
 			<vbox id="fig_21" hidden="false" />
 			<vbox id="fig_18" hidden="true" />

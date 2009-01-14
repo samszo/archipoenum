@@ -9,7 +9,7 @@
 <script xlink:href="../js/interface.js" />  
 <g>
 	
-	<g id="fig_18_type" onclick="Saisir(this.id)" fill="red" visibility="visible">
+	<g id="fig_18_type" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="visible">
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		0.504,284 72.504,284 72.504,338 0.504,338 0.504,284 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 20 314.8838)">Type</text>
@@ -17,7 +17,7 @@
 		M0.504,347.45c0-4.875,3.9-8.775,8.775-8.775h54.45c4.875,0,8.775,3.9,8.775,8.775v36.449c0,4.875-3.9,8.775-8.775,8.775H9.279
 		c-4.875,0-8.775-3.9-8.775-8.775v-40.35V347.45z"/>
 		<text id="fig_18_type_name" class="styleTxtAttribut" transform="matrix(1 0 0 1 8.606 351.7822)">***</text>		
-		<g id="fig_18_type_document" onclick="" fill="none" visibility="inherit">	
+		<g id="fig_18_type_document" onclick="changer('fig_18')" fill="none" visibility="inherit">	
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			158.679,299.525 162.504,300.65 164.304,301.775 165.879,303.575 167.004,305.6 167.904,307.85 168.58,310.325 168.804,313.025 
 			167.904,318.425 167.004,320.675 165.879,322.7 164.304,324.275 162.504,325.399 160.705,326.3 158.679,326.524 130.554,326.524 
@@ -35,7 +35,7 @@
 			<text class="styleTxtAttribut" transform="matrix(1 0 0 1 175.3247 316.9072)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="8.326" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="11.692" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="14.393" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan></text>
 		</g>
 	
-		<g id="fig_18_type_format" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_type_format" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="black" stroke-linecap="square" stroke-miterlimit="10" points="58.33,444.649 63.729,445.774 
 				66.205,446.899 68.229,448.7 70.029,450.725 71.379,452.975 72.279,455.45 72.504,458.149 71.379,463.55 70.029,465.8 
 				68.229,467.825 66.205,469.399 63.729,470.524 61.029,471.425 58.33,471.649 19.179,471.649 14.679,471.649 9.279,470.524 
@@ -54,7 +54,7 @@
 		</g>
 	</g>
 	
-	<g id="fig_18_format" onclick="Saisir(this.id)" fill="red" visibility="visible">
+	<g id="fig_18_format" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="visible">
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			0.504,538.475 72.504,538.475 72.504,592.475 0.504,592.475 0.504,538.475 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 3.6528 563.5088)">Format</text>
@@ -64,7 +64,7 @@
 		<text id="fig_18_format_name" class="styleTxtAttribut" x="5" y="610" >***</text>
 	</g>
 	
-	<g id="fig_18_document" onclick="Saisir(this.id)" fill="red" visibility="visible">
+	<g id="fig_18_document" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="visible">
 		<text transform="matrix(1 0 0 1 179.604 266.2822)"><tspan x="0" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">d</tspan><tspan x="20.281" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">o</tspan><tspan x="40.506" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">cu</tspan><tspan x="80.1" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">me</tspan><tspan x="132.993" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">n</tspan><tspan x="153.487" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">t</tspan></text>
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		203.679,289.175 275.679,289.175 275.679,343.175 203.679,343.175 203.679,289.175 	"/>
@@ -77,7 +77,7 @@
 		<text id="fig_18_document_date" class="styleTxtAttribut" transform="matrix(1 0 0 1 205 384.8525)">Date</text>
 		<text id="fig_18_document_adresse" class="styleTxtAttribut" transform="matrix(1 0 0 1 205 396.7822)">Adresse</text>
 		<text id="fig_18_document_circonstance" class="styleTxtAttribut" transform="matrix(1 0 0 1 205 408.7119)">Circonstance</text>
-		<g id="fig_18_document_format" onclick="" fill="none" visibility="inherit">	
+		<g id="fig_18_document_format" onclick="changer('fig_18')" fill="none" visibility="inherit">	
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			200.979,549.05 206.379,550.175 208.854,551.3 210.879,553.1 212.679,555.125 214.029,557.375 214.929,559.85 215.154,562.55 
 			214.029,567.95 212.679,570.2 210.879,572.225 208.854,573.8 206.379,574.925 203.679,575.825 200.979,576.05 161.83,576.05 
@@ -98,7 +98,7 @@
 	</g>
 	
 	
-	<g id="fig_18_section" onclick="Saisir(this.id)" fill="red" visibility="hidden">
+	<g id="fig_18_section" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		456.804,290.75 528.804,290.75 528.804,344.75 456.804,344.75 456.804,290.75 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 462 321.6338)">Section</text>
@@ -109,7 +109,7 @@
 		<text id="fig_18_section_end" class="styleTxtAttribut" transform="matrix(1 0 0 1 481.3247 375.6338)">End</text>
 		<text id="fig_18_section_id" class="styleTxtAttribut" transform="matrix(1 0 0 1 485.8325 387.5635)">id</text>
 
-		<g id="fig_18_document_section" onclick="" fill="none" visibility="inherit">	
+		<g id="fig_18_document_section" onclick="changer('fig_18')" fill="none" visibility="inherit">	
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			371.08,301.1 375.129,302.225 376.929,303.35 378.279,305.15 379.629,307.175 380.529,309.425 381.205,311.9 381.429,314.6 
 			380.529,320 379.629,322.25 378.279,324.275 376.929,325.85 375.129,326.975 373.104,327.875 371.08,328.1 342.955,328.1 
@@ -126,7 +126,7 @@
 				427.564,308.525 427.564,321.697 407.754,321.697 	"/>
 			<text class="styleTxtAttribut" transform="matrix(1 0 0 1 407.7544 318.4775)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="8.326" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="11.692" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="14.393" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan></text>
 		</g>
-		<g id="fig_18_section_nature" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_section_nature" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			408.429,448.925 413.83,450.05 416.304,451.175 418.33,452.975 420.129,455 421.479,457.25 422.379,459.725 422.604,462.425 
 			421.479,467.825 420.129,470.075 418.33,472.1 416.304,473.675 413.83,474.8 411.129,475.7 408.429,475.925 369.279,475.925 
@@ -144,7 +144,7 @@
 				502.714,410.225 502.714,423.397 482.904,423.397 	"/>
 			<text class="styleTxtTitre" transform="matrix(1 0 0 1 482.9028 420.1885)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="8.326" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="11.691" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="14.393" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan></text>
 		</g>
-		<g id="fig_18_type_section" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_type_section" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="261.504,189.5 266.904,190.625 
 				269.379,191.75 271.404,193.55 273.205,195.575 274.554,197.825 275.455,200.3 275.679,203 274.554,208.4 273.205,210.65 
 				271.404,212.675 269.379,214.25 266.904,215.375 264.205,216.275 261.504,216.5 222.354,216.5 217.854,216.5 212.455,215.375 
@@ -164,7 +164,7 @@
 		</g>
 
 	</g>
-	<g id="fig_18_nature" onclick="Saisir(this.id)" fill="red" visibility="hidden">	
+	<g id="fig_18_nature" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">	
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		351.279,510.125 423.279,510.125 423.279,564.125 351.279,564.125 351.279,510.125 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 360 541.0088)">Nature</text>
@@ -183,7 +183,7 @@
 		M902.754,63.275c0-4.875,3.9-8.775,8.775-8.775h54.449c4.875,0,8.775,3.9,8.775,8.775V80.15c0,4.875-3.9,8.775-8.775,8.775H911.53
 		c-4.875,0-8.775-3.9-8.775-8.775V59.375V63.275z"/>
 		<text id="fig_18_actor_type" class="styleTxtAttribut" transform="matrix(1 0 0 1 926.3794 75.7041)">Type</text>
-		<g id="fig_18_section_actor" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_section_actor" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="685.179,304.25 690.58,305.375 
 				693.054,306.5 695.08,308.3 696.879,310.325 698.229,312.575 699.129,315.05 699.354,317.75 698.229,323.15 696.879,325.399 
 				695.08,327.425 693.054,329 690.58,330.125 687.879,331.024 685.179,331.25 646.03,331.25 641.53,331.25 636.129,330.125 
@@ -202,7 +202,7 @@
 		</g>
 	</g>
 
-	<g id="fig_18_ontoactor" onclick="Saisir(this.id);" fill="red" visibility="hidden">			
+	<g id="fig_18_ontoactor" onclick="Saisir(this.id,'fig_18');" fill="red" visibility="hidden">			
 		<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="
 		M688.554,63.5c0-4.875,3.9-8.775,8.775-8.775h52.425c4.875,0,8.775,3.9,8.775,8.775v36.45c0,4.875-3.9,8.775-8.775,8.775H697.33
 		c-4.875,0-8.775-3.9-8.775-8.775V59.6V63.5z"/>
@@ -213,7 +213,7 @@
 		759.429,0.95 759.429,54.95 687.429,54.95 687.429,0.95 759.429,0.95 	"/>
 		<text  class="styleTxtTitre" transform="matrix(1 0 0 1 690 25.9775)">Onto</text>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 710 37.915)">actor</text>
-		<g id="fig_18_ontoactor_actor" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_ontoactor_actor" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="853.929,14.225 859.33,15.35 
 				861.804,16.475 863.83,18.275 865.629,20.3 866.979,22.55 867.879,25.025 868.104,27.725 866.979,33.125 865.629,35.375 
 				863.83,37.4 861.804,38.975 859.33,40.1 856.629,41 853.929,41.225 814.78,41.225 810.28,41.225 804.879,40.1 802.405,38.975 
@@ -231,7 +231,7 @@
 		</g>	
 	</g>
 
-	<g id="fig_18_concept" onclick="Saisir(this.id)" fill="red" visibility="hidden">		
+	<g id="fig_18_concept" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">		
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		528.58,0.5 528.58,54.5 456.58,54.5 456.58,0.5 528.58,0.5 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 459 31.376)">Concept</text>
@@ -239,7 +239,7 @@
 		M456.354,62.825c0-4.875,3.9-8.775,8.775-8.775h54.45c4.875,0,8.774,3.9,8.774,8.775v21.6c0,4.875-3.899,8.775-8.774,8.775h-54.45
 		c-4.875,0-8.775-3.9-8.775-8.775v-25.5V62.825z"/>
 		<text id="fig_18_concept_name" class="styleTxtAttribut" transform="matrix(1 0 0 1 476.5981 77.5088)">name</text>
-		<g id="fig_18_section_concept" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_section_concept" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="515.08,132.125 520.479,133.25 
 				522.955,134.375 524.979,136.175 526.78,138.2 528.129,140.45 529.03,142.925 529.254,145.625 528.129,151.025 526.78,153.275 
 				524.979,155.3 522.955,156.875 520.479,158 517.78,158.9 515.08,159.125 475.929,159.125 471.429,159.125 466.029,158 
@@ -255,7 +255,7 @@
 				502.939,108.95 502.939,122.123 483.129,122.123 	"/>
 			<text class="styleTxtAttribut" transform="matrix(1 0 0 1 483.1294 118.9072)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="8.326" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="11.691" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="14.393" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">n</tspan></text>
 		</g>
-		<g id="fig_18_concept_ontoactor" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_concept_ontoactor" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="625.78,14 631.179,15.125 
 				633.655,16.25 635.679,18.05 637.479,20.075 638.83,22.325 639.729,24.8 639.955,27.5 638.83,32.9 637.479,35.15 635.679,37.175 
 				633.655,38.75 631.179,39.875 628.479,40.775 625.78,41 586.629,41 582.129,41 576.729,39.875 574.254,38.75 572.229,37.175 
@@ -275,7 +275,7 @@
 
 
 
-	<g id="fig_18_work" onclick="Saisir(this.id)" fill="red" visibility="hidden">			
+	<g id="fig_18_work" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">			
 		<text transform="matrix(1 0 0 1 823.3384 460.6963)"><tspan x="0" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">w</tspan><tspan x="26.58" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">o</tspan><tspan x="46.805" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">r</tspan><tspan x="62.593" y="0" fill="#FF8000" stroke="#231F20" font-family="'EurostileRegular'" font-size="39.825">k</tspan></text>
 		<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="
 		M907.705,555.125c0-4.875,3.899-8.775,8.774-8.775h55.125c4.875,0,8.775,3.9,8.775,8.775v5.175c0,4.875-3.9,8.775-8.775,8.775
@@ -287,7 +287,7 @@
 	</g>
 
 
-	<g id="fig_18_instance" onclick="Saisir(this.id)" fill="red" visibility="hidden">			
+	<g id="fig_18_instance" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">			
 		<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="
 		M699.129,559.85c0-4.875,3.9-8.774,8.775-8.774h70.875c4.875,0,8.774,3.899,8.774,8.774v46.125c0,4.875-3.899,8.775-8.774,8.775
 		h-70.875c-4.875,0-8.775-3.9-8.775-8.775V555.95V559.85z"/>
@@ -299,7 +299,7 @@
 		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		785.08,518 785.08,551.075 700.03,551.075 700.03,518 785.08,518 	"/>
 		<text class="styleTxtTitre" transform="matrix(1 0 0 1 710 538.54)">Instance</text>
-		<g id="fig_18_instance_work" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_instance_work" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			868.554,520.925 872.604,522.05 874.405,523.175 875.754,524.975 877.104,527 878.004,529.25 878.679,531.725 878.905,534.425 
 			878.004,539.825 877.104,542.075 875.754,544.1 874.405,545.675 872.604,546.8 870.58,547.7 868.554,547.925 840.429,547.925 
@@ -317,12 +317,12 @@
 			<text transform="matrix(1 0 0 1 794.7544 538.54)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="8.326" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="11.691" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9"> </tspan><tspan x="14.393" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan></text>
 		</g>
 	</g>
-	<g id="fig_18_physicpart" onclick="Saisir(this.id)" fill="red" visibility="hidden">			
+	<g id="fig_18_physicpart" onclick="Saisir(this.id,'fig_18')" fill="red" visibility="hidden">			
 		<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="702.054,358.25 783.729,358.25 
 			783.729,412.25 702.054,412.25 702.054,358.25 	"/>
 		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 705.4263 383.2822)">Physical part</text>
 		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 715 395.2041)">of the work</text>
-		<g id="fig_18_section_physicpart" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_section_physicpart" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="629.155,371.975 634.554,373.1 
 				637.03,374.225 639.054,376.024 640.854,378.05 642.205,380.3 643.104,382.774 643.33,385.475 642.205,390.875 640.854,393.125 
 				639.054,395.149 637.03,396.725 634.554,397.85 631.854,398.75 629.155,398.975 590.004,398.975 585.504,398.975 580.104,397.85 
@@ -338,7 +338,7 @@
 			<text transform="matrix(1 0 0 1 545.9028 389.3604)"><tspan x="0" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">1</tspan><tspan x="5.625" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">-</tspan><tspan x="8.991" y="0" stroke="#231F20" font-family="'ArialMT'" font-size="9.9">n</tspan></text>
 		</g>
 
-		<g id="fig_18_instance_physicpart" onclick="" fill="none" visibility="inherit">		
+		<g id="fig_18_instance_physicpart" onclick="changer('fig_18')" fill="none" visibility="inherit">		
 			<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 			758.754,445.325 762.804,446.45 764.604,447.575 765.955,449.375 767.304,451.399 768.205,453.649 768.879,456.125 
 			769.104,458.825 768.205,464.225 767.304,466.475 765.955,468.5 764.604,470.075 762.804,471.2 760.78,472.1 758.754,472.325 

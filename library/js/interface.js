@@ -2,6 +2,7 @@ var trace=true;
 var sep=";";
 var xulDoc=window.parent.document;
 var arrValidation = new Array();
+var figure_courant="fig_21";
 
 function SetSvgId(){
 	try {
@@ -29,9 +30,11 @@ function AfficheValidation(){
 	} catch(ex2){alert("interface:AfficheValidation:"+ex2);}	
 }
 
-function Saisir(idSrc){
+function Saisir(idSrc,figure){
 	
 	try {
+		figure_courant=figure;
+		//alert(figure_courant);
 		//var svgDoc=window.parent.frames['svgFrame'].document;
 		//affiche les champs de saisie
 		MontrerCacherXul("saisie_"+idSrc);
@@ -39,6 +42,11 @@ function Saisir(idSrc){
 		document.getElementById(idSrc).setAttribute("fill","orange");
 	} catch(ex2){alert("interface:Saisir:"+ex2);}
 	
+}
+
+function changer(figure){
+	figure_courant=figure;
+	//alert('Changer à'+figure_courant);
 }
 
 function Valider(idSrc,idsDst,idsValid){
@@ -164,11 +172,23 @@ function Save (){
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
 				  .createInstance(nsIFilePicker);
 		fp.init(window, "Select a File", nsIFilePicker.modeSave);
+		fp.appendFilter("Fichier SVG","*.svg");
 		var res = fp.show();
 		if (res == nsIFilePicker.returnOK){
 			var fichier = fp.file;
+			/*var fichierO=fichier.path;
+			var fichierC;
+			if (fichierO.substr(fichierO.length-4,4)!=".svg")
+				fichierC=fichierO+".svg";
+			else
+				fichierC=fichierO;	*/
 			var doc = getSVG();
 			serialize(doc,fichier,0);		
+		}
+		else if (res==2){
+			var fichier = fp.file;
+			var doc = getSVG();
+			serialize(doc,fichier,0);
 		}
 		
 	}catch(ex2){ alert("interface:Save:"+ex2); }
@@ -181,30 +201,73 @@ function Open(){
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
 				  .createInstance(nsIFilePicker);
 		fp.init(window, "Select a File", nsIFilePicker.modeOpen);
+		fp.appendFilter("Fichier SVG","*.svg");
+		
 		var res = fp.show();
 		if (res == nsIFilePicker.returnOK){
 			var fichier = fp.file;
 			document.getElementById("svgFrame").setAttribute("src","");
-			var chemin = fichier.path;
-			//serialize(chemin,'C:\Program Files\EasyPHP 2.0b1\www\archipoenum\temp.svg',1);
-			//var s=chemin.replace(/(C:\Program Files\EasyPHP 2.0b1\www)/,'http://localhost/');
-			document.getElementById("svgFrame").setAttribute("src",'http://localhost/archipoenum/test1.svg');
-			document.getElementById("svgFrame").setAttribute("hidden","false");
-			alert ('chemin ='+s);
+			var chemin = fichier.path;	
+			
+			
+			AppendSVG("http://localhost/archipoenum/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+			doc=document.getElementById("fig_21");
+			doc.removeChild(doc.firstChild);              
+			document.getElementById("fig_21").setAttribute("hidden","false");
+		
+			//alert ('chemin ='+s);
 		}
 
 		
-	}catch(ex2){ alert("interface:Open:"+ex2); }
+	}catch(ex2){ alert("interface:Open: "+ex2); }
 } 
 
+function AppendSVG(url,doc) {
+  try {
+	dump("AppendSVG IN "+url+"\n");
+
+	/*if(!InSvg){
+		//problème de zoom et de pan
+		//obliger de passer par un iframe
+	  	if (window.parent != self) 
+			parent.document.getElementById("SVGFrame").setAttribute("src",url);
+		else
+			document.getElementById("SVGFrame").setAttribute("src",url);	
+		return;
+	}*/
+
+	p = new XMLHttpRequest();
+	p.onload = null;
+	p.open("GET", url, false);
+	p.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	p.send(null);
+
+	if (p.status != "200" ){
+	      alert("Réception erreur " + p.status);
+	}else{
+
+	    var response = p.responseText;
+		var parser=new DOMParser();
+		var resultDoc=parser.parseFromString(response,"text/xml");
+		doc.appendChild(resultDoc.documentElement);
+
+	}
+	dump("AppendSVG OUT \n");
+   } catch(ex2){alert("AppendSVG::"+ex2);}
+}
 
 function getSVG(){
 	try {
 		var svg;
+		alert(figure_courant);
 		svg=document.getElementById("fig_21").firstChild;
 		return svg;
 		
 	} catch(ex2){alert("interface:GetSVG:"+ex2); }
 }
 
-
+function afficher(){
+	document.getElementById("fig_18").setAttribute("hidden","true");
+	document.getElementById("fig_19").setAttribute("hidden","true");
+	document.getElementById("fig_21").setAttribute("hidden","false");
+}

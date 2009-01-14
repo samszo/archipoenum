@@ -12,7 +12,7 @@
 	<text transform="matrix(1 0 0 1 14.2202 233.2061)"><tspan x="0" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">do</tspan><tspan x="11.25" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">c</tspan><tspan x="16.199" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">u</tspan><tspan x="21.824" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">m</tspan><tspan x="30.368" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">en</tspan><tspan x="41.617" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">t</tspan></text>
 	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="72.5" y1="229.325" x2="113.9" y2="229.325"/>
 </g>
-<g id="fig_21_indexing" visibility="hidden" onclick="Saisir(this.id)" fill="red" >
+<g id="fig_21_indexing" visibility="hidden" onclick="Saisir(this.id,'figure_21')" fill="red" >
 	<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="171.725,215.825 177.125,216.95 
 		179.6,218.075 181.625,219.875 183.425,221.9 184.775,224.15 185.675,226.625 185.9,229.325 184.775,234.726 183.425,236.976 
 		181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 
@@ -27,7 +27,7 @@
 	<text id="fig_21_indexing_id" class="styleTxtAttribut" transform="matrix(1 0 0 1 142.9233 279.1045)">***</text>
 	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="185.9" y1="229.325" x2="233.6" y2="229.55"/>
 </g>
-<g id="fig_21_indexer" onclick="Saisir(this.id)" fill="red" >
+<g id="fig_21_indexer" onclick="Saisir(this.id,'figure_21')" fill="red" >
 	<path stroke="#231F20" stroke-linecap="square"
 		stroke-miterlimit="10"
 		d="M227.75,166.775

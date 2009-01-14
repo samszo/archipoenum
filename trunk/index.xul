@@ -31,15 +31,21 @@
 	<image src="design/arponum.gif" />
 	<label hidden="false" value="                         					   " />
 	<hbox hidden="false" id="save" >
-		<button label="Sauvgarder" onclick="Save();"/>
-		<button label="Ouvrir" onclick="Open();"/>
-		<label hidden="false" value="                         					   " />
+
 		<vbox>
 		<hbox>
-			<label value="Login : " />
-			<textbox id="login" value="" />
+			<button label="Sauvegarder" onclick="Save();"/>
+			<button label="Ouvrir" onclick="Open();"/>
+			<label hidden="false" value="                       " />
+			<label value="Nom d'utilisateur : " />
+			<textbox id="nom" value="" style='width:100px;' />
 			<label value="Mot de passe : " />
-			<textbox id="Mot de passe" value="" />
+			<textbox id="password" value="" style='width:100px;' />
+			<button label="Login" onclick="Save();"/>
+			<label value="                                    Figure Principale" onclick="afficher();"/>
+		</hbox>
+		<hbox> 
+		
 		</hbox>
 		</vbox >
     </hbox>
@@ -70,7 +76,12 @@
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
 		</vbox>
+		
 	</groupbox>
+	
 </hbox>
+ <splitter collapse="before"  >
+			<grippy/>
+		</splitter>
 
 </window>

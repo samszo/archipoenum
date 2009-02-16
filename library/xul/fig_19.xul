@@ -173,7 +173,7 @@
 			20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 	"/>
 		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 1135 320.3379)">document</text>
 	</g>
-	<g id="fig_19_analyst" onclick="Saisir(this.id,'fig_19')" fill="red" visibility="visible">
+	<g id="fig_19_analyst" onclick="Saisir(this.id,'fig_19');" fill="red" visibility="visible">
 		<path stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M91.225,485.763
 			c0-23.313,139.1-41.963,312.975-41.963s312.975,18.65,312.975,41.963s-139.1,41.963-312.975,41.963S91.225,509.075,91.225,485.763
 			L91.225,485.763z"/>
@@ -191,7 +191,7 @@
 		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 937.2227 292.8848)">Observe</text>
 	</g>
 
-	<g id="fig_19_analyse" visibility="hidden">
+	<g id="fig_19_analyse" visibility="hidden" >
 		<polygon id="fig_19_analyse1" fill="white" onclick="Saisir(this.id,'fig_19')" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="
 			201.025,339.624 206.425,340.749 208.9,341.874 210.925,343.675 212.725,345.7 214.075,347.95 214.975,350.425 215.2,353.124 
 			214.075,358.524 212.725,360.774 210.925,362.8 208.9,364.374 206.425,365.499 203.725,366.399 201.025,366.624 161.875,366.624 

@@ -4,13 +4,8 @@ var xulDoc=window.parent.document;
 var arrValidation = new Array();
 var figure_courant="fig_21";
 
-function SetSvgId(){
-	try {
-		var src = svgDoc.getElementById("svgFrame").getAttribute("src");
 
-	} catch(ex2){alert("interface:SetSvgId:"+ex2);}
-}
-
+// Fonction d'affichage de SVG dans l' IFRAME
 function AfficheSvg(svgNom){
 	try {
 		document.getElementById("svgFrame").setAttribute("src","");
@@ -18,6 +13,7 @@ function AfficheSvg(svgNom){
 	} catch(ex2){alert("interface:AfficheSvg:"+ex2);}	
 }
 
+// Changer le couleur de graphe séléctionné aprés la validation des données saisies
 function AfficheValidation(){
 	try {
 		for (var i = 0; i < arrValidation.length; i++){
@@ -30,6 +26,7 @@ function AfficheValidation(){
 	} catch(ex2){alert("interface:AfficheValidation:"+ex2);}	
 }
 
+// Afficher la partie de saisir des données
 function Saisir(idSrc,figure){
 	
 	try {
@@ -44,11 +41,13 @@ function Saisir(idSrc,figure){
 	
 }
 
+// Changer le variable figure_courant
 function changer(figure){
 	figure_courant=figure;
 	//alert('Changer à'+figure_courant);
 }
 
+// Changer le couleur de graphe séléctionné
 function Valider(idSrc,idsDst,idsValid){
 	
 	try {
@@ -57,8 +56,10 @@ function Valider(idSrc,idsDst,idsValid){
 		//change les champs saisis
 		ModifChampsSvg(idSrc);
 		//vérifie l'afichage de nouveaux graphiques
-		if(IdsEstValider(idsValid))
+		if(IdsEstValider(idsValid)){
 			MontrerSvg(idsDst);
+			
+		}
 		//cache le xul
 		MontrerCacherXul("saisie_"+idSrc);
 		//enregistre la validation
@@ -67,6 +68,7 @@ function Valider(idSrc,idsDst,idsValid){
 	
 }
 
+// Vérifier que le graphe est validé ou non
 function IdsEstValider(idsValid){
 	try {
 		if(idsValid=="")
@@ -84,7 +86,7 @@ function IdsEstValider(idsValid){
 }
 
 
-
+// Modifier les champs dans le graphe SVG
 function ModifChampsSvg(idSrc){
 	
 	try {
@@ -103,6 +105,7 @@ function ModifChampsSvg(idSrc){
 	} catch(ex2){alert("interface:ModifChampsSvg:"+ex2);}	
 }
 
+// Modifier la valeur d'un champ
 function ChangeAttributsValeur(idsDst, att, val){
 	try {
 		var arrId = idsDst.split(sep);
@@ -111,6 +114,7 @@ function ChangeAttributsValeur(idsDst, att, val){
 	} catch(ex2){alert("interface:ChangeAttributsValeur:"+ex2);}
 }
 
+// Afficher un graphe SVG
 function MontrerSvg(idsDst){
 	try {
 		var arrId = idsDst.split(sep);
@@ -119,19 +123,30 @@ function MontrerSvg(idsDst){
 	} catch(ex2){alert("interface:MontrerSvg:"+ex2);}
 }
 
+// Afficher ou Cacher un élément XUL donnée 
 function MontrerCacherXul(idsDst){
 	try {
 		var arrId = idsDst.split(sep);
 		for (var i = 0; i < arrId.length; i++){
 			var xul = document.getElementById(arrId[i]);
-			if(xul.getAttribute("hidden")=="true")
+			if(xul.getAttribute("hidden")=="true"){
 				xul.setAttribute("hidden","false");
+				if (arrId[1]=="fig_18")	
+					document.getElementById("ch1").setAttribute("hidden","false");
+				else if (arrId[1]=="fig_19")	
+					document.getElementById("ch2").setAttribute("hidden","false");
+				else if (arrId[1]=="fig_21"){
+					document.getElementById("ch1").setAttribute("hidden","true");
+					document.getElementById("ch2").setAttribute("hidden","true");
+				}
+			}
 			else
 				xul.setAttribute("hidden","true");
 		}
 	} catch(ex2){alert("interface:MontrerXul:"+ex2);}
 }
 
+// Enregistrement d'un document dans un fichier
 function serialize(doc,file,extra) {
 
   try {
@@ -165,6 +180,7 @@ function serialize(doc,file,extra) {
   } catch(ex2){ alert("interface:serialize:"+ex2); }
 }
 
+// Afficher le menu de sauvegarde  
 function Save (){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -194,6 +210,7 @@ function Save (){
 	}catch(ex2){ alert("interface:Save:"+ex2); }
 } 
 
+// Afficher le menu d'ouverture de fichier
 function Open(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -222,20 +239,12 @@ function Open(){
 	}catch(ex2){ alert("interface:Open: "+ex2); }
 } 
 
+// Récupérer le SVG à partir du fichier et le charger dans le document en cours 
 function AppendSVG(url,doc) {
   try {
 	dump("AppendSVG IN "+url+"\n");
 
-	/*if(!InSvg){
-		//problème de zoom et de pan
-		//obliger de passer par un iframe
-	  	if (window.parent != self) 
-			parent.document.getElementById("SVGFrame").setAttribute("src",url);
-		else
-			document.getElementById("SVGFrame").setAttribute("src",url);	
-		return;
-	}*/
-
+	// Fonction Ajax pour récupérer le SVg à partir de l'url
 	p = new XMLHttpRequest();
 	p.onload = null;
 	p.open("GET", url, false);
@@ -248,7 +257,9 @@ function AppendSVG(url,doc) {
 
 	    var response = p.responseText;
 		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(response,"text/xml");
+		// Intégrer le DOM récupéré à l'interieur de document
 		doc.appendChild(resultDoc.documentElement);
 
 	}
@@ -256,18 +267,67 @@ function AppendSVG(url,doc) {
    } catch(ex2){alert("AppendSVG::"+ex2);}
 }
 
+// Récupérer le SVG en cours d'utilisation
 function getSVG(){
 	try {
 		var svg;
 		alert(figure_courant);
-		svg=document.getElementById("fig_21").firstChild;
+		svg=document.getElementById(figure_courant).firstChild;
 		return svg;
 		
 	} catch(ex2){alert("interface:GetSVG:"+ex2); }
 }
 
+// Afficher le figure principale
 function afficher(){
 	document.getElementById("fig_18").setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","true");
 	document.getElementById("fig_21").setAttribute("hidden","false");
+	
+	document.getElementById("ch1").setAttribute("hidden","true");
+	document.getElementById("ch2").setAttribute("hidden","true");
+}
+
+function afficher1(){
+	document.getElementById("fig_19").setAttribute("hidden","true");
+	document.getElementById("fig_18").setAttribute("hidden","false");
+	document.getElementById("fig_21").setAttribute("hidden","true");
+	
+	document.getElementById("ch2").setAttribute("hidden","true");
+	document.getElementById("ch3").setAttribute("hidden","true");
+}
+
+function afficher2(){
+	//alert("ch3");
+	document.getElementById("fig_18").setAttribute("hidden","true");
+	document.getElementById("fig_19").setAttribute("hidden","false");
+	document.getElementById("fig_21").setAttribute("hidden","true");
+	
+	document.getElementById("ch3").setAttribute("hidden","false");
+}
+
+function login(id,pwd){
+	
+	// Routine de vérification si le navigateur gêre la méthode utilisée
+	if (document.implementation && document.implementation.createDocument) {
+		// déclaration pour Mozilla et FF
+		docXml = document.implementation.createDocument('', '', null);
+		
+	}
+	else if (window.ActiveXObject){
+		// déclaration pour IE
+		docXml = new ActiveXObject("Microsoft.XMLDOM");
+		
+	}
+	else {
+	
+		alert('Votre navigateur ne saurait pas éxécuter ce script.');
+	
+	}
+	
+	docXml.load("user.xml");
+	//alert("XML: "+docXml.toString());
+	//var user = docXml.getElementsByTagName("user").childNodes[0].nodeValue;
+	alert (docXml.firstChild.childNodes.length);//.getAttribute('id'));
+
 }

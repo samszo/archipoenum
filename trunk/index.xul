@@ -29,25 +29,30 @@
 	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
 	<label hidden="true" value="Towards an ontology of the field of digital poetry" />
 	<image src="design/arponum.gif" />
-	<label hidden="false" value="                         					   " />
+	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 
-		<vbox>
+
 		<hbox>
-			<button label="Sauvegarder" onclick="Save();"/>
-			<button label="Ouvrir" onclick="Open();"/>
-			<label hidden="false" value="                       " />
+			<toolbarbutton label="Sauvegarder  " onclick="Save();"/>
+			<label hidden="false" value="    " />
+			<toolbarbutton label="Ouvrir  " onclick="Open();"/>
+			<label hidden="false" value="    " />
 			<label value="Nom d'utilisateur : " />
 			<textbox id="nom" value="" style='width:100px;' />
 			<label value="Mot de passe : " />
 			<textbox id="password" value="" style='width:100px;' />
-			<button label="Login" onclick="Save();"/>
-			<label value="                                    Figure Principale" onclick="afficher();"/>
+			<toolbarbutton label="Login  " onclick="login('admin','admin');"/>
+		
+				<label id="ch1" value=" Figure Principale" hidden="true" onclick="afficher();"/>
+				<label id="ch2" value="/    Document" hidden="true" onclick="afficher1();"/>
+				<label id="ch3" value="/    Acteur" hidden="true" onclick="afficher2();"/>
+
 		</hbox>
 		<hbox> 
 		
 		</hbox>
-		</vbox >
+
     </hbox>
 </hbox>
 </toolbar>

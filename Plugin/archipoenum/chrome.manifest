@@ -1,0 +1,6 @@
+content     archipoenum    chrome/content/
+content     archipoenum    chrome/content/ contentaccessible=yes
+overlay chrome://browser/content/browser.xul chrome://archipoenum/content/index.xul
+
+locale	archipoenum	fr-FR	locale/fr-FR/
+

@@ -1,27 +1,14 @@
 <?xml version="1.0"?>
-<overlay id="captainToolbarOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-	<script src="demarrer.js"/>
-	<script>
-		//self.setTimeout('read()', 10000)
-	</script>
-	<toolbarpalette id="BrowserToolbarPalette">
-		<toolbaritem id="capbar" flex="1">
-			<label value="Plugin d'archivage de la poesie numerique " control="blog" style="margin-top:7px;"/>
-			<image src="chrome://archipoenum/content/arponum.gif" />
-			<toolbarseparator/>
-			<toolbarbutton id="start" label="Demarrer l'application " oncommand="load();"/>
-		</toolbaritem>
-	</toolbarpalette>
-	<toolbox id="navigator-toolbox">
-		<toolbar accesskey="R" hidden="false" chromeclass="toolbar" 
-		class="chromeclass-toolbar"  customizable="false" id="captaintoolbar"
-		mode="full" toolbarname="CaptainToolbar [shift+F1]" 
-		inherits="collapsed,hidden" persist="collapsed,hidden" defaultset="capbar" height="30"/>
-	</toolbox>
-	<keyset id="mainKeyset">
-		<key id="key_fgtoggle" keycode="VK_F1" modifiers="shift" command="cmd_toggleToolbar"/>
-	</keyset>
-	<commandset id="mainCommandSet">
-		<command id="cmd_toggleToolbar" oncommand="goToggleToolbar('captaintoolbar','cmd_toogleToolbar');"/>
-	</commandset>
+<overlay 
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="demarrer.js"/>
+   
+   <menubar id="main-menubar">
+   	 <menu id="archipoenum-topMenu"  label="Archipoenum">
+	   <menupopup id="archi-menupopup">
+	   	 <menuitem id="archipoenum-item" label="Archipoenum" oncommand="load();"/>
+	  	</menupopup>
+	 </menu>
+   </menubar>
 </overlay>
+

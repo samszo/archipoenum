@@ -183,6 +183,7 @@ function serialize(doc,file,extra) {
 // Afficher le menu de sauvegarde  
 function Save (){
 	try{
+		
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var nsIFilePicker = Components.interfaces.nsIFilePicker;
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
@@ -192,14 +193,20 @@ function Save (){
 		var res = fp.show();
 		if (res == nsIFilePicker.returnOK){
 			var fichier = fp.file;
-			/*var fichierO=fichier.path;
+			var fichierO=fichier.path;
 			var fichierC;
 			if (fichierO.substr(fichierO.length-4,4)!=".svg")
 				fichierC=fichierO+".svg";
 			else
-				fichierC=fichierO;	*/
+				fichierC=fichierO;	
 			var doc = getSVG();
-			serialize(doc,fichier,0);		
+			/*var file = Components.classes["@mozilla.org/file/local;1"]
+                     .createInstance(Components.interfaces.nsILocalFile);
+            lpath="http://localhost/archipoenum/sauvegardes/";//+fichierC;
+			file.initWithPath(lpath);
+			alert("Path : "+file.path);*/
+			serialize(doc,fichier,0);	
+			
 		}
 		else if (res==2){
 			var fichier = fp.file;
@@ -275,7 +282,7 @@ function getSVG(){
 		svg=document.getElementById(figure_courant).firstChild;
 		return svg;
 		
-	} catch(ex2){alert("interface:GetSVG:"+ex2); }
+	} catch(ex2){alert("interface:getSVG:"+ex2); }
 }
 
 // Afficher le figure principale

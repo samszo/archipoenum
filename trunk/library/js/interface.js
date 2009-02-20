@@ -5,6 +5,35 @@ var arrValidation = new Array();
 var figure_courant="fig_21";
 
 
+function SetFichier(){
+	
+  try {
+    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+  	
+	//saisi le libellé 
+	var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+	                        .getService(Components.interfaces.nsIPromptService);
+	var input = {value: ""};
+	var check = {value: false};
+	result = prompts.prompt(window, "Donner le nom du fichier", "Saisir le nom du fichier", input, null, check);
+	if(!result)
+		return;
+	var nomFic = input.value;
+	var newFilePath = "chrome...";
+	var fXml = Components.classes["@mozilla.org/file/local;1"]
+	                     .createInstance(Components.interfaces.nsILocalFile);
+	fXml.initWithPath(newFilePath);
+
+	//lbl = Utf8.encode(lbl);
+	//vérification de l'extension
+
+	return fXml;
+
+  } catch(ex2){alert("interface:GetNomFichier:"+ex2);}
+}
+
+
+
 // Fonction d'affichage de SVG dans l' IFRAME
 function AfficheSvg(svgNom){
 	try {

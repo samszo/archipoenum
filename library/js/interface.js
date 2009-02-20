@@ -200,12 +200,14 @@ function Save (){
 			else
 				fichierC=fichierO;	
 			var doc = getSVG();
-			/*var file = Components.classes["@mozilla.org/file/local;1"]
-                     .createInstance(Components.interfaces.nsILocalFile);
-            lpath="http://localhost/archipoenum/sauvegardes/";//+fichierC;
-			file.initWithPath(lpath);
-			alert("Path : "+file.path);*/
-			serialize(doc,fichier,0);	
+			var file = Components.classes["@mozilla.org/file/directory_service;1"]
+			                     .getService(Components.interfaces.nsIProperties)
+			                     .get("TmpD", Components.interfaces.nsIFile);
+			file.append(fichierC);
+			file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0664);
+			// utilisez le fichier créé
+			alert(file.path);
+			serialize(doc,file,0);	
 			
 		}
 		else if (res==2){

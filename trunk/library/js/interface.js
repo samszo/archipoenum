@@ -18,8 +18,8 @@ function SetFichier(){
 	result = prompts.prompt(window, "Donner le nom du fichier", "Saisir le nom du fichier", input, null, check);
 	if(!result)
 		return;
-	var nomFic = input.value;
-	var newFilePath = "chrome...";
+	var nomFic = input.value+".svg";
+	var newFilePath = "chrome://archipoenum/content/sauvegardes/";
 	var fXml = Components.classes["@mozilla.org/file/local;1"]
 	                     .createInstance(Components.interfaces.nsILocalFile);
 	fXml.initWithPath(newFilePath);
@@ -218,6 +218,7 @@ function Save (){
 		var fp = Components.classes["@mozilla.org/filepicker;1"]
 				  .createInstance(nsIFilePicker);
 		fp.init(window, "Select a File", nsIFilePicker.modeSave);
+		fp.defaultExtension ="svg";
 		fp.appendFilter("Fichier SVG","*.svg");
 		var res = fp.show();
 		if (res == nsIFilePicker.returnOK){
@@ -228,15 +229,8 @@ function Save (){
 				fichierC=fichierO+".svg";
 			else
 				fichierC=fichierO;	
-			var doc = getSVG();
-			var file = Components.classes["@mozilla.org/file/directory_service;1"]
-			                     .getService(Components.interfaces.nsIProperties)
-			                     .get("TmpD", Components.interfaces.nsIFile);
-			file.append(fichierC);
-			file.createUnique(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0664);
-			// utilisez le fichier créé
-			alert(file.path);
-			serialize(doc,file,0);	
+			var doc = getSVG();		
+			serialize(doc,fichier,0);	
 			
 		}
 		else if (res==2){

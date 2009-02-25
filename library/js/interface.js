@@ -259,7 +259,7 @@ function Open(){
 			var chemin = fichier.path;	
 			
 			
-			AppendSVG("http://localhost/archipoenum/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+			AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
 			doc=document.getElementById("fig_21");
 			doc.removeChild(doc.firstChild);              
 			document.getElementById("fig_21").setAttribute("hidden","false");

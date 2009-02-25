@@ -259,7 +259,14 @@ function Open(){
 			var chemin = fichier.path;	
 			
 			
-			AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+			//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+			xml = read(chemin);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			// Intégrer le DOM récupéré à l'interieur de document
+			document.getElementById("fig_21").appendChild(resultDoc.documentElement);
+			
 			doc=document.getElementById("fig_21");
 			doc.removeChild(doc.firstChild);              
 			document.getElementById("fig_21").setAttribute("hidden","false");
@@ -270,6 +277,46 @@ function Open(){
 		
 	}catch(ex2){ alert("interface:Open: "+ex2); }
 } 
+
+function read(filepath) {
+  try {
+	//http://xulfr.org/wiki/RessourcesLibs/LectureFichierCodeAvecCommentaires
+    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	  
+	//Le fichier est ouvert
+	 var file =  Components.classes["@mozilla.org/file/local;1"]
+	            .createInstance(Components.interfaces.nsILocalFile);
+	 file.initWithPath(filepath);
+	 if ( file.exists() != true) {
+	  alert("Le fichier "+filepath+" n'existe pas");
+	  return ;
+	 }
+
+	 //Mode de lecture du fichier, un flux est nécessaire
+	 //Le second argument définit les différents modes de lecture parmis
+	 //PR_RDONLY     =0x01 lecture seulement
+	 //PR_WRONLY     =0x02 écriture seulement
+	 //PR_RDWR       =0x04 lecture ou écriture
+	 //PR_CREATE_FILE=0x08 si le fichier n'existe pas, il est créé (sinon, sans effet)
+	 //PR_APPEND     =0x10 le fichier est positionné à la fin avant chaque écriture
+	 //PR_TRUNCATE   =0x20 si le fichier existe, sa taille est réduite à zéro
+	 //PR_SYNC       =0x40 chaque écriture attend que les données ou l'état du fichier soit mis à jour
+	 //PR_EXCL       =0x80 idem que PR_CREATE_FILE, sauf que si le fichier existe, NULL est retournée
+	 //Le troisième argument définit les droits
+
+	 var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
+	         .createInstance( Components.interfaces.nsIFileInputStream );
+	 inputStream.init(file, 0x01, 00004, null);
+	 var sis = Components.classes["@mozilla.org/binaryinputstream;1"]
+	          .createInstance(Components.interfaces.nsIBinaryInputStream);
+
+	 sis.setInputStream( inputStream );
+	 var output = sis.readBytes( sis.available() );
+	 return output;
+ 
+  } catch(ex2){ alert("read::"+filepath+" "+ex2); }
+ 
+ }
 
 // Récupérer le SVG à partir du fichier et le charger dans le document en cours 
 function AppendSVG(url,doc) {

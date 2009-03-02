@@ -359,13 +359,14 @@ function getSVG(){
 
 // Afficher le figure principale
 function afficher(){
+try{
 	document.getElementById("fig_18").setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","true");
 	document.getElementById("fig_21").setAttribute("hidden","false");
 	
 	document.getElementById("ch1").setAttribute("hidden","true");
 	document.getElementById("ch2").setAttribute("hidden","true");
-}
+} catch(ex2){alert("interface:getSVG:"+ex2); }
 
 function afficher1(){
 	document.getElementById("fig_19").setAttribute("hidden","true");
@@ -374,39 +375,109 @@ function afficher1(){
 	
 	document.getElementById("ch2").setAttribute("hidden","true");
 	document.getElementById("ch3").setAttribute("hidden","true");
-}
+} catch(ex2){alert("interface:getSVG:"+ex2); }
 
 function afficher2(){
+try{
 	//alert("ch3");
 	document.getElementById("fig_18").setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","false");
 	document.getElementById("fig_21").setAttribute("hidden","true");
 	
 	document.getElementById("ch3").setAttribute("hidden","false");
+} catch(ex2){alert("interface:getSVG:"+ex2); }
+
+// bibliothèque SQLite http://codesnippets.joyent.com/posts/show/1030
+var $sqlite = {
+	storageService: [],
+	mDBConn: [],
+	
+	_initService : function(file){
+		//http://xulfr.org/wiki/RessourcesLibs/LectureFichierCodeAvecCommentaires
+    	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var db = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
+		db.append(file);
+		this.storageService[file] = Components.classes["@mozilla.org/storage/service;1"].getService(Components.interfaces.mozIStorageService);
+		this.mDBConn[file] = (this.storageService[file]).openDatabase(db);
+			
+	},
+	
+	select : function(file,sql,param){
+		if (this.storageService[file]== undefined){
+                    this._initService(file);
+		}
+		var ourTransaction = false;
+		if ((this.mDBConn[file]).transactionInProgress){
+			ourTransaction = true;
+			(this.mDBConn[file]).beginTransactionAs((this.mDBConn[file]).TRANSACTION_DEFERRED);
+		}
+		var statement = (this.mDBConn[file]).createStatement(sql);
+                if (param){
+			for (var m=2, arg=null; arg=arguments[m]; m++) {
+				statement.bindUTF8StringParameter(m-2, arg);
+			}
+		}
+		try{
+			var dataset = [];
+			while (statement.executeStep()){
+				var row = [];
+				for(var i=0,k=statement.columnCount; i<k; i++){
+					row[statement.getColumnName(i)] = statement.getUTF8String(i);
+				}
+				dataset.push(row);
+			}
+			// return dataset;	
+		}
+		finally {
+			statement.reset();
+		}
+		if (ourTransaction){
+			(this.mDBConn[file]).commitTransaction();
+		}
+        return dataset;	
+	},
+	
+	
+	cmd : function(file,sql,param){
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		if (this.storageService[file] == undefined){
+	                    this._initService(file);
+		}
+		var ourTransaction = false;
+		
+		if ((this.mDBConn[file]).transactionInProgress){
+			ourTransaction = true;
+			(this.mDBConn[file]).beginTransactionAs((this.mDBConn[file]).TRANSACTION_DEFERRED);
+		}
+		var statement = (this.mDBConn[file]).createStatement(sql);
+		if (param){
+			for (var m=2, arg=null; arg=arguments[m]; m++) {
+				statement.bindUTF8StringParameter(m-2, arg);
+			}
+		}
+		try{
+			statement.execute();
+		}
+		finally {
+			statement.reset();
+		}
+		if (ourTransaction){
+			(this.mDBConn[file]).commitTransaction();
+		}
+	}	
+
+}
+
+function create () {
+	var myDBFile = 'mydb.sqlite';
+	var myCreateDBQuery = 'CREATE TABLE IF NOT EXISTS utilisateur(id TEXT PRIMARY KEY , pwd TEXT);';
+	var myInsertQuery = 'INSERT INTO utilisateur VALUES("admin","admin");';
+	$sqlite.cmd(myDBFile,myCreateDBQuery);
+	$sqlite.cmd(myDBFile,myInsertQuery);
 }
 
 function login(id,pwd){
 	
-	// Routine de vérification si le navigateur gêre la méthode utilisée
-	if (document.implementation && document.implementation.createDocument) {
-		// déclaration pour Mozilla et FF
-		docXml = document.implementation.createDocument('', '', null);
-		
-	}
-	else if (window.ActiveXObject){
-		// déclaration pour IE
-		docXml = new ActiveXObject("Microsoft.XMLDOM");
-		
-	}
-	else {
-	
-		alert('Votre navigateur ne saurait pas éxécuter ce script.');
-	
-	}
-	
-	docXml.load("user.xml");
-	//alert("XML: "+docXml.toString());
-	//var user = docXml.getElementsByTagName("user").childNodes[0].nodeValue;
-	alert (docXml.firstChild.childNodes.length);//.getAttribute('id'));
+
 
 }

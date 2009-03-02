@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml" >
+	<hbox>
+		<label hidden="false" value="                                                                                                                                                                                 " />
+		<vbox>
+			<label value=" Nom d'utilisateur : " style="margin-top: 7px;" flex="1"/>
+			<textbox id="nom" value="" style='width:120px;' />
+			<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
+			<textbox id="password" value="" style='width:120px;h' />
+			<label hidden="false" value=" " />
+			<button label="Login  " style='width:100px;' onclick="login('admin','admin');"/>
+		</vbox>
+		<label hidden="false" value="                                                                 " />
+	</hbox>
+</window>

@@ -18,13 +18,13 @@
 		181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 
 		120.2,240.575 118.175,239 116.375,236.976 115.025,234.726 114.125,232.025 113.9,229.325 115.025,224.15 116.375,221.9 
 		118.175,219.875 120.2,218.3 122.675,216.95 125.375,216.05 128.075,215.825 165.2,215.825 171.725,215.825 "/>
-	<text transform="matrix(1 0 0 1 130.9937 233.2061)" class="styleTxtTitre" ><tspan x="0" y="0" >indexer</tspan></text>
+	<text transform="matrix(1 0 0 1 130.9937 233.2061)" style='fill:#231F20;font-size:20px;font-family:ArialMT;' ><tspan x="0" y="0" >indexer</tspan></text>
 	<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="
 		M116.825,251.601c0-4.875,3.9-8.775,8.775-8.775h48.6c4.875,0,8.775,3.9,8.775,8.775v22.05c0,4.875-3.9,8.774-8.775,8.774h-48.6
 		c-4.875,0-8.775-3.899-8.775-8.774V247.7V251.601z"/>
-	<text id="fig_21_indexing_date" class="styleTxtAttribut" transform="matrix(1 0 0 1 137.0718 255.2607)">***</text>
-	<text id="fig_21_indexing_place" class="styleTxtAttribut" transform="matrix(1 0 0 1 134.8218 267.1826)">***</text>
-	<text id="fig_21_indexing_id" class="styleTxtAttribut" transform="matrix(1 0 0 1 142.9233 279.1045)">***</text>
+	<text id="fig_21_indexing_date" style='fill:#231F20;font-family:ArialMT;font-size:12px;' transform="matrix(1 0 0 1 137.0718 255.2607)">***</text>
+	<text id="fig_21_indexing_place" style='fill:#231F20;font-family:ArialMT;font-size:12px;' transform="matrix(1 0 0 1 134.8218 267.1826)">***</text>
+	<text id="fig_21_indexing_id" style='fill:#231F20;font-family:ArialMT;font-size:12px;' transform="matrix(1 0 0 1 142.9233 279.1045)">***</text>
 	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="185.9" y1="229.325" x2="233.6" y2="229.55"/>
 </g>
 <g id="fig_21_indexer" onclick="Saisir(this.id,'fig_21')" fill="red" >
@@ -33,8 +33,8 @@
 		d="M227.75,166.775
 	C227.75,74.4,260.8,0.5,302.113,0.5c41.313,0,74.361,73.9,74.361,166.275S343.426,333.05,302.113,333.05
 	C260.8,333.05,227.75,259.15,227.75,166.775L227.75,166.775z" />
-	<text class="styleTxtTitre" transform="matrix(1 0 0 1 279.4941 167.2764)"><tspan x="0" y="0" >indexer</tspan></text>
-	<text id="fig_21_indexer_name" class="styleTxtAttribut" transform="matrix(1 0 0 1 279.4941 179.2139)">***</text>
+	<text style='fill:#231F20;font-size:20px;font-family:ArialMT;' transform="matrix(1 0 0 1 279.4941 167.2764)"><tspan x="0" y="0" >indexer</tspan></text>
+	<text id="fig_21_indexer_name" style='fill:#231F20;font-family:ArialMT;font-size:12px;' transform="matrix(1 0 0 1 279.4941 179.2139)">***</text>
 </g>
 </svg>
 

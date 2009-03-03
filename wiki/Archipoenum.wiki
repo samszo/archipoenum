@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 = Plan = 
 [#Introduction  Introduction]
-[#Details_Projet_DP Details Projet DP]
+[#Détails_Projet_DP Détails Projet DP]
 [#Details_Project Details Project]
 
 = Introduction =
@@ -12,7 +12,7 @@ Dans le but d’indexer la poésie numérique une application a été développ�
 
 
 
-= Details Projet DP=
+= Détails Projet DP=
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_

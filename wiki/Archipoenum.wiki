@@ -1,7 +1,7 @@
 #summary One-sentence summary of this page.
 = Plan = 
 [#Introduction  Introduction]
-[#Détails_Projet_DP D.C3.A9tails Projet DP]
+[#D.C3.A9tails_Projet_DP Détails Projet DP]
 [#Details_Project Details Project]
 
 = Introduction =

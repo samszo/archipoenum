@@ -31,5 +31,5 @@ Caractéristiques :
 ==SVG== 
 SVG (Scalable Vector Graphics ), couramment abrégé par le sigle SVG, est un format de données conçu pour décrire des ensembles de graphiques vectoriels et basé sur XML. Ce format est spécifié par le World Wide Web Consortium. Il est nativement pris en compte par XUL
 <br><br>
-==JavaScript==
+==Javascript==
 JavaScript est un langage de programmation de scripts principalement utilisé pour les pages web interactives. C'est un langage orienté objets à prototype, c'est-à-dire que les bases du langage et ses principales interfaces sont fournies par des objets qui ne sont pas instanciés au sein de classes mais qui sont chacun équipés de constructeurs permettant de générer leurs propriétés, et notamment une propriété de prototypage qui permet d'en générer des objets héritiers personnalisés.<br>

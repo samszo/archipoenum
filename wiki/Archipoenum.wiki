@@ -12,7 +12,7 @@ Dans le but d’indexer la poésie numérique une application a été développ�
 = Plan = 
 [#Introduction  Introduction]
 [#Details_Projet  Details Projet]
-[#Details_Project_(DP)  Details Project (DP)]
+[#Details_Project_DP  Details Project DP]
 = Introduction =
 
 La poésie numérique est une forme de littérature électronique qui peut être générée à l’aide de l’ordinateur, et peut être publiée sur Internet, CD, DVD.
@@ -21,7 +21,7 @@ Dans le but d’indexer la poésie numérique une application a été développ�
 
 
 
-= Details Projet (DP)=
+= Details Projet DP=
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_

@@ -1,8 +1,6 @@
 #summary One-sentence summary of this page.
-<wiki:toc max_depth="1" />
-[#Introduction  Introduction]
-[#D.C3.A9tails_Projet_DP D.C3.A9tails Projet DP]
-[#Details_Project Details Project]
+<wiki:toc max_depth="3" />
+
 
 = Introduction =
 

@@ -2,6 +2,7 @@
 = Plan = 
 [#Introduction  Introduction]
 [#Details_Projet  Details Projet]
+[#Details_Project  Details Project]
 = Introduction =
 
 La poésie numérique est une forme de littérature électronique qui peut être générée à l’aide de l’ordinateur, et peut être publiée sur Internet, CD, DVD.

@@ -6,7 +6,7 @@
 
 La poésie numérique est une forme de littérature électronique qui peut être générée à l’aide de l’ordinateur, et peut être publiée sur Internet, CD, DVD.
 
-Dans le but d’indexer la poésie numérique une application a été développée par le laboratoire Paragraphe (M. Philippe Bootz et M. Samuel Szoniecky) pour construire et présenter sous forme graphique des points de vue sur la poésie numérique. Dans sa première version, l’application ne prenait en compte le stockage des données saisies ni l’authentification local et en ligne des utilisateurs. Le but du projet est de mettre en place c’est deux fonctionnalités.
+Dans le but d’indexer la poésie numérique une application a été développée par le laboratoire Paragraphe (M. Philippe Bootz et M. Samuel Szoniecky) pour construire et présenter sous forme graphique des points de vue sur la poésie numérique.
 
 
 

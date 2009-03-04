@@ -3,8 +3,7 @@ var sep=";";
 var xulDoc=window.parent.document;
 var arrValidation = new Array();
 var figure_courant="fig_21";
-
-
+var myDBFile="archipoenum.sqlite";
 function SetFichier(){
 	
   try {
@@ -278,115 +277,6 @@ function Open(){
 	}catch(ex2){ alert("interface:Open: "+ex2); }
 } 
 
-function read(filepath) {
-  try {
-	//http://xulfr.org/wiki/RessourcesLibs/LectureFichierCodeAvecCommentaires
-    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-	  
-	//Le fichier est ouvert
-	 var file =  Components.classes["@mozilla.org/file/local;1"]
-	            .createInstance(Components.interfaces.nsILocalFile);
-	 file.initWithPath(filepath);
-	 if ( file.exists() != true) {
-	  alert("Le fichier "+filepath+" n'existe pas");
-	  return ;
-	 }
-
-	 //Mode de lecture du fichier, un flux est nécessaire
-	 //Le second argument définit les différents modes de lecture parmis
-	 //PR_RDONLY     =0x01 lecture seulement
-	 //PR_WRONLY     =0x02 écriture seulement
-	 //PR_RDWR       =0x04 lecture ou écriture
-	 //PR_CREATE_FILE=0x08 si le fichier n'existe pas, il est créé (sinon, sans effet)
-	 //PR_APPEND     =0x10 le fichier est positionné à la fin avant chaque écriture
-	 //PR_TRUNCATE   =0x20 si le fichier existe, sa taille est réduite à zéro
-	 //PR_SYNC       =0x40 chaque écriture attend que les données ou l'état du fichier soit mis à jour
-	 //PR_EXCL       =0x80 idem que PR_CREATE_FILE, sauf que si le fichier existe, NULL est retournée
-	 //Le troisième argument définit les droits
-
-	 var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
-	         .createInstance( Components.interfaces.nsIFileInputStream );
-	 inputStream.init(file, 0x01, 00004, null);
-	 var sis = Components.classes["@mozilla.org/binaryinputstream;1"]
-	          .createInstance(Components.interfaces.nsIBinaryInputStream);
-
-	 sis.setInputStream( inputStream );
-	 var output = sis.readBytes( sis.available() );
-	 return output;
- 
-  } catch(ex2){ alert("read::"+filepath+" "+ex2); }
- 
- }
-
-// Récupérer le SVG à partir du fichier et le charger dans le document en cours 
-function AppendSVG(url,doc) {
-  try {
-	dump("AppendSVG IN "+url+"\n");
-
-	// Fonction Ajax pour récupérer le SVg à partir de l'url
-	p = new XMLHttpRequest();
-	p.onload = null;
-	p.open("GET", url, false);
-	p.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	p.send(null);
-
-	if (p.status != "200" ){
-	      alert("Réception erreur " + p.status);
-	}else{
-
-	    var response = p.responseText;
-		var parser=new DOMParser();
-		// Transformer le String en Objet DOM
-		var resultDoc=parser.parseFromString(response,"text/xml");
-		// Intégrer le DOM récupéré à l'interieur de document
-		doc.appendChild(resultDoc.documentElement);
-
-	}
-	dump("AppendSVG OUT \n");
-   } catch(ex2){alert("AppendSVG::"+ex2);}
-}
-
-// Récupérer le SVG en cours d'utilisation
-function getSVG(){
-	try {
-		var svg;
-		alert(figure_courant);
-		svg=document.getElementById(figure_courant).firstChild;
-		return svg;
-		
-	} catch(ex2){alert("interface:getSVG:"+ex2); }
-}
-
-// Afficher le figure principale
-function afficher(){
-try{
-	document.getElementById("fig_18").setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","true");
-	document.getElementById("fig_21").setAttribute("hidden","false");
-	
-	document.getElementById("ch1").setAttribute("hidden","true");
-	document.getElementById("ch2").setAttribute("hidden","true");
-} catch(ex2){alert("interface:getSVG:"+ex2); }
-
-function afficher1(){
-	document.getElementById("fig_19").setAttribute("hidden","true");
-	document.getElementById("fig_18").setAttribute("hidden","false");
-	document.getElementById("fig_21").setAttribute("hidden","true");
-	
-	document.getElementById("ch2").setAttribute("hidden","true");
-	document.getElementById("ch3").setAttribute("hidden","true");
-} catch(ex2){alert("interface:getSVG:"+ex2); }
-
-function afficher2(){
-try{
-	//alert("ch3");
-	document.getElementById("fig_18").setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","false");
-	document.getElementById("fig_21").setAttribute("hidden","true");
-	
-	document.getElementById("ch3").setAttribute("hidden","false");
-} catch(ex2){alert("interface:getSVG:"+ex2); }
-
 // bibliothèque SQLite http://codesnippets.joyent.com/posts/show/1030
 var $sqlite = {
 	storageService: [],
@@ -468,16 +358,165 @@ var $sqlite = {
 
 }
 
-function create () {
-	var myDBFile = 'mydb.sqlite';
-	var myCreateDBQuery = 'CREATE TABLE IF NOT EXISTS utilisateur(id TEXT PRIMARY KEY , pwd TEXT);';
-	var myInsertQuery = 'INSERT INTO utilisateur VALUES("admin","admin");';
-	$sqlite.cmd(myDBFile,myCreateDBQuery);
-	$sqlite.cmd(myDBFile,myInsertQuery);
+function login(){
+	var myArray1 = $sqlite.select(myDBFile,mySelectQuery);
+	// Now you can loop through the array:
+		for(var j=0;j<myArray1.length;j++){
+		// change this as you wish:
+		alert("User : "+myArray1[j]['login']);
+		alert("PWD : "+myArray1[j]['pwd']);
+	}
 }
 
-function login(id,pwd){
+function insert_user (login,password){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+	file.append(myDBFile);
+
+	var storageService = Components.classes["@mozilla.org/storage/service;1"]
+                        .getService(Components.interfaces.mozIStorageService);
+	var mDBConn = storageService.openDatabase(file);
+	var sql = 'INSERT INTO utilisateur(login,pwd) VALUES(?1,?2);';
+	var statement = mDBConn.createStatement(sql);
+    statement.bindUTF8StringParameter(0, login);
+    statement.bindUTF8StringParameter(1, password);
+    statement.execute();
+}
+
+function read(filepath) {
+  try {
+	//http://xulfr.org/wiki/RessourcesLibs/LectureFichierCodeAvecCommentaires
+    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	  
+	//Le fichier est ouvert
+	 var file =  Components.classes["@mozilla.org/file/local;1"]
+	            .createInstance(Components.interfaces.nsILocalFile);
+	 file.initWithPath(filepath);
+	 if ( file.exists() != true) {
+	  alert("Le fichier "+filepath+" n'existe pas");
+	  return ;
+	 }
+
+	 //Mode de lecture du fichier, un flux est nécessaire
+	 //Le second argument définit les différents modes de lecture parmis
+	 //PR_RDONLY     =0x01 lecture seulement
+	 //PR_WRONLY     =0x02 écriture seulement
+	 //PR_RDWR       =0x04 lecture ou écriture
+	 //PR_CREATE_FILE=0x08 si le fichier n'existe pas, il est créé (sinon, sans effet)
+	 //PR_APPEND     =0x10 le fichier est positionné à la fin avant chaque écriture
+	 //PR_TRUNCATE   =0x20 si le fichier existe, sa taille est réduite à zéro
+	 //PR_SYNC       =0x40 chaque écriture attend que les données ou l'état du fichier soit mis à jour
+	 //PR_EXCL       =0x80 idem que PR_CREATE_FILE, sauf que si le fichier existe, NULL est retournée
+	 //Le troisième argument définit les droits
+
+	 var inputStream = Components.classes["@mozilla.org/network/file-input-stream;1"]
+	         .createInstance( Components.interfaces.nsIFileInputStream );
+	 inputStream.init(file, 0x01, 00004, null);
+	 var sis = Components.classes["@mozilla.org/binaryinputstream;1"]
+	          .createInstance(Components.interfaces.nsIBinaryInputStream);
+
+	 sis.setInputStream( inputStream );
+	 var output = sis.readBytes( sis.available() );
+	 return output;
+ 
+  } catch(ex2){ alert("read::"+filepath+" "+ex2); }
+ 
+ }
+
+// Récupérer le SVG à partir du fichier et le charger dans le document en cours 
+function AppendSVG(url,doc) {
+  try {
+	dump("AppendSVG IN "+url+"\n");
+
+	// Fonction Ajax pour récupérer le SVg à partir de l'url
+	p = new XMLHttpRequest();
+	p.onload = null;
+	p.open("GET", url, false);
+	p.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	p.send(null);
+
+	if (p.status != "200" ){
+	      alert("Réception erreur " + p.status);
+	}else{
+
+	    var response = p.responseText;
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(response,"text/xml");
+		// Intégrer le DOM récupéré à l'interieur de document
+		doc.appendChild(resultDoc.documentElement);
+
+	}
+	dump("AppendSVG OUT \n");
+   } catch(ex2){alert("AppendSVG::"+ex2);}
+}
+
+// Récupérer le SVG en cours d'utilisation
+function getSVG(){
+	try {
+		var svg;
+		alert(figure_courant);
+		svg=document.getElementById(figure_courant).firstChild;
+		return svg;
+		
+	} 
+	catch(ex2){alert("interface:getSVG:"+ex2); }
+}
+
+// Afficher le figure principale
+function afficher(){
+try{
+	document.getElementById("fig_18").setAttribute("hidden","true");
+	document.getElementById("fig_19").setAttribute("hidden","true");
+	document.getElementById("fig_21").setAttribute("hidden","false");
 	
+	document.getElementById("ch1").setAttribute("hidden","true");
+	document.getElementById("ch2").setAttribute("hidden","true");
+} 
+catch(ex2){alert("interface:afficher:"+ex2); }
+}
+
+function afficher1(){
+try{
+	document.getElementById("fig_19").setAttribute("hidden","true");
+	document.getElementById("fig_18").setAttribute("hidden","false");
+	document.getElementById("fig_21").setAttribute("hidden","true");
+	
+	document.getElementById("ch2").setAttribute("hidden","true");
+	document.getElementById("ch3").setAttribute("hidden","true");
+} 
+catch(ex2){alert("interface:afficher1:"+ex2); }
+}
+
+function afficher2(){
+try{
+	//alert("ch3");
+	document.getElementById("fig_18").setAttribute("hidden","true");
+	document.getElementById("fig_19").setAttribute("hidden","false");
+	document.getElementById("fig_21").setAttribute("hidden","true");
+	
+	document.getElementById("ch3").setAttribute("hidden","false");
+} 
+catch(ex2){alert("interface:afficher2:"+ex2); }
+}
+
+function afficher_form_user(){
+try{
+	if (document.getElementById("form_user").getAttribute("hidden")=="true"){
+			document.getElementById("form_user").setAttribute("hidden","false");
+			document.getElementById("user_c").setAttribute("value","Cacher le fomulaire     --->");
+	}
+	else if (document.getElementById("form_user").getAttribute("hidden")=="false"){
+			document.getElementById("form_user").setAttribute("hidden","true");
+			document.getElementById("user_c").setAttribute("value","Creer un nouveau utilisateur");
+	}
+	else{
+		alert (document.getElementById("form_user").getAttribute("hidden"));
+	}
 
 
+} 
+catch(ex2){alert("interface:afficher_form_user:"+ex2); }
 }

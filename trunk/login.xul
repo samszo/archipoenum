@@ -2,6 +2,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" >
+  <script src="library/js/interface.js"/>
 	<hbox>
 		<label hidden="false" value="                                                                                                                                                                                 " />
 		<vbox>
@@ -10,7 +11,32 @@
 			<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
 			<textbox id="password" value="" style='width:120px;h' />
 			<label hidden="false" value=" " />
-			<button label="Login  " style='width:100px;' onclick="login('admin','admin');"/>
+			<button label="Login  " style='width:260px;' onclick="login('admin','admin');"/>
+			<label hidden="false" value=" " />
+			<label id="user_c" value="Creer un nouveau utilisateur" hidden="false" onclick="afficher_form_user();"/>
+			<label hidden="false" value=" " />
+			<label hidden="false" value=" " />
+			<label hidden="false" value=" " />
+			<label hidden="false" value=" " />
+			
+			<vbox id="form_user" hidden='true'>
+			
+				<label value=" Saisissez les informations suivantes : " style="margin-top: 7px;" flex="1"/>
+				<label hidden="false" value=" " />
+				<hbox>
+					<label value="Nom d'utilisateur : " style="margin-top: 7px;" flex="1"/>
+					<textbox id="nom" value="" style='width:150px;' />
+					
+				</hbox>
+				<label hidden="false" value=" " />
+				<hbox>
+					<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
+					<textbox id="password" value="" style='width:150px;h' />
+				</hbox>
+					<label hidden="false" value=" " />
+					<button label="Valider  " style='width:100px;' onclick="insert_user('admin','admin');"/>
+							
+			</vbox>
 		</vbox>
 		<label hidden="false" value="                                                                 " />
 	</hbox>

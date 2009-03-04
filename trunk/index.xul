@@ -43,7 +43,7 @@
 			<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
 			<textbox id="password" value="" style='width:100px;height:3px;' />
 			<label hidden="false" value=" " />
-			<toolbarbutton label="Login  " style='width:100px;' onclick="create();"/>
+			<toolbarbutton label="Login  " style='width:100px;' onclick="login();"/>
 		
 				<label id="ch1" value=" Figure Principale" hidden="true" onclick="afficher();"/>
 				<label id="ch2" value="/    Document" hidden="true" onclick="afficher1();"/>

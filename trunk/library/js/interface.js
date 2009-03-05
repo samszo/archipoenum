@@ -402,9 +402,10 @@ function login(){
 		if (test==0)document.getElementById("erreur_login").setAttribute("hidden","false");
 		statement.reset();
 	}
-	catch(ex2){ alert(
+	catch(ex2){ 
+		alert("interface:login: "+ex2); 
 		statement.reset();
-		"interface:loginLOL: "+ex2); 
+		
 	}
 } 
 
@@ -417,8 +418,10 @@ function createDB(){
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
 		$sqlite.cmd(myDBFile,myCreateDBQuery2);
 		$sqlite.cmd(myDBFile,myCreateDBQuery3);
-	catch(ex2){ alert(
-		"interface::createDB"+ex2); 
+	}
+	catch(ex2){ 
+		alert("interface::createDB"+ex2); 
+		statement.reset();
 	}
 }
 
@@ -444,6 +447,7 @@ function insert_user (){
 	    statement.bindUTF8StringParameter(1, password);
 	    statement.execute();
 	    statement.reset();
+	}
 	catch(ex2){
 		alert("interface: insert_user: "+ex2);
 		statement.reset(); 

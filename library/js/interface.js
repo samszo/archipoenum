@@ -359,30 +359,95 @@ var $sqlite = {
 }
 
 function login(){
-	var myArray1 = $sqlite.select(myDBFile,mySelectQuery);
-	// Now you can loop through the array:
+	try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		login = document.getElementById("nom").value;
+		password = document.getElementById("password").value;
+		alert (login +' : '+password);
+		var statement = mDBConn.createStatement('SELECT login,pwd FROM utilisateur where login=?1');
+		statement.bindUTF8StringParameter(0,login);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
 		for(var j=0;j<myArray1.length;j++){
-		// change this as you wish:
-		alert("User : "+myArray1[j]['login']);
-		alert("PWD : "+myArray1[j]['pwd']);
+			//alert("User : "+myArray1[j]['login']);
+			if (password==myArray1[j]['pwd']) {
+				var load = window.open('http://localhost/archipoenum/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				test=1;
+			}
+			else document.getElementById("erreur_login").setAttribute("hidden","false");
+		}
+		if (test==0)document.getElementById("erreur_login").setAttribute("hidden","false");
+		statement.reset();
+	}
+	catch(ex2){ alert(
+		statement.reset();
+		"interface:loginLOL: "+ex2); 
+	}
+} 
+
+function createDB(){
+	try {
+		var myCreateDBQuery = 'CREATE TABLE IF NOT EXISTS utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT, pwd TEXT);';
+		var myCreateDBQuery2 = 'CREATE TABLE IF NOT EXISTS tag (id_tag uniqueidentifier NOT NULL, tag varchar(40), domaine varchar(40));';  
+		var myCreateDBQuery3 = 'CREATE TABLE IF NOT EXISTS taggage (id_user uniqueidentifier NOT NULL, id_tag uniqueidentifier NOT NULL, poids float, date datetime);';
+		$sqlite._initService(myDBFile);
+		$sqlite.cmd(myDBFile,myCreateDBQuery);
+		$sqlite.cmd(myDBFile,myCreateDBQuery2);
+		$sqlite.cmd(myDBFile,myCreateDBQuery3);
+	catch(ex2){ alert(
+		"interface::createDB"+ex2); 
 	}
 }
 
-function insert_user (login,password){
-	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-	var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-	file.append(myDBFile);
 
-	var storageService = Components.classes["@mozilla.org/storage/service;1"]
-                        .getService(Components.interfaces.mozIStorageService);
-	var mDBConn = storageService.openDatabase(file);
-	var sql = 'INSERT INTO utilisateur(login,pwd) VALUES(?1,?2);';
-	var statement = mDBConn.createStatement(sql);
-    statement.bindUTF8StringParameter(0, login);
-    statement.bindUTF8StringParameter(1, password);
-    statement.execute();
+function insert_user (){
+	try {
+		createDB();
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		login = document.getElementById("login_i").value;
+		password = document.getElementById("password_i").value;
+		alert (login +' : '+password);
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+	                     .getService(Components.interfaces.nsIProperties)
+	                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+	
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+	                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		var sql = 'INSERT INTO utilisateur(login,pwd) VALUES(?1,?2);';
+		var statement = mDBConn.createStatement(sql);
+	    statement.bindUTF8StringParameter(0, login);
+	    statement.bindUTF8StringParameter(1, password);
+	    statement.execute();
+	    statement.reset();
+	catch(ex2){
+		alert("interface: insert_user: "+ex2);
+		statement.reset(); 
+	}
 }
 
 function read(filepath) {

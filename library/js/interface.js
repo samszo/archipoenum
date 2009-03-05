@@ -358,7 +358,7 @@ var $sqlite = {
 
 }
 
-function login(){
+function login_user(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
@@ -370,7 +370,7 @@ function login(){
 		                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
 		login = document.getElementById("nom").value;
-		password = document.getElementById("password").value;
+		password = document.getElementById("passwd").value;
 		alert (login +' : '+password);
 		var statement = mDBConn.createStatement('SELECT login,pwd FROM utilisateur where login=?1');
 		statement.bindUTF8StringParameter(0,login);

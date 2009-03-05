@@ -11,9 +11,9 @@
 			<label value=" Nom d'utilisateur : " style="margin-top: 7px;" flex="1"/>
 			<textbox id="nom" value="" style='width:120px;' />
 			<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
-			<textbox id="password" value="" style='width:120px;h' />
+			<textbox id="passwd" value="" type='password' style='width:120px;h' />
 			<label hidden="false" value=" " />
-			<button label="Login  " style='width:260px;' onclick="login();"/>
+			<button label="Login  " style='width:260px;' onclick="login_user();"/>
 			<label hidden="false" value=" " />
 			<label id="user_c" value="Creer un nouveau utilisateur" hidden="false" onclick="afficher_form_user();"/>
 			<label hidden="false" value=" " />

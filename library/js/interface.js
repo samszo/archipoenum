@@ -575,7 +575,7 @@ function afficher_form_user(){
 try{
 	if (document.getElementById("form_user").getAttribute("hidden")=="true"){
 			document.getElementById("form_user").setAttribute("hidden","false");
-			document.getElementById("user_c").setAttribute("value","Cacher le fomulaire     --->");
+			document.getElementById("user_c").setAttribute("value","Cacher le formulaire     --->");
 	}
 	else if (document.getElementById("form_user").getAttribute("hidden")=="false"){
 			document.getElementById("form_user").setAttribute("hidden","true");

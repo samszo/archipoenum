@@ -38,14 +38,9 @@
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
 			<label hidden="false" value="    " />
-			<label value=" Nom d'utilisateur : " style="margin-top: 7px;" flex="1"/>
-			<textbox id="nom" value="" style='width:100px;' />
-			<label value="Mot de passe : " style="margin-top: 7px;" flex="1"/> 
-			<textbox id="password" value="" style='width:100px;height:3px;' />
-			<label hidden="false" value=" " />
-			<toolbarbutton label="Login  " style='width:100px;' onclick="create();"/>
+
 		
-				<label id="ch1" value=" Figure Principale" hidden="true" onclick="afficher();"/>
+				<label id="ch1" value=" Figure Principale" hidden="false" onclick="afficher();"/>
 				<label id="ch2" value="/    Document" hidden="true" onclick="afficher1();"/>
 				<label id="ch3" value="/    Acteur" hidden="true" onclick="afficher2();"/>
 
@@ -86,8 +81,6 @@
 	</groupbox>
 	
 </hbox>
- <splitter collapse="before"  >
-			<grippy/>
-		</splitter>
+
 
 </window>

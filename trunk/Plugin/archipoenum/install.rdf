@@ -4,7 +4,7 @@
 	<Description about="urn:mozilla:install-manifest">
 		<em:id>{a1577a80-3943-4362-a66d-858f01e2196c}</em:id>
 		<em:name>archipoenum</em:name>
-		<em:version>0.1</em:version>
+		<em:version>0.2</em:version>
 		<em:description>Plugin FireFox pour l'archivage de la poesie numerique</em:description>
 		<em:file>
 			<Description about="urn:mozilla:extension:file:archipoenum.jar">

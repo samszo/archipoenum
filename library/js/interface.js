@@ -159,14 +159,19 @@ function MontrerCacherXul(idsDst){
 			var xul = document.getElementById(arrId[i]);
 			if(xul.getAttribute("hidden")=="true"){
 				xul.setAttribute("hidden","false");
-				if (arrId[1]=="fig_18")	
-					document.getElementById("ch1").setAttribute("hidden","false");
-				else if (arrId[1]=="fig_19")	
-					document.getElementById("ch2").setAttribute("hidden","false");
-				else if (arrId[1]=="fig_21"){
+				if (arrId[1]=="fig_18")	{
+					document.getElementById("D1").setAttribute("hidden","false");
+					document.getElementById("D2").setAttribute("hidden","false");
+					document.getElementById("m11").setAttribute("hidden","false");
+					document.getElementById("m21").setAttribute("hidden","false");
+				}
+				else if (arrId[1]=="fig_19"){
+					document.getElementById("m12").setAttribute("hidden","false");
+				}
+				/*else if (arrId[1]=="fig_21"){
 					document.getElementById("ch1").setAttribute("hidden","true");
 					document.getElementById("ch2").setAttribute("hidden","true");
-				}
+				}*/
 			}
 			else
 				xul.setAttribute("hidden","true");
@@ -209,7 +214,7 @@ function serialize(doc,file,extra) {
 }
 
 // Afficher le menu de sauvegarde  
-function Save (){
+function Export(){
 	try{
 		
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -412,24 +417,36 @@ function login_user(){
 function createDB(){
 	try {
 		var myCreateDBQuery = 'CREATE TABLE IF NOT EXISTS utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT, pwd TEXT);';
-		var myCreateDBQuery2 = 'CREATE TABLE IF NOT EXISTS tag (id_tag uniqueidentifier NOT NULL, tag varchar(40), domaine varchar(40));';  
-		var myCreateDBQuery3 = 'CREATE TABLE IF NOT EXISTS taggage (id_user uniqueidentifier NOT NULL, id_tag uniqueidentifier NOT NULL, poids float, date datetime);';
+		var myCreateDBQuery2 = 'CREATE TABLE IF NOT EXISTS tag (id_tag INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag varchar(40), domaine varchar(40));';  
+		var myCreateDBQuery3 = 'CREATE TABLE IF NOT EXISTS taggage (id_user INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, id_tag uniqueidentifier NOT NULL, poids float, date datetime);';
+		var myCreateDBQuery4 = 'CREATE TABLE IF NOT EXISTS forms (id_f INTEGER PRIMARY KEY AUTOINCREMENT, nom varchar(40), id_svg uniqueidentifier)';  
+		var myCreateDBQuery5 = 'CREATE TABLE IF NOT EXISTS champs (id_c INTEGER PRIMARY KEY AUTOINCREMENT, titre varchar(40), id_f uniqueidentifier)';  
+		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT, id_f uniqueidentifier, id_r uniqueidentifier)';  
+		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier)';
+		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS representaion (id_r INTEGER PRIMARY KEY AUTOINCREMENT)';  
+		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT, fichier text(1000))'; 
 		$sqlite._initService(myDBFile);
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
 		$sqlite.cmd(myDBFile,myCreateDBQuery2);
 		$sqlite.cmd(myDBFile,myCreateDBQuery3);
+		$sqlite.cmd(myDBFile,myCreateDBQuery4);
+		$sqlite.cmd(myDBFile,myCreateDBQuery5);
+		$sqlite.cmd(myDBFile,myCreateDBQuery6);
+		$sqlite.cmd(myDBFile,myCreateDBQuery7);
+		$sqlite.cmd(myDBFile,myCreateDBQuery8);
+		$sqlite.cmd(myDBFile,myCreateDBQuery9);
 	}
 	catch(ex2){ 
 		alert("interface::createDB"+ex2); 
-		statement.reset();
+		//statement.reset();
 	}
 }
 
-
 function insert_user (){
 	try {
-		createDB();
+		
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		createDB();
 		login = document.getElementById("login_i").value;
 		password = document.getElementById("password_i").value;
 		alert (login +' : '+password);
@@ -447,10 +464,51 @@ function insert_user (){
 	    statement.bindUTF8StringParameter(1, password);
 	    statement.execute();
 	    statement.reset();
+	    
+	    //Partie login
+	    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		alert (login +' : '+password);
+		var statement = mDBConn.createStatement('SELECT login,pwd FROM utilisateur where login=?1');
+		statement.bindUTF8StringParameter(0,login);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
+		for(var j=0;j<myArray1.length;j++){
+			//alert("User : "+myArray1[j]['login']);
+			if (password==myArray1[j]['pwd']) {
+				var load = window.open('chrome://archipoenum/content/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				test=1;
+			}
+			else document.getElementById("erreur_login").setAttribute("hidden","false");
+		}
+		if (test==0)document.getElementById("erreur_login").setAttribute("hidden","false");
+		statement.reset();
 	}
 	catch(ex2){
 		alert("interface: insert_user: "+ex2);
-		statement.reset(); 
+		//statement.reset(); 
 	}
 }
 
@@ -541,8 +599,8 @@ try{
 	document.getElementById("fig_19").setAttribute("hidden","true");
 	document.getElementById("fig_21").setAttribute("hidden","false");
 	
-	document.getElementById("ch1").setAttribute("hidden","true");
-	document.getElementById("ch2").setAttribute("hidden","true");
+	//document.getElementById("ch1").setAttribute("hidden","true");
+	//document.getElementById("ch2").setAttribute("hidden","true");
 } 
 catch(ex2){alert("interface:afficher:"+ex2); }
 }
@@ -553,8 +611,8 @@ try{
 	document.getElementById("fig_18").setAttribute("hidden","false");
 	document.getElementById("fig_21").setAttribute("hidden","true");
 	
-	document.getElementById("ch2").setAttribute("hidden","true");
-	document.getElementById("ch3").setAttribute("hidden","true");
+	//document.getElementById("ch2").setAttribute("hidden","true");
+	//document.getElementById("ch3").setAttribute("hidden","true");
 } 
 catch(ex2){alert("interface:afficher1:"+ex2); }
 }
@@ -566,7 +624,7 @@ try{
 	document.getElementById("fig_19").setAttribute("hidden","false");
 	document.getElementById("fig_21").setAttribute("hidden","true");
 	
-	document.getElementById("ch3").setAttribute("hidden","false");
+	//document.getElementById("ch3").setAttribute("hidden","false");
 } 
 catch(ex2){alert("interface:afficher2:"+ex2); }
 }
@@ -588,4 +646,28 @@ try{
 
 } 
 catch(ex2){alert("interface:afficher_form_user:"+ex2); }
+}
+
+
+function createMenuItem() {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gat...re.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "menu"); // crée un nouvel élément de menu XUL
+  var item2=document.createElementNS(XUL_NS, "menupopup");
+  var item3=document.createElementNS(XUL_NS, "menuitem");
+  //var item4=document.createElementNS(XUL_NS, "menupopup");
+  item.setAttribute("label", "Document2");
+  item.setAttribute("id", "D2");
+  item3.setAttribute("label", "Doc");
+  item3.setAttribute("id", "m21");
+  item.setAttribute("hidden", "true");
+  //item2.setAttribute("hidden", "false");
+  item3.setAttribute("hidden", "true");
+  var popup = document.getElementById("test");
+ // popup.appendChild(item2);
+  popup.appendChild(item);
+  item.appendChild(item2);
+  item2.appendChild(item3);
+  
+  
+  //return item;
 }

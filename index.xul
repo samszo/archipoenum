@@ -21,43 +21,54 @@
    /* css pour les cellules cochées */
    list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
  }
+ menulist > menupopup > menuitem > .menu-iconic-left {
+  display: -moz-box;
+}
+  
  </html:style>
 <toolbox id="navigator-toolbox" hidden="false" >
 <toolbar id="nav-toolbar" >
-<hbox >
-	
+<hbox >											
 	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
 	<label hidden="true" value="Towards an ontology of the field of digital poetry" />
 	<label hidden="false" value=" " />
 	<image src="design/arponum.gif" style='width:140px;height:30px;'/>
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
-
-
 		<hbox>
-			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save();"/>
+			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="	createMenuItem();"/>
+			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
-			<label hidden="false" value="    " />
-
-		
-				<label id="ch1" value=" Figure Principale" hidden="false" onclick="afficher();"/>
-				<label id="ch2" value="/    Document" hidden="true" onclick="afficher1();"/>
-				<label id="ch3" value="/    Acteur" hidden="true" onclick="afficher2();"/>
-
 		</hbox>
-		<hbox> 
-		
+		<hbox> 		
 		</hbox>
-
+		<hbox class="menubar">
+			<menubar id='navigation'>
+				<menu label="   Navigation ->" style='width:100px;'>
+					<menupopup>
+						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
+						<menu id="ch2" label="Documents" hidden="false" >
+							<menupopup id="test">
+								<menu id="D1" label="Document1" hidden="true">
+									<menupopup >											
+										<menuitem id="m11" label="DOC" hidden="true" oncommand="afficher1();"/>
+										<menuitem id="m12" label="Acteur" hidden="true" oncommand="afficher2();"/>
+									</menupopup>
+								</menu>
+							</menupopup>
+							
+						</menu>						
+					</menupopup>
+				</menu>
+			</menubar>
+		</hbox>
     </hbox>
 </hbox>
 </toolbar>
 </toolbox>
 <hbox flex='1' >
-
 	<groupbox orient="horizontal" flex="1" >
-		<vbox flex="1" >
-			
+		<vbox flex="1" >			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
@@ -65,9 +76,7 @@
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>
 		</splitter>
-		<vbox flex='1' >
-			
-		
+		<vbox flex='1' >		
 			<iframe id="svgFrame" flex='1' hidden="true" src="library/svg/fig_21.svg" />
 			<vbox id="fig_21" hidden="false" />
 			<vbox id="fig_18" hidden="true" />
@@ -76,11 +85,7 @@
 				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
-		</vbox>
-		
-	</groupbox>
-	
+		</vbox>		
+	</groupbox>	
 </hbox>
-
-
 </window>

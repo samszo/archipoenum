@@ -752,6 +752,40 @@ try{
 catch(ex2){alert("interface:afficher2:"+ex2); }
 }
 
+
+function createMenuItem(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "menuitem"); // create a new XUL menuitem
+  item.setAttribute("label", aLabel);
+  return item;
+}
+
+function createMenu(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "menu"); // create a new XUL menuitem
+  item.setAttribute("label", aLabel);
+  return item;
+}
+
+function createMenuPopup(aId) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "menupopup"); // create a new XUL menuitem
+  item.setAttribute("id", aId);
+  return item;
+}
+
+function test() {
+	var popup = document.getElementById("test"); // a <menupopup> element
+	var first = createMenu("First item");
+	var pop = createMenuPopup("45354");
+	var last = createMenuItem("Last item");
+	pop.appendChild(last);
+	first.appendChild(pop);
+	popup.insertBefore(first, popup.firstChild);
+}
+
+
+
 function afficher_form_user(){
 try{
 	if (document.getElementById("form_user").getAttribute("hidden")=="true"){
@@ -771,7 +805,7 @@ try{
 catch(ex2){alert("interface:afficher_form_user:"+ex2); }
 }
 
-
+/*
 function createMenuItem() {
   const XUL_NS = "http://www.mozilla.org/keymaster/gat...re.is.only.xul";
   var item = document.createElementNS(XUL_NS, "menu"); // crée un nouvel élément de menu XUL
@@ -779,19 +813,20 @@ function createMenuItem() {
   var item3=document.createElementNS(XUL_NS, "menuitem");
   //var item4=document.createElementNS(XUL_NS, "menupopup");
   item.setAttribute("label", "Document2");
-  item.setAttribute("id", "D2");
-  item.setAttribute("flex","1");
+  item.setAttribute("id", "D3");
+//  item.setAttribute("flex","1");
   item3.setAttribute("label", "Doc");
-  item3.setAttribute("id", "m21");
-  item.setAttribute("hidden", "false");
+  item3.setAttribute("id", "m261");
+  //item.setAttribute("hidden", "false");
   //item2.setAttribute("hidden", "false");
-  item3.setAttribute("hidden", "true");
+  //item3.setAttribute("hidden", "true");
+  item.appendChild(item2);
+  item2.appendChild(item3);
   var popup = document.getElementById("test");
  // popup.appendChild(item2);
   popup.appendChild(item);
-  item.appendChild(item2);
-  item2.appendChild(item3);
   
   
   //return item;
 }
+*/

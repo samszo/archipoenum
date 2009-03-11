@@ -36,7 +36,7 @@
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 		<hbox>
-			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="	createMenuItem();"/>
+			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="test();"/>
 			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
 			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
@@ -52,10 +52,16 @@
 						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
 						<menu id="ch2" label="Documents" hidden="false" >
 							<menupopup id="test">
-								<menu id="D1" label="Document1" hidden="true">
+								<menu id="D1" label="Document1" hidden="false">
 									<menupopup >											
-										<menuitem id="m11" label="DOC" hidden="true" oncommand="afficher1();"/>
-										<menuitem id="m12" label="Acteur" hidden="true" oncommand="afficher2();"/>
+										<menuitem id="m11" label="DOC" hidden="false" oncommand="afficher1();"/>
+										<menuitem id="m12" label="Acteur" hidden="false" oncommand="afficher2();"/>
+									</menupopup>
+								</menu>
+								<menu id="D2" label="Document1" hidden="false">
+									<menupopup id='toto' >											
+										<menuitem id="m2" label="DOC" hidden="false" oncommand="afficher1();"/>
+										<menuitem id="m2" label="Acteur" hidden="false" oncommand="afficher2();"/>
 									</menupopup>
 								</menu>
 							</menupopup>

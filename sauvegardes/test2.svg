@@ -1,23 +1,173 @@
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="376.975px" height="333.55px" viewBox="0 0 376.975 333.55" enable-background="new 0 0 376.975 333.55">
-<script xlink:href="../js/interface.js"/>  
-
-<g id="fig_21_document" onclick="MontrerCacherXul('fig_21;fig_18');" fill="red" visibility="visible">
-	<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="0.5,202.325 72.5,202.325 72.5,256.325 0.5,256.325 0.5,202.325"/>
-	<text transform="matrix(1, 0, 0, 1, 14.2202, 233.206)"><tspan x="0" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">do</tspan><tspan x="11.25" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">c</tspan><tspan x="16.199" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">u</tspan><tspan x="21.824" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">m</tspan><tspan x="30.368" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">en</tspan><tspan x="41.617" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">t</tspan></text>
-	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="72.5" y1="229.325" x2="113.9" y2="229.325"/>
-</g>
-<g id="fig_21_indexing" visibility="visible" onclick="Saisir(this.id,'fig_21')" fill="green">
-	<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="171.725,215.825 177.125,216.95 179.6,218.075 181.625,219.875 183.425,221.9 184.775,224.15 185.675,226.625 185.9,229.325 184.775,234.726 183.425,236.976 181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 120.2,240.575 118.175,239 116.375,236.976 115.025,234.726 114.125,232.025 113.9,229.325 115.025,224.15 116.375,221.9 118.175,219.875 120.2,218.3 122.675,216.95 125.375,216.05 128.075,215.825 165.2,215.825 171.725,215.825"/>
-	<text transform="matrix(1, 0, 0, 1, 130.994, 233.206)" class="styleTxtTitre"><tspan x="0" y="0">indexer</tspan></text>
-	<path fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="   M116.825,251.601c0-4.875,3.9-8.775,8.775-8.775h48.6c4.875,0,8.775,3.9,8.775,8.775v22.05c0,4.875-3.9,8.774-8.775,8.774h-48.6   c-4.875,0-8.775-3.899-8.775-8.774V247.7V251.601z"/>
-	<text id="fig_21_indexing_date" class="styleTxtAttribut" transform="matrix(1, 0, 0, 1, 137.072, 255.261)">2009-02-24</text>
-	<text id="fig_21_indexing_place" class="styleTxtAttribut" transform="matrix(1, 0, 0, 1, 134.822, 267.183)">aze</text>
-	<text id="fig_21_indexing_id" class="styleTxtAttribut" transform="matrix(1, 0, 0, 1, 142.923, 279.104)">1</text>
-	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="185.9" y1="229.325" x2="233.6" y2="229.55"/>
-</g>
-<g id="fig_21_indexer" onclick="Saisir(this.id,'fig_21')" fill="green">
-	<path stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" d="M227.75,166.775  C227.75,74.4,260.8,0.5,302.113,0.5c41.313,0,74.361,73.9,74.361,166.275S343.426,333.05,302.113,333.05  C260.8,333.05,227.75,259.15,227.75,166.775L227.75,166.775z"/>
-	<text class="styleTxtTitre" transform="matrix(1, 0, 0, 1, 279.494, 167.276)"><tspan x="0" y="0">indexer</tspan></text>
-	<text id="fig_21_indexer_name" class="styleTxtAttribut" transform="matrix(1, 0, 0, 1, 279.494, 179.214)">aaa</text>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="376.97501"
+   height="333.54999"
+   viewBox="0 0 376.975 333.55"
+   id="Layer_1">
+  <defs
+     id="defs47" />
+  <script
+     id="script3"
+     xlink:href="../js/interface.js" />
+  <g
+     id="fig_21_document"
+     style="fill:#ff0000;visibility:hidden">
+    <polygon
+       points="0.5,202.325 72.5,202.325 72.5,256.325 0.5,256.325 0.5,202.325 "
+       id="polygon6"
+       style="fill-rule:evenodd;stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+    <text
+       transform="translate(14.2202,233.206)"
+       id="text8">
+      <tspan
+         x="0"
+         y="0"
+         id="tspan10"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">do</tspan>
+      <tspan
+         x="11.25"
+         y="0"
+         id="tspan12"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">c</tspan>
+      <tspan
+         x="16.198999"
+         y="0"
+         id="tspan14"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">u</tspan>
+      <tspan
+         x="21.823999"
+         y="0"
+         id="tspan16"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">m</tspan>
+      <tspan
+         x="30.368"
+         y="0"
+         id="tspan18"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">en</tspan>
+      <tspan
+         x="41.617001"
+         y="0"
+         id="tspan20"
+         style="font-size:9.89999962px;fill:#231f20;font-family:ArialMT">t</tspan>
+    </text>
+    <line
+       fill="none"
+       stroke="#231F20"
+       stroke-linecap="square"
+       stroke-miterlimit="10"
+       x1="72.5"
+       y1="229.325"
+       x2="113.9"
+       y2="229.325"
+       id="line22"
+       style="fill:none;stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+  </g>
+  <g
+     id="fig_21_indexing"
+     style="fill:#ff0000;visibility:hidden">
+    <polygon
+       points="171.725,215.825 177.125,216.95 179.6,218.075 181.625,219.875 183.425,221.9 184.775,224.15 185.675,226.625 185.9,229.325 184.775,234.726 183.425,236.976 181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 120.2,240.575 118.175,239 116.375,236.976 115.025,234.726 114.125,232.025 113.9,229.325 115.025,224.15 116.375,221.9 118.175,219.875 120.2,218.3 122.675,216.95 125.375,216.05 128.075,215.825 165.2,215.825 171.725,215.825 "
+       id="polygon25"
+       style="stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+    <text
+       transform="translate(130.994,233.206)"
+       id="text27">
+      <tspan
+         x="0"
+         y="0"
+         id="tspan29">indexer</tspan>
+    </text>
+    <path
+       d="M 116.825,251.601 C 116.825,246.726 120.725,242.826 125.6,242.826 L 174.2,242.826 C 179.075,242.826 182.975,246.726 182.975,251.601 L 182.975,273.651 C 182.975,278.526 179.075,282.425 174.2,282.425 L 125.6,282.425 C 120.725,282.425 116.825,278.526 116.825,273.651 L 116.825,247.7 L 116.825,251.601 L 116.825,251.601 z"
+       id="path31"
+       style="fill-rule:evenodd;stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+    <text
+       transform="translate(137.072,255.261)"
+       id="fig_21_indexing_date">***</text>
+    <text
+       transform="translate(134.822,267.183)"
+       id="fig_21_indexing_place">***</text>
+    <text
+       transform="translate(142.923,279.104)"
+       id="fig_21_indexing_id">***</text>
+    <line
+       fill="none"
+       stroke="#231F20"
+       stroke-linecap="square"
+       stroke-miterlimit="10"
+       x1="185.89999"
+       y1="229.325"
+       x2="233.60001"
+       y2="229.55"
+       id="line36"
+       style="fill:none;stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+  </g>
+  <g
+     id="fig_21_indexer"
+     style="fill:#ff0000">
+    <path
+       d="M 227.75,166.775 C 227.75,74.4 260.8,0.5 302.113,0.5 C 343.426,0.5 376.474,74.4 376.474,166.775 C 376.474,259.15 343.426,333.05 302.113,333.05 C 260.8,333.05 227.75,259.15 227.75,166.775 L 227.75,166.775 z"
+       id="path39"
+       style="stroke:#231f20;stroke-linecap:square;stroke-miterlimit:10" />
+    <text
+       transform="translate(279.494,167.276)"
+       id="text41">
+      <tspan
+         x="0"
+         y="0"
+         id="tspan43">indexer</tspan>
+    </text>
+    <text
+       transform="translate(279.494,179.214)"
+       id="fig_21_indexer_name">***</text>
+  </g>
+  <path
+     d="M 150.89166,97.465912 A 42.957195,51.25985 0 1 1 64.977268,97.465912 A 42.957195,51.25985 0 1 1 150.89166,97.465912 z"
+     id="path2424"
+     style="opacity:0.31999996;fill:#008080;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:12.59490299;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  <g
+     id="g2404"
+     style="opacity:0.31999996;fill:#008080;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:12.59490299;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">
+    <path
+       d="M 57.757582,207.2053 L 173.27272,288.06589 L 211.33914,265.39992 L 80.471703,204.32846 L 57.757582,207.2053 z"
+       id="path2414"
+       style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       d="M 57.757582,125.86339 L 57.757582,207.2053 L 80.471703,204.32846 L 80.471703,128.77448 L 57.757582,125.86339 z"
+       id="path2406"
+       style="fill:#353564;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       d="M 80.471703,128.77448 L 211.33914,66.975969 L 211.33914,265.39992 L 80.471703,204.32846 L 80.471703,128.77448 z"
+       id="path2416"
+       style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       d="M 57.757582,125.86339 L 173.27272,44.040164 L 211.33914,66.975969 L 80.471703,128.77448 L 57.757582,125.86339 z"
+       id="path2408"
+       style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       d="M 173.27272,44.040164 L 173.27272,288.06589 L 211.33914,265.39992 L 211.33914,66.975969 L 173.27272,44.040164 z"
+       id="path2412"
+       style="fill:#d7d7ff;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+    <path
+       d="M 57.757582,125.86339 L 173.27272,44.040164 L 173.27272,288.06589 L 57.757582,207.2053 L 57.757582,125.86339 z"
+       id="path2410"
+       style="fill:#8686bf;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+  </g>
+  <text
+     x="277.23636"
+     y="182.65833"
+     id="text2418"
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+       x="277.23636"
+       y="182.65833"
+       id="tspan2420">kjhgfkjqhsdgkfjhq</tspan><tspan
+       x="277.23636"
+       y="232.65833"
+       id="tspan2422" /></text>
 </svg>

@@ -38,7 +38,10 @@
 		<hbox>
 			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="	createMenuItem();"/>
 			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
+			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
+			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
+			
 		</hbox>
 		<hbox> 		
 		</hbox>

@@ -247,7 +247,7 @@ function Export(){
 } 
 
 // Afficher le menu d'ouverture de fichier
-function Open(){
+function Import(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var nsIFilePicker = Components.interfaces.nsIFilePicker;
@@ -281,6 +281,33 @@ function Open(){
 		
 	}catch(ex2){ alert("interface:Open: "+ex2); }
 } 
+
+function Open(){
+			netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+  	
+			//saisi le libellé 
+			var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+			                        .getService(Components.interfaces.nsIPromptService);
+			var input = {value: ""};
+			var check = {value: false};
+			result = prompts.prompt(window, "Donner le nom du fichier", "Saisir le nom du fichier", input, null, check);
+			if(!result)
+				return;
+			
+			
+			xml = getSVG_DB(input.value);
+			alert (input.value);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			// Intégrer le DOM récupéré à l'interieur de document
+			document.getElementById("fig_21").appendChild(resultDoc.documentElement);
+			
+			doc=document.getElementById("fig_21");
+			doc.removeChild(doc.firstChild);              
+			document.getElementById("fig_21").setAttribute("hidden","false");
+
+}
 
 // bibliothèque SQLite http://codesnippets.joyent.com/posts/show/1030
 var $sqlite = {
@@ -362,6 +389,49 @@ var $sqlite = {
 	}	
 
 }
+function getSVG_DB(id_svg){
+try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		
+		var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1');
+		statement.bindUTF8StringParameter(0,id_svg);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
+		for(var j=0;j<myArray1.length;j++){
+			alert("SVG : "+myArray1[j]['fichier']);
+			return myArray1[j]['fichier'];
+		}
+		statement.reset();
+	}
+	catch(ex2){ 
+		alert("interface:getSVG_DB: "+ex2); 
+		statement.reset();
+		
+	}
+} 
 
 function login_user(){
 	try{
@@ -512,6 +582,27 @@ function insert_user (){
 	}
 }
 
+function Save_SVG(){
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		createDB();
+		svg = getSVG();
+		alert ("SVG : "+svg);
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+	                     .getService(Components.interfaces.nsIProperties)
+	                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+	
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+	                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		var sql = 'INSERT INTO svg(fichier) VALUES(?1);';
+		var statement = mDBConn.createStatement(sql);
+	    statement.bindUTF8StringParameter(0,svg);
+	    //statement.bindUTF8StringParameter(1, password);
+	    statement.execute();
+	    statement.reset();
+}
+
 function read(filepath) {
   try {
 	//http://xulfr.org/wiki/RessourcesLibs/LectureFichierCodeAvecCommentaires
@@ -586,7 +677,12 @@ function getSVG(){
 		var svg;
 		alert(figure_courant);
 		svg=document.getElementById(figure_courant).firstChild;
-		return svg;
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+    
+	    //alert(file.path);    
+	    var serializer = new XMLSerializer();
+	    var xml = serializer.serializeToString(svg);
+		return xml;
 		
 	} 
 	catch(ex2){alert("interface:getSVG:"+ex2); }

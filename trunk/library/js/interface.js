@@ -269,17 +269,17 @@ function Import(){
 			// Transformer le String en Objet DOM
 			var resultDoc=parser.parseFromString(xml,"text/xml");
 			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById("fig_21").appendChild(resultDoc.documentElement);
+			document.getElementById(figure_courant).appendChild(resultDoc.documentElement);
 			
-			doc=document.getElementById("fig_21");
+			doc=document.getElementById(figure_courant);
 			doc.removeChild(doc.firstChild);              
-			document.getElementById("fig_21").setAttribute("hidden","false");
+			document.getElementById(figure_courant).setAttribute("hidden","false");
 		
 			//alert ('chemin ='+s);
 		}
 
 		
-	}catch(ex2){ alert("interface:Open: "+ex2); }
+	}catch(ex2){ alert("interface:Import: "+ex2); }
 } 
 
 function Open(){
@@ -290,22 +290,24 @@ function Open(){
 			                        .getService(Components.interfaces.nsIPromptService);
 			var input = {value: ""};
 			var check = {value: false};
-			result = prompts.prompt(window, "Donner le nom du fichier", "Saisir le nom du fichier", input, null, check);
+			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
 			if(!result)
 				return;
 			
 			
 			xml = getSVG_DB(input.value);
+			//figure_courant=get_figure(input.value);
+			alert ("fig : "+figure_courant);
 			alert (input.value);
 			var parser=new DOMParser();
 			// Transformer le String en Objet DOM
 			var resultDoc=parser.parseFromString(xml,"text/xml");
 			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById("fig_21").appendChild(resultDoc.documentElement);
+			document.getElementById(figure_courant).appendChild(resultDoc.documentElement);
 			
-			doc=document.getElementById("fig_21");
+			doc=document.getElementById(figure_courant);
 			doc.removeChild(doc.firstChild);              
-			document.getElementById("fig_21").setAttribute("hidden","false");
+			document.getElementById(figure_courant).setAttribute("hidden","false");
 
 }
 
@@ -433,6 +435,50 @@ try{
 	}
 } 
 
+
+function get_figure(id_svg){
+try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		
+		var statement = mDBConn.createStatement('SELECT figure_c FROM svg where id_svg=?1');
+		statement.bindUTF8StringParameter(0,id_svg);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
+		for(var j=0;j<myArray1.length;j++){
+			alert("SVG : "+myArray1[j]['fichier']);
+			return myArray1[j]['fichier'];
+		}
+		statement.reset();
+	}
+	catch(ex2){ 
+		alert("interface:getSVG_DB: "+ex2); 
+		statement.reset();
+		
+	}
+} 
 function login_user(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -466,7 +512,7 @@ function login_user(){
 		test =0;
 		j=0;
 		//alert (myArray1.length);
-		for(var j=0;j<myArray1.length;j++){
+		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);
 			if (password==myArray1[j]['pwd']) {
 				var load = window.open('http://localhost/archipoenum/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
@@ -486,15 +532,15 @@ function login_user(){
 
 function createDB(){
 	try {
-		var myCreateDBQuery = 'CREATE TABLE IF NOT EXISTS utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT, login TEXT, pwd TEXT);';
-		var myCreateDBQuery2 = 'CREATE TABLE IF NOT EXISTS tag (id_tag INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag varchar(40), domaine varchar(40));';  
-		var myCreateDBQuery3 = 'CREATE TABLE IF NOT EXISTS taggage (id_user INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, id_tag uniqueidentifier NOT NULL, poids float, date datetime);';
-		var myCreateDBQuery4 = 'CREATE TABLE IF NOT EXISTS forms (id_f INTEGER PRIMARY KEY AUTOINCREMENT, nom varchar(40), id_svg uniqueidentifier)';  
-		var myCreateDBQuery5 = 'CREATE TABLE IF NOT EXISTS champs (id_c INTEGER PRIMARY KEY AUTOINCREMENT, titre varchar(40), id_f uniqueidentifier)';  
-		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT, id_f uniqueidentifier, id_r uniqueidentifier)';  
-		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier)';
-		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS representaion (id_r INTEGER PRIMARY KEY AUTOINCREMENT)';  
-		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT, fichier text(1000))'; 
+		var myCreateDBQuery =  'CREATE TABLE IF NOT EXISTS utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT,  login uniqueidentifier, pwd varchar(40));';
+		var myCreateDBQuery2 = 'CREATE TABLE IF NOT EXISTS tag (id_tag INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag varchar(40), poids int, domaine varchar(40));';
+		var myCreateDBQuery3 = 'CREATE TABLE IF NOT EXISTS tag_cloud (id_user uniqueidentifier , id_tag uniqueidentifier , id_hist uniqueidentifier);';
+		var myCreateDBQuery4 = 'CREATE TABLE IF NOT EXISTS forms (id_f INTEGER PRIMARY KEY AUTOINCREMENT,  nom varchar(40), id_svg uniqueidentifier);';  
+		var myCreateDBQuery5 = 'CREATE TABLE IF NOT EXISTS champs (id_c INTEGER PRIMARY KEY AUTOINCREMENT, titre varchar(40), id_f uniqueidentifier);';  
+		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT,  id_f uniqueidentifier);';  
+		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier);';
+		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS historique (id_hist INTEGER PRIMARY KEY AUTOINCREMENT, date varchar(40));';  
+		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  fichier text(1000),figure_c text(40), id_user uniqueidentifier);'; 
 		$sqlite._initService(myDBFile);
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
 		$sqlite.cmd(myDBFile,myCreateDBQuery2);
@@ -537,43 +583,18 @@ function insert_user (){
 	    
 	    //Partie login
 	    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
-		alert (login +' : '+password);
-		var statement = mDBConn.createStatement('SELECT login,pwd FROM utilisateur where login=?1');
-		statement.bindUTF8StringParameter(0,login);
-		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		//var myArray1 = dataset;
 		// Now you can loop through the array:
 		test =0;
 		j=0;
 		//alert (myArray1.length);
-		for(var j=0;j<myArray1.length;j++){
-			//alert("User : "+myArray1[j]['login']);
-			if (password==myArray1[j]['pwd']) {
-				var load = window.open('chrome://archipoenum/content/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
-				test=1;
-			}
-			else document.getElementById("erreur_login").setAttribute("hidden","false");
-		}
-		if (test==0)document.getElementById("erreur_login").setAttribute("hidden","false");
+
+				var load = window.open('http://localhost/archipoenum/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+
 		statement.reset();
 	}
 	catch(ex2){
@@ -595,9 +616,10 @@ function Save_SVG(){
 		var storageService = Components.classes["@mozilla.org/storage/service;1"]
 	                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
-		var sql = 'INSERT INTO svg(fichier) VALUES(?1);';
+		var sql = 'INSERT INTO svg(fichier,figure_c) VALUES(?1,?2);';
 		var statement = mDBConn.createStatement(sql);
 	    statement.bindUTF8StringParameter(0,svg);
+	    statement.bindUTF8StringParameter(1,figure_courant);
 	    //statement.bindUTF8StringParameter(1, password);
 	    statement.execute();
 	    statement.reset();

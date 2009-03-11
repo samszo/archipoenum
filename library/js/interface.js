@@ -119,11 +119,13 @@ function ModifChampsSvg(idSrc){
 	
 	try {
 		var ChampsSaisis = document.getElementById("saisie_"+idSrc).childNodes;
+		//alert(idSrc);
 		for (var i = 0; i < ChampsSaisis.length; i++){
 			var champ = ChampsSaisis[i];
 			if(champ.tagName != "label" && champ.tagName != "button"){
 				//récupére l'id
 				var idDst = champ.getAttribute("id").replace("saisie_", "");
+				//alert(idSrc+' | '+idDst);
 				//récupère le texte
 				var texte = champ.value;
 				//replace le texte
@@ -161,9 +163,9 @@ function MontrerCacherXul(idsDst){
 				xul.setAttribute("hidden","false");
 				if (arrId[1]=="fig_18")	{
 					document.getElementById("D1").setAttribute("hidden","false");
-					document.getElementById("D2").setAttribute("hidden","false");
+					//document.getElementById("D2").setAttribute("hidden","false");
 					document.getElementById("m11").setAttribute("hidden","false");
-					document.getElementById("m21").setAttribute("hidden","false");
+					document.getElementById("m12").setAttribute("hidden","false");
 				}
 				else if (arrId[1]=="fig_19"){
 					document.getElementById("m12").setAttribute("hidden","false");
@@ -297,17 +299,20 @@ function Open(){
 			
 			xml = getSVG_DB(input.value);
 			//figure_courant=get_figure(input.value);
-			alert ("fig : "+figure_courant);
-			alert (input.value);
+			//alert ("fig : "+figure_courant);
+			//alert (input.value);
 			var parser=new DOMParser();
 			// Transformer le String en Objet DOM
 			var resultDoc=parser.parseFromString(xml,"text/xml");
 			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById(figure_courant).appendChild(resultDoc.documentElement);
+			document.getElementById(get_figure(input.value)).appendChild(resultDoc.documentElement);
 			
-			doc=document.getElementById(figure_courant);
-			doc.removeChild(doc.firstChild);              
-			document.getElementById(figure_courant).setAttribute("hidden","false");
+			doc=document.getElementById(get_figure(input.value));
+			doc.removeChild(doc.firstChild);
+			if (figure_courant!=get_figure(input.value))  {            
+				document.getElementById(get_figure(input.value)).setAttribute("hidden","true");
+				//alert ("hidden : true");	
+			}
 
 }
 
@@ -398,12 +403,11 @@ try{
                      .getService(Components.interfaces.nsIProperties)
                      .get("ProfD", Components.interfaces.nsIFile);
 		file.append(myDBFile);
-		
 		var storageService = Components.classes["@mozilla.org/storage/service;1"]
 		                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
 		
-		var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1');
+		var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,id_svg);
 		
 		var dataset = [];
@@ -443,12 +447,12 @@ try{
                      .getService(Components.interfaces.nsIProperties)
                      .get("ProfD", Components.interfaces.nsIFile);
 		file.append(myDBFile);
-		
+		//alert ("id_svg : "+id_svg);
 		var storageService = Components.classes["@mozilla.org/storage/service;1"]
 		                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
 		
-		var statement = mDBConn.createStatement('SELECT figure_c FROM svg where id_svg=?1');
+		var statement = mDBConn.createStatement('SELECT figure_c FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,id_svg);
 		
 		var dataset = [];
@@ -468,8 +472,8 @@ try{
 		j=0;
 		//alert (myArray1.length);
 		for(var j=0;j<myArray1.length;j++){
-			alert("SVG : "+myArray1[j]['fichier']);
-			return myArray1[j]['fichier'];
+			//alert("SVG : "+myArray1[j]['figure_c']);
+			return myArray1[j]['figure_c'];
 		}
 		statement.reset();
 	}
@@ -479,6 +483,7 @@ try{
 		
 	}
 } 
+
 function login_user(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -775,9 +780,10 @@ function createMenuItem() {
   //var item4=document.createElementNS(XUL_NS, "menupopup");
   item.setAttribute("label", "Document2");
   item.setAttribute("id", "D2");
+  item.setAttribute("flex","1");
   item3.setAttribute("label", "Doc");
   item3.setAttribute("id", "m21");
-  item.setAttribute("hidden", "true");
+  item.setAttribute("hidden", "false");
   //item2.setAttribute("hidden", "false");
   item3.setAttribute("hidden", "true");
   var popup = document.getElementById("test");

@@ -4,6 +4,20 @@ var xulDoc=window.parent.document;
 var arrValidation = new Array();
 var figure_courant="fig_21";
 var myDBFile="archipoenum.sqlite";
+var docs=2;
+var doc_courant="";
+var user;
+
+function  init(){	
+	var parameters = location.search.substring(1).split("&");
+    var temp = parameters[0].split("=");
+    user = unescape(temp[1]);
+    //alert(user);
+	document.getElementById("u1").setAttribute("value","Utilisateur Connecté : "+user);
+	document.getElementById("u1").setAttribute("hidden","false");
+	document.getElementById("u2").setAttribute("hidden","false");
+
+}
 function SetFichier(){
 	
   try {
@@ -55,7 +69,7 @@ function AfficheValidation(){
 }
 
 // Afficher la partie de saisir des données
-function Saisir(idSrc,figure){
+function  Saisir(idSrc,figure){
 	
 	try {
 		figure_courant=figure;
@@ -158,6 +172,7 @@ function MontrerCacherXul(idsDst){
 	try {
 		var arrId = idsDst.split(sep);
 		for (var i = 0; i < arrId.length; i++){
+			alert(arrId[i]);
 			var xul = document.getElementById(arrId[i]);
 			if(xul.getAttribute("hidden")=="true"){
 				xul.setAttribute("hidden","false");
@@ -271,12 +286,14 @@ function Import(){
 			// Transformer le String en Objet DOM
 			var resultDoc=parser.parseFromString(xml,"text/xml");
 			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById(figure_courant).appendChild(resultDoc.documentElement);
+			resultDoc.documentElement.setAttribute("id",fichier.leafName);
+			document.getElementById("C1").appendChild(resultDoc.documentElement);
 			
-			doc=document.getElementById(figure_courant);
-			doc.removeChild(doc.firstChild);              
-			document.getElementById(figure_courant).setAttribute("hidden","false");
-		
+			//doc=document.getElementById(figure_courant);
+			//doc.removeChild(doc.firstChild);              
+			document.getElementById(figure_courant).setAttribute("hidden","true	");
+			figure_courant=fichier.leafName;
+			
 			//alert ('chemin ='+s);
 		}
 
@@ -520,8 +537,11 @@ function login_user(){
 		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);
 			if (password==myArray1[j]['pwd']) {
-				var load = window.open('http://localhost/archipoenum/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				var load = window.open('http://localhost/archipoenum/index.xul?login='+login,'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 				test=1;
+				user=login;
+				//alert(user);
+				//getElementById("u1").setAttribute("value","Utilisateur Connecté :"+user);				
 			}
 			else document.getElementById("erreur_login").setAttribute("hidden","false");
 		}
@@ -535,6 +555,8 @@ function login_user(){
 	}
 } 
 
+
+  
 function createDB(){
 	try {
 		var myCreateDBQuery =  'CREATE TABLE IF NOT EXISTS utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT,  login uniqueidentifier, pwd varchar(40));';
@@ -598,8 +620,7 @@ function insert_user (){
 		j=0;
 		//alert (myArray1.length);
 
-				var load = window.open('http://localhost/archipoenum/index.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
-
+		var load = window.open('http://localhost/archipoenum/index.xul?login='+login,'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 		statement.reset();
 	}
 	catch(ex2){
@@ -690,6 +711,19 @@ function AppendSVG(url,doc) {
 		var parser=new DOMParser();
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(response,"text/xml");
+		resultDoc.documentElement.setAttribute("id","Document_"+docs);
+		resultDoc.documentElement.setAttribute("hidden","true");
+		//resultDoc.getElementById("fig_18_document").setAttribute("id","Document_"+docs+"_document");
+		resultDoc.getElementById("fig_18_type").setAttribute("id","Document_"+docs+"_type");
+		resultDoc.getElementById("fig_18_format").setAttribute("id","Document_"+docs+"_format");
+		resultDoc.getElementById("fig_18_section").setAttribute("id","Document_"+docs+"_section");
+		resultDoc.getElementById("fig_18_nature").setAttribute("id","Document_"+docs+"_nature");
+		resultDoc.getElementById("fig_18_actor").setAttribute("id","Document_"+docs+"_actor");
+		resultDoc.getElementById("fig_18_ontoactor").setAttribute("id","Document_"+docs+"_ontoactor");
+		resultDoc.getElementById("fig_18_concept").setAttribute("id","Document_"+docs+"_concept");
+		resultDoc.getElementById("fig_18_work").setAttribute("id","Document_"+docs+"_work");
+		resultDoc.getElementById("fig_18_instance").setAttribute("id","Document_"+docs+"_instance");
+		resultDoc.getElementById("fig_18_physicpart").setAttribute("id","Document_"+docs+"_physicpart");
 		// Intégrer le DOM récupéré à l'interieur de document
 		doc.appendChild(resultDoc.documentElement);
 
@@ -718,6 +752,7 @@ function getSVG(){
 // Afficher le figure principale
 function afficher(){
 try{
+	document.getElementById(figure_courant).setAttribute("hidden","true");
 	document.getElementById("fig_18").setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","true");
 	document.getElementById("fig_21").setAttribute("hidden","false");
@@ -730,6 +765,7 @@ catch(ex2){alert("interface:afficher:"+ex2); }
 
 function afficher1(){
 try{
+document.getElementById(figure_courant).setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","true");
 	document.getElementById("fig_18").setAttribute("hidden","false");
 	document.getElementById("fig_21").setAttribute("hidden","true");
@@ -743,6 +779,7 @@ catch(ex2){alert("interface:afficher1:"+ex2); }
 function afficher2(){
 try{
 	//alert("ch3");
+	document.getElementById(figure_courant).setAttribute("hidden","true");
 	document.getElementById("fig_18").setAttribute("hidden","true");
 	document.getElementById("fig_19").setAttribute("hidden","false");
 	document.getElementById("fig_21").setAttribute("hidden","true");
@@ -752,6 +789,19 @@ try{
 catch(ex2){alert("interface:afficher2:"+ex2); }
 }
 
+function afficher3(id_svg){
+try{
+	//alert("ch3");
+	document.getElementById(id_svg).setAttribute("hidden","false");
+	document.getElementById(figure_courant).setAttribute("hidden","true");
+	document.getElementById("fig_18").setAttribute("hidden","true");
+	document.getElementById("fig_19").setAttribute("hidden","true");
+	document.getElementById("fig_21").setAttribute("hidden","true");
+	
+	//document.getElementById("ch3").setAttribute("hidden","false");
+} 
+catch(ex2){alert("interface:afficher2:"+ex2); }
+}
 
 function createMenuItem(aLabel) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
@@ -774,14 +824,37 @@ function createMenuPopup(aId) {
   return item;
 }
 
-function test() {
+function Ajouter_doc() {
+
+		//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+	chemin="http://localhost/archipoenum/library/svg/fig_18.svg";	
+	//xml = read(chemin);
+	AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
+	//var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	//var resultDoc=parser.parseFromString(xml,"text/xml");
+	// Intégrer le DOM récupéré à l'interieur de document
+	//resultDoc.documentElement.setAttribute("id","Document"+doc);
+	//document.getElementById("C1").appendChild(resultDoc.documentElement);
+	
+	//doc=document.getElementById(figure_courant);
+	//doc.removeChild(doc.firstChild);              
+	//document.getElementById(figure_courant).setAttribute("hidden","true	");
+	//figure_courant="Document"+docs;
+	
+	//alert ('chemin ='+s);
+			
 	var popup = document.getElementById("test"); // a <menupopup> element
-	var first = createMenu("First item");
-	var pop = createMenuPopup("45354");
-	var last = createMenuItem("Last item");
+	var first = createMenu("Document_"+docs);
+	var pop = createMenuPopup("p"+docs);
+	var last = createMenuItem("DOC");
+	last.setAttribute("onclick","afficher3('Document_"+docs+"')");
+	var last2 = createMenuItem("Acteur");
 	pop.appendChild(last);
+	pop.appendChild(last2);
 	first.appendChild(pop);
-	popup.insertBefore(first, popup.firstChild);
+	popup.appendChild(first);
+	docs++;
 }
 
 
@@ -790,11 +863,11 @@ function afficher_form_user(){
 try{
 	if (document.getElementById("form_user").getAttribute("hidden")=="true"){
 			document.getElementById("form_user").setAttribute("hidden","false");
-			document.getElementById("user_c").setAttribute("value","Cacher le formulaire     --->");
+			document.getElementById("user_c").setAttribute("label","Cacher le formulaire     --->");
 	}
 	else if (document.getElementById("form_user").getAttribute("hidden")=="false"){
 			document.getElementById("form_user").setAttribute("hidden","true");
-			document.getElementById("user_c").setAttribute("value","Creer un nouveau utilisateur");
+			document.getElementById("user_c").setAttribute("label","Creer un nouveau utilisateur");
 	}
 	else{
 		alert (document.getElementById("form_user").getAttribute("hidden"));
@@ -805,6 +878,12 @@ try{
 catch(ex2){alert("interface:afficher_form_user:"+ex2); }
 }
 
+
+function logout(){
+	document.getElementById("logout").setAttribute("hidden","false");
+	document.getElementById("logout_user").setAttribute("value",user+" est deconnecter");
+	document.getElementById(figure_courant).setAttribute("hidden","true");
+}
 /*
 function createMenuItem() {
   const XUL_NS = "http://www.mozilla.org/keymaster/gat...re.is.only.xul";

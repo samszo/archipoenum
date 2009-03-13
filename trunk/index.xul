@@ -7,7 +7,7 @@
 <?xul-overlay href="library/xul/fig_19.xul" ?>
 <?xul-overlay href="library/xul/fig_21.xul" ?>
 <window xmlns:html="http://www.w3.org/1999/xhtml"
-		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>
 	<script src="library/js/svgAgentSchema.js"/>
  <html:style>
@@ -36,11 +36,12 @@
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 		<hbox>
-			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="test();"/>
+			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="Ajouter_doc();"/>
 			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
 			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
+			
 			
 		</hbox>
 		<hbox> 		
@@ -52,16 +53,10 @@
 						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
 						<menu id="ch2" label="Documents" hidden="false" >
 							<menupopup id="test">
-								<menu id="D1" label="Document1" hidden="false">
+								<menu id="D1" label="Document1" hidden="true">
 									<menupopup >											
 										<menuitem id="m11" label="DOC" hidden="false" oncommand="afficher1();"/>
-										<menuitem id="m12" label="Acteur" hidden="false" oncommand="afficher2();"/>
-									</menupopup>
-								</menu>
-								<menu id="D2" label="Document1" hidden="false">
-									<menupopup id='toto' >											
-										<menuitem id="m2" label="DOC" hidden="false" oncommand="afficher1();"/>
-										<menuitem id="m2" label="Acteur" hidden="false" oncommand="afficher2();"/>
+										<menuitem id="m12" label="Acteur" hidden="true" oncommand="afficher2();"/>
 									</menupopup>
 								</menu>
 							</menupopup>
@@ -71,6 +66,8 @@
 				</menu>
 			</menubar>
 		</hbox>
+		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:130px;margin-top:7px;' />
+		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;' onclick="logout();"/>
     </hbox>
 </hbox>
 </toolbar>
@@ -85,8 +82,11 @@
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>
 		</splitter>
-		<vbox flex='1' >		
+		<vbox id="C1" flex='1' >		
 			<iframe id="svgFrame" flex='1' hidden="true" src="library/svg/fig_21.svg" />
+			<vbox id="logout" hidden="true">
+				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
+			</vbox>
 			<vbox id="fig_21" hidden="false" />
 			<vbox id="fig_18" hidden="true" />
 			<vbox id="fig_19" hidden="true" />

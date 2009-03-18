@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
 <?xul-overlay href="library/xul/ZonesSaisies.xul" ?>
 <?xul-overlay href="library/xul/OntoActeur.xul" ?>
@@ -83,7 +83,7 @@
 			<grippy/>
 		</splitter>
 		<vbox id="C1" flex='1' >		
-			<iframe id="svgFrame" flex='1' hidden="true" src="library/svg/fig_21.svg" />
+			<iframe id="svgFrame" flex='1' hidden="true" />
 			<vbox id="logout" hidden="true">
 				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
 			</vbox>

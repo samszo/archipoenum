@@ -172,7 +172,7 @@ function MontrerCacherXul(idsDst){
 	try {
 		var arrId = idsDst.split(sep);
 		for (var i = 0; i < arrId.length; i++){
-			alert(arrId[i]);
+			//alert("arrId[i] : "+arrId[i]);
 			var xul = document.getElementById(arrId[i]);
 			if(xul.getAttribute("hidden")=="true"){
 				xul.setAttribute("hidden","false");
@@ -305,31 +305,15 @@ function Open(){
 			netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
   	
 			//saisi le libellé 
-			var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+			/*var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
 			                        .getService(Components.interfaces.nsIPromptService);
 			var input = {value: ""};
 			var check = {value: false};
 			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
 			if(!result)
-				return;
+				return;*/
+			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "pizza");
 			
-			
-			xml = getSVG_DB(input.value);
-			//figure_courant=get_figure(input.value);
-			//alert ("fig : "+figure_courant);
-			//alert (input.value);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById(get_figure(input.value)).appendChild(resultDoc.documentElement);
-			
-			doc=document.getElementById(get_figure(input.value));
-			doc.removeChild(doc.firstChild);
-			if (figure_courant!=get_figure(input.value))  {            
-				document.getElementById(get_figure(input.value)).setAttribute("hidden","true");
-				//alert ("hidden : true");	
-			}
 
 }
 
@@ -446,6 +430,84 @@ try{
 		for(var j=0;j<myArray1.length;j++){
 			alert("SVG : "+myArray1[j]['fichier']);
 			return myArray1[j]['fichier'];
+		}
+		statement.reset();
+	}
+	catch(ex2){ 
+		alert("interface:getSVG_DB: "+ex2); 
+		statement.reset();
+		
+	}
+} 
+function annuler(){
+
+window.close();}
+function svg_open(choix_svg,fig_svg)
+{
+			//xml = getSVG_DB(choix_svg);
+			//figure_courant=get_figure(input.value);
+			//alert ("fig : "+figure_courant);
+			//alert (input.value);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(fig_svg,"text/xml");
+			// Intégrer le DOM récupéré à l'interieur de document
+			document.getElementById(choix_svg).appendChild(resultDoc.documentElement);
+			
+			doc=document.getElementById(choix_svg);
+			doc.removeChild(doc.firstChild);
+			if (figure_courant!=choix_svg)  {            
+				document.getElementById(choix_svg).setAttribute("hidden","true");
+				//alert ("hidden : true");	
+			}
+}
+function ok_svg(){
+	var fichier_svg=document.getElementById("choixSVG").selectedItem.getAttribute("fichier");
+	var figure_svg=document.getElementById("choixSVG").selectedItem.getAttribute("figure");
+	alert(figure_svg);
+	alert(fichier_svg);
+	window.close();
+	svg_open(figure_svg,fichier_svg);
+}
+function get_list_SVG_DB(){
+try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		
+		var statement = mDBConn.createStatement('SELECT * FROM svg ;');
+		//statement.bindUTF8StringParameter(0,id_svg);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
+		var popup = document.getElementById("SVG_list");
+		for(var j=0;j<myArray1.length;j++){
+			//alert("SVG : "+myArray1[j]['fichier']);
+			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['figure_c']);
+			m1.setAttribute("value",myArray1[j]['id_svg']);
+			m1.setAttribute("fichier",myArray1[j]['fichier']);
+			m1.setAttribute("figure",myArray1[j]['figure_c']);
+			popup.appendChild(m1);
+		//	return myArray1[j]['fichier'];
 		}
 		statement.reset();
 	}

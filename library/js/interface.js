@@ -775,7 +775,7 @@ function AppendSVG(url,doc) {
 		var resultDoc=parser.parseFromString(response,"text/xml");
 		resultDoc.documentElement.setAttribute("id","Document_"+docs);
 		resultDoc.documentElement.setAttribute("hidden","true");
-		//resultDoc.getElementById("fig_18_document").setAttribute("id","Document_"+docs+"_document");
+		resultDoc.getElementById("fig_18_document").setAttribute("id","Document_"+docs+"_document");
 		resultDoc.getElementById("fig_18_type").setAttribute("id","Document_"+docs+"_type");
 		resultDoc.getElementById("fig_18_format").setAttribute("id","Document_"+docs+"_format");
 		resultDoc.getElementById("fig_18_section").setAttribute("id","Document_"+docs+"_section");
@@ -862,7 +862,7 @@ try{
 	
 	//document.getElementById("ch3").setAttribute("hidden","false");
 } 
-catch(ex2){alert("interface:afficher2:"+ex2); }
+catch(ex2){alert("interface:afficher3:"+ex2); }
 }
 
 function createMenuItem(aLabel) {
@@ -885,26 +885,90 @@ function createMenuPopup(aId) {
   item.setAttribute("id", aId);
   return item;
 }
+function RC(chaine, quoi, par)
+{
+	i=0;
+	k=0;
+	r="";
+	match=false;
+	while(i<chaine.length)
+	{
+		c=chaine.charAt(i);
+		if(c==quoi.charAt(k))
+		{
+			match=true;k++;
+		} 
+		else 
+		{	
+			if(match==true)
+				{
+					for(z=i-k; z<i; z++)
+					{
+						r=r+chaine.charAt(z);
+					}
+				}
+		match=false;
+		k=0;};
+		if(match==false)
+		{
+			r=r+c;
+			i++;
+		}
+		else
+		{
+			if(k==quoi.length)
+			{
+				r=r+par;
+				match=false;
+				k=0;
+			}
+			i++;
+		}
+	}
+	return r;
+}
+
 
 function Ajouter_doc() {
 
 		//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
-	chemin="http://localhost/archipoenum/library/svg/fig_18.svg";	
-	//xml = read(chemin);
-	AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
-	//var parser=new DOMParser();
+	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\doc.xul";	
+	xml = read(chemin);
+	xml2=RC(xml,"fig_18","Document_"+docs);
+	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
+	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	//var resultDoc=parser.parseFromString(xml,"text/xml");
+	var resultDoc=parser.parseFromString(xml2,"text/xml");
 	// Intégrer le DOM récupéré à l'interieur de document
-	//resultDoc.documentElement.setAttribute("id","Document"+doc);
-	//document.getElementById("C1").appendChild(resultDoc.documentElement);
+/*		resultDoc.documentElement.setAttribute("id","Document_"+docs);
+		resultDoc.documentElement.setAttribute("hidden","true");
+		resultDoc.getElementById("fig_18_document").setAttribute("id","Document_"+docs+"_document");
+		resultDoc.getElementById("fig_18_type").setAttribute("id","Document_"+docs+"_type");
+		resultDoc.getElementById("fig_18_format").setAttribute("id","Document_"+docs+"_format");
+		resultDoc.getElementById("fig_18_section").setAttribute("id","Document_"+docs+"_section");
+		resultDoc.getElementById("fig_18_nature").setAttribute("id","Document_"+docs+"_nature");
+		resultDoc.getElementById("fig_18_actor").setAttribute("id","Document_"+docs+"_actor");
+		resultDoc.getElementById("fig_18_ontoactor").setAttribute("id","Document_"+docs+"_ontoactor");
+		resultDoc.getElementById("fig_18_concept").setAttribute("id","Document_"+docs+"_concept");
+		resultDoc.getElementById("fig_18_work").setAttribute("id","Document_"+docs+"_work");
+		resultDoc.getElementById("fig_18_instance").setAttribute("id","Document_"+docs+"_instance");
+		resultDoc.getElementById("fig_18_physicpart").setAttribute("id","Document_"+docs+"_physicpart");*/
+		document.getElementById("D2").appendChild(resultDoc.documentElement);
 	
 	//doc=document.getElementById(figure_courant);
 	//doc.removeChild(doc.firstChild);              
 	//document.getElementById(figure_courant).setAttribute("hidden","true	");
 	//figure_courant="Document"+docs;
-	
 	//alert ('chemin ='+s);
+	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\DocSaisie.xul";	
+	xml = read(chemin);
+	xml2=RC(xml,"fig_18","Document_"+docs);
+	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
+	var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc=parser.parseFromString(xml2,"text/xml");
+	resultDoc.getElementById("ZonesSaisies").setAttribute("id","ZonesSaisies_"+docs);
+	document.getElementById("S1").appendChild(resultDoc.documentElement);
 			
 	var popup = document.getElementById("test"); // a <menupopup> element
 	var first = createMenu("Document_"+docs);

@@ -74,7 +74,7 @@
 </toolbox>
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
-		<vbox flex="1" >			
+		<vbox id="S1" flex="1" >			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
@@ -94,6 +94,9 @@
 				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
+			<box id="D2" width="200">
+  				<label hidden="false" value="    " />
+			</box>
 		</vbox>		
 	</groupbox>	
 </hbox>

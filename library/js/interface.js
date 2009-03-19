@@ -1009,6 +1009,8 @@ function logout(){
 	document.getElementById("logout").setAttribute("hidden","false");
 	document.getElementById("logout_user").setAttribute("value",user+" est deconnecter");
 	document.getElementById(figure_courant).setAttribute("hidden","true");
+	alert(user+" est deconnecter");
+	window.close();
 }
 /*
 function createMenuItem() {

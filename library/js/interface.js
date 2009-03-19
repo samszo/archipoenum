@@ -312,7 +312,7 @@ function Open(){
 			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
 			if(!result)
 				return;*/
-			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "pizza");
+			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "");
 			
 
 }
@@ -467,7 +467,7 @@ function ok_svg(){
 	alert(figure_svg);
 	alert(fichier_svg);
 	window.close();
-	svg_open(figure_svg,fichier_svg);
+	window.opener.svg_open(figure_svg,fichier_svg);
 }
 function get_list_SVG_DB(){
 try{

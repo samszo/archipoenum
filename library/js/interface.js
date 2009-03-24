@@ -19,7 +19,7 @@ function  init(){
     user = unescape(temp[1]);
     id_user=unescape(temp2[1]);
     //alert(id_user+' : '+user);
-	document.getElementById("u1").setAttribute("value","Utilisateur Connecté : "+user);
+	document.getElementById("u1").setAttribute("value","Utilisateur Connecte : "+user);
 	document.getElementById("ch1").setAttribute("label",user);
 	document.getElementById("u1").setAttribute("hidden","false");
 	document.getElementById("u2").setAttribute("hidden","false");
@@ -564,13 +564,12 @@ try{
 		//alert (myArray1.length);
 		
 		var popup = document.getElementById("test3"); // a <menupopup> element
-		var first = createMenu("List des SVg");
+		var first = createMenu("List des SVG");
 		var pop = createMenuPopup("p"+docs);
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
-			var last = createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']);
-			last.setAttribute("onclick","afficher3('Document_"+docs+"')");
-	
+			var last = createMenuItem(myArray1[j]["id_svg"]+" : "+myArray1[j]["titre"]);
+			last.setAttribute("onclick","svg_open("+myArray1[j]["figure_c"]+","+myArray1[j]["fichier"]+");");
 			pop.appendChild(last);
 
 		//	return myArray1[j]['fichier'];
@@ -670,7 +669,7 @@ function login_user(){
 				user=login;
 				id_user=myArray1[j]['id'];
 				//alert(id_user);
-				//getElementById("u1").setAttribute("value","Utilisateur Connecté :"+user);				
+				//getElementById("u1").setAttribute("value","Utilisateur Connecte :"+user);				
 			}
 			else document.getElementById("erreur_login").setAttribute("hidden","false");
 		}
@@ -891,7 +890,7 @@ function getSVG(){
 	    //alert(file.path);    
 	    var serializer = new XMLSerializer();
 	    var xml = serializer.serializeToString(svg);
-		return xml;
+		return svg;
 		
 	} 
 	catch(ex2){alert("interface:getSVG:"+ex2); }

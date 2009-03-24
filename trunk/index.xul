@@ -36,7 +36,7 @@
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 		<hbox>
-			<toolbarbutton label="Ajouter un Document  " style='width:150px;' onclick="Ajouter_doc();"/>
+			<toolbarbutton id='add_doc' label="Ajouter un Document  " hidden="true" style='width:150px;' onclick="Ajouter_doc();"/>
 			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
 			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
@@ -49,9 +49,9 @@
 		<hbox class="menubar">
 			<menubar id='navigation'>
 				<menu label="   Navigation ->" style='width:100px;'>
-					<menupopup>
+					<menupopup id="test3">
 						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
-						<menu id="ch2" label="Documents" hidden="false" >
+						<menu id="ch2" label="Documents" hidden="true" >
 							<menupopup id="test">
 								<menu id="D1" label="Document1" hidden="true">
 									<menupopup >											

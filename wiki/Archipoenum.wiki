@@ -42,3 +42,17 @@ Pour concevoir une telle application, on a utilisé le langage UML qui décrit b
 
 === Cas d'utilisation===
 [http://thelazio.free.fr/archipoenum/images/Mon_Projet_CDU_1.png]
+Dans notre application l’utilisateur est le seul acteur dans le système et il peut effectuer plusieurs opérations :
+- Indexer un nouveau document de poésie numérique en ajoutant les informations dans l’interface de l’application.
+- Ouvrir un document déjà indexé et stoqué dans la base données.
+- Sauvegarder l’état actuel du document dans la base de données
+- S'authentifier par un "login" et mot de passe
+- Exporter le document sous format SVG
+- Importer un fichier SVG dans l'interface
+- Modifier et personaliser l'interface de l'application
+- Partager les documents indexés
+=== Diagrammes D'activités===
+Ce diagramme décrit les différentes étapes pour arriver à exporter le document en cours sous format SVG.
+[http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA1.png]
+Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
+[http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA2.png]

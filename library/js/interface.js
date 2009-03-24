@@ -7,16 +7,28 @@ var myDBFile="archipoenum.sqlite";
 var docs=2;
 var doc_courant="";
 var user;
+var id_user;
+var ladate=new Date();
 
 function  init(){	
 	var parameters = location.search.substring(1).split("&");
+	//alert(parameters);
+	//alert(parameters[0]);
     var temp = parameters[0].split("=");
+    var temp2 = parameters[1].split("=");
     user = unescape(temp[1]);
-    //alert(user);
+    id_user=unescape(temp2[1]);
+    //alert(id_user+' : '+user);
 	document.getElementById("u1").setAttribute("value","Utilisateur Connecté : "+user);
+	document.getElementById("ch1").setAttribute("label",user);
 	document.getElementById("u1").setAttribute("hidden","false");
 	document.getElementById("u2").setAttribute("hidden","false");
-
+	document.getElementById("fig_21_indexer").setAttribute("fill","green");
+	document.getElementById("fig_21_indexing").setAttribute("fill","green");
+	document.getElementById("fig_21_indexer_name").firstChild.data=user;
+	document.getElementById("fig_21_indexing_id").firstChild.data=id_user;
+	document.getElementById("fig_21_indexing_date").firstChild.data=ladate.getDate()+"-"+(ladate.getMonth()+1)+"-"+ladate.getFullYear();
+	get_list_SVG_user();
 }
 function SetFichier(){
 	
@@ -177,10 +189,12 @@ function MontrerCacherXul(idsDst){
 			if(xul.getAttribute("hidden")=="true"){
 				xul.setAttribute("hidden","false");
 				if (arrId[1]=="fig_18")	{
+					document.getElementById("ch2").setAttribute("hidden","false");
 					document.getElementById("D1").setAttribute("hidden","false");
 					//document.getElementById("D2").setAttribute("hidden","false");
 					document.getElementById("m11").setAttribute("hidden","false");
 					document.getElementById("m12").setAttribute("hidden","false");
+					document.getElementById("add_doc").setAttribute("hidden","false");
 				}
 				else if (arrId[1]=="fig_19"){
 					document.getElementById("m12").setAttribute("hidden","false");
@@ -289,8 +303,8 @@ function Import(){
 			resultDoc.documentElement.setAttribute("id",fichier.leafName);
 			document.getElementById("C1").appendChild(resultDoc.documentElement);
 			
-			//doc=document.getElementById(figure_courant);
-			//doc.removeChild(doc.firstChild);              
+			doc=document.getElementById(figure_courant);
+			doc.removeChild(doc.firstChild);              
 			document.getElementById(figure_courant).setAttribute("hidden","true	");
 			figure_courant=fichier.leafName;
 			
@@ -502,7 +516,7 @@ try{
 		var popup = document.getElementById("SVG_list");
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
-			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['figure_c']);
+			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']+ ' : id_user = '+myArray1[j]['id_user']);
 			m1.setAttribute("value",myArray1[j]['id_svg']);
 			m1.setAttribute("fichier",myArray1[j]['fichier']);
 			m1.setAttribute("figure",myArray1[j]['figure_c']);
@@ -518,7 +532,59 @@ try{
 	}
 } 
 
+function get_list_SVG_user(){
+try{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		
+		var statement = mDBConn.createStatement('SELECT * FROM svg where id_user=?1;');
+		statement.bindUTF8StringParameter(0,id_user);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		
+		
+		var myArray1 = dataset;
+		// Now you can loop through the array:
+		test =0;
+		j=0;
+		//alert (myArray1.length);
+		
+		var popup = document.getElementById("test3"); // a <menupopup> element
+		var first = createMenu("List des SVg");
+		var pop = createMenuPopup("p"+docs);
+		for(var j=0;j<myArray1.length;j++){
+			//alert("SVG : "+myArray1[j]['fichier']);
+			var last = createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']);
+			last.setAttribute("onclick","afficher3('Document_"+docs+"')");
+	
+			pop.appendChild(last);
 
+		//	return myArray1[j]['fichier'];
+		}
+		first.appendChild(pop);
+		popup.appendChild(first);
+		statement.reset();
+	}
+	catch(ex2){ 
+		alert("interface:getSVG_DB: "+ex2); 
+		statement.reset();
+		
+	}
+} 
 function get_figure(id_svg){
 try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -577,7 +643,7 @@ function login_user(){
 		login = document.getElementById("nom").value;
 		password = document.getElementById("passwd").value;
 		alert (login +' : '+password);
-		var statement = mDBConn.createStatement('SELECT login,pwd FROM utilisateur where login=?1');
+		var statement = mDBConn.createStatement('SELECT id,login,pwd FROM utilisateur where login=?1');
 		statement.bindUTF8StringParameter(0,login);
 		
 		var dataset = [];
@@ -599,10 +665,11 @@ function login_user(){
 		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);
 			if (password==myArray1[j]['pwd']) {
-				var load = window.open('http://localhost/archipoenum/index.xul?login='+login,'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				var load = window.open('http://localhost/archipoenum/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 				test=1;
 				user=login;
-				//alert(user);
+				id_user=myArray1[j]['id'];
+				//alert(id_user);
 				//getElementById("u1").setAttribute("value","Utilisateur Connecté :"+user);				
 			}
 			else document.getElementById("erreur_login").setAttribute("hidden","false");
@@ -611,7 +678,8 @@ function login_user(){
 		statement.reset();
 	}
 	catch(ex2){ 
-		alert("interface:login: "+ex2); 
+		alert("Authentification non correcte"); 
+		document.getElementById("erreur_login").setAttribute("hidden","false");
 		statement.reset();
 		
 	}
@@ -629,7 +697,7 @@ function createDB(){
 		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT,  id_f uniqueidentifier);';  
 		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier);';
 		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS historique (id_hist INTEGER PRIMARY KEY AUTOINCREMENT, date varchar(40));';  
-		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  fichier text(1000),figure_c text(40), id_user uniqueidentifier);'; 
+		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),figure_c text(40), id_user uniqueidentifier);'; 
 		$sqlite._initService(myDBFile);
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
 		$sqlite.cmd(myDBFile,myCreateDBQuery2);
@@ -674,16 +742,24 @@ function insert_user (){
 	    netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 
 			// return dataset;	
+		var statement = mDBConn.createStatement('SELECT id,login,pwd FROM utilisateur where login=?1');
+		statement.bindUTF8StringParameter(0,login);
 		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
 		
-		//var myArray1 = dataset;
-		// Now you can loop through the array:
-		test =0;
-		j=0;
-		//alert (myArray1.length);
+		var myArray1 = dataset;
 
-		var load = window.open('http://localhost/archipoenum/index.xul?login='+login,'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
-		statement.reset();
+		for(var j=0;j<1;j++){
+			//alert("User : "+myArray1[j]['login']);			
+				var load = window.open('http://localhost/archipoenum/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+		}
 	}
 	catch(ex2){
 		alert("interface: insert_user: "+ex2);
@@ -693,6 +769,14 @@ function insert_user (){
 
 function Save_SVG(){
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+	                  .getService(Components.interfaces.nsIPromptService);
+		var input = {value: ""};
+		var check = {value: false};
+		result = prompts.prompt(window, "Donner un titre du fichier", "Saisir le titre du figure sauvgardé", input, null, check);
+		if(!result)
+			return;
+		var nomFic = input.value;
 		createDB();
 		svg = getSVG();
 		alert ("SVG : "+svg);
@@ -700,14 +784,16 @@ function Save_SVG(){
 	                     .getService(Components.interfaces.nsIProperties)
 	                     .get("ProfD", Components.interfaces.nsIFile);
 		file.append(myDBFile);
-	
+
 		var storageService = Components.classes["@mozilla.org/storage/service;1"]
 	                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
-		var sql = 'INSERT INTO svg(fichier,figure_c) VALUES(?1,?2);';
+		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
 		var statement = mDBConn.createStatement(sql);
 	    statement.bindUTF8StringParameter(0,svg);
 	    statement.bindUTF8StringParameter(1,figure_courant);
+	    statement.bindUTF8StringParameter(2,nomFic);
+	    statement.bindUTF8StringParameter(3,id_user);
 	    //statement.bindUTF8StringParameter(1, password);
 	    statement.execute();
 	    statement.reset();

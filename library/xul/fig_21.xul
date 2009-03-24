@@ -6,13 +6,13 @@
 	 width="376.975px" height="333.55px" viewBox="0 0 376.975 333.55" enable-background="new 0 0 376.975 333.55">
 <script xlink:href="../js/interface.js" />  
 
-<g id="fig_21_document" onclick="MontrerCacherXul('fig_21;fig_18');" fill="red" visibility="hidden">
+<g id="fig_21_document" onclick="MontrerCacherXul('fig_21;fig_18');" fill="red" visibility="visible">
 	<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="
 		0.5,202.325 72.5,202.325 72.5,256.325 0.5,256.325 0.5,202.325 "/>
 	<text transform="matrix(1 0 0 1 14.2202 233.2061)"><tspan x="0" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">do</tspan><tspan x="11.25" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">c</tspan><tspan x="16.199" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">u</tspan><tspan x="21.824" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">m</tspan><tspan x="30.368" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">en</tspan><tspan x="41.617" y="0" fill="#231F20" font-family="'ArialMT'" font-size="9.9">t</tspan></text>
 	<line fill="none" stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" x1="72.5" y1="229.325" x2="113.9" y2="229.325"/>
 </g>
-<g id="fig_21_indexing" visibility="hidden" onclick="Saisir(this.id,'fig_21')" fill="red" >
+<g id="fig_21_indexing" visibility="false" onclick="Saisir(this.id,'fig_21')" fill="red" >
 	<polygon stroke="#231F20" stroke-linecap="square" stroke-miterlimit="10" points="171.725,215.825 177.125,216.95 
 		179.6,218.075 181.625,219.875 183.425,221.9 184.775,224.15 185.675,226.625 185.9,229.325 184.775,234.726 183.425,236.976 
 		181.625,239 179.6,240.575 177.125,241.7 174.425,242.601 171.725,242.825 132.575,242.825 128.075,242.825 122.675,241.7 

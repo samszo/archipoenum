@@ -36,12 +36,12 @@ JavaScript est un langage de programmation de scripts principalement utilisé po
 
 = Conception=
 == Schéma de Base de données ==
-[http://thelazio.free.fr/archipoenum/images/base_de_%20donnees.png]<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/base_de_%20donnees.png]<br><br>
 == Digrammes UML ==
 Pour concevoir une telle application, on a utilisé le langage UML qui décrit bien l'interface et les différentes fonctionalités proposées.
 <br><br>
 === Cas d'utilisation===
-[http://thelazio.free.fr/archipoenum/images/Mon_Projet_CDU_1.png]
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_CDU_1.png]
 <br><br>
 Dans notre application l’utilisateur est le seul acteur dans le système et il peut effectuer plusieurs opérations :
 - Indexer un nouveau document de poésie numérique en ajoutant les informations dans l’interface de l’application.<br>
@@ -55,11 +55,11 @@ Dans notre application l’utilisateur est le seul acteur dans le système et il
 <br><br>
 === Diagrammes D'activités===
 Ce diagramme décrit les différentes étapes pour arriver à exporter le document en cours sous format SVG.<br><br>
-[http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA1.png]
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1.png]
 <br><br>
 Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
 <br><br>
 [http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA2.png]
 
 = Fonctionnement de l'application=
-[http://thelazio.free.fr/archipoenum/images/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]

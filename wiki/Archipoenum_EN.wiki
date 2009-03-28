@@ -87,7 +87,7 @@ This diagram describes the state of the system during the import. <br> <br>
 This diagram describes the system state during the backup file in the database. <br> <br> 
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4.png] <br> <br> 
 This diagram describes the state of the system during the opening phase of a document from the database. <br> <br> 
-= How it is Working =
+= How is it Working =
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2310%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png] <br> <br> 
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2311%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png] <br> <br > 
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2312%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png] <br> <br > 

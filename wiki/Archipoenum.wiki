@@ -85,3 +85,4 @@ Ce diagramme décrit les différentes étapes pour partager un docuement avec d'
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%235%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-2.png]<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%236%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-3.png]<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%237%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%239%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>

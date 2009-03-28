@@ -59,8 +59,27 @@ Ce diagramme décrit les différentes étapes pour arriver à exporter le docume
 <br><br>
 Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
 <br><br>
-[http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA2.png]
-
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2.png]<br><br>
+Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA3.png]<br><br>
+Ce diagramme décrit les différentes étapes pour sauvegarder un fichier SVG dans la base de données
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA4.png]<br><br>
+Ce diagramme décrit les différentes étapes pour ouvrir un fichier SVG à partir de la base de données.
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA5.png]<br><br>
+Ce diagramme décrit l'authentification d'un utilisateur dans l'application.
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA6.png]<br><br>
+Ce diagramme décrit comment l'utilisateur peut personaliser son interface.
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA7.png]<br><br>
+Ce diagramme décrit les différentes étapes pour indexer un document dans l'application.
+<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png]<br><br>
+Ce diagramme décrit les différentes étapes pour partager un docuement avec d'autres utilisateur.
+<br><br>
 = Fonctionnement de l'application=
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%235%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-2.png]<br><br>

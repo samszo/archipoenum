@@ -62,4 +62,7 @@ Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans 
 [http://thelazio.free.fr/archipoenum/images/Mon_Projet_DA2.png]
 
 = Fonctionnement de l'application=
-[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%235%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-2.png]<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%236%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-3.png]<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%237%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>

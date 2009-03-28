@@ -53,29 +53,29 @@ In our application the user is the only player in the system and can perform sev
 <br> <br> 
 === Activity diagrams === 
 This diagram describes the different steps to get to export the current document format SVG. <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1.png] 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1_EN.png] 
 <br> <br> 
 This diagram describes the different steps to import a SVG file in the application interface. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2_EN.png] <br> <br> 
 This diagram describes the different steps to import a SVG file in the application interface. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA3.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA3_EN.png] <br> <br> 
 This diagram describes the steps to save an SVG file in the database 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA4.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA4_EN.png] <br> <br> 
 This diagram describes the steps to open a SVG file from the database. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA5.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA5_EN.png] <br> <br> 
 This diagram describes the authentication of a user in the application. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA6.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA6_EN.png] <br> <br> 
 This diagram describes how users can customize its interface. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA7.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA7_EN.png] <br> <br> 
 This diagram describes the different stages for indexing a document in the application. 
 <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8_EN.png] <br> <br> 
 This diagram describes the different steps to share a document with other users. 
 <br> <br> 
 === State Chart Diagram ===  

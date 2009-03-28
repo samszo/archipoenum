@@ -80,6 +80,15 @@ Ce diagramme décrit les différentes étapes pour indexer un document dans l'ap
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png]<br><br>
 Ce diagramme décrit les différentes étapes pour partager un docuement avec d'autres utilisateur.
 <br><br>
+=== Diagrammes Etat-Trasition===
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1.png]<br><br>
+Ce diagramme décrit l'état du système pendant la phase d'exportation.<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2.png]<br><br>
+Ce diagramme décrit l'état du système pendant la phase d'importation.<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET3.png]<br><br>
+Ce diagramme décrit l'état du système pendant la phase de sauvegarde de fichier dans la base données.<br><br>
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4.png]<br><br>
+Ce diagramme décrit l'état du système pendant la phase d'ouverture d'un document à partir de la base de données.<br><br>
 = Fonctionnement de l'application=
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png]<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%235%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-2.png]<br><br>

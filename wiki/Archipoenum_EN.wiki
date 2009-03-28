@@ -78,14 +78,14 @@ This diagram describes the different stages for indexing a document in the appli
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png] <br> <br> 
 This diagram describes the different steps to share a document with other users. 
 <br> <br> 
-=== State Diagram === Trasition 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1.png] <br> <br> 
+=== State Chart Diagram ===  
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1_EN.png] <br> <br> 
 This diagram describes the state of the system during the export. <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2_EN.png] <br> <br> 
 This diagram describes the state of the system during the import. <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET3.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET3_EN.png] <br> <br> 
 This diagram describes the system state during the backup file in the database. <br> <br> 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4.png] <br> <br> 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4_EN.png] <br> <br> 
 This diagram describes the state of the system during the opening phase of a document from the database. <br> <br> 
 = How is it Working =
 [http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2310%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png] <br> <br> 

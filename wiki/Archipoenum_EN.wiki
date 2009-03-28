@@ -32,14 +32,14 @@ SVG (Scalable Vector Graphics), commonly abbreviated by the acronym SVG is a for
 == Javascript == 
 JavaScript is a scripting language mainly used for interactive web pages. It is an object oriented language to prototype, ie that the basis of language and its key interfaces are provided by objects that are not instantiated in class but which are each equipped with manufacturers to generate their properties, including a prototype property which allows to generate custom objects heirs. <br> 
 
-= Design =
+= Design Process=
 == Database schema ==
 [http://archipoenum.googlecode.com/svn/trunk/wiki/base_de_%20donnees.png]<br><br>
 ==UML Diagrams== 
 To design such an application, we used the UML language that describes the interface and various features offered. 
 <br> <br> 
 === Use cases === 
-[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_CDU_1.png] 
+[http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_CDU_EN.png] 
 <br> <br> 
 In our application the user is the only player in the system and can perform several operations: 
 - A new document Indexer poetry by adding digital information in the application interface. <br> 

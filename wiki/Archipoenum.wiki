@@ -80,7 +80,7 @@ Ce diagramme décrit les différentes étapes pour indexer un document dans l'ap
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png]<br><br>
 Ce diagramme décrit les différentes étapes pour partager un docuement avec d'autres utilisateur.
 <br><br>
-=== Diagrammes Etat-Trasition===
+=== Diagrammes Etat-Transition===
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1.png]<br><br>
 Ce diagramme décrit l'état du système pendant la phase d'exportation.<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2.png]<br><br>

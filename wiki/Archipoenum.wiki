@@ -54,11 +54,10 @@ Dans notre application l’utilisateur est le seul acteur dans le système et il
 - Partager les documents indexés.<br>
 <br><br>
 === Diagrammes D'activités===
-Ce diagramme décrit les différentes étapes pour arriver à exporter le document en cours sous format SVG.<br><br>
+
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1.png]
 <br><br>
-Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
-<br><br>
+Ce diagramme décrit les différentes étapes pour arriver à exporter le document en cours sous format SVG.<br><br>
 [http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2.png]<br><br>
 Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.
 <br><br>

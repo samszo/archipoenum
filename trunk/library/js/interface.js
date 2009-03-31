@@ -146,17 +146,27 @@ function ModifChampsSvg(idSrc){
 	try {
 		var ChampsSaisis = document.getElementById("saisie_"+idSrc).childNodes;
 		//alert(idSrc);
-		for (var i = 0; i < ChampsSaisis.length; i++){
+		for (var i = 1; i < ChampsSaisis.length; i++){
+			//alert(champ);
 			var champ = ChampsSaisis[i];
-			if(champ.tagName != "label" && champ.tagName != "button"){
+			if( champ!=ChampsSaisis[0] && champ.tagName != "label" && champ.tagName != "button"){
 				//récupére l'id
 				var idDst = champ.getAttribute("id").replace("saisie_", "");
 				//alert(idSrc+' | '+idDst);
 				//récupère le texte
-				var texte = champ.value;
+				if (champ.tagName == "menulist"){
+					if (champ.selected){
+						text=champ.value;
+						alert(champ.value);
+					}
+				}
+				else
+					var texte = champ.value;
 				//replace le texte
 				document.getElementById(idDst).firstChild.data= texte; 	
 			}
+			i++;
+			//alert(i);
 		}
 	} catch(ex2){alert("interface:ModifChampsSvg:"+ex2);}	
 }
@@ -456,8 +466,54 @@ try{
 function annuler(){
 
 window.close();}
+
 function svg_open(choix_svg,fig_svg)
 {
+			//xml = getSVG_DB(choix_svg);
+			//figure_courant=get_figure(input.value);
+			//alert ("fig : "+figure_courant);
+			//alert (input.value);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(fig_svg,"text/xml");
+			// Intégrer le DOM récupéré à l'interieur de document
+			document.getElementById(choix_svg).appendChild(resultDoc.documentElement);
+			
+			doc=document.getElementById(choix_svg);
+			doc.removeChild(doc.firstChild);
+			if (figure_courant!=choix_svg)  {            
+				document.getElementById(choix_svg).setAttribute("hidden","true");
+				//alert ("hidden : true");	
+			}
+}
+
+function svg_open_id(id_svg)
+{
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                     .getService(Components.interfaces.nsIProperties)
+                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
+		statement.bindUTF8StringParameter(0,id_svg);
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		j=0;
+		var myArray1 = dataset;
+		choix_svg=myArray1[j]["figure_c"];
+		fig_svg=myArray1[j]["fichier"];
+		
 			//xml = getSVG_DB(choix_svg);
 			//figure_courant=get_figure(input.value);
 			//alert ("fig : "+figure_courant);
@@ -569,7 +625,7 @@ try{
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
 			var last = createMenuItem(myArray1[j]["id_svg"]+" : "+myArray1[j]["titre"]);
-			last.setAttribute("onclick","svg_open("+myArray1[j]["figure_c"]+","+myArray1[j]["fichier"]+");");
+			last.setAttribute("onclick","svg_open_id('"+myArray1[j]["id_svg"]+"');");
 			pop.appendChild(last);
 
 		//	return myArray1[j]['fichier'];
@@ -1020,10 +1076,12 @@ function Ajouter_doc() {
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\doc.xul";	
 	xml = read(chemin);
 	xml2=RC(xml,"fig_18","Document_"+docs);
+	xml3=RC(xml2,"fig_21","Document_"+docs);
+	xml4=RC(xml3,"fig_19","Document_"+docs);
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(xml2,"text/xml");
+	var resultDoc=parser.parseFromString(xml4,"text/xml");
 	// Intégrer le DOM récupéré à l'interieur de document
 /*		resultDoc.documentElement.setAttribute("id","Document_"+docs);
 		resultDoc.documentElement.setAttribute("hidden","true");
@@ -1048,10 +1106,12 @@ function Ajouter_doc() {
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\DocSaisie.xul";	
 	xml = read(chemin);
 	xml2=RC(xml,"fig_18","Document_"+docs);
+	xml3=RC(xml2,"fig_21","Document_"+docs);
+	xml4=RC(xml3,"fig_19","Document_"+docs);
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(xml2,"text/xml");
+	var resultDoc=parser.parseFromString(xml4,"text/xml");
 	resultDoc.getElementById("ZonesSaisies").setAttribute("id","ZonesSaisies_"+docs);
 	document.getElementById("S1").appendChild(resultDoc.documentElement);
 			

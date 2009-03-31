@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
 <?xul-overlay href="library/xul/ZonesSaisies.xul" ?>
 <?xul-overlay href="library/xul/OntoActeur.xul" ?>
@@ -7,7 +7,7 @@
 <?xul-overlay href="library/xul/fig_19.xul" ?>
 <?xul-overlay href="library/xul/fig_21.xul" ?>
 <window xmlns:html="http://www.w3.org/1999/xhtml"
-		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>
 	<script src="library/js/svgAgentSchema.js"/>
  <html:style>
@@ -21,43 +21,60 @@
    /* css pour les cellules cochées */
    list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
  }
+ menulist > menupopup > menuitem > .menu-iconic-left {
+  display: -moz-box;
+}
+  
  </html:style>
 <toolbox id="navigator-toolbox" hidden="false" >
 <toolbar id="nav-toolbar" >
-<hbox >
-	
+<hbox >											
 	<button hidden="true" label="Ajouter les ids" tooltiptext="Ajouter les identifiants au graphique" onclick="SetDonnee();"/>
 	<label hidden="true" value="Towards an ontology of the field of digital poetry" />
 	<label hidden="false" value=" " />
 	<image src="design/arponum.gif" style='width:140px;height:30px;'/>
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
-
-
 		<hbox>
-			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save();"/>
+			<toolbarbutton id='add_doc' label="Ajouter un Document  " hidden="true" style='width:150px;' onclick="Ajouter_doc();"/>
+			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
+			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
+			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
-			<label hidden="false" value="    " />
-
-		
-				<label id="ch1" value=" Figure Principale" hidden="false" onclick="afficher();"/>
-				<label id="ch2" value="/    Document" hidden="true" onclick="afficher1();"/>
-				<label id="ch3" value="/    Acteur" hidden="true" onclick="afficher2();"/>
-
+			
+			
 		</hbox>
-		<hbox> 
-		
+		<hbox> 		
 		</hbox>
-
+		<hbox class="menubar">
+			<menubar id='navigation'>
+				<menu label="   Navigation ->" style='width:100px;'>
+					<menupopup id="test3">
+						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
+						<menu id="ch2" label="Documents" hidden="true" >
+							<menupopup id="test">
+								<menu id="D1" label="Document1" hidden="true">
+									<menupopup >											
+										<menuitem id="m11" label="DOC" hidden="false" oncommand="afficher1();"/>
+										<menuitem id="m12" label="Acteur" hidden="true" oncommand="afficher2();"/>
+									</menupopup>
+								</menu>
+							</menupopup>
+							
+						</menu>						
+					</menupopup>
+				</menu>
+			</menubar>
+		</hbox>
+		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:130px;margin-top:7px;' />
+		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;' onclick="logout();"/>
     </hbox>
 </hbox>
 </toolbar>
 </toolbox>
 <hbox flex='1' >
-
 	<groupbox orient="horizontal" flex="1" >
-		<vbox flex="1" >
-			
+		<vbox id="S1" flex="1" >			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
@@ -65,10 +82,11 @@
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>
 		</splitter>
-		<vbox flex='1' >
-			
-		
-			<iframe id="svgFrame" flex='1' hidden="true" src="library/svg/fig_21.svg" />
+		<vbox id="C1" flex='1' >		
+			<iframe id="svgFrame" flex='1' hidden="true" />
+			<vbox id="logout" hidden="true">
+				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
+			</vbox>
 			<vbox id="fig_21" hidden="false" />
 			<vbox id="fig_18" hidden="true" />
 			<vbox id="fig_19" hidden="true" />
@@ -76,11 +94,10 @@
 				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
-		</vbox>
-		
-	</groupbox>
-	
+			<box id="D2" width="200">
+  				<label hidden="false" value="    " />
+			</box>
+		</vbox>		
+	</groupbox>	
 </hbox>
-
-
 </window>

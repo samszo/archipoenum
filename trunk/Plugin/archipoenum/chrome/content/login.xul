@@ -15,7 +15,7 @@
 			<label hidden="false" value=" " />
 			<button label="Login  " style='width:260px;' onclick="login_user();"/>
 			<label hidden="false" value=" " />
-			<label id="user_c" value="Creer un nouveau utilisateur" hidden="false" onclick="afficher_form_user();"/>
+			<button id="user_c" value="Creer un nouveau utilisateur" label="Creer un nouveau utilisateur" hidden="false" onclick="afficher_form_user();"/>
 			<label hidden="false" value=" " />
 			<label hidden="false" value=" " />
 			<label hidden="false" value=" " />

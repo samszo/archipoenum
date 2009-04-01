@@ -168,6 +168,10 @@ function ModifChampsSvg(idSrc){
 			i++;
 			//alert(i);
 		}
+		if (idSrc=='fig_21_indexer'){
+			document.getElementById("fig_21_indexer_name").firstChild.data=champ.value;
+			document.getElementById("u1").setAttribute("value","Utilisateur Connecte : "+champ.value);
+		}
 	} catch(ex2){alert("interface:ModifChampsSvg:"+ex2);}	
 }
 
@@ -203,8 +207,8 @@ function MontrerCacherXul(idsDst){
 					document.getElementById("D1").setAttribute("hidden","false");
 					//document.getElementById("D2").setAttribute("hidden","false");
 					document.getElementById("m11").setAttribute("hidden","false");
-					document.getElementById("m12").setAttribute("hidden","false");
-					document.getElementById("add_doc").setAttribute("hidden","false");
+					//document.getElementById("m12").setAttribute("hidden","false");
+					document.getElementById("add_doc").setAttribute("disabled","false");
 				}
 				else if (arrId[1]=="fig_19"){
 					document.getElementById("m12").setAttribute("hidden","false");
@@ -740,6 +744,22 @@ function login_user(){
 	}
 } 
 
+function open_wizard()
+{
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var load = window.open('http://localhost/archipoenum/library/xul/modification_saisie.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+}
+
+function afficher_zone()
+	{
+	alert("Hello");
+	document.getElementById("nb_text").setAttribute("hidden","false");
+		if (document.getElementById("nb_text").getAttribute("checked")=="true")
+			document.getElementById("nb_text").setAttribute("hidden","false");
+		else 
+			document.getElementById("nb_text").setAttribute("hidden","true");
+	}
+	
 
   
 function createDB(){

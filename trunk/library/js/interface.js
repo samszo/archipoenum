@@ -752,12 +752,17 @@ function open_wizard()
 
 function afficher_zone()
 	{
-	alert("Hello");
-	document.getElementById("nb_text").setAttribute("hidden","false");
-		if (document.getElementById("nb_text").getAttribute("checked")=="true")
-			document.getElementById("nb_text").setAttribute("hidden","false");
-		else 
-			document.getElementById("nb_text").setAttribute("hidden","true");
+	//alert("Hello");
+	ch1=document.getElementById("nb_text");
+	//ch1.setAttribute("hidden","false");
+		if (ch1.getAttribute("checked")=="true"){
+			alert(ch1.getAttribute("checked"));
+			ch1.setAttribute("hidden","false");
+		}
+		else {
+			alert(ch1.getAttribute("checked"));
+			ch1.setAttribute("hidden","true");
+		}
 	}
 	
 

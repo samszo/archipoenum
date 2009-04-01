@@ -1,30 +1,29 @@
 <?xml version="1.0"?>
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
 <wizard id="const_interface" title="Construire votre interface "
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script src="../js/interface.js"/>
-  <wizardpage onpageshow="afficher_zone()">
+
+  <wizardpage>
     <description>
+      
     </description>
     <label id="elements_interface" value="Quel type de controle vous voulez ajouter ?"/>
-		<checkbox id="nb_text_check"  label="Des zones texte" checked="false"/>
+		<checkbox oncommand="afficher_zone(this)" label="Des zones texte" checked="false"/>
 		<hbox id="nb_text" hidden="true">
 			<label   value="Nombres des zones textes à ajouter" style='width:120px;'/>
 			<textbox  value="" style='width:120px;' />
 		</hbox>
-		<checkbox id="nb_list_check" label="Des listes déroulante " checked="false"/>
-		<hbox id="nb_list" hidden="false">
+		<checkbox label="Des listes déroulante " checked="false"/>
+		<hbox id="nb_list" hidden="true">
 			<label   value="Nombres des zones textes à ajouter" style='width:120px;'/>
 			<textbox  value="" style='width:120px;' />
 		</hbox>
   </wizardpage>
 
   <wizardpage id="interface_zone">
-	 <label id="elements_interface" value="Quel type de controle vous voulez ajouter ?"/>
-  </wizardpage>
-    <wizardpage id="1">
-	 <label id="elements_interface" value="Quel type de controle vous voulez ajouter ?"/>
-  </wizardpage>
 
+  </wizardpage>
+ <script src="../js/interface.js"/>
 </wizard>

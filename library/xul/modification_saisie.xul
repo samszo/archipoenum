@@ -4,22 +4,34 @@
 
 <wizard id="const_interface" title="Construire votre interface "
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-  <wizardpage>
+  <wizardpage id="import_svg" onpageadvanced='interface_modif();'>
+	 <description>
+      Importer votre fichier SVG
+	 </description>
+	 	<hbox id="test123">
+	 		<textbox  id="f_svg" value="" style='width:300px;' />
+	 		<button id="bt_svg" label="Import"  onclick="Import('a');"/>
+	 	</hbox>
+  </wizardpage>
+  <wizardpage onpageshow='set_saisie();'>
     <description>
       
     </description>
-    <label id="elements_interface" value="Quel type de controle vous voulez ajouter ?"/>
-		<checkbox oncommand="afficher_zone(this)" label="Des zones texte" checked="false"/>
-		<hbox id="nb_text" hidden="true">
-			<label   value="Nombres des zones textes à ajouter" style='width:120px;'/>
-			<textbox  value="" style='width:120px;' />
-		</hbox>
-		<checkbox label="Des listes déroulante " checked="false"/>
-		<hbox id="nb_list" hidden="true">
-			<label   value="Nombres des zones textes à ajouter" style='width:120px;'/>
-			<textbox  value="" style='width:120px;' />
-		</hbox>
+    <groupbox orient="horizontal" flex="1" >
+		    <hbox>
+		    	<vbox id="modifs">
+	
+							
+				</vbox>
+				<splitter collapse="before" resizeafter="farthest" >
+					<grippy/>
+				</splitter>
+				<vbox id="c_svg">
+					<vbox id="v_svg">
+					</vbox>
+				</vbox>
+			</hbox>
+	</groupbox>
   </wizardpage>
 
   <wizardpage id="interface_zone">

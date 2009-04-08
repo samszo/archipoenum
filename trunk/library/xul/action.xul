@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+<vbox id="g">
+			    	<label id="elements_interface" value="Quel type de controle vous voulez ajouter ?"/>	    
+					<checkbox id="zt" oncommand="afficher_zone(this)" label="Des zones textes" checked="false"/>
+					<hbox id="nb_text" hidden="true">
+						<label   value="          Nombres des zones textes à ajouter" style='width:120px;'/>
+						<textbox  id="nb_zt" value="" style='width:120px;' />
+					</hbox>
+					<checkbox id="ld" oncommand="afficher_zone(this)" label="Des listes déroulantes" checked="false"/>
+					<hbox id="nb_list" hidden="true">
+						<label   value="          Nombres des listes déroulantes à ajouter" style='width:120px;'/>
+						<textbox  id="nb_ld" value="" style='width:120px;' />
+					</hbox>
+</vbox>
+</overlay>

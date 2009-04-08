@@ -38,7 +38,7 @@
 		<hbox>
 		
 			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
-			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
+			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import('p');"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
 			<toolbarbutton label="Modifier l'interface  " style='width:150px;' onclick="open_wizard();"/>
@@ -75,7 +75,7 @@
 </toolbox>
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
-		<vbox id="S1" flex="1" >			
+		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" >			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />

@@ -292,7 +292,7 @@ function Export(){
 } 
 
 // Afficher le menu d'ouverture de fichier
-function Import(){
+function Import(cmp){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var nsIFilePicker = Components.interfaces.nsIFilePicker;
@@ -304,29 +304,58 @@ function Import(){
 		var res = fp.show();
 		if (res == nsIFilePicker.returnOK){
 			var fichier = fp.file;
-			document.getElementById("svgFrame").setAttribute("src","");
+			//document.getElementById("svgFrame").setAttribute("src","");
 			var chemin = fichier.path;	
-			
-			
-			//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
-			xml = read(chemin);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			// Intégrer le DOM récupéré à l'interieur de document
-			resultDoc.documentElement.setAttribute("id",fichier.leafName);
-			document.getElementById("C1").appendChild(resultDoc.documentElement);
-			
-			doc=document.getElementById(figure_courant);
-			doc.removeChild(doc.firstChild);              
-			document.getElementById(figure_courant).setAttribute("hidden","true	");
-			figure_courant=fichier.leafName;
+			if (cmp=='p')
+			{
+				//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
+				xml = read(chemin);
+				var parser=new DOMParser();
+				// Transformer le String en Objet DOM
+				var resultDoc=parser.parseFromString(xml,"text/xml");
+				// Intégrer le DOM récupéré à l'interieur de document
+				resultDoc.documentElement.setAttribute("id",fichier.leafName);
+				document.getElementById("C1").appendChild(resultDoc.documentElement);
+				
+				doc=document.getElementById(figure_courant);
+				doc.removeChild(doc.firstChild);              
+				document.getElementById(figure_courant).setAttribute("hidden","true	");
+				figure_courant=fichier.leafName;
+			}
+			else if (cmp=='a')
+			{
+				document.getElementById("f_svg").setAttribute("value",chemin);
+				var resultDoc=set_ids(chemin);
+			}
 			
 			//alert ('chemin ='+s);
 		}
 
 		
 	}catch(ex2){ alert("interface:Import: "+ex2); }
+} 
+
+
+
+function interface_modif()
+{
+try
+{
+	chemin=document.getElementById("f_svg").getAttribute("value");
+	//xml = read(chemin);
+	var resultDoc=set_ids(chemin);
+	var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	//var resultDoc=parser.parseFromString(xml,"text/xml");
+	// Intégrer le DOM récupéré à l'interieur de document
+	//resultDoc.documentElement.setAttribute("id","fig_svg");
+	doc=document.getElementById("v_svg");
+	if (doc.firstChild)
+		doc.removeChild(doc.firstChild);    
+	doc.appendChild(resultDoc);
+    doc.setAttribute("hidden","false");
+}
+catch(ex2){ alert("interface:interface_modif: "+ex2); }
 } 
 
 function Open(){
@@ -750,22 +779,49 @@ function open_wizard()
 	var load = window.open('http://localhost/archipoenum/library/xul/modification_saisie.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 }
 
-function afficher_zone()
+function afficher_zone(ch1)
 	{
-	//alert("Hello");
-	ch1=document.getElementById("nb_text");
+	//alert(ch1.getAttribute("id")+" : "+ch1.getAttribute("checked"));
+	ch2=document.getElementById("nb_text");
+	ch3=document.getElementById("nb_list");
 	//ch1.setAttribute("hidden","false");
-		if (ch1.getAttribute("checked")=="true"){
-			alert(ch1.getAttribute("checked"));
-			ch1.setAttribute("hidden","false");
+		if (ch1.getAttribute("checked")=="true" && ch1.getAttribute("id")=="zt"){
+			//alert(ch1.getAttribute("checked"));
+			ch2.setAttribute("hidden","false");
 		}
-		else {
-			alert(ch1.getAttribute("checked"));
-			ch1.setAttribute("hidden","true");
+		else if (ch1.getAttribute("checked")=="true" && ch1.getAttribute("id")=="ld"){
+			//alert(ch1.getAttribute("checked"));
+			ch3.setAttribute("hidden","false");
 		}
+		else if (ch1.getAttribute("checked")=="" && ch1.getAttribute("id")=="zt"){
+			//alert(ch1.getAttribute("checked"));
+			ch2.setAttribute("hidden","true");
+		}
+		else if (ch1.getAttribute("checked")=="" && ch1.getAttribute("id")=="ld"){
+			//alert(ch1.getAttribute("checked"));
+			ch3.setAttribute("hidden","true");
+		}
+		else alert("Else");
 	}
-	
-
+function get_nb_saisies(){
+	nb_zt=document.getElementById("nb_zt").value;
+	nb_ld=document.getElementById("nb_ld").value;
+	alert(nb_zt+" : "+nb_ld);
+	afficher_nb_saisies(nb_zt,nb_ld);
+}
+function afficher_nb_saisies(nb_zt,nb_ld)
+{
+	alert(nb_zt+" |:| "+nb_ld);
+	page_assistant=document.getElementById("interface_zone");
+	for (i=1;i<nb_zt;i++)
+	{
+		
+	}
+	for (i=1;i<nb_ld;i++)
+	{
+		
+	}
+}
   
 function createDB(){
 	try {
@@ -1181,6 +1237,64 @@ function logout(){
 	document.getElementById(figure_courant).setAttribute("hidden","true");
 	alert(user+" est deconnecter");
 	window.close();
+}
+
+function set_ids(fichier_svg){
+try
+	{
+		xml=read(fichier_svg);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var xmlDoc=parser.parseFromString(xml,"text/xml");
+		c1=1;
+		x=xmlDoc.getElementsByTagName("svg")[0];
+		
+		for (i=1;i<x.getElementsByTagName("g").length;i++)
+		{	
+			y=x.getElementsByTagName("g")[i];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		/*doc=document.getElementById("test123");
+		doc.appendChild(x);*/
+		return(x);
+	}
+catch(ex2){alert("interface:set_ids:"+ex2); }
+}
+
+function set_saisie(){
+try
+	{
+	
+		c1=1;
+		doc=document.getElementById("v_svg");
+		x=doc.getElementsByTagName("svg")[0];
+		for (i=0;i<x.getElementsByTagName("g").length;i++)
+		{	
+			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
+			xml = read(chemin2);
+			alert(xml);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			resultDoc.getElementById("g").setAttribute("hidden",'true');
+			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
+			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+			c1++;
+		}
+
+	}
+catch(ex2){alert("interface:set_saisie:"+ex2); }
+}
+
+function init_svg(c_svg)
+{
+	//alert("saisie_"+c_svg.id);
+	document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
 }
 /*
 function createMenuItem() {

@@ -1249,9 +1249,44 @@ try
 		c1=1;
 		x=xmlDoc.getElementsByTagName("svg")[0];
 		
-		for (i=1;i<x.getElementsByTagName("g").length;i++)
+		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (j=0;j<x.getElementsByTagName("path").length;j++)
+		{	
+			
+			y=x.getElementsByTagName("path")[j];
+			//alert(y.id);
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (k=0;k<x.getElementsByTagName("text").length;k++)
+		{	
+			y=x.getElementsByTagName("text")[k];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (l=0;l<x.getElementsByTagName("polygon").length;l++)
+		{	
+			y=x.getElementsByTagName("polygon")[l];
 			y.setAttribute("id",'graph_'+c1);
 			y.setAttribute("onclick",'init_svg(this)');
 			y.setAttribute("hidden",'false');
@@ -1277,7 +1312,47 @@ try
 		{	
 			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
 			xml = read(chemin2);
-			alert(xml);
+			//alert(xml);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			resultDoc.getElementById("g").setAttribute("hidden",'true');
+			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
+			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+			c1++;
+		}
+		
+		for (i=0;i<x.getElementsByTagName("path").length;i++)
+		{	
+			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
+			xml = read(chemin2);
+			//alert(xml);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			resultDoc.getElementById("g").setAttribute("hidden",'true');
+			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
+			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+			c1++;
+		}
+		for (i=0;i<x.getElementsByTagName("text").length;i++)
+		{	
+			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
+			xml = read(chemin2);
+			//alert(xml);
+			var parser=new DOMParser();
+			// Transformer le String en Objet DOM
+			var resultDoc=parser.parseFromString(xml,"text/xml");
+			resultDoc.getElementById("g").setAttribute("hidden",'true');
+			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
+			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+			c1++;
+		}
+		for (i=0;i<x.getElementsByTagName("polygon").length;i++)
+		{	
+			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
+			xml = read(chemin2);
+			//alert(xml);
 			var parser=new DOMParser();
 			// Transformer le String en Objet DOM
 			var resultDoc=parser.parseFromString(xml,"text/xml");

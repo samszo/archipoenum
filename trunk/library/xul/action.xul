@@ -2,6 +2,7 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
 <vbox id="g">
+	<label hidden="false" value="Choisissez un evenement " />
 	<menulist  id="choixEvenement"  >
 		    <menupopup>
 		    	<menuitem style="align:center;width:210px;" value="onclick" label="Evenement en cliquant sur le graphique"/>
@@ -16,6 +17,13 @@
 		<checkbox label="Menu Liste" style='width:150px;' checked="true"/>
 		<textbox id="LD" value="" style='width:120px;' />
 	</hbox>
+	<label hidden="false" value="Choisissez la fonction à executer " />
+	<menulist  id="choixEvenement"  >
+		    <menupopup>
+		    	<menuitem style="align:center;width:210px;" value="couleur" label="Changement de couleur"/>
+		    	<menuitem style="align:center;width:210px;" value="graph" label="Afficher un graphique"/>
+			</menupopup>
+	</menulist>
 	<button label="Valider" tooltiptext="Valider la saisie" onclick=""/>
 </vbox>
 </overlay>

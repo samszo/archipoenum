@@ -1124,6 +1124,13 @@ function createCheck(aLabel) {
   return item;
 }
 
+function createScript(id) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "script"); // create a new XUL menuitem
+  item.setAttribute("label", id);
+  return item;
+}
+
 function createText(aLabel) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "textbox"); // create a new XUL menuitem
@@ -1305,7 +1312,11 @@ try
 		var xmlDoc=parser.parseFromString(xml,"text/xml");
 		c1=1;
 		x=xmlDoc.getElementsByTagName("svg")[0];
-		
+		test="function say_hello(){alert('hello');}";
+		s1=createScript("s");
+		s1.data=test;
+		alert(s1.data);
+		x.appendChild(s1);
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i];

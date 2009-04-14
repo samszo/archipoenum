@@ -4,6 +4,7 @@ var xulDoc=window.parent.document;
 var arrValidation = new Array();
 var figure_courant="fig_21";
 var myDBFile="archipoenum.sqlite";
+var SVG_NS ="http://www.w3.org/2000/svg";
 var docs=2;
 var doc_courant="";
 var user;
@@ -1094,10 +1095,66 @@ function createMenuItem(aLabel) {
   return item;
 }
 
+function createMenuList(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "menulist"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
+  return item;
+}
+
+
 function createMenu(aLabel) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "menu"); // create a new XUL menuitem
   item.setAttribute("label", aLabel);
+  return item;
+}
+
+function createLabel(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "label"); // create a new XUL menuitem
+  item.setAttribute("value", aLabel);
+  return item;
+}
+
+function createCheck(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "checkbox"); // create a new XUL menuitem
+  item.setAttribute("label", aLabel);
+  return item;
+}
+
+function createText(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "textbox"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
+  return item;
+}
+
+function createHbox(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "hbox"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
+  return item;
+}
+
+function createVbox(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "vbox"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
+  return item;
+}
+
+function createSvg(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(SVG_NS, "svg"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
+  return item;
+}
+
+function createG(aLabel) {
+  var item = document.createElementNS(SVG_NS, "g"); // create a new XUL menuitem
+  item.setAttribute("id", aLabel);
   return item;
 }
 
@@ -1264,12 +1321,10 @@ try
 		{	
 			
 			y=x.getElementsByTagName("path")[j];
-			//alert(y.id);
 			y.setAttribute("id",'graph_'+c1);
 			y.setAttribute("onclick",'init_svg(this)');
 			y.setAttribute("hidden",'false');
 			y.setAttribute("visibility","visible");
-			//alert(y.id);
 			c1++;
 		}
 		
@@ -1300,7 +1355,62 @@ try
 	}
 catch(ex2){alert("interface:set_ids:"+ex2); }
 }
-
+function createActionSaisie(c,graph)
+{
+	first= createVbox(c);
+	g=createG("root");
+	svg=createSvg("svg");
+	g.appendChild(graph);
+	svg.appendChild(g);
+	svg.setAttribute("version","1.1");
+	svg.setAttribute("baseprofile","full");
+	svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
+	svg.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
+	svg.setAttribute("xmlns:ev","http://www.w3.org/2001/xml-events");
+	svg.setAttribute("visibility",'visible');
+	label=createLabel(c);
+	label1=createLabel("Choisissez un evenement ");
+	l=createLabel(" ");
+	choix = createMenuList("choixEvenement");
+	var pop = createMenuPopup("pop"+c1);
+	var evt1 = createMenuItem("Evenement en cliquant sur le graphique");
+	var evt2 = createMenuItem("Evenement en cliquant sur le graphique2");
+	label2=createLabel("Choisissez l'action ");
+	label3=createLabel("Qu'est ce que vous voulez ajouter a la zone de saisie :    ");
+	choix2 = createMenuList("choixAction");
+	var pop2 = createMenuPopup("pop"+c1);
+	var evt12 = createMenuItem("Changement de couleur");
+	var evt22 = createMenuItem("Afficher un graphique");
+	second= createHbox("h1");
+	third= createHbox("h1");
+	ch1=createCheck("Zone Texte      ");
+	ch2=createCheck("Menu Liste");
+	txt1=createText("txt1");
+	txt2=createText("txt2");
+	second.appendChild(ch1);
+	second.appendChild(txt1);
+	third.appendChild(ch2);
+	third.appendChild(txt2);
+	pop.appendChild(evt1);
+	pop.appendChild(evt2);
+	choix.appendChild(pop);
+	first.appendChild(label);
+	first.appendChild(svg);
+	first.appendChild(label1);
+	first.appendChild(choix);
+	pop2.appendChild(evt12);
+	pop2.appendChild(evt22);
+	choix2.appendChild(pop2);
+	first.appendChild(label2);
+	first.appendChild(choix2);
+	first.appendChild(label3);
+	first.appendChild(second);
+	first.appendChild(third);
+	first.appendChild(l);	
+	first.setAttribute("hidden",'true');
+	
+	return(first);		
+}
 function set_saisie(){
 try
 	{
@@ -1310,55 +1420,36 @@ try
 		x=doc.getElementsByTagName("svg")[0];
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
-			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
-			xml = read(chemin2);
-			//alert(xml);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			resultDoc.getElementById("g").setAttribute("hidden",'true');
-			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
-			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+			y=x.getElementsByTagName("g")[i].cloneNode(false);			
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 		
 		for (i=0;i<x.getElementsByTagName("path").length;i++)
 		{	
-			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
-			xml = read(chemin2);
-			//alert(xml);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			resultDoc.getElementById("g").setAttribute("hidden",'true');
-			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
-			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+
+			y=x.getElementsByTagName("path")[i].cloneNode(false);			
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
+	
+			
 		}
 		for (i=0;i<x.getElementsByTagName("text").length;i++)
 		{	
-			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
-			xml = read(chemin2);
-			//alert(xml);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			resultDoc.getElementById("g").setAttribute("hidden",'true');
-			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
-			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+
+			y=x.getElementsByTagName("text")[i].cloneNode(false);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 		for (i=0;i<x.getElementsByTagName("polygon").length;i++)
 		{	
-			chemin2="C:\\wamp\\www\\archipoenum\\library\\xul\\action.xul";	
-			xml = read(chemin2);
-			//alert(xml);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(xml,"text/xml");
-			resultDoc.getElementById("g").setAttribute("hidden",'true');
-			resultDoc.getElementById("g").setAttribute("id",'saisie_graph_'+c1);
-			document.getElementById("modifs").appendChild(resultDoc.documentElement);
+
+			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 
@@ -1368,31 +1459,6 @@ catch(ex2){alert("interface:set_saisie:"+ex2); }
 
 function init_svg(c_svg)
 {
-	//alert("saisie_"+c_svg.id);
+	alert("saisie_"+c_svg.id);
 	document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
 }
-/*
-function createMenuItem() {
-  const XUL_NS = "http://www.mozilla.org/keymaster/gat...re.is.only.xul";
-  var item = document.createElementNS(XUL_NS, "menu"); // crée un nouvel élément de menu XUL
-  var item2=document.createElementNS(XUL_NS, "menupopup");
-  var item3=document.createElementNS(XUL_NS, "menuitem");
-  //var item4=document.createElementNS(XUL_NS, "menupopup");
-  item.setAttribute("label", "Document2");
-  item.setAttribute("id", "D3");
-//  item.setAttribute("flex","1");
-  item3.setAttribute("label", "Doc");
-  item3.setAttribute("id", "m261");
-  //item.setAttribute("hidden", "false");
-  //item2.setAttribute("hidden", "false");
-  //item3.setAttribute("hidden", "true");
-  item.appendChild(item2);
-  item2.appendChild(item3);
-  var popup = document.getElementById("test");
- // popup.appendChild(item2);
-  popup.appendChild(item);
-  
-  
-  //return item;
-}
-*/

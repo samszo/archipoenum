@@ -1253,10 +1253,13 @@ function Ajouter_doc() {
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
+			xulData="<box id='d"+docs+"' flex='1'  " +
+	          "xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>" +
+	          xml4 + "</box>";
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(xml4,"text/xml");
+	var resultDoc=parser.parseFromString(xulData,"text/xml");
 	resultDoc.getElementById("ZonesSaisies").setAttribute("id","ZonesSaisies_"+docs);
 	document.getElementById("S1").appendChild(resultDoc.documentElement);
 			
@@ -1315,7 +1318,7 @@ try
 		test="function say_hello(){alert('hello');}";
 		s1=createScript("s");
 		s1.data=test;
-		alert(s1.data);
+		//alert(s1.data);
 		x.appendChild(s1);
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
@@ -1360,6 +1363,17 @@ try
 			//alert(y.id);
 			c1++;
 		}
+		
+		for (l=0;l<x.getElementsByTagName("rect").length;l++)
+		{	
+			y=x.getElementsByTagName("rect")[l];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
 		/*doc=document.getElementById("test123");
 		doc.appendChild(x);*/
 		return(x);
@@ -1379,6 +1393,10 @@ function createActionSaisie(c,graph)
 	svg.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
 	svg.setAttribute("xmlns:ev","http://www.w3.org/2001/xml-events");
 	svg.setAttribute("visibility",'visible');
+	svg.setAttribute("viewBox","0 0 1000 1000");
+	svg.setAttribute("preserveAspectRatio","none");
+	svg.setAttribute("width","300px");
+	svg.setAttribute("height","200px");
 	label=createLabel(c);
 	label1=createLabel("Choisissez un evenement ");
 	l=createLabel(" ");
@@ -1431,7 +1449,7 @@ try
 		x=doc.getElementsByTagName("svg")[0];
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
-			y=x.getElementsByTagName("g")[i].cloneNode(false);			
+			y=x.getElementsByTagName("g")[i].cloneNode(true);			
 			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
@@ -1450,7 +1468,7 @@ try
 		for (i=0;i<x.getElementsByTagName("text").length;i++)
 		{	
 
-			y=x.getElementsByTagName("text")[i].cloneNode(false);
+			y=x.getElementsByTagName("text")[i].cloneNode(true);
 			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
@@ -1459,6 +1477,15 @@ try
 		{	
 
 			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
+		
+		for (i=0;i<x.getElementsByTagName("rect").length;i++)
+		{	
+
+			y=x.getElementsByTagName("rect")[i].cloneNode(false);
 			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;

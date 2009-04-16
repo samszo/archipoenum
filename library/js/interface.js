@@ -1223,10 +1223,13 @@ function Ajouter_doc() {
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
+				xulData="<box id='doc"+docs+"' flex='1'  " +
+	          "xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>" +
+	          xml4 + "</box>";
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(xml4,"text/xml");
+	var resultDoc=parser.parseFromString(xulData,"text/xml");
 	// Intégrer le DOM récupéré à l'interieur de document
 /*		resultDoc.documentElement.setAttribute("id","Document_"+docs);
 		resultDoc.documentElement.setAttribute("hidden","true");
@@ -1256,6 +1259,7 @@ function Ajouter_doc() {
 			xulData="<box id='d"+docs+"' flex='1'  " +
 	          "xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>" +
 	          xml4 + "</box>";
+	//alert(xulData);
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
@@ -1311,15 +1315,15 @@ try
 	{
 		xml=read(fichier_svg);
 		var parser=new DOMParser();
+		fct="<script><![CDATA[ function say_hello(){alert('hello');}]]></script>";
+		xml2=RC(xml,"</svg>",fct+" </svg>");
+		//alert(xml2);
 		// Transformer le String en Objet DOM
-		var xmlDoc=parser.parseFromString(xml,"text/xml");
+		var xmlDoc=parser.parseFromString(xml2,"text/xml");
 		c1=1;
 		x=xmlDoc.getElementsByTagName("svg")[0];
-		test="function say_hello(){alert('hello');}";
-		s1=createScript("s");
-		s1.data=test;
-		//alert(s1.data);
-		x.appendChild(s1);
+		
+
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i];
@@ -1497,6 +1501,11 @@ catch(ex2){alert("interface:set_saisie:"+ex2); }
 
 function init_svg(c_svg)
 {
-	alert("saisie_"+c_svg.id);
+	//alert("saisie_"+c_svg.id);
 	document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
+}
+
+function can_advance(){
+	alert("hello");
+	document.getElementById("import_svg").setAttribute("canAdvance","false");
 }

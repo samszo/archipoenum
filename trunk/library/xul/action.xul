@@ -16,11 +16,11 @@
 	</menulist>
 	<label hidden="false" value="Que voulez-vous ajouter ? " />
 	<hbox>	
-		<checkbox label="Zone Texte      " style='width:150px;' checked="true"/>
+		<checkbox label="Zone Texte      " style='width:150px;' onCheck="alert('hello');" />
 		<textbox id="ZT" value="" style='width:120px;' />
 	</hbox>
 	<hbox>
-		<checkbox label="Menu Liste" style='width:150px;' checked="true"/>
+		<checkbox label="Menu Liste" style='width:150px;' />
 		<textbox id="LD" value="" style='width:120px;' />
 	</hbox>
 	<label hidden="false" value="Choisissez la fonction à executer " />

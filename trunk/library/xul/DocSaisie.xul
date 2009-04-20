@@ -20,14 +20,8 @@
 			<vbox hidden="true" id="saisie_fig_18_type" >
 				<label value="Type : " />
 				<menulist id="saisie_fig_18_type_name" editable="true">
-				  <menupopup>
-				    <menuitem label="Text" value="Text"/>
-				    <menuitem label="Listing" value="Listing"/>
-				    <menuitem label="Pg" value="Pg"/>
-				    <menuitem label="Video" value="Bats"/>
-				    <menuitem label="Photo" value="Photo"/>
-				    <menuitem label="Sound" value="Sound"/>
-				    <menuitem label="Objet" value="Objet"/>
+				  <menupopup id="liste1">
+	
 				  </menupopup>
 				</menulist>
 				<button label="Valider" tooltiptext="Valider la saisie" onclick="Valider('fig_18_type','fig_18_section;fig_18_nature','fig_18_document;fig_18_format');"/>
@@ -43,7 +37,7 @@
 				<textbox id="saisie_fig_18_document_adresse" value="" />
 				<label value="Circonstance : " />
 				<menulist id="saisie_fig_18_document_circonstance" editable="true">
-				  <menupopup>
+				  <menupopup id="liste2">
 				    <menuitem label="Expo" value="Expo"/>
 				    <menuitem label="Interview" value="Interview"/>
 				    <menuitem label="Conference" value="Conference"/>
@@ -54,7 +48,7 @@
 			<vbox hidden="true" id="saisie_fig_18_format" >
 				<label value="Format : " />
 				<menulist id="saisie_fig_18_format_name" editable="true">
-				  <menupopup>
+				  <menupopup id="liste3">
 				    <menuitem label="mpeg" value="Mpeg"/>
 				    <menuitem label="avi" value="avi"/>
 				    <menuitem label="wawe" value="wawe"/>
@@ -76,7 +70,7 @@
 			<vbox hidden="true" id="saisie_fig_18_nature" >
 				<label value="Nature : " />
 				<menulist id="saisie_fig_18_nature_name" editable="true">
-				  <menupopup>
+				  <menupopup id="liste4">
 				    <menuitem label="action" value="action"/>
 				    <menuitem label="interview" value="interview"/>
 				    <menuitem label="simulation" value="simulation"/>
@@ -129,7 +123,7 @@
 			<hbox hidden="true" id="saisie_fig_19_analyst" >
 				<label value="Type : " />
 				<menulist id="saisie_fig_19_analyst_type" editable="true">
-				  <menupopup>
+				  <menupopup id="liste5">
 				    <menuitem label="semiotician" value="semiotician"/>
 				    <menuitem label="littereary analyse" value="littereary analyse"/>
 				  </menupopup>

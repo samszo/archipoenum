@@ -260,7 +260,7 @@ function serialize(doc,file,extra) {
 }
 
 // Afficher le menu de sauvegarde  
-function Export(){
+function Export(cmp){
 	try{
 		
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -279,7 +279,10 @@ function Export(){
 				fichierC=fichierO+".svg";
 			else
 				fichierC=fichierO;	
-			var doc = getSVG();		
+			if (cmp=="p")	
+				var doc = getSVG();
+			else if (cmp=="a")
+				doc = 	document.getElementById("svg_1");	
 			serialize(doc,fichier,0);	
 			
 		}
@@ -326,7 +329,7 @@ function Import(cmp){
 			else if (cmp=='a')
 			{
 				document.getElementById("f_svg").setAttribute("value",chemin);
-				var resultDoc=set_ids(chemin);
+				//var resultDoc=set_ids(chemin);
 			}
 			
 			//alert ('chemin ='+s);
@@ -1124,6 +1127,13 @@ function createCheck(aLabel) {
   return item;
 }
 
+function createButton(id,aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "button"); // create a new XUL menuitem
+  item.setAttribute("id", id);
+  item.setAttribute("label", aLabel);
+  return item;
+}
 function createScript(id) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "script"); // create a new XUL menuitem
@@ -1265,6 +1275,28 @@ function Ajouter_doc() {
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(xulData,"text/xml");
 	resultDoc.getElementById("ZonesSaisies").setAttribute("id","ZonesSaisies_"+docs);
+	var popup = resultDoc.getElementById("liste1");
+	var item1 = createMenuItem("Text");
+	item1.setAttribute("value","Text");
+	var item2 = createMenuItem("Listing");
+	item1.setAttribute("value","Listing");
+	var item3 = createMenuItem("Pg");
+	item1.setAttribute("value","Pg");
+	var item4 = createMenuItem("Video");
+	item1.setAttribute("value","Video");
+	var item5 = createMenuItem("Photo");
+	item1.setAttribute("value","Photo");
+	var item6 = createMenuItem("Sound");
+	item1.setAttribute("value","Sound");
+	var item7 = createMenuItem("Objet13");
+	item1.setAttribute("value","Objet");
+	popup.appendChild(item1);
+	popup.appendChild(item2);
+	popup.appendChild(item3);
+	popup.appendChild(item4);
+	popup.appendChild(item5);
+	popup.appendChild(item6);
+	popup.appendChild(item7);
 	document.getElementById("S1").appendChild(resultDoc.documentElement);
 			
 	var popup = document.getElementById("test"); // a <menupopup> element
@@ -1322,7 +1354,7 @@ try
 		var xmlDoc=parser.parseFromString(xml2,"text/xml");
 		c1=1;
 		x=xmlDoc.getElementsByTagName("svg")[0];
-		
+		x.setAttribute("id",'svg_1');
 
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
@@ -1407,23 +1439,40 @@ function createActionSaisie(c,graph)
 	choix = createMenuList("choixEvenement");
 	var pop = createMenuPopup("pop"+c1);
 	var evt1 = createMenuItem("Evenement en cliquant sur le graphique");
-	var evt2 = createMenuItem("Evenement en cliquant sur le graphique2");
+	evt1.setAttribute("value","onclick");
+	var evt2 = createMenuItem("Evenement en commande");
+	evt2.setAttribute("value","oncommand");
 	label2=createLabel("Choisissez l'action ");
 	label3=createLabel("Qu'est ce que vous voulez ajouter a la zone de saisie :    ");
 	choix2 = createMenuList("choixAction");
-	var pop2 = createMenuPopup("pop"+c1);
-	var evt12 = createMenuItem("Changement de couleur");
-	var evt22 = createMenuItem("Afficher un graphique");
-	second= createHbox("h1");
-	third= createHbox("h1");
+	var pop2 = createMenuPopup("pop2"+c1);
+	var fct1 = createMenuItem("Afficher un formulaire a saisir");
+	fct1.setAttribute("value","afficher_form");
+	choix2.setAttribute("onselect","test_evt(this)");
+	var fct2 = createMenuItem("Afficher un graphique");
+	fct2.setAttribute("value","affiche_graph");
+	var bt1= createButton("bt_"+c1,"Valider");
+	bt1.setAttribute("onclick", "Valider_form('"+c+"');");
+	second= createHbox("h1"+c1);
+	third= createHbox("h2"+c1);
 	ch1=createCheck("Zone Texte      ");
+	ch1.setAttribute("oncommand","affiche_valid(this)");
+	bt_1= createButton("bt_h1"+c1,"Valider");
+	bt_1.setAttribute("onclick","Valider_zone(this)");
+	bt_1.setAttribute("hidden","true");
 	ch2=createCheck("Menu Liste");
-	txt1=createText("txt1");
-	txt2=createText("txt2");
+	ch2.setAttribute("oncommand","affiche_valid(this)");
+	bt_2= createButton("bt_h2"+c1,"Valider");
+	bt_2.setAttribute("onclick","Valider_liste(this)");
+	bt_2.setAttribute("hidden","true");
+	txt1=createText("txt_h1"+c1);
+	txt2=createText("txt_h2"+c1);
 	second.appendChild(ch1);
 	second.appendChild(txt1);
+	second.appendChild(bt_1);
 	third.appendChild(ch2);
 	third.appendChild(txt2);
+	third.appendChild(bt_2);
 	pop.appendChild(evt1);
 	pop.appendChild(evt2);
 	choix.appendChild(pop);
@@ -1431,14 +1480,19 @@ function createActionSaisie(c,graph)
 	first.appendChild(svg);
 	first.appendChild(label1);
 	first.appendChild(choix);
-	pop2.appendChild(evt12);
-	pop2.appendChild(evt22);
+	pop2.appendChild(fct2);
+	pop2.appendChild(fct1);
 	choix2.appendChild(pop2);
 	first.appendChild(label2);
-	first.appendChild(choix2);
-	first.appendChild(label3);
-	first.appendChild(second);
-	first.appendChild(third);
+	first.appendChild(choix2);	
+	vb=createVbox("v"+c1);
+	vb.setAttribute("hidden","true");
+	vb.appendChild(label3);
+	vb.appendChild(second);
+	vb.appendChild(third);
+	first.appendChild(vb);
+	first.appendChild(l.cloneNode(false));
+	first.appendChild(bt1);
 	first.appendChild(l);	
 	first.setAttribute("hidden",'true');
 	
@@ -1502,10 +1556,111 @@ catch(ex2){alert("interface:set_saisie:"+ex2); }
 function init_svg(c_svg)
 {
 	//alert("saisie_"+c_svg.id);
-	document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
+	if (document.getElementById("saisie_"+c_svg.id).getAttribute("hidden")=="true")
+		document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
+	else
+		document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","true");
 }
 
 function can_advance(){
 	alert("hello");
 	document.getElementById("import_svg").setAttribute("canAdvance","false");
+}
+
+function Valider_form(id_form)
+{
+	//alert(id_form);
+	x= document.getElementById(id_form);
+	listes=x.getElementsByTagName("menulist");
+	evt=listes[0].selectedItem.value;
+	fct=listes[1].selectedItem.value;
+	id_graph=RC(id_form,"saisie_","");
+	document.getElementById(id_graph).setAttribute(evt,fct+"(this)");
+	alert(id_form+' : '+evt+" : "+fct);
+	
+}
+
+function affiche_valid(elem)
+{
+	//alert("bt_"+c1+"_"+elem.parentNode.id);
+	if (document.getElementById("bt_"+elem.parentNode.id).getAttribute("hidden")=="true")
+		document.getElementById("bt_"+elem.parentNode.id).setAttribute("hidden","false");
+	else
+		document.getElementById("bt_"+elem.parentNode.id).setAttribute("hidden","true");
+}
+
+function Valider_zone(elem)
+{
+	elem.setAttribute("hidden","true");
+	racine=elem.parentNode;
+	first= createVbox(c);
+	nombre_zone=document.getElementById("txt_"+elem.parentNode.id).value;
+	for (i=0;i<nombre_zone;i++)
+	{	
+		second= createHbox("h"+racine.id+i);
+		label=createLabel("Ajouter un titre pour la zone texte numero "+i);
+		txt=createText("texte_"+racine.id+i);
+		second.appendChild(label);
+		second.appendChild(txt);
+		first.appendChild(second);
+	}
+	bout= createButton("bout_"+racine.id,"Valider");
+	first.appendChild(second);
+	first.appendChild(bout);
+	racine.appendChild(first);
+}
+
+function Valider_liste(elem)
+{
+	elem.setAttribute("hidden","true");
+	racine=elem.parentNode;
+	first= createVbox(c);
+	nombre_zone=document.getElementById("txt_"+elem.parentNode.id).value;
+	for (i=0;i<nombre_zone;i++)
+	{	
+		second= createHbox("h"+racine.id+i);
+		label=createLabel("Combien d'elements dans la liste "+i);
+		txt=createText("texte_"+racine.id+i);
+		bout1= createButton("bout_"+racine.id+i,"Valider");
+		second.appendChild(label);
+		second.appendChild(txt);
+		second.appendChild(bout1);
+		first.appendChild(second);
+	}
+	first.appendChild(second);
+	racine.appendChild(first);
+}
+
+function version_final()
+{
+	graph=document.getElementById("svg_1");
+	container=document.getElementById("v1");
+	container.appendChild(graph);
+}
+
+function test_evt(elem){
+	n=elem.parentNode.id;
+	n1=n.charAt(n.length-1);
+	if (elem.selectedItem.value=="afficher_form")
+		document.getElementById("v"+n1).setAttribute("hidden","false");
+	else
+		document.getElementById("v"+n1).setAttribute("hidden","true");
+}
+
+function fin_assitant()
+{
+	graph=document.getElementById("svg_1");
+	s1= createScript("s1");
+	s1.setAttribute("src",'src="../library/js/fonctions.js"');
+	graph.appendChild(s1);
+	alert(graph);
+	window.opener.add_svg(graph);
+}
+
+function add_svg(svg)
+{
+	document.getElementById("C1").appendChild(svg);
+	doc=document.getElementById(figure_courant);
+	doc.removeChild(doc.firstChild);              
+	document.getElementById(figure_courant).setAttribute("hidden","true	");
 }

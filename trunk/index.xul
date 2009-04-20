@@ -37,7 +37,7 @@
 	<hbox hidden="false" id="save" >
 		<hbox>
 		
-			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
+			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export('p');"/>
 			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import('p');"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>

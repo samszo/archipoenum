@@ -1274,7 +1274,20 @@ function Ajouter_doc() {
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(xulData,"text/xml");
-	resultDoc.getElementById("ZonesSaisies").setAttribute("id","ZonesSaisies_"+docs);
+	/*var resultDoc=document.getElementById("ZonesSaisies").cloneNode(true);
+	resultDoc.setAttribute("id","ZonesSaisies_"+docs);
+	resultDoc.setAttribute("hidden","false");
+	resultDoc.getElementById("saisie_fig_18_document").setAttribute("id","saisie_Document_"+docs+"_document");
+	resultDoc.getElementById("saisie_fig_18_type").setAttribute("id","saisie_Document_"+docs+"_type");
+	resultDoc.getElementById("saisie_fig_18_format").setAttribute("id","saisie_Document_"+docs+"_format");
+	resultDoc.getElementById("saisie_fig_18_section").setAttribute("id","saisie_Document_"+docs+"_section");
+	resultDoc.getElementById("saisie_fig_18_nature").setAttribute("id","saisie_Document_"+docs+"_nature");
+	resultDoc.getElementById("saisie_fig_18_actor").setAttribute("id","saisie_Document_"+docs+"_actor");
+	resultDoc.getElementById("saisie_fig_18_ontoactor").setAttribute("id","saisie_Document_"+docs+"_ontoactor");
+	resultDoc.getElementById("saisie_fig_18_concept").setAttribute("id","saisie_Document_"+docs+"_concept");
+	resultDoc.getElementById("saisie_fig_18_work").setAttribute("id","saisie_Document_"+docs+"_work");
+	resultDoc.getElementById("saisie_fig_18_instance").setAttribute("id","saisie_Document_"+docs+"_instance");
+	resultDoc.getElementById("saisie_fig_18_physicpart").setAttribute("id","saisie_Document_"+docs+"_physicpart");*/
 	var popup = resultDoc.getElementById("liste1");
 	var item1 = createMenuItem("Text");
 	item1.setAttribute("value","Text");

@@ -1666,7 +1666,7 @@ function fin_assitant()
 	s1= createScript("s1");
 	s1.setAttribute("src",'src="../library/js/fonctions.js"');
 	graph.appendChild(s1);
-	alert(graph);
+	//alert(graph);
 	window.opener.add_svg(graph);
 }
 

@@ -14,7 +14,7 @@
 	 		<button id="bt_svg" label="Import"  onclick="Import('a');"/>
 	 	</hbox>
   </wizardpage>
-  <wizardpage onpageshow='set_saisie();' onpageadvanced='version_final()'>
+  <wizardpage  onpageadvanced='version_final()'>
     <description>
       
     </description>
@@ -37,7 +37,7 @@
 
   <wizardpage id="interface_zone">
 		<groupbox orient="horizontal" flex="1" >
-				<vbox id="v1">
+				<vbox id="vb1">
 					<hbox>
 						<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
 					</hbox>

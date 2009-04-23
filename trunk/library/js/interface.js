@@ -10,7 +10,7 @@ var doc_courant="";
 var user;
 var id_user;
 var ladate=new Date();
-
+var cmpt=1;
 function  init(){	
 	var parameters = location.search.substring(1).split("&");
 	//alert(parameters);
@@ -354,6 +354,7 @@ try
 	// Intégrer le DOM récupéré à l'interieur de document
 	//resultDoc.documentElement.setAttribute("id","fig_svg");
 	doc=document.getElementById("v_svg");
+	set_saisie(resultDoc);
 	if (doc.firstChild)
 		doc.removeChild(doc.firstChild);    
 	doc.appendChild(resultDoc);
@@ -1134,9 +1135,17 @@ function createButton(id,aLabel) {
   item.setAttribute("label", aLabel);
   return item;
 }
+
 function createScript(id) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "script"); // create a new XUL menuitem
+  item.setAttribute("id", id);
+  return item;
+}
+
+function createGroupbox(id) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "groupbox"); // create a new XUL menuitem
   item.setAttribute("label", id);
   return item;
 }
@@ -1360,16 +1369,17 @@ try
 	{
 		xml=read(fichier_svg);
 		var parser=new DOMParser();
-		fct="<script><![CDATA[ function say_hello(){alert('hello');}]]></script>";
-		xml2=RC(xml,"</svg>",fct+" </svg>");
+		fct='<script xlink:href="../js/fonctions.js" />';
+		//alert(fct);
+		xml2=RC(xml,"</svg>"," </svg>");
 		//alert(xml2);
 		// Transformer le String en Objet DOM
 		var xmlDoc=parser.parseFromString(xml2,"text/xml");
 		c1=1;
 		x=xmlDoc.getElementsByTagName("svg")[0];
 		x.setAttribute("id",'svg_1');
-
-		for (i=0;i<x.getElementsByTagName("g").length;i++)
+		x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
+		for (i=1;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i];
 			y.setAttribute("id",'graph_'+c1);
@@ -1434,6 +1444,7 @@ function createActionSaisie(c,graph)
 	first= createVbox(c);
 	g=createG("root");
 	svg=createSvg("svg");
+	graph.setAttribute("id","svg"+c1);
 	g.appendChild(graph);
 	svg.appendChild(g);
 	svg.setAttribute("version","1.1");
@@ -1466,59 +1477,74 @@ function createActionSaisie(c,graph)
 	fct2.setAttribute("value","affiche_graph");
 	var bt1= createButton("bt_"+c1,"Valider");
 	bt1.setAttribute("onclick", "Valider_form('"+c+"');");
+	//alert(c);
 	second= createHbox("h1"+c1);
 	third= createHbox("h2"+c1);
 	ch1=createCheck("Zone Texte      ");
 	ch1.setAttribute("oncommand","affiche_valid(this)");
-	bt_1= createButton("bt_h1"+c1,"Valider");
-	bt_1.setAttribute("onclick","Valider_zone(this)");
+	bt_1= createButton("bt_h1"+c1,"Nouveau");
+	bt_1.setAttribute("onclick","Valider_zone(this,"+c1+")");
 	bt_1.setAttribute("hidden","true");
 	ch2=createCheck("Menu Liste");
 	ch2.setAttribute("oncommand","affiche_valid(this)");
 	bt_2= createButton("bt_h2"+c1,"Valider");
+	bt_3= createButton("bt_c"+c1,"Cacher");
 	bt_2.setAttribute("onclick","Valider_liste(this)");
 	bt_2.setAttribute("hidden","true");
 	txt1=createText("txt_h1"+c1);
 	txt2=createText("txt_h2"+c1);
 	second.appendChild(ch1);
-	second.appendChild(txt1);
+	//second.appendChild(txt1);
 	second.appendChild(bt_1);
+	
 	third.appendChild(ch2);
-	third.appendChild(txt2);
+	//third.appendChild(txt2);
 	third.appendChild(bt_2);
+	
 	pop.appendChild(evt1);
 	pop.appendChild(evt2);
 	choix.appendChild(pop);
-	first.appendChild(label);
-	first.appendChild(svg);
-	first.appendChild(label1);
-	first.appendChild(choix);
+	g1=createGroupbox("g"+c1);
+	g1.appendChild(label);
+	g2=createGroupbox("svg"+c1);
+	g2.appendChild(svg);
+	g1.appendChild(g2);
+	g1.appendChild(label1);
+	g1.appendChild(choix);
 	pop2.appendChild(fct2);
 	pop2.appendChild(fct1);
 	choix2.appendChild(pop2);
-	first.appendChild(label2);
-	first.appendChild(choix2);	
+	g1.appendChild(label2);
+	g1.appendChild(choix2);	
 	vb=createVbox("v"+c1);
 	vb.setAttribute("hidden","true");
 	vb.appendChild(label3);
 	vb.appendChild(second);
 	vb.appendChild(third);
-	first.appendChild(vb);
-	first.appendChild(l.cloneNode(false));
-	first.appendChild(bt1);
-	first.appendChild(l);	
+	bt_3.setAttribute("onclick","cacher_form('"+c+"');");
+	
+	
+	g1.appendChild(l.cloneNode(false));
+	g1.appendChild(vb);
+	h1= createHbox("h3"+c1);
+	h1.appendChild(bt1);
+	h1.appendChild(bt_3);
+	g1.appendChild(h1);
+	g1.appendChild(l);
+	first.appendChild(g1);		
 	first.setAttribute("hidden",'true');
 	
 	return(first);		
 }
-function set_saisie(){
+function set_saisie(doc1){
 try
 	{
 	
 		c1=1;
 		doc=document.getElementById("v_svg");
-		x=doc.getElementsByTagName("svg")[0];
-		for (i=0;i<x.getElementsByTagName("g").length;i++)
+		//alert(doc);
+		x=doc1;
+		for (i=1;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i].cloneNode(true);			
 			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
@@ -1575,6 +1601,13 @@ function init_svg(c_svg)
 		document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","true");
 }
 
+function cacher_form(id_form)
+{
+	//alert(id_form);
+	x= document.getElementById(id_form);
+	x.setAttribute("hidden","true");
+}
+
 function can_advance(){
 	alert("hello");
 	document.getElementById("import_svg").setAttribute("canAdvance","false");
@@ -1584,6 +1617,7 @@ function Valider_form(id_form)
 {
 	//alert(id_form);
 	x= document.getElementById(id_form);
+	x.setAttribute("hidden","true");
 	listes=x.getElementsByTagName("menulist");
 	evt=listes[0].selectedItem.value;
 	fct=listes[1].selectedItem.value;
@@ -1596,31 +1630,69 @@ function Valider_form(id_form)
 function affiche_valid(elem)
 {
 	//alert("bt_"+c1+"_"+elem.parentNode.id);
+	cmpt=1;
 	if (document.getElementById("bt_"+elem.parentNode.id).getAttribute("hidden")=="true")
 		document.getElementById("bt_"+elem.parentNode.id).setAttribute("hidden","false");
 	else
 		document.getElementById("bt_"+elem.parentNode.id).setAttribute("hidden","true");
 }
 
-function Valider_zone(elem)
+function Valider_zone(elem,cpt)
 {
 	elem.setAttribute("hidden","true");
 	racine=elem.parentNode;
-	first= createVbox(c);
-	nombre_zone=document.getElementById("txt_"+elem.parentNode.id).value;
-	for (i=0;i<nombre_zone;i++)
+	//alert(cpt);
+	//alert(document.getElementById("vz"+cpt));
+	if (document.getElementById("vz"+cpt)==null)
 	{	
-		second= createHbox("h"+racine.id+i);
-		label=createLabel("Ajouter un titre pour la zone texte numero "+i);
-		txt=createText("texte_"+racine.id+i);
+
+		//alert("new");
+		first= createVbox("vz"+cpt);
+		second= createHbox("h"+racine.id+cmpt);
+		label=createLabel("Ajouter un titre pour la zone texte numero "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		bout1= createButton("btn_"+cmpt,"Ajouter");
+		bout1.setAttribute("onclick","Valider_zone(this,"+cpt+")");
 		second.appendChild(label);
 		second.appendChild(txt);
+		second.appendChild(bout1);		
 		first.appendChild(second);
+		alert("cpt: "+cpt+" cpmt : "+cmpt);
+		bout= createButton("bout_"+racine.id,"Valider");
+		first.appendChild(second);
+		first.appendChild(bout);
+		
+		if (elem.label=="Nouveau"){
+			racine.appendChild(first);
+			alert(elem.label);	
+		}
+		else
+			racine.parentNode.appendChild(first);
+		cmpt++;
+
 	}
-	bout= createButton("bout_"+racine.id,"Valider");
-	first.appendChild(second);
-	first.appendChild(bout);
-	racine.appendChild(first);
+	else
+	{
+		//alert("old");
+		first= document.getElementById("vz"+cpt);
+		second= createHbox("h"+racine.id+cmpt);
+		label=createLabel("Ajouter un titre pour la zone texte numero "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		bout1= createButton("btn_"+cmpt,"Ajouter");
+		bout1.setAttribute("onclick","Valider_zone(this,"+cpt+")");
+		second.appendChild(label);
+		second.appendChild(txt);
+		second.appendChild(bout1);		
+		first.appendChild(second);
+		first.appendChild(second);
+		first.appendChild(bout);
+		if (elem.label=="Nouveau")
+			racine.parentNode.appendChild(first);
+		else
+			//racine.appendChild(first);
+		cmpt++;
+
+	}
 }
 
 function Valider_liste(elem)
@@ -1632,7 +1704,7 @@ function Valider_liste(elem)
 	for (i=0;i<nombre_zone;i++)
 	{	
 		second= createHbox("h"+racine.id+i);
-		label=createLabel("Combien d'elements dans la liste "+i);
+		label=createLabel("Combien d'elements dans la liste "+cmpt);
 		txt=createText("texte_"+racine.id+i);
 		bout1= createButton("bout_"+racine.id+i,"Valider");
 		second.appendChild(label);
@@ -1647,24 +1719,31 @@ function Valider_liste(elem)
 function version_final()
 {
 	graph=document.getElementById("svg_1");
-	container=document.getElementById("v1");
+	container=document.getElementById("vb1");
 	container.appendChild(graph);
 }
 
 function test_evt(elem){
-	n=elem.parentNode.id;
+	n=elem.parentNode.parentNode.id;
 	n1=n.charAt(n.length-1);
+	//alert("v"+n1);
 	if (elem.selectedItem.value=="afficher_form")
+	{
 		document.getElementById("v"+n1).setAttribute("hidden","false");
-	else
+		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
+	}
+	else{
 		document.getElementById("v"+n1).setAttribute("hidden","true");
+		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
+	}
 }
 
 function fin_assitant()
 {
 	graph=document.getElementById("svg_1");
 	s1= createScript("s1");
-	s1.setAttribute("src",'src="../library/js/fonctions.js"');
+	alert(read("../js/fonctions.js"));
+	s1.setAttribute("xlink:href",'../js/fonctions.js');
 	graph.appendChild(s1);
 	//alert(graph);
 	window.opener.add_svg(graph);

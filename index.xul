@@ -41,7 +41,7 @@
 			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import('p');"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
-			<toolbarbutton label="Modifier l'interface  " style='width:150px;' onclick="open_wizard();"/>
+
 			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="Ajouter_doc();"/>
 			
 		</hbox>
@@ -67,6 +67,15 @@
 				</menu>
 			</menubar>
 		</hbox>
+		<menubar id='Interface'>
+				<menu label=" Gestion de l'interface ->" >
+					<menupopup id="test3">
+						<menuitem id="ch1" label="Créer une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Liste des interfaces disponibles  " onclick="open_wizard();"/>
+					</menupopup>
+				</menu>
+			</menubar>
 		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:60px;margin-top:7px;' />
 		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
     </hbox>

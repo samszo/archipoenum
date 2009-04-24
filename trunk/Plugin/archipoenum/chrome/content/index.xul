@@ -36,12 +36,13 @@
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 		<hbox>
-			<toolbarbutton id='add_doc' label="Ajouter un Document  " hidden="true" style='width:150px;' onclick="Ajouter_doc();"/>
-			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export();"/>
-			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import();"/>
+		
+			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export('p');"/>
+			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import('p');"/>
 			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
 			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
-			
+
+			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="Ajouter_doc();"/>
 			
 		</hbox>
 		<hbox> 		
@@ -53,7 +54,7 @@
 						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
 						<menu id="ch2" label="Documents" hidden="true" >
 							<menupopup id="test">
-								<menu id="D1" label="Document1" hidden="true">
+								<menu id="D1" label="Document_1" hidden="true">
 									<menupopup >											
 										<menuitem id="m11" label="DOC" hidden="false" oncommand="afficher1();"/>
 										<menuitem id="m12" label="Acteur" hidden="true" oncommand="afficher2();"/>
@@ -66,15 +67,24 @@
 				</menu>
 			</menubar>
 		</hbox>
-		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:130px;margin-top:7px;' />
-		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;' onclick="logout();"/>
+		<menubar id='Interface'>
+				<menu label=" Gestion de l'interface ->" >
+					<menupopup id="test3">
+						<menuitem id="ch1" label="Créer une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Liste des interfaces disponibles  " onclick="open_wizard();"/>
+					</menupopup>
+				</menu>
+			</menubar>
+		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:60px;margin-top:7px;' />
+		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
     </hbox>
 </hbox>
 </toolbar>
 </toolbox>
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
-		<vbox id="S1" flex="1" >			
+		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" >			
 			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />

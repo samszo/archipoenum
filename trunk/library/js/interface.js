@@ -10,7 +10,7 @@ var doc_courant="";
 var user;
 var id_user;
 var ladate=new Date();
-var cmpt=1;
+//var cmpt=1;
 function  init(){	
 	var parameters = location.search.substring(1).split("&");
 	//alert(parameters);
@@ -784,6 +784,12 @@ function open_wizard()
 	var load = window.open('chrome://archipoenum/content/library/xul/modification_saisie.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 }
 
+function open_wizard2()
+{
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var load = window.open('http://localhost/archipoenum/library/xul/modif_interface.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+}
+
 function afficher_zone(ch1)
 	{
 	//alert(ch1.getAttribute("id")+" : "+ch1.getAttribute("checked"));
@@ -838,7 +844,8 @@ function createDB(){
 		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT,  id_f uniqueidentifier);';  
 		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier);';
 		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS historique (id_hist INTEGER PRIMARY KEY AUTOINCREMENT, date varchar(40));';  
-		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),figure_c text(40), id_user uniqueidentifier);'; 
+		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),figure_c text(40), id_user uniqueidentifier);';
+		var myCreateDBQuery10 = 'CREATE TABLE IF NOT EXISTS xul (id_xul INTEGER PRIMARY KEY AUTOINCREMENT,id_element integer, form_xul text(10000), id_svg uniqueidentifier);';   
 		$sqlite._initService(myDBFile);
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
 		$sqlite.cmd(myDBFile,myCreateDBQuery2);
@@ -849,6 +856,7 @@ function createDB(){
 		$sqlite.cmd(myDBFile,myCreateDBQuery7);
 		$sqlite.cmd(myDBFile,myCreateDBQuery8);
 		$sqlite.cmd(myDBFile,myCreateDBQuery9);
+		$sqlite.cmd(myDBFile,myCreateDBQuery10);
 	}
 	catch(ex2){ 
 		alert("interface::createDB"+ex2); 
@@ -1025,7 +1033,7 @@ function AppendSVG(url,doc) {
 function getSVG(){
 	try {
 		var svg;
-		alert(figure_courant);
+		//alert(figure_courant);
 		svg=document.getElementById(figure_courant).firstChild;
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
     
@@ -1238,10 +1246,17 @@ function Ajouter_doc() {
 
 		//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\doc.xul";	
+<<<<<<< .mine
+	
+	che="chrome://archipoenum/content/library/xul/DocSaisie.xul";	
+	chrm=chromeToPath (che);
+	xml = read(chemin);
+=======
 	
 	che="chrome://archipoenum/content/library/xul/doc.xul";	
 	chrm=chromeToPath (che);
 	xml = read(chrm);
+>>>>>>> .r120
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
@@ -1502,6 +1517,8 @@ function createActionSaisie(c,graph)
 {
 	first= createVbox(c);
 	g=createG("root");
+	g3=createGroupbox("g3"+c1);
+	g4=createGroupbox("g4"+c1);
 	svg=createSvg("svg");
 	graph.setAttribute("id","svg"+c1);
 	g.appendChild(graph);
@@ -1542,21 +1559,24 @@ function createActionSaisie(c,graph)
 	ch1=createCheck("Zone Texte      ");
 	ch1.setAttribute("oncommand","affiche_valid(this)");
 	bt_1= createButton("bt_h1"+c1,"Nouveau");
-	bt_1.setAttribute("onclick","Valider_zone(this,"+c1+")");
+	bt_1.setAttribute("onclick","Ajouter_zone(this,"+c1+")");
 	bt_1.setAttribute("hidden","true");
+	bt_1.setAttribute("cpmt",1);
 	ch2=createCheck("Menu Liste");
 	ch2.setAttribute("oncommand","affiche_valid(this)");
-	bt_2= createButton("bt_h2"+c1,"Valider");
+	bt_2= createButton("bt_h2"+c1,"Nouvelle liste");
 	bt_3= createButton("bt_c"+c1,"Cacher");
-	bt_2.setAttribute("onclick","Valider_liste(this)");
+	bt_2.setAttribute("onclick","Ajouter_liste(this,"+c1+")");
 	bt_2.setAttribute("hidden","true");
+	bt_2.setAttribute("cpmt",1);
 	txt1=createText("txt_h1"+c1);
 	txt2=createText("txt_h2"+c1);
 	second.appendChild(ch1);
+	g3.appendChild(second);
 	//second.appendChild(txt1);
 	second.appendChild(bt_1);
-	
 	third.appendChild(ch2);
+	g4.appendChild(third);
 	//third.appendChild(txt2);
 	third.appendChild(bt_2);
 	
@@ -1578,8 +1598,8 @@ function createActionSaisie(c,graph)
 	vb=createVbox("v"+c1);
 	vb.setAttribute("hidden","true");
 	vb.appendChild(label3);
-	vb.appendChild(second);
-	vb.appendChild(third);
+	vb.appendChild(g3);
+	vb.appendChild(g4);
 	bt_3.setAttribute("onclick","cacher_form('"+c+"');");
 	
 	
@@ -1674,9 +1694,56 @@ function can_advance(){
 
 function Valider_form(id_form)
 {
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	//alert(id_form);
 	x= document.getElementById(id_form);
-	x.setAttribute("hidden","true");
+	//x.setAttribute("hidden","true");
+	n1=id_form.charAt(id_form.length-1);
+	xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1);
+	xul_complet=xul_complet+"</vbox></overlay>";
+	alert(xul_complet);
+	
+	var file = Components.classes["@mozilla.org/file/directory_service;1"]
+	                     .getService(Components.interfaces.nsIProperties)
+	                     .get("ProfD", Components.interfaces.nsIFile);
+	file.append(myDBFile);
+
+	var storageService = Components.classes["@mozilla.org/storage/service;1"]
+	                        .getService(Components.interfaces.mozIStorageService);
+	var mDBConn = storageService.openDatabase(file);
+	
+	svg=document.getElementById("svg_1");
+	var sql = 'INSERT INTO svg(fichier,figure_c,titre) VALUES(?1,?2,?3);';
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,svg);
+	statement.bindUTF8StringParameter(1,"fig_21");
+	statement.bindUTF8StringParameter(2,"test");
+	statement.execute();
+	statement.reset();
+	
+	var statement = mDBConn.createStatement('SELECT  id_svg FROM svg ORDER BY id_svg DESC;');
+		
+		
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+			// return dataset;	
+		j=0;
+		var myArray1 = dataset;
+		id_svg=myArray1[j]["id_svg"];
+	    
+	var sql = 'INSERT INTO xul(form_xul,id_svg) VALUES(?1,?2);';
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,xul_complet);
+	statement.bindUTF8StringParameter(1,id_svg);
+	statement.execute();
+	statement.reset();
+	
 	listes=x.getElementsByTagName("menulist");
 	evt=listes[0].selectedItem.value;
 	fct=listes[1].selectedItem.value;
@@ -1696,10 +1763,11 @@ function affiche_valid(elem)
 		document.getElementById("bt_"+elem.parentNode.id).setAttribute("hidden","true");
 }
 
-function Valider_zone(elem,cpt)
+function Ajouter_zone(elem,cpt)
 {
 	elem.setAttribute("hidden","true");
-	racine=elem.parentNode;
+	racine=document.getElementById("h1"+cpt);
+	cmpt=parseInt(elem.getAttribute("cpmt"));
 	//alert(cpt);
 	//alert(document.getElementById("vz"+cpt));
 	if (document.getElementById("vz"+cpt)==null)
@@ -1707,23 +1775,26 @@ function Valider_zone(elem,cpt)
 
 		//alert("new");
 		first= createVbox("vz"+cpt);
-		second= createHbox("h"+racine.id+cmpt);
+		second= createHbox("hz"+racine.id+cmpt);
 		label=createLabel("Ajouter un titre pour la zone texte numero "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		bout1= createButton("btn_"+cmpt,"Ajouter");
-		bout1.setAttribute("onclick","Valider_zone(this,"+cpt+")");
+		bout1= createButton("btnz_"+cpt,"Ajouter");
+		//alert(cpt);
+		bout1.setAttribute("onclick","Ajouter_zone(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
 		second.appendChild(label);
 		second.appendChild(txt);
 		second.appendChild(bout1);		
 		first.appendChild(second);
-		alert("cpt: "+cpt+" cpmt : "+cmpt);
-		bout= createButton("bout_"+racine.id,"Valider");
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		//bout= createButton("bout_"+racine.id,"Valider");
+		//bout.setAttribute("onclick","Ajouter_zone(this,"+cpt+")");
 		first.appendChild(second);
-		first.appendChild(bout);
+		//first.appendChild(bout);
 		
 		if (elem.label=="Nouveau"){
 			racine.appendChild(first);
-			alert(elem.label);	
+			//alert(elem.label);	
 		}
 		else
 			racine.parentNode.appendChild(first);
@@ -1734,45 +1805,186 @@ function Valider_zone(elem,cpt)
 	{
 		//alert("old");
 		first= document.getElementById("vz"+cpt);
-		second= createHbox("h"+racine.id+cmpt);
+		second= createHbox("hz"+racine.id+cmpt);
 		label=createLabel("Ajouter un titre pour la zone texte numero "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		bout1= createButton("btn_"+cmpt,"Ajouter");
-		bout1.setAttribute("onclick","Valider_zone(this,"+cpt+")");
+		ancien=document.getElementById("hz"+racine.id+(cmpt-1));
+		ancien.removeChild(bout1);
+		bout1= createButton("btnz_"+cpt,"Ajouter");
+		bout1.setAttribute("onclick","Ajouter_zone(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
+		//bout=first.lastChild;
+		//first.removeChild(bout);
 		second.appendChild(label);
 		second.appendChild(txt);
 		second.appendChild(bout1);		
 		first.appendChild(second);
-		first.appendChild(second);
-		first.appendChild(bout);
-		if (elem.label=="Nouveau")
-			racine.parentNode.appendChild(first);
-		else
-			//racine.appendChild(first);
-		cmpt++;
 
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		//bout= createButton("bout_"+racine.id,"Valider");
+		first.appendChild(second);
+		//first.appendChild(bout);
+		
+		if (elem.label=="Nouveau"){
+			racine.appendChild(first);
+			alert(elem.label);	
+		}
+		else{}
+			//racine.parentNode.appendChild(first);
+		
 	}
 }
 
-function Valider_liste(elem)
+function Ajouter_liste(elem,cpt)
 {
 	elem.setAttribute("hidden","true");
-	racine=elem.parentNode;
-	first= createVbox(c);
-	nombre_zone=document.getElementById("txt_"+elem.parentNode.id).value;
-	for (i=0;i<nombre_zone;i++)
+	racine=document.getElementById("h2"+cpt);
+	cmpt=parseInt(elem.getAttribute("cpmt"));
+	//alert(cpt);
+	//alert(document.getElementById("vz"+cpt));
+	if (document.getElementById("vl"+cpt)==null)
 	{	
-		second= createHbox("h"+racine.id+i);
-		label=createLabel("Combien d'elements dans la liste "+cmpt);
-		txt=createText("texte_"+racine.id+i);
-		bout1= createButton("bout_"+racine.id+i,"Valider");
+
+		//alert("new");
+		first= createVbox("vl"+cpt);
+		second= createHbox("hl"+racine.id+cmpt);
+		label=createLabel("Ajouter un titre pour la liste numero "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		bout1= createButton("btnl_"+cmpt,"Ajouter Liste");
+		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
+		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
+		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout2.setAttribute("cpmt",1);
+		second.appendChild(label);
+		second.appendChild(txt);
+		second.appendChild(bout1);		
+		second.appendChild(bout2);
+		first.appendChild(second);
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		//bout= createButton("boutL_"+racine.id,"Valider");
+		first.appendChild(second);
+		//first.appendChild(bout);
+		
+		if (elem.label=="Nouveau"){
+			racine.appendChild(first);
+			//alert(elem.label);	
+		}
+		else
+			racine.parentNode.appendChild(first);
+		cmpt++;
+
+	}
+	else
+	{
+		//alert("old");
+		first= document.getElementById("vl"+cpt);
+		second= createHbox("hl"+racine.id+cmpt);
+		label=createLabel("Ajouter un titre pour la liste numero "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		ancien=document.getElementById("hz"+racine.id+(cmpt-1));
+		ancien.removeChild(bout1);
+		bout1= createButton("btnl_"+cmpt,"Ajouter Liste");
+		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
+		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
+		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout2.setAttribute("cpmt",1);
+		//bout=first.lastChild;
+		//first.removeChild(bout);
 		second.appendChild(label);
 		second.appendChild(txt);
 		second.appendChild(bout1);
+		second.appendChild(bout2);		
 		first.appendChild(second);
+
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		//bout= createButton("bout_"+racine.id,"Valider");
+		first.appendChild(second);
+		//first.appendChild(bout);
+		
+		if (elem.label=="Nouveau"){
+			racine.appendChild(first);
+			alert(elem.label);	
+		}
+		else{}
+			//racine.parentNode.appendChild(first);
+		
 	}
-	first.appendChild(second);
-	racine.appendChild(first);
+}
+
+function Ajouter_element_liste(elem,cpt)
+{
+	elem.setAttribute("hidden","true");
+	racine=document.getElementById("h2"+cpt);
+	cmpt=parseInt(elem.getAttribute("cpmt"));
+	//alert(cpt);
+	//alert(document.getElementById("vz"+cpt));
+	if (document.getElementById("ve"+cpt)==null)
+	{	
+
+		//alert("new");
+		f=document.getElementById(racine.id);
+		//alert(racine.id);
+		first= createVbox("ve"+cpt);
+		second= createHbox("he"+racine.id+cmpt);
+		label=createLabel("Ajouter un element "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		bout1= createButton("btne_"+cmpt,"Ajouter");
+		bout1.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
+		second.appendChild(label);
+		second.appendChild(txt);
+		second.appendChild(bout1);		
+		first.appendChild(second);
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		bout= createButton("bout_"+racine.id,"Valider");
+		first.appendChild(second);
+		//first.appendChild(bout);
+		f.appendChild(first);
+		
+		if (elem.label=="Ajouter Element"){
+			racine.appendChild(f);
+			//alert(elem.label);	
+		}
+		else
+			racine.parentNode.appendChild(first);
+		cmpt++;
+
+	}
+	else
+	{
+		//alert("old");
+		f=document.getElementById(racine.id);
+		first= document.getElementById("ve"+cpt);
+		second= createHbox("he"+racine.id+cmpt);
+		label=createLabel("Ajouter un element "+cmpt);
+		txt=createText("texte_"+racine.id+cmpt);
+		ancien=document.getElementById("hz"+racine.id+(cmpt-1));
+		ancien.removeChild(bout1);
+		bout1= createButton("btne_"+cmpt,"Ajouter");
+		bout1.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout1.setAttribute("cpmt",cmpt+1);
+		//bout=first.lastChild;
+		//first.removeChild(bout);
+		second.appendChild(label);
+		second.appendChild(txt);
+		second.appendChild(bout1);		
+		first.appendChild(second);
+
+		//alert("cpt: "+cpt+" cpmt : "+cmpt);
+		//bout= createButton("bout_"+racine.id,"Valider");
+		first.appendChild(second);
+		//first.appendChild(bout);
+		f.appendChild(first);
+		if (elem.label=="Ajouter Element"){
+			racine.appendChild(f);
+			alert(elem.label);	
+		}
+		else{}
+			//racine.parentNode.appendChild(first);
+		
+	}
 }
 
 function version_final()
@@ -1801,17 +2013,181 @@ function fin_assitant()
 {
 	graph=document.getElementById("svg_1");
 	s1= createScript("s1");
-	alert(read("../js/fonctions.js"));
+	//alert(read("../js/fonctions.js"));
 	s1.setAttribute("xlink:href",'../js/fonctions.js');
 	graph.appendChild(s1);
 	//alert(graph);
 	window.opener.add_svg(graph);
+}
+function chromeToPath (aPath) {
+
+   if (!aPath || !(/^chrome:/.test(aPath)))
+      return; //not a chrome url
+   var rv;
+   		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+      var ios = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces["nsIIOService"]);
+        var uri = ios.newURI(aPath, "UTF-8", null);
+        var cr = Components.classes['@mozilla.org/chrome/chrome-registry;1'].getService(Components.interfaces["nsIChromeRegistry"]);
+        rv = cr.convertChromeURL(uri).spec;
+
+        if (/^file:/.test(rv)) 
+          rv = this.urlToPath(rv);
+        else
+          rv = this.urlToPath("file://"+rv);
+
+      return rv;
+}
+
+function urlToPath (aPath) {
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+    if (!aPath || !/^file:/.test(aPath))
+      return ;
+    var rv;
+   var ph = Components.classes["@mozilla.org/network/protocol;1?name=file"]
+        .createInstance(Components.interfaces.nsIFileProtocolHandler);
+    rv = ph.getFileFromURLSpec(aPath).path;
+    return rv;
 }
 
 function add_svg(svg)
 {
 	document.getElementById("C1").appendChild(svg);
 	doc=document.getElementById(figure_courant);
-	doc.removeChild(doc.firstChild);              
+	//doc.removeChild(doc.firstChild);              
 	document.getElementById(figure_courant).setAttribute("hidden","true	");
 }
+
+function modif_interface(){
+	x=window.opener.getSVG();
+	//alert(xmlDoc);
+	c1=1;
+		//x=xmlDoc.getElementsByTagName("svg")[0];
+		x.setAttribute("id",'svg_1');
+		x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
+		for (i=0;i<x.getElementsByTagName("g").length;i++)
+		{	
+			y=x.getElementsByTagName("g")[i];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (j=0;j<x.getElementsByTagName("path").length;j++)
+		{	
+			
+			y=x.getElementsByTagName("path")[j];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			c1++;
+		}
+		
+		for (k=0;k<x.getElementsByTagName("text").length;k++)
+		{	
+			y=x.getElementsByTagName("text")[k];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (l=0;l<x.getElementsByTagName("polygon").length;l++)
+		{	
+			y=x.getElementsByTagName("polygon")[l];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+		
+		for (l=0;l<x.getElementsByTagName("rect").length;l++)
+		{	
+			y=x.getElementsByTagName("rect")[l];
+			y.setAttribute("id",'graph_'+c1);
+			y.setAttribute("onclick",'init_svg(this)');
+			y.setAttribute("hidden",'false');
+			y.setAttribute("visibility","visible");
+			//alert(y.id);
+			c1++;
+		}
+	c1=1;
+	doc=document.getElementById("v_svg");
+		for (i=0;i<x.getElementsByTagName("g").length;i++)
+		{	
+			y=x.getElementsByTagName("g")[i].cloneNode(true);			
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
+		
+		for (i=0;i<x.getElementsByTagName("path").length;i++)
+		{	
+
+			y=x.getElementsByTagName("path")[i].cloneNode(false);			
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+	
+			
+		}
+		for (i=0;i<x.getElementsByTagName("text").length;i++)
+		{	
+
+			y=x.getElementsByTagName("text")[i].cloneNode(true);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
+		for (i=0;i<x.getElementsByTagName("polygon").length;i++)
+		{	
+
+			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
+		
+		for (i=0;i<x.getElementsByTagName("rect").length;i++)
+		{	
+
+			y=x.getElementsByTagName("rect")[i].cloneNode(false);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
+	if (doc.firstChild)
+		doc.removeChild(doc.firstChild);    
+	doc.appendChild(x);
+    doc.setAttribute("hidden","false");
+}
+
+function construire_xul(elem,c){
+	contruire_texte(elem,c);
+}
+
+function contruire_texte(c){
+	xul_text='';
+	//alert("btnz_"+c);
+	cp=parseInt(document.getElementById("btnz_"+c).getAttribute("cpmt"));
+	alert("cpmt="+cp);
+	for (i=1;i<cp;i++){
+		//alert("texte_h1"+c+""+i);
+		txt=document.getElementById("texte_h1"+c+""+i);
+		xul_text=xul_text+'<hbox><label value="'+txt.value+' "  flex="1"/> <textbox id="zt'+c+""+i+'" value=""  /></hbox>';
+	}
+	
+	return(xul_text);
+}
+
+function contruire_liste(){
+
+}
+

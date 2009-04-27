@@ -71,7 +71,7 @@
 				<menu label=" Gestion de l'interface ->" >
 					<menupopup id="test3">
 						<menuitem id="ch1" label="Créer une interface  " onclick="open_wizard();"/>
-						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard2();"/>
 						<menuitem id="ch1" label="Liste des interfaces disponibles  " onclick="open_wizard();"/>
 					</menupopup>
 				</menu>

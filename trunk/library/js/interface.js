@@ -374,7 +374,7 @@ function Open(){
 			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
 			if(!result)
 				return;*/
-			 var win = window.openDialog("chrome://archipoenum/content/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "");
+			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "");
 			
 
 }
@@ -758,7 +758,7 @@ function login_user(){
 		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);
 			if (password==myArray1[j]['pwd']) {
-				var load = window.open('chrome://archipoenum/content/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				var load = window.open('http://localhost/archipoenum/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 				test=1;
 				user=login;
 				id_user=myArray1[j]['id'];
@@ -781,7 +781,7 @@ function login_user(){
 function open_wizard()
 {
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-	var load = window.open('chrome://archipoenum/content/library/xul/modification_saisie.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+	var load = window.open('http://localhost/archipoenum/library/xul/modification_saisie.xul','','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 }
 
 function open_wizard2()
@@ -907,7 +907,7 @@ function insert_user (){
 
 		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);			
-				var load = window.open('chrome://archipoenum/content/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
+				var load = window.open('http://localhost/archipoenum/index.xul?login='+login+"&id="+myArray1[j]['id'],'','scrollbars=no,menubar=no,height=600,width=800,resizable=yes,toolbar=no,location=no,status=no');
 		}
 	}
 	catch(ex2){
@@ -1246,17 +1246,9 @@ function Ajouter_doc() {
 
 		//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\doc.xul";	
-<<<<<<< .mine
-	
 	che="chrome://archipoenum/content/library/xul/DocSaisie.xul";	
 	chrm=chromeToPath (che);
 	xml = read(chemin);
-=======
-	
-	che="chrome://archipoenum/content/library/xul/doc.xul";	
-	chrm=chromeToPath (che);
-	xml = read(chrm);
->>>>>>> .r120
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
@@ -1289,9 +1281,7 @@ function Ajouter_doc() {
 	//figure_courant="Document"+docs;
 	//alert ('chemin ='+s);
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\DocSaisie.xul";	
-	che="chrome://archipoenum/content/library/xul/DocSaisie.xul";	
-	chrm=chromeToPath (che);
-	xml = read(chrm);
+	xml = read(chemin);
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
@@ -1354,36 +1344,6 @@ function Ajouter_doc() {
 	docs++;
 }
 
-function chromeToPath (aPath) {
-
-   if (!aPath || !(/^chrome:/.test(aPath)))
-      return; //not a chrome url
-   var rv;
-   		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-      var ios = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces["nsIIOService"]);
-        var uri = ios.newURI(aPath, "UTF-8", null);
-        var cr = Components.classes['@mozilla.org/chrome/chrome-registry;1'].getService(Components.interfaces["nsIChromeRegistry"]);
-        rv = cr.convertChromeURL(uri).spec;
-
-        if (/^file:/.test(rv)) 
-          rv = this.urlToPath(rv);
-        else
-          rv = this.urlToPath("file://"+rv);
-
-      return rv;
-}
-
-function urlToPath (aPath) {
-	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-    if (!aPath || !/^file:/.test(aPath))
-      return ;
-    var rv;
-   var ph = Components.classes["@mozilla.org/network/protocol;1?name=file"]
-        .createInstance(Components.interfaces.nsIFileProtocolHandler);
-    rv = ph.getFileFromURLSpec(aPath).path;
-    return rv;
-}
-
 
 
 function afficher_form_user(){
@@ -1404,30 +1364,6 @@ try{
 } 
 catch(ex2){alert("interface:afficher_form_user:"+ex2); }
 }
-
-
-function getContents(aURL){
-  var ioService=Components.classes["@mozilla.org/network/io-service;1"]
-    .getService(Components.interfaces.nsIIOService);
-  var scriptableStream=Components
-    .classes["@mozilla.org/scriptableinputstream;1"]
-    .getService(Components.interfaces.nsIScriptableInputStream);
-
-  var channel=ioService.newChannel(aURL,null,null);
-  var input=channel.open();
-  scriptableStream.init(input);
-  var str=scriptableStream.read(input.available());
-  scriptableStream.close();
-  input.close();
-  alert(str);
-  return str;
-}
-
-try{
-  //alert(getContents("chrome://browser/content/browser.css"));
-  //alert(getContents("http://www.mozillazine.org/"));
-}catch(e){alert(e)}
-
 
 
 function logout(){

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<wizard id="const_interface" title="Construire votre interface " 
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  onwizardfinish="fin_assitant();" onload="modif_interface();">
+
+  <wizardpage  onpageadvanced='version_final()'>
+    <description>
+      
+    </description>
+    <groupbox orient="horizontal" flex="1" >
+		    <hbox>
+		    	<vbox id="modifs">
+	
+							
+				</vbox>
+				<splitter collapse="before" resizeafter="farthest" >
+					<grippy/>
+				</splitter>
+				<vbox id="c_svg">
+					<vbox id="v_svg">
+					</vbox>
+				</vbox>
+			</hbox>
+	</groupbox>
+  </wizardpage>
+
+  <wizardpage id="interface_zone">
+		<groupbox orient="horizontal" flex="1" >
+				<vbox id="vb1">
+					<hbox>
+						<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
+					</hbox>
+				</vbox>
+		</groupbox>
+  </wizardpage>
+ <script src="../js/interface.js"/>
+</wizard>

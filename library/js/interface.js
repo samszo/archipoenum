@@ -329,6 +329,7 @@ function Import(cmp){
 			else if (cmp=='a')
 			{
 				document.getElementById("f_svg").setAttribute("value",chemin);
+				document.getElementById("l1").setAttribute("hidden","false");
 				//var resultDoc=set_ids(chemin);
 			}
 			
@@ -354,6 +355,7 @@ try
 	// Intégrer le DOM récupéré à l'interieur de document
 	//resultDoc.documentElement.setAttribute("id","fig_svg");
 	doc=document.getElementById("v_svg");
+	
 	set_saisie(resultDoc);
 	if (doc.firstChild)
 		doc.removeChild(doc.firstChild);    
@@ -871,7 +873,7 @@ function insert_user (){
 		createDB();
 		login = document.getElementById("login_i").value;
 		password = document.getElementById("password_i").value;
-		alert (login +' : '+password);
+		//alert (login +' : '+password);
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
 	                     .getService(Components.interfaces.nsIProperties)
 	                     .get("ProfD", Components.interfaces.nsIFile);
@@ -1129,6 +1131,13 @@ function createLabel(aLabel) {
   return item;
 }
 
+function createCaption(aLabel) {
+  const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+  var item = document.createElementNS(XUL_NS, "caption"); // create a new XUL menuitem
+  item.setAttribute("label", aLabel);
+  return item;
+}
+
 function createCheck(aLabel) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "checkbox"); // create a new XUL menuitem
@@ -1252,7 +1261,7 @@ function Ajouter_doc() {
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
-				xulData="<box id='doc"+docs+"' flex='1'  " +
+	xulData="<box id='doc"+docs+"' flex='1'  " +
 	          "xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>" +
 	          xml4 + "</box>";
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
@@ -1379,7 +1388,7 @@ try
 	{
 		xml=read(fichier_svg);
 		var parser=new DOMParser();
-		fct='<script xlink:href="../js/fonctions.js" />';
+		fct='<script xlink:href="http://localhost/archipoenum/library/js/fonctions.js" />';
 		//alert(fct);
 		xml2=RC(xml,"</svg>"," </svg>");
 		//alert(xml2);
@@ -1449,7 +1458,7 @@ try
 	}
 catch(ex2){alert("interface:set_ids:"+ex2); }
 }
-function createActionSaisie(c,graph)
+function createActionSaisie(c,graph,graph_c)
 {
 	first= createVbox(c);
 	g=createG("root");
@@ -1469,10 +1478,12 @@ function createActionSaisie(c,graph)
 	svg.setAttribute("preserveAspectRatio","none");
 	svg.setAttribute("width","300px");
 	svg.setAttribute("height","200px");
-	label=createLabel(c);
+	label=createCaption(c);
+	ch_c=createCheck("Cacher le graphique      ");
+	ch_c.setAttribute("id","cacher_"+c1);
 	label1=createLabel("Choisissez un evenement ");
 	l=createLabel(" ");
-	choix = createMenuList("choixEvenement");
+	choix = createMenuList("choixEvenement_"+c1);
 	var pop = createMenuPopup("pop"+c1);
 	var evt1 = createMenuItem("Evenement en cliquant sur le graphique");
 	evt1.setAttribute("value","onclick");
@@ -1480,25 +1491,29 @@ function createActionSaisie(c,graph)
 	evt2.setAttribute("value","oncommand");
 	label2=createLabel("Choisissez l'action ");
 	label3=createLabel("Qu'est ce que vous voulez ajouter a la zone de saisie :    ");
-	choix2 = createMenuList("choixAction");
+	choix2 = createMenuList("choixAction_"+c1);
 	var pop2 = createMenuPopup("pop2"+c1);
 	var fct1 = createMenuItem("Afficher un formulaire a saisir");
 	fct1.setAttribute("value","afficher_form");
 	choix2.setAttribute("onselect","test_evt(this)");
 	var fct2 = createMenuItem("Afficher un graphique");
 	fct2.setAttribute("value","affiche_graph");
+	var fct3 = createMenuItem("Afficher une autre interface");
+	fct3.setAttribute("value","affiche_interface");
 	var bt1= createButton("bt_"+c1,"Valider");
 	bt1.setAttribute("onclick", "Valider_form('"+c+"');");
 	//alert(c);
 	second= createHbox("h1"+c1);
 	third= createHbox("h2"+c1);
 	ch1=createCheck("Zone Texte      ");
+	ch1.setAttribute("id","ch1_"+c1);
 	ch1.setAttribute("oncommand","affiche_valid(this)");
 	bt_1= createButton("bt_h1"+c1,"Nouveau");
 	bt_1.setAttribute("onclick","Ajouter_zone(this,"+c1+")");
 	bt_1.setAttribute("hidden","true");
 	bt_1.setAttribute("cpmt",1);
 	ch2=createCheck("Menu Liste");
+	ch2.setAttribute("id","ch2_"+c1);
 	ch2.setAttribute("oncommand","affiche_valid(this)");
 	bt_2= createButton("bt_h2"+c1,"Nouvelle liste");
 	bt_3= createButton("bt_c"+c1,"Cacher");
@@ -1524,10 +1539,13 @@ function createActionSaisie(c,graph)
 	g2=createGroupbox("svg"+c1);
 	g2.appendChild(svg);
 	g1.appendChild(g2);
+	g1.appendChild(ch_c);
+	g1.appendChild(l.cloneNode(false));
 	g1.appendChild(label1);
 	g1.appendChild(choix);
 	pop2.appendChild(fct2);
 	pop2.appendChild(fct1);
+	pop2.appendChild(fct3);
 	choix2.appendChild(pop2);
 	g1.appendChild(label2);
 	g1.appendChild(choix2);	
@@ -1536,9 +1554,81 @@ function createActionSaisie(c,graph)
 	vb.appendChild(label3);
 	vb.appendChild(g3);
 	vb.appendChild(g4);
+	vb2=createVbox("v_l"+c1);
+	choix3 = createMenuList("choixGraph_"+c1);
+	choix3.setAttribute("hidden","true");
+	var pop3 = createMenuPopup("pop3"+c1);
 	bt_3.setAttribute("onclick","cacher_form('"+c+"');");
-	
-	
+	c2=1;
+	//alert("hello");
+	x1=graph_c;
+		for (j=1;j<x1.getElementsByTagName("g").length;i++)
+		{	
+			z=x1.getElementsByTagName("g")[j].cloneNode(false);
+			//alert(z.id+" : "+graph.id);
+			if (z.id!=graph.id){
+				var graph1 = createMenuItem(z.id).cloneNode(false);
+				graph1.setAttribute("value",z.id);
+				pop3.appendChild(graph1);
+				
+				c2++;
+			}
+			//alert(z.id);
+		}
+		
+		for (j=0;j<x1.getElementsByTagName("path").length;j++)
+		{	
+
+			z=x1.getElementsByTagName("path")[j].cloneNode(false);
+			//alert(z.id);
+			if (z.id!=graph.id){
+				var graph1 = createMenuItem(z.id).cloneNode(false);
+				graph1.setAttribute("value",z.id);
+				pop3.appendChild(graph1);
+				//alert(c2);
+				c2++;
+			}
+			//alert("hello : "+z.id);
+		}
+		for (j=0;j<x1.getElementsByTagName("text").length;j++)
+		{	
+			z=x1.getElementsByTagName("text")[j].cloneNode(false);
+			//alert(z.id);
+			if (z.id!=graph.id){
+				var graph1 = createMenuItem(z.id).cloneNode(false);
+				graph1.setAttribute("value",z.id);
+				pop3.appendChild(graph1);
+				c2++;
+			}
+		}
+		for (j=0;j<x1.getElementsByTagName("polygon").length;j++)
+		{	
+			z=x1.getElementsByTagName("polygon")[j].cloneNode(false);
+			//alert(z.id);
+			if (z.id!=graph.id){
+				var graph1 = createMenuItem(z.id).cloneNode(false);
+				graph1.setAttribute("value",z.id);
+				pop3.appendChild(graph1);
+				c2++;
+			}
+		}
+		
+		for (j=0;j<x1.getElementsByTagName("rect").length;j++)
+		{	
+
+			z=x1.getElementsByTagName("rect")[j].cloneNode(false);
+			//alert(z.id);
+			if (z.id!=graph.id){
+				var graph1 = createMenuItem(z.id);
+				graph1.setAttribute("value",z.id);
+				pop3.appendChild(graph1);
+				c2++;
+			}
+		}	
+	choix3.appendChild(pop3);
+	label4=createLabel("Choisissez un graphe :    ");
+	g1.appendChild(label4);
+	g1.appendChild(choix3);
 	g1.appendChild(l.cloneNode(false));
 	g1.appendChild(vb);
 	h1= createHbox("h3"+c1);
@@ -1548,7 +1638,7 @@ function createActionSaisie(c,graph)
 	g1.appendChild(l);
 	first.appendChild(g1);		
 	first.setAttribute("hidden",'true');
-	
+	//alert(c1);
 	return(first);		
 }
 function set_saisie(doc1){
@@ -1556,22 +1646,23 @@ try
 	{
 	
 		c1=1;
-		doc=document.getElementById("v_svg");
+		//doc=document.getElementById("v_svg");
 		//alert(doc);
 		x=doc1;
 		for (i=1;i<x.getElementsByTagName("g").length;i++)
 		{	
+			//alert(c1);
 			y=x.getElementsByTagName("g")[i].cloneNode(true);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 		
 		for (i=0;i<x.getElementsByTagName("path").length;i++)
 		{	
-
+			//alert(c1);
 			y=x.getElementsByTagName("path")[i].cloneNode(false);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 	
@@ -1579,26 +1670,26 @@ try
 		}
 		for (i=0;i<x.getElementsByTagName("text").length;i++)
 		{	
-
+			//alert(c1);
 			y=x.getElementsByTagName("text")[i].cloneNode(true);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 		for (i=0;i<x.getElementsByTagName("polygon").length;i++)
 		{	
-
+			//alert(c1);
 			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
 		
 		for (i=0;i<x.getElementsByTagName("rect").length;i++)
 		{	
-
+			//alert(c1);
 			y=x.getElementsByTagName("rect")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -1635,57 +1726,75 @@ function Valider_form(id_form)
 	x= document.getElementById(id_form);
 	//x.setAttribute("hidden","true");
 	n1=id_form.charAt(id_form.length-1);
-	xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1);
-	xul_complet=xul_complet+"</vbox></overlay>";
-	alert(xul_complet);
-	
-	var file = Components.classes["@mozilla.org/file/directory_service;1"]
-	                     .getService(Components.interfaces.nsIProperties)
-	                     .get("ProfD", Components.interfaces.nsIFile);
-	file.append(myDBFile);
-
-	var storageService = Components.classes["@mozilla.org/storage/service;1"]
-	                        .getService(Components.interfaces.mozIStorageService);
-	var mDBConn = storageService.openDatabase(file);
-	
-	svg=document.getElementById("svg_1");
-	var sql = 'INSERT INTO svg(fichier,figure_c,titre) VALUES(?1,?2,?3);';
-	var statement = mDBConn.createStatement(sql);
-	statement.bindUTF8StringParameter(0,svg);
-	statement.bindUTF8StringParameter(1,"fig_21");
-	statement.bindUTF8StringParameter(2,"test");
-	statement.execute();
-	statement.reset();
-	
-	var statement = mDBConn.createStatement('SELECT  id_svg FROM svg ORDER BY id_svg DESC;');
-		
-		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
+	if (document.getElementById("choixAction_"+n1).value=="afficher_form"){
+		if (document.getElementById("ch1_"+n1).checked==true || document.getElementById("ch2_"+n1).checked==true){
+			xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1);
+			xul_complet=xul_complet+"</vbox></overlay>";
+			alert(xul_complet);
 		}
-			// return dataset;	
-		j=0;
-		var myArray1 = dataset;
-		id_svg=myArray1[j]["id_svg"];
-	    
-	var sql = 'INSERT INTO xul(form_xul,id_svg) VALUES(?1,?2);';
-	var statement = mDBConn.createStatement(sql);
-	statement.bindUTF8StringParameter(0,xul_complet);
-	statement.bindUTF8StringParameter(1,id_svg);
-	statement.execute();
-	statement.reset();
+		var file = Components.classes["@mozilla.org/file/directory_service;1"]
+		                     .getService(Components.interfaces.nsIProperties)
+		                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
 	
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+		                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		
+		svg=document.getElementById("svg_1");
+		var sql = 'INSERT INTO svg(fichier,figure_c,titre) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,svg);
+		statement.bindUTF8StringParameter(1,"fig_21");
+		statement.bindUTF8StringParameter(2,"test");
+		statement.execute();
+		statement.reset();
+		
+		var statement = mDBConn.createStatement('SELECT  id_svg FROM svg ORDER BY id_svg DESC;');
+			
+			
+			var dataset = [];
+			while (statement.executeStep()){
+				var row = [];
+				for(var i=0,k=statement.columnCount; i<k; i++){
+					row[statement.getColumnName(i)] = statement.getUTF8String(i);
+				}
+				dataset.push(row);
+			}
+				// return dataset;	
+			j=0;
+			var myArray1 = dataset;
+			id_svg=myArray1[j]["id_svg"];
+		if (document.getElementById("ch1_"+n1).checked==true){   
+			var sql = 'INSERT INTO xul(form_xul,id_svg) VALUES(?1,?2);';
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,xul_complet);
+			statement.bindUTF8StringParameter(1,id_svg);
+			statement.execute();
+			statement.reset();
+		}
+	}
 	listes=x.getElementsByTagName("menulist");
 	evt=listes[0].selectedItem.value;
 	fct=listes[1].selectedItem.value;
 	id_graph=RC(id_form,"saisie_","");
-	document.getElementById(id_graph).setAttribute(evt,fct+"(this)");
-	alert(id_form+' : '+evt+" : "+fct);
+	if (document.getElementById("cacher_"+n1).checked==true){
+		//alert(document.getElementById("cacher_"+n1).checked+"1");
+		document.getElementById(id_graph).setAttribute("hidden","true");
+		document.getElementById(id_graph).setAttribute("visibility","hidden");
+	}
+	else
+		//alert(document.getElementById("cacher_"+n1).checked+"2");
+	if (fct=="affiche_graph"){
+		g1=listes[2].selectedItem.value;
+		alert(evt+" : "+fct+"('"+g1+"')");
+		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
+	}
+	else if (evt=="afficher_form"){
+	}
+	else{
+	}
+	
 	
 }
 
@@ -1926,6 +2035,10 @@ function Ajouter_element_liste(elem,cpt)
 function version_final()
 {
 	graph=document.getElementById("svg_1");
+	s1= createScript("s1");
+	//alert(read("http://localhost/archipoenum/library/js/fonctions.js"));
+	s1.setAttribute("src","http://localhost/archipoenum/library/js/fonctions.js");
+	graph.appendChild(s1);
 	container=document.getElementById("vb1");
 	container.appendChild(graph);
 }
@@ -1937,10 +2050,12 @@ function test_evt(elem){
 	if (elem.selectedItem.value=="afficher_form")
 	{
 		document.getElementById("v"+n1).setAttribute("hidden","false");
+		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
-	else{
+	else if (elem.selectedItem.value=="affiche_graph"){
 		document.getElementById("v"+n1).setAttribute("hidden","true");
+		document.getElementById("choixGraph_"+n1).setAttribute("hidden","false");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
 }
@@ -1949,8 +2064,8 @@ function fin_assitant()
 {
 	graph=document.getElementById("svg_1");
 	s1= createScript("s1");
-	//alert(read("../js/fonctions.js"));
-	s1.setAttribute("xlink:href",'../js/fonctions.js');
+	//alert(read("http://localhost/archipoenum/library/js/fonctions.js"));
+	s1.setAttribute("src","http://localhost/archipoenum/library/js/fonctions.js");
 	graph.appendChild(s1);
 	//alert(graph);
 	window.opener.add_svg(graph);
@@ -1987,9 +2102,11 @@ function urlToPath (aPath) {
 
 function add_svg(svg)
 {
-	document.getElementById("C1").appendChild(svg);
 	doc=document.getElementById(figure_courant);
-	//doc.removeChild(doc.firstChild);              
+	document.getElementById("C1").removeChild(doc); 
+	v1=createVbox(figure_courant);
+	v1.appendChild(svg);
+	document.getElementById("C1").appendChild(v1);
 	document.getElementById(figure_courant).setAttribute("hidden","true	");
 }
 

@@ -1163,7 +1163,7 @@ function createScript(id) {
 function createGroupbox(id) {
   const XUL_NS = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
   var item = document.createElementNS(XUL_NS, "groupbox"); // create a new XUL menuitem
-  item.setAttribute("label", id);
+  item.setAttribute("id", id);
   return item;
 }
 
@@ -1627,6 +1627,7 @@ function createActionSaisie(c,graph,graph_c)
 		}	
 	choix3.appendChild(pop3);
 	label4=createLabel("Choisissez un graphe :    ");
+	label4.setAttribute("id","label_"+c1);
 	g1.appendChild(label4);
 	g1.appendChild(choix3);
 	g1.appendChild(l.cloneNode(false));
@@ -1899,7 +1900,7 @@ function Ajouter_liste(elem,cpt)
 		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
 		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
 		bout1.setAttribute("cpmt",cmpt+1);
-		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
 		bout2.setAttribute("cpmt",1);
 		second.appendChild(label);
 		second.appendChild(txt);
@@ -1913,11 +1914,11 @@ function Ajouter_liste(elem,cpt)
 		
 		if (elem.label=="Nouvelle liste"){
 			racine.appendChild(first);
-			alert(racine.id);	
+			//alert(racine.id);	
 		}
 		else{
 			racine.parentNode.appendChild(first);
-			alert(elem.label);	
+			//alert(elem.label);	
 		}
 		cmpt++;
 
@@ -1936,7 +1937,7 @@ function Ajouter_liste(elem,cpt)
 		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
 		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
 		bout1.setAttribute("cpmt",cmpt+1);
-		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
 		bout2.setAttribute("cpmt",1);
 		//bout=first.lastChild;
 		//first.removeChild(bout);
@@ -1962,73 +1963,151 @@ function Ajouter_liste(elem,cpt)
 
 }
 
-function Ajouter_element_liste(elem,cpt)
+function Ajouter_element_liste(elem,cpt,liste)
 {
 	elem.setAttribute("hidden","true");
 	racine=document.getElementById("h2"+cpt);
 	cmpt=parseInt(elem.getAttribute("cpmt"));
 	//alert(cpt);
 	//alert(document.getElementById("vz"+cpt));
-	if (document.getElementById("ve"+cpt)==null)
+	if (document.getElementById("ve"+cpt)==null )
 	{	
-
-		//alert("new");
-		f=document.getElementById(racine.id);
-		//alert(racine.id);
-		first= createVbox("ve"+cpt);
-		second= createHbox("he"+racine.id+cmpt);
-		label=createLabel("Ajouter un element "+cmpt);
-		txt=createText("texte_"+racine.id+cmpt);
-		bout11= createButton("btne_"+cmpt,"Ajouter");
-		bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
-		bout11.setAttribute("cpmt",cmpt+1);
-		second.appendChild(label);
-		second.appendChild(txt);
-		second.appendChild(bout11);		
-		first.appendChild(second);
-		//alert("cpt: "+cpt+" cpmt : "+cmpt);
-		bout= createButton("bout_"+racine.id,"Valider");
-		first.appendChild(second);
-		//first.appendChild(bout);
-		//racine.appendChild(first);
-		
-		if (elem.label=="Ajouter Element"){
-			racine.appendChild(first);
-			//alert(elem.label);	
+		if( document.getElementById("gl"+liste)==null){
+			//alert("new1");
+			f=document.getElementById(racine.id);
+			//alert("ve"+cpt);
+			first= createVbox("ve"+cpt);
+			gl=createGroupbox("gl"+liste);
+			cap1=createCaption("Liste numero : "+liste);
+			second= createHbox("he"+racine.id+cmpt);
+			label=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_"+racine.id+cmpt);
+			bout11= createButton("btne_"+cmpt,"Ajouter");
+			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
+			bout11.setAttribute("cpmt",cmpt+1);
+			second.appendChild(label);
+			second.appendChild(txt);
+			second.appendChild(bout11);		
+			first.appendChild(second);
+			//alert("cpt: "+cpt+" cpmt : "+cmpt);
+			bout= createButton("bout_"+racine.id,"Valider");
+			gl.appendChild(second);
+			gl.appendChild(cap1);
+			first.appendChild(gl);
+			//first.appendChild(bout);
+			//racine.appendChild(first);
+			
+			if (elem.label=="Ajouter Element"){
+				racine.appendChild(first);
+				//alert(elem.label);	
+			}
+			else
+				racine.parentNode.appendChild(first);
+			cmpt++;	
 		}
 		else
-			racine.parentNode.appendChild(first);
-		cmpt++;
-
-	}
-	else
-	{
-		//alert("old");
-		f=document.getElementById(racine.id);
-		first= document.getElementById("ve"+cpt);
-		second= createHbox("he"+racine.id+cmpt);
-		label=createLabel("Ajouter un element "+cmpt);
-		txt=createText("texte_"+racine.id+cmpt);
-		ancien=document.getElementById("hl"+racine.id+(cmpt-1));
-		//ancien.removeChild(bout1);
-		bout11= createButton("btne_"+cmpt,"Ajouter");
-		bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
-		bout11.setAttribute("cpmt",cmpt+1);
-		//bout=first.lastChild;
-		//first.removeChild(bout);
-		second.appendChild(label);
-		second.appendChild(txt);
-		second.appendChild(bout11);		
-		first.appendChild(second);
-
-		//alert("cpt: "+cpt+" cpmt : "+cmpt);
-		//bout= createButton("bout_"+racine.id,"Valider");
-		first.appendChild(second);
-		//first.appendChild(bout);
-		racine.appendChild(first);
+		{
+			//alert("old1");
+			f=document.getElementById(racine.id);
+			first= document.getElementById("ve"+cpt);
+			//alert("gl"+liste);
+			gl=document.getElementById("gl"+liste);
+			//cap1=createCaption("Liste numero : "+liste);
+			second= createHbox("he"+racine.id+cmpt);
+			label=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_"+racine.id+cmpt);
+			ancien=document.getElementById("he"+racine.id+(cmpt-1));
+			//ancien.removeChild(bout11);
+			bout11= createButton("btne_"+cmpt,"Ajouter");
+			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
+			bout11.setAttribute("cpmt",cmpt+1);
+			//bout=first.lastChild;
+			//first.removeChild(bout);
+			second.appendChild(label);
+			second.appendChild(txt);
+			second.appendChild(bout11);		
+			gl.appendChild(second);
+			//gl.appendChild(cap1);
+			//first.appendChild(gl);
 	
-			//racine.parentNode.appendChild(first);
+			//alert("cpt: "+cpt+" cpmt : "+cmpt);
+			//bout= createButton("bout_"+racine.id,"Valider");
+			//first.appendChild(second);
+			//first.appendChild(bout);
+			//racine.appendChild(first);
 		
+				//racine.parentNode.appendChild(first);
+			
+		}
+	}
+	else {
+		if( document.getElementById("gl"+liste)==null){
+			//alert("new2");
+			f=document.getElementById(racine.id);
+			//alert(racine.id);
+			first= document.getElementById("ve"+cpt);
+			gl=createGroupbox("gl"+liste);
+			cap1=createCaption("Liste numero : "+liste);
+			second= createHbox("he"+racine.id+cmpt);
+			label=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_"+racine.id+cmpt);
+			bout11= createButton("btne_"+cmpt,"Ajouter");
+			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
+			bout11.setAttribute("cpmt",cmpt+1);
+			second.appendChild(label);
+			second.appendChild(txt);
+			second.appendChild(bout11);		
+			first.appendChild(second);
+			//alert("cpt: "+cpt+" cpmt : "+cmpt);
+			bout= createButton("bout_"+racine.id,"Valider");
+			gl.appendChild(second);
+			gl.appendChild(cap1);
+			first.appendChild(gl);
+			//first.appendChild(bout);
+			//racine.appendChild(first);
+			
+			if (elem.label=="Ajouter Element"){
+				racine.appendChild(first);
+				//alert(elem.label);	
+			}
+			else
+				racine.parentNode.appendChild(first);
+			cmpt++;	
+		}
+		else
+		{
+			//alert("old2");
+			f=document.getElementById(racine.id);
+			first= document.getElementById("ve"+cpt);
+			//alert("gl"+liste);
+			gl=document.getElementById("gl"+liste);
+			//cap1=createCaption("Liste numero : "+liste);
+			second= createHbox("he"+racine.id+cmpt);
+			label=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_"+racine.id+cmpt);
+			ancien=document.getElementById("he"+racine.id+(cmpt-1));
+			//ancien.removeChild(bout11);
+			bout11= createButton("btne_"+cmpt,"Ajouter");
+			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
+			bout11.setAttribute("cpmt",cmpt+1);
+			//bout=first.lastChild;
+			//first.removeChild(bout);
+			second.appendChild(label);
+			second.appendChild(txt);
+			second.appendChild(bout11);		
+			gl.appendChild(second);
+			//gl.appendChild(cap1);
+			//first.appendChild(gl);
+	
+			//alert("cpt: "+cpt+" cpmt : "+cmpt);
+			//bout= createButton("bout_"+racine.id,"Valider");
+			//first.appendChild(second);
+			//first.appendChild(bout);
+			//racine.appendChild(first);
+		
+				//racine.parentNode.appendChild(first);
+			
+		}
 	}
 }
 
@@ -2050,12 +2129,14 @@ function test_evt(elem){
 	if (elem.selectedItem.value=="afficher_form")
 	{
 		document.getElementById("v"+n1).setAttribute("hidden","false");
+		document.getElementById("label_"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
 	else if (elem.selectedItem.value=="affiche_graph"){
 		document.getElementById("v"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","false");
+		document.getElementById("label_"+n1).setAttribute("hidden","false");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
 }

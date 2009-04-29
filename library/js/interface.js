@@ -1886,7 +1886,7 @@ function Ajouter_liste(elem,cpt)
 	racine=document.getElementById("h2"+cpt);
 	cmpt=parseInt(elem.getAttribute("cpmt"));
 	//alert(cpt);
-	//alert(document.getElementById("vz"+cpt));
+	//alert(document.getElementById("vl"+cpt));
 	if (document.getElementById("vl"+cpt)==null)
 	{	
 
@@ -1911,23 +1911,26 @@ function Ajouter_liste(elem,cpt)
 		first.appendChild(second);
 		//first.appendChild(bout);
 		
-		if (elem.label=="Nouveau"){
+		if (elem.label=="Nouvelle liste"){
 			racine.appendChild(first);
-			//alert(elem.label);	
+			alert(racine.id);	
 		}
-		else
+		else{
 			racine.parentNode.appendChild(first);
+			alert(elem.label);	
+		}
 		cmpt++;
 
 	}
-	else
+	else 
 	{
-		//alert("old");
+		//alert("old1");
 		first= document.getElementById("vl"+cpt);
 		second= createHbox("hl"+racine.id+cmpt);
 		label=createLabel("Ajouter un titre pour la liste numero "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		ancien=document.getElementById("hz"+racine.id+(cmpt-1));
+		//alert("hz"+racine.id+(cmpt));
+		ancien=document.getElementById("hl"+racine.id+(cmpt-1));
 		ancien.removeChild(bout1);
 		bout1= createButton("btnl_"+cmpt,"Ajouter Liste");
 		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
@@ -1956,6 +1959,7 @@ function Ajouter_liste(elem,cpt)
 			//racine.parentNode.appendChild(first);
 		
 	}
+
 }
 
 function Ajouter_element_liste(elem,cpt)
@@ -1975,21 +1979,21 @@ function Ajouter_element_liste(elem,cpt)
 		second= createHbox("he"+racine.id+cmpt);
 		label=createLabel("Ajouter un element "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		bout1= createButton("btne_"+cmpt,"Ajouter");
-		bout1.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
-		bout1.setAttribute("cpmt",cmpt+1);
+		bout11= createButton("btne_"+cmpt,"Ajouter");
+		bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout11.setAttribute("cpmt",cmpt+1);
 		second.appendChild(label);
 		second.appendChild(txt);
-		second.appendChild(bout1);		
+		second.appendChild(bout11);		
 		first.appendChild(second);
 		//alert("cpt: "+cpt+" cpmt : "+cmpt);
 		bout= createButton("bout_"+racine.id,"Valider");
 		first.appendChild(second);
 		//first.appendChild(bout);
-		f.appendChild(first);
+		//racine.appendChild(first);
 		
 		if (elem.label=="Ajouter Element"){
-			racine.appendChild(f);
+			racine.appendChild(first);
 			//alert(elem.label);	
 		}
 		else
@@ -2005,28 +2009,24 @@ function Ajouter_element_liste(elem,cpt)
 		second= createHbox("he"+racine.id+cmpt);
 		label=createLabel("Ajouter un element "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		ancien=document.getElementById("hz"+racine.id+(cmpt-1));
-		ancien.removeChild(bout1);
-		bout1= createButton("btne_"+cmpt,"Ajouter");
-		bout1.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
-		bout1.setAttribute("cpmt",cmpt+1);
+		ancien=document.getElementById("hl"+racine.id+(cmpt-1));
+		//ancien.removeChild(bout1);
+		bout11= createButton("btne_"+cmpt,"Ajouter");
+		bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+")");
+		bout11.setAttribute("cpmt",cmpt+1);
 		//bout=first.lastChild;
 		//first.removeChild(bout);
 		second.appendChild(label);
 		second.appendChild(txt);
-		second.appendChild(bout1);		
+		second.appendChild(bout11);		
 		first.appendChild(second);
 
 		//alert("cpt: "+cpt+" cpmt : "+cmpt);
 		//bout= createButton("bout_"+racine.id,"Valider");
 		first.appendChild(second);
 		//first.appendChild(bout);
-		f.appendChild(first);
-		if (elem.label=="Ajouter Element"){
-			racine.appendChild(f);
-			alert(elem.label);	
-		}
-		else{}
+		racine.appendChild(first);
+	
 			//racine.parentNode.appendChild(first);
 		
 	}

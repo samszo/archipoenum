@@ -7,7 +7,7 @@
   onwizardfinish="fin_assitant();">
   <wizardpage id="import_svg" onpageadvanced='interface_modif();' canAdvance="false" >
 	 <description>
-      Importer votre fichier SVG
+      Importer votre fichier SVG et cliquer sur suivant
 	 </description>
 	 	<hbox id="test123">
 	 		<textbox  id="f_svg" value="" style='width:300px;' />
@@ -38,6 +38,11 @@
 
   <wizardpage id="interface_zone">
 		<groupbox orient="horizontal" flex="1" >
+			<vbox id="S1" style="display: inline-block;" flex="1">
+			</vbox>
+			<splitter collapse="before" resizeafter="farthest">
+				<grippy/>
+			</splitter>
 				<vbox id="vb1">
 					<hbox>
 						<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>

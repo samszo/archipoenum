@@ -1711,8 +1711,8 @@ function Valider_form(id_form)
 	id_graph=RC(id_form,"saisie_","");
 	if (fct=="afficher_form"){
 		
-		xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1)+contruire_liste(n1);
-		xul_complet=xul_complet+"</vbox></overlay>";
+		xul_complet='<vbox>'+contruire_texte(n1)+contruire_liste(n1);
+		xul_complet=xul_complet+"</vbox>";
 		alert(xul_complet);
 		
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]

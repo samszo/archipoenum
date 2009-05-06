@@ -9,7 +9,7 @@
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>
-	<script src="library/js/svgAgentSchema.js"/>
+	<script src="library/js/fonctions.js"/>
  <html:style>
  treechildren::-moz-tree-checkbox
  {
@@ -71,7 +71,7 @@
 				<menu label=" Gestion de l'interface ->" >
 					<menupopup id="test3">
 						<menuitem id="ch1" label="Créer une interface  " onclick="open_wizard();"/>
-						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard();"/>
+						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard2();"/>
 						<menuitem id="ch1" label="Liste des interfaces disponibles  " onclick="open_wizard();"/>
 					</menupopup>
 				</menu>

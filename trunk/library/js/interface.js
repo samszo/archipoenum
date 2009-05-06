@@ -10,6 +10,7 @@ var doc_courant="";
 var user;
 var id_user;
 var ladate=new Date();
+var xul_c='';
 //var cmpt=1;
 function  init(){	
 	var parameters = location.search.substring(1).split("&");
@@ -737,7 +738,7 @@ function login_user(){
 		var mDBConn = storageService.openDatabase(file);
 		login = document.getElementById("nom").value;
 		password = document.getElementById("passwd").value;
-		alert (login +' : '+password);
+		//alert (login +' : '+password);
 		var statement = mDBConn.createStatement('SELECT id,login,pwd FROM utilisateur where login=?1');
 		statement.bindUTF8StringParameter(0,login);
 		
@@ -1269,26 +1270,9 @@ function Ajouter_doc() {
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(xulData,"text/xml");
 	// Intégrer le DOM récupéré à l'interieur de document
-/*		resultDoc.documentElement.setAttribute("id","Document_"+docs);
-		resultDoc.documentElement.setAttribute("hidden","true");
-		resultDoc.getElementById("fig_18_document").setAttribute("id","Document_"+docs+"_document");
-		resultDoc.getElementById("fig_18_type").setAttribute("id","Document_"+docs+"_type");
-		resultDoc.getElementById("fig_18_format").setAttribute("id","Document_"+docs+"_format");
-		resultDoc.getElementById("fig_18_section").setAttribute("id","Document_"+docs+"_section");
-		resultDoc.getElementById("fig_18_nature").setAttribute("id","Document_"+docs+"_nature");
-		resultDoc.getElementById("fig_18_actor").setAttribute("id","Document_"+docs+"_actor");
-		resultDoc.getElementById("fig_18_ontoactor").setAttribute("id","Document_"+docs+"_ontoactor");
-		resultDoc.getElementById("fig_18_concept").setAttribute("id","Document_"+docs+"_concept");
-		resultDoc.getElementById("fig_18_work").setAttribute("id","Document_"+docs+"_work");
-		resultDoc.getElementById("fig_18_instance").setAttribute("id","Document_"+docs+"_instance");
-		resultDoc.getElementById("fig_18_physicpart").setAttribute("id","Document_"+docs+"_physicpart");*/
+
 		document.getElementById("D2").appendChild(resultDoc.documentElement);
-	
-	//doc=document.getElementById(figure_courant);
-	//doc.removeChild(doc.firstChild);              
-	//document.getElementById(figure_courant).setAttribute("hidden","true	");
-	//figure_courant="Document"+docs;
-	//alert ('chemin ='+s);
+
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\DocSaisie.xul";	
 	xml = read(chemin);
 	xml2=RC(xml,"fig_18","Document_"+docs);
@@ -1302,20 +1286,7 @@ function Ajouter_doc() {
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(xulData,"text/xml");
-	/*var resultDoc=document.getElementById("ZonesSaisies").cloneNode(true);
-	resultDoc.setAttribute("id","ZonesSaisies_"+docs);
-	resultDoc.setAttribute("hidden","false");
-	resultDoc.getElementById("saisie_fig_18_document").setAttribute("id","saisie_Document_"+docs+"_document");
-	resultDoc.getElementById("saisie_fig_18_type").setAttribute("id","saisie_Document_"+docs+"_type");
-	resultDoc.getElementById("saisie_fig_18_format").setAttribute("id","saisie_Document_"+docs+"_format");
-	resultDoc.getElementById("saisie_fig_18_section").setAttribute("id","saisie_Document_"+docs+"_section");
-	resultDoc.getElementById("saisie_fig_18_nature").setAttribute("id","saisie_Document_"+docs+"_nature");
-	resultDoc.getElementById("saisie_fig_18_actor").setAttribute("id","saisie_Document_"+docs+"_actor");
-	resultDoc.getElementById("saisie_fig_18_ontoactor").setAttribute("id","saisie_Document_"+docs+"_ontoactor");
-	resultDoc.getElementById("saisie_fig_18_concept").setAttribute("id","saisie_Document_"+docs+"_concept");
-	resultDoc.getElementById("saisie_fig_18_work").setAttribute("id","saisie_Document_"+docs+"_work");
-	resultDoc.getElementById("saisie_fig_18_instance").setAttribute("id","saisie_Document_"+docs+"_instance");
-	resultDoc.getElementById("saisie_fig_18_physicpart").setAttribute("id","saisie_Document_"+docs+"_physicpart");*/
+
 	var popup = resultDoc.getElementById("liste1");
 	var item1 = createMenuItem("Text");
 	item1.setAttribute("value","Text");
@@ -1469,13 +1440,14 @@ function createActionSaisie(c,graph,graph_c)
 	g.appendChild(graph);
 	svg.appendChild(g);
 	svg.setAttribute("version","1.1");
+	svg.setAttribute("preserveAspectRatio","xMinYMin meet");
 	svg.setAttribute("baseprofile","full");
 	svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
 	svg.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
 	svg.setAttribute("xmlns:ev","http://www.w3.org/2001/xml-events");
 	svg.setAttribute("visibility",'visible');
 	svg.setAttribute("viewBox","0 0 1000 1000");
-	svg.setAttribute("preserveAspectRatio","none");
+	//svg.setAttribute("preserveAspectRatio","none");
 	svg.setAttribute("width","300px");
 	svg.setAttribute("height","200px");
 	label=createCaption(c);
@@ -1500,6 +1472,8 @@ function createActionSaisie(c,graph,graph_c)
 	fct2.setAttribute("value","affiche_graph");
 	var fct3 = createMenuItem("Afficher une autre interface");
 	fct3.setAttribute("value","affiche_interface");
+	var fct4 = createMenuItem("Cacher un graphique");
+	fct4.setAttribute("value","cacher_graph");
 	var bt1= createButton("bt_"+c1,"Valider");
 	bt1.setAttribute("onclick", "Valider_form('"+c+"');");
 	//alert(c);
@@ -1508,25 +1482,25 @@ function createActionSaisie(c,graph,graph_c)
 	ch1=createCheck("Zone Texte      ");
 	ch1.setAttribute("id","ch1_"+c1);
 	ch1.setAttribute("oncommand","affiche_valid(this)");
-	bt_1= createButton("bt_h1"+c1,"Nouveau");
+	bt_1= createButton("bt_h1"+c1,"Nouvelle Zone texte");
 	bt_1.setAttribute("onclick","Ajouter_zone(this,"+c1+")");
-	bt_1.setAttribute("hidden","true");
+	bt_1.setAttribute("hidden","false");
 	bt_1.setAttribute("cpmt",1);
 	ch2=createCheck("Menu Liste");
 	ch2.setAttribute("id","ch2_"+c1);
 	ch2.setAttribute("oncommand","affiche_valid(this)");
-	bt_2= createButton("bt_h2"+c1,"Nouvelle liste");
+	bt_2= createButton("bt_h2"+c1,"Nouvelle Menu liste");
 	bt_3= createButton("bt_c"+c1,"Cacher");
 	bt_2.setAttribute("onclick","Ajouter_liste(this,"+c1+")");
-	bt_2.setAttribute("hidden","true");
+	bt_2.setAttribute("hidden","false");
 	bt_2.setAttribute("cpmt",1);
 	txt1=createText("txt_h1"+c1);
 	txt2=createText("txt_h2"+c1);
-	second.appendChild(ch1);
+	//second.appendChild(ch1);
 	g3.appendChild(second);
 	//second.appendChild(txt1);
 	second.appendChild(bt_1);
-	third.appendChild(ch2);
+	//third.appendChild(ch2);
 	g4.appendChild(third);
 	//third.appendChild(txt2);
 	third.appendChild(bt_2);
@@ -1539,11 +1513,12 @@ function createActionSaisie(c,graph,graph_c)
 	g2=createGroupbox("svg"+c1);
 	g2.appendChild(svg);
 	g1.appendChild(g2);
-	g1.appendChild(ch_c);
+	//g1.appendChild(ch_c);
 	g1.appendChild(l.cloneNode(false));
 	g1.appendChild(label1);
 	g1.appendChild(choix);
 	pop2.appendChild(fct2);
+	pop2.appendChild(fct4);
 	pop2.appendChild(fct1);
 	pop2.appendChild(fct3);
 	choix2.appendChild(pop2);
@@ -1725,14 +1700,21 @@ function Valider_form(id_form)
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	//alert(id_form);
 	x= document.getElementById(id_form);
+    
+    //alert(file.path);    
+
 	//x.setAttribute("hidden","true");
 	n1=id_form.charAt(id_form.length-1);
-	if (document.getElementById("choixAction_"+n1).value=="afficher_form"){
-		if (document.getElementById("ch1_"+n1).checked==true || document.getElementById("ch2_"+n1).checked==true){
-			xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1);
-			xul_complet=xul_complet+"</vbox></overlay>";
-			alert(xul_complet);
-		}
+	listes=x.getElementsByTagName("menulist");
+	evt=listes[0].selectedItem.value;
+	fct=listes[1].selectedItem.value;
+	id_graph=RC(id_form,"saisie_","");
+	if (fct=="afficher_form"){
+		
+		xul_complet='<?xml version="1.0" ?><?xml-stylesheet href="../../design/svg.css" type="text/css"?><overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" ><vbox>'+contruire_texte(n1)+contruire_liste(n1);
+		xul_complet=xul_complet+"</vbox></overlay>";
+		alert(xul_complet);
+		
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
 		                     .getService(Components.interfaces.nsIProperties)
 		                     .get("ProfD", Components.interfaces.nsIFile);
@@ -1743,55 +1725,70 @@ function Valider_form(id_form)
 		var mDBConn = storageService.openDatabase(file);
 		
 		svg=document.getElementById("svg_1");
+		var serializer = new XMLSerializer();
+    	var xml = serializer.serializeToString(svg);
 		var sql = 'INSERT INTO svg(fichier,figure_c,titre) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,svg);
+		statement.bindUTF8StringParameter(0,xml);
 		statement.bindUTF8StringParameter(1,"fig_21");
 		statement.bindUTF8StringParameter(2,"test");
 		statement.execute();
 		statement.reset();
 		
 		var statement = mDBConn.createStatement('SELECT  id_svg FROM svg ORDER BY id_svg DESC;');
-			
-			
-			var dataset = [];
-			while (statement.executeStep()){
-				var row = [];
-				for(var i=0,k=statement.columnCount; i<k; i++){
-					row[statement.getColumnName(i)] = statement.getUTF8String(i);
-				}
-				dataset.push(row);
+				
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
 			}
-				// return dataset;	
-			j=0;
-			var myArray1 = dataset;
-			id_svg=myArray1[j]["id_svg"];
-		if (document.getElementById("ch1_"+n1).checked==true){   
-			var sql = 'INSERT INTO xul(form_xul,id_svg) VALUES(?1,?2);';
-			var statement = mDBConn.createStatement(sql);
-			statement.bindUTF8StringParameter(0,xul_complet);
-			statement.bindUTF8StringParameter(1,id_svg);
-			statement.execute();
-			statement.reset();
+			dataset.push(row);
 		}
+				// return dataset;	
+		j=0;
+		var myArray1 = dataset;
+		id_svg=myArray1[j]["id_svg"];
+		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xul_complet);
+		statement.bindUTF8StringParameter(1,xul_complet);
+		statement.bindUTF8StringParameter(2,id_svg);
+		statement.execute();
+		statement.reset();
+		//g1=listes[2].selectedItem.value;
+		
+		
+		var statement = mDBConn.createStatement('SELECT  id_xul FROM xul ORDER BY id_svg DESC;');
+				
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+				// return dataset;	
+		j=0;
+		var myArray1 = dataset;
+		id_xul=myArray1[j]["id_xul"];
+		alert("Base    :   "+id_xul);
+		alert(evt+" : "+fct+"('"+id_xul+"')");
+		document.getElementById(id_graph).setAttribute(evt,fct+"('"+id_xul+"')");
 	}
-	listes=x.getElementsByTagName("menulist");
-	evt=listes[0].selectedItem.value;
-	fct=listes[1].selectedItem.value;
-	id_graph=RC(id_form,"saisie_","");
-	if (document.getElementById("cacher_"+n1).checked==true){
+
+	else if (fct=="cacher_graph"){
 		//alert(document.getElementById("cacher_"+n1).checked+"1");
 		document.getElementById(id_graph).setAttribute("hidden","true");
 		document.getElementById(id_graph).setAttribute("visibility","hidden");
 	}
-	else
-		//alert(document.getElementById("cacher_"+n1).checked+"2");
-	if (fct=="affiche_graph"){
+	else if (fct=="affiche_graph"){
 		g1=listes[2].selectedItem.value;
 		alert(evt+" : "+fct+"('"+g1+"')");
 		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
 	}
-	else if (evt=="afficher_form"){
+	else if (fct=="affiche_interface"){
 	}
 	else{
 	}
@@ -1886,7 +1883,7 @@ function Ajouter_liste(elem,cpt)
 	elem.setAttribute("hidden","true");
 	racine=document.getElementById("h2"+cpt);
 	cmpt=parseInt(elem.getAttribute("cpmt"));
-	//alert(cpt);
+	//alert(racine.id);
 	//alert(document.getElementById("vl"+cpt));
 	if (document.getElementById("vl"+cpt)==null)
 	{	
@@ -1896,23 +1893,23 @@ function Ajouter_liste(elem,cpt)
 		second= createHbox("hl"+racine.id+cmpt);
 		label=createLabel("Ajouter un titre pour la liste numero "+cmpt);
 		txt=createText("texte_"+racine.id+cmpt);
-		bout1= createButton("btnl_"+cmpt,"Ajouter Liste");
-		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
-		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
-		bout1.setAttribute("cpmt",cmpt+1);
-		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
-		bout2.setAttribute("cpmt",1);
+		bout21= createButton("btnl_"+cpt,"Ajouter Liste");
+		bout22= createButton("btnl2_"+cpt,"Ajouter Element");
+		bout21.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
+		bout21.setAttribute("cpmt",cmpt+1);
+		bout22.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
+		bout22.setAttribute("cpmt",1);
 		second.appendChild(label);
 		second.appendChild(txt);
-		second.appendChild(bout1);		
-		second.appendChild(bout2);
+		second.appendChild(bout21);		
+		second.appendChild(bout22);
 		first.appendChild(second);
 		//alert("cpt: "+cpt+" cpmt : "+cmpt);
 		//bout= createButton("boutL_"+racine.id,"Valider");
 		first.appendChild(second);
 		//first.appendChild(bout);
 		
-		if (elem.label=="Nouvelle liste"){
+		if (elem.label=="Nouvelle Menu liste"){
 			racine.appendChild(first);
 			//alert(racine.id);	
 		}
@@ -1932,19 +1929,19 @@ function Ajouter_liste(elem,cpt)
 		txt=createText("texte_"+racine.id+cmpt);
 		//alert("hz"+racine.id+(cmpt));
 		ancien=document.getElementById("hl"+racine.id+(cmpt-1));
-		ancien.removeChild(bout1);
-		bout1= createButton("btnl_"+cmpt,"Ajouter Liste");
-		bout2= createButton("btnl2_"+cmpt,"Ajouter Element");
-		bout1.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
-		bout1.setAttribute("cpmt",cmpt+1);
-		bout2.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
-		bout2.setAttribute("cpmt",1);
+		ancien.removeChild(bout21);
+		bout21= createButton("btnl_"+cpt,"Ajouter Liste");
+		bout22= createButton("btnl2_"+cpt,"Ajouter Element");
+		bout21.setAttribute("onclick","Ajouter_liste(this,"+cpt+")");
+		bout21.setAttribute("cpmt",cmpt+1);
+		bout22.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+cmpt+")");
+		bout22.setAttribute("cpmt",1);
 		//bout=first.lastChild;
 		//first.removeChild(bout);
 		second.appendChild(label);
 		second.appendChild(txt);
-		second.appendChild(bout1);
-		second.appendChild(bout2);		
+		second.appendChild(bout21);
+		second.appendChild(bout22);		
 		first.appendChild(second);
 
 		//alert("cpt: "+cpt+" cpmt : "+cmpt);
@@ -1952,9 +1949,9 @@ function Ajouter_liste(elem,cpt)
 		first.appendChild(second);
 		//first.appendChild(bout);
 		
-		if (elem.label=="Nouveau"){
+		if (elem.label=="Nouvelle Menu liste"){
 			racine.appendChild(first);
-			alert(elem.label);	
+			//alert(elem.label);	
 		}
 		else{}
 			//racine.parentNode.appendChild(first);
@@ -1967,6 +1964,8 @@ function Ajouter_element_liste(elem,cpt,liste)
 {
 	elem.setAttribute("hidden","true");
 	racine=document.getElementById("h2"+cpt);
+	//alert(racine1.id+" : "+"hl"+racine1.id+liste);
+	//racine1=document.getElementById("hl"+racine1.id+liste);
 	cmpt=parseInt(elem.getAttribute("cpmt"));
 	//alert(cpt);
 	//alert(document.getElementById("vz"+cpt));
@@ -1977,22 +1976,33 @@ function Ajouter_element_liste(elem,cpt,liste)
 			f=document.getElementById(racine.id);
 			//alert("ve"+cpt);
 			first= createVbox("ve"+cpt);
+			
 			gl=createGroupbox("gl"+liste);
 			cap1=createCaption("Liste numero : "+liste);
-			second= createHbox("he"+racine.id+cmpt);
-			label=createLabel("Ajouter un element "+cmpt);
-			txt=createText("texte_"+racine.id+cmpt);
-			bout11= createButton("btne_"+cmpt,"Ajouter");
+			second= createHbox("he"+racine.id+liste+cmpt);
+			
+			//alert(("texte_"+racine.id+liste));
+			titre=document.getElementById("texte_"+racine.id+liste);
+			third= createVbox("ve"+cpt);
+			label=createLabel("Titre : "+titre.value);
+			l=createLabel(" ");
+			label2=createLabel("Ajouter un element "+cmpt);			
+			txt=createText("texte_e_"+racine.id+liste+cmpt);
+			bout11= createButton("btne_"+cpt+liste,"Ajouter");
 			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
 			bout11.setAttribute("cpmt",cmpt+1);
-			second.appendChild(label);
+			second.appendChild(label2);
 			second.appendChild(txt);
-			second.appendChild(bout11);		
+			second.appendChild(bout11);
+			
 			first.appendChild(second);
 			//alert("cpt: "+cpt+" cpmt : "+cmpt);
 			bout= createButton("bout_"+racine.id,"Valider");
-			gl.appendChild(second);
+			third.appendChild(label);
+			third.appendChild(l);
+			third.appendChild(second);
 			gl.appendChild(cap1);
+			gl.appendChild(third);
 			first.appendChild(gl);
 			//first.appendChild(bout);
 			//racine.appendChild(first);
@@ -2013,20 +2023,28 @@ function Ajouter_element_liste(elem,cpt,liste)
 			//alert("gl"+liste);
 			gl=document.getElementById("gl"+liste);
 			//cap1=createCaption("Liste numero : "+liste);
-			second= createHbox("he"+racine.id+cmpt);
-			label=createLabel("Ajouter un element "+cmpt);
-			txt=createText("texte_"+racine.id+cmpt);
-			ancien=document.getElementById("he"+racine.id+(cmpt-1));
-			//ancien.removeChild(bout11);
-			bout11= createButton("btne_"+cmpt,"Ajouter");
+			second= createHbox("he"+racine.id+liste+cmpt);
+			titre=document.getElementById("texte_"+racine.id+liste);
+			third= createVbox("ve"+cpt);
+			label=createLabel("Titre : "+titre.value);
+			l=createLabel(" ");
+			label2=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_e_"+racine.id+liste+cmpt);
+			bout11= document.getElementById("btne_"+cpt+liste);
+			ancien=document.getElementById("he"+racine.id+liste+(cmpt-1));
+			ancien.removeChild(bout11);
+			bout11= createButton("btne_"+cpt+liste,"Ajouter");
 			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
 			bout11.setAttribute("cpmt",cmpt+1);
 			//bout=first.lastChild;
 			//first.removeChild(bout);
-			second.appendChild(label);
+			second.appendChild(label2);
 			second.appendChild(txt);
-			second.appendChild(bout11);		
-			gl.appendChild(second);
+			second.appendChild(bout11);	
+			//third.appendChild(label);
+			//third.appendChild(l);
+			third.appendChild(second);	
+			gl.appendChild(third);
 			//gl.appendChild(cap1);
 			//first.appendChild(gl);
 	
@@ -2048,19 +2066,28 @@ function Ajouter_element_liste(elem,cpt,liste)
 			first= document.getElementById("ve"+cpt);
 			gl=createGroupbox("gl"+liste);
 			cap1=createCaption("Liste numero : "+liste);
-			second= createHbox("he"+racine.id+cmpt);
-			label=createLabel("Ajouter un element "+cmpt);
-			txt=createText("texte_"+racine.id+cmpt);
-			bout11= createButton("btne_"+cmpt,"Ajouter");
+			second= createHbox("he"+racine.id+liste+cmpt);
+			//alert(("texte_"+racine.id+liste));
+			titre=document.getElementById("texte_"+racine.id+liste);
+			//alert(titre.value);
+			third= createVbox("ve"+cpt);
+			label=createLabel("Titre : "+titre.value);
+			l=createLabel(" ");
+			label2=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_e_"+racine.id+liste+cmpt);
+			bout11= createButton("btne_"+cpt+liste,"Ajouter");
 			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
 			bout11.setAttribute("cpmt",cmpt+1);
-			second.appendChild(label);
+			second.appendChild(label2);
 			second.appendChild(txt);
 			second.appendChild(bout11);		
 			first.appendChild(second);
 			//alert("cpt: "+cpt+" cpmt : "+cmpt);
 			bout= createButton("bout_"+racine.id,"Valider");
-			gl.appendChild(second);
+			third.appendChild(label);
+			third.appendChild(l);
+			third.appendChild(second);
+			gl.appendChild(third);
 			gl.appendChild(cap1);
 			first.appendChild(gl);
 			//first.appendChild(bout);
@@ -2082,20 +2109,28 @@ function Ajouter_element_liste(elem,cpt,liste)
 			//alert("gl"+liste);
 			gl=document.getElementById("gl"+liste);
 			//cap1=createCaption("Liste numero : "+liste);
-			second= createHbox("he"+racine.id+cmpt);
-			label=createLabel("Ajouter un element "+cmpt);
-			txt=createText("texte_"+racine.id+cmpt);
-			ancien=document.getElementById("he"+racine.id+(cmpt-1));
-			//ancien.removeChild(bout11);
-			bout11= createButton("btne_"+cmpt,"Ajouter");
+			second= createHbox("he"+racine.id+liste+cmpt);
+			titre=document.getElementById("texte_"+racine.id+liste);
+			third= createVbox("ve"+cpt);
+			label=createLabel("Titre : "+titre.value);
+			l=createLabel(" ");
+			label2=createLabel("Ajouter un element "+cmpt);
+			txt=createText("texte_e_"+racine.id+liste+cmpt);
+			ancien=document.getElementById("he"+racine.id+liste+(cmpt-1));
+			bout11= document.getElementById("btne_"+cpt+liste);
+			ancien.removeChild(bout11);
+			bout11= createButton("btne_"+cpt+liste,"Ajouter");
 			bout11.setAttribute("onclick","Ajouter_element_liste(this,"+cpt+","+liste+")");
 			bout11.setAttribute("cpmt",cmpt+1);
 			//bout=first.lastChild;
 			//first.removeChild(bout);
-			second.appendChild(label);
+			second.appendChild(label2);
 			second.appendChild(txt);
-			second.appendChild(bout11);		
-			gl.appendChild(second);
+			second.appendChild(bout11);	
+			//third.appendChild(label);
+			//third.appendChild(l);
+			third.appendChild(second);	
+			gl.appendChild(third);
 			//gl.appendChild(cap1);
 			//first.appendChild(gl);
 	
@@ -2196,6 +2231,8 @@ function modif_interface(){
 	//alert(xmlDoc);
 	c1=1;
 		//x=xmlDoc.getElementsByTagName("svg")[0];
+		
+		doc1=x;
 		x.setAttribute("id",'svg_1');
 		x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
@@ -2257,7 +2294,7 @@ function modif_interface(){
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i].cloneNode(true);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2266,7 +2303,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("path")[i].cloneNode(false);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 	
@@ -2276,7 +2313,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("text")[i].cloneNode(true);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2284,7 +2321,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2293,7 +2330,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("rect")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2310,18 +2347,42 @@ function construire_xul(elem,c){
 function contruire_texte(c){
 	xul_text='';
 	//alert("btnz_"+c);
-	cp=parseInt(document.getElementById("btnz_"+c).getAttribute("cpmt"));
-	alert("cpmt="+cp);
-	for (i=1;i<cp;i++){
-		//alert("texte_h1"+c+""+i);
-		txt=document.getElementById("texte_h1"+c+""+i);
-		xul_text=xul_text+'<hbox><label value="'+txt.value+' "  flex="1"/> <textbox id="zt'+c+""+i+'" value=""  /></hbox>';
-	}
-	
+	if (document.getElementById("btnz_"+c)){
+		cp=parseInt(document.getElementById("btnz_"+c).getAttribute("cpmt"));
+		//alert("cpmt="+cp);
+		for (i=1;i<cp;i++){
+			//alert("texte_h1"+c+""+i);
+			txt=document.getElementById("texte_h1"+c+""+i);
+			xul_text=xul_text+'<hbox><label value="'+txt.value+' "  flex="1"/> <textbox id="zt'+c+""+i+'" value=""  /></hbox>';
+		}
+	}	
 	return(xul_text);
 }
 
-function contruire_liste(){
-
+function contruire_liste(c){
+	xul_text='';
+	//alert("btnl_"+c);
+	if (document.getElementById("btnl_"+c)){
+		cp=parseInt(document.getElementById("btnl_"+c).getAttribute("cpmt"));
+		//alert("Nb Listes= "+cp);
+		for (i=1;i<cp;i++){
+			//alert(("btne_"+c+i));
+			txt=document.getElementById("texte_h2"+c+""+i).value;
+			xul_text=xul_text+'<vbox><label value="'+txt+'"/><menulist id="liste_'+c+'" editable="true"><menupopup>';
+			if (document.getElementById("btne_"+c+i)){	
+				cp2=parseInt(document.getElementById("btne_"+c+i).getAttribute("cpmt"));
+				//alert("Nb Elements dans la liste "+i+" = "+cp2);
+				for (j=1;j<cp2;j++){
+					//alert("texte_e_h2"+c+""+i+""+j);
+					//texte_e_h2411  texte_e_h2412  texte_e_h2413
+					txt2=document.getElementById("texte_e_h2"+c+""+i+""+j).value;
+					xul_text=xul_text+'<menuitem label="'+ txt2+'" value="'+txt2+'"/>';
+				}
+				xul_text=xul_text+'</menupopup></menulist></vbox>';
+			}
+		}
+	}	
+	//alert(xul_text);
+	return(xul_text);
 }
 

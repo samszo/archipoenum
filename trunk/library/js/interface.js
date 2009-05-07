@@ -13,9 +13,11 @@ var ladate=new Date();
 var xul_c='';
 //var cmpt=1;
 function  init(){	
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	var parameters = location.search.substring(1).split("&");
 	//alert(parameters);
 	//alert(parameters[0]);
+	createDefault();	
     var temp = parameters[0].split("=");
     var temp2 = parameters[1].split("=");
     user = unescape(temp[1]);
@@ -25,12 +27,128 @@ function  init(){
 	document.getElementById("ch1").setAttribute("label",user);
 	document.getElementById("u1").setAttribute("hidden","false");
 	document.getElementById("u2").setAttribute("hidden","false");
-	document.getElementById("fig_21_indexer").setAttribute("fill","green");
+	x=xmlDoc.getElementsByTagName("svg");
+	document.removeChild(x[x.length]); 
+	/*document.getElementById("fig_21_indexer").setAttribute("fill","green");
 	document.getElementById("fig_21_indexing").setAttribute("fill","green");
 	document.getElementById("fig_21_indexer_name").firstChild.data=user;
 	document.getElementById("fig_21_indexing_id").firstChild.data=id_user;
-	document.getElementById("fig_21_indexing_date").firstChild.data=ladate.getDate()+"-"+(ladate.getMonth()+1)+"-"+ladate.getFullYear();
+	document.getElementById("fig_21_indexing_date").firstChild.data=ladate.getDate()+"-"+(ladate.getMonth()+1)+"-"+ladate.getFullYear();*/
 	get_list_SVG_user();
+}
+
+function createDefault(){
+	var mDBConn = connect_DB();
+	var statement = mDBConn.createStatement('SELECT id_svg FROM svg where id_user=?1;');
+	statement.bindUTF8StringParameter(0,0);
+	// return dataset;	
+	var myArray1 = boucle_select(statement);
+	if (myArray1.length!=3)	{
+		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\fig_21.xul";	
+		che1="chrome://archipoenum/content/library/xul/fig_21.xul";	
+		chrm1=chromeToPath (che1);
+		xml1 = read(chemin1);
+		//alert (xml1);
+		
+		figure_courant="fig_21";
+		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml1);
+		statement.bindUTF8StringParameter(1,figure_courant);
+		statement.bindUTF8StringParameter(2,"default1");
+		statement.bindUTF8StringParameter(3,"0");
+		statement.execute();
+		statement.reset();
+		
+		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\ZonesSaisies.xul";	
+		che1="chrome://archipoenum/content/library/xul/ZonesSaisies.xull";	
+		chrm1=chromeToPath (che1);
+		xml1 = read(chemin1);
+		//alert (xml1);	
+		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');
+		var myArray1 = boucle_select(statement);
+		j=0;
+		id_svg=myArray1[j]["id_svg"];
+		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,"Default");
+		statement.bindUTF8StringParameter(1,xml1);
+		statement.bindUTF8StringParameter(2,id_svg);
+		statement.execute();
+		statement.reset();
+	
+		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\fig_18.xul";	
+		che1="chrome://archipoenum/content/library/xul/fig_18.xul";	
+		chrm1=chromeToPath (che1);
+		xml1 = read(chemin1);
+		//alert (xml1);
+		figure_courant="fig_18";
+		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml1);
+		statement.bindUTF8StringParameter(1,figure_courant);
+		statement.bindUTF8StringParameter(2,"default2");
+		statement.bindUTF8StringParameter(3,"0");
+		statement.execute();
+		statement.reset();
+			
+		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\fig_19.xul";	
+		che1="chrome://archipoenum/content/library/xul/fig_19.xul";	
+		chrm1=chromeToPath (che1);
+		xml1 = read(chemin1);
+		//alert (xml1);	
+		figure_courant="fig_19";
+		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml1);
+		statement.bindUTF8StringParameter(1,figure_courant);
+		statement.bindUTF8StringParameter(2,"default3");
+		statement.bindUTF8StringParameter(3,"0");
+		statement.execute();
+		statement.reset();
+	}
+}
+
+function Open_default(){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
+	p_interface = document.getElementById("C1");
+	p_saisi=document.getElementById("S1");
+	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_user=?1;');
+	statement.bindUTF8StringParameter(0,0);
+	// return dataset;	
+	var myArray1 = boucle_select(statement);
+		// Now you can loop through the array:
+	test =0;
+	j=0;
+		//alert (myArray1.length);
+	for(var j=0;j<myArray1.length;j++){
+		alert("SVG : "+myArray1[j]['fichier']);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(myArray1[j]['fichier'],"text/xml");
+		resultDoc.documentElement.setAttribute("hidden","true");
+		if (j==0) resultDoc.documentElement.setAttribute("hidden","true");
+		//p_interface.appendChild(resultDoc.documentElement);
+	}
+	statement.reset();
+	
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
+	statement.bindUTF8StringParameter(0,"Default");
+	// return dataset;	
+	var myArray1 = boucle_select(statement);
+		// Now you can loop through the array:
+	test =0;
+	j=0;
+		//alert (myArray1.length);
+	for(var j=0;j<myArray1.length;j++){
+		alert("SVG : "+myArray1[j]['form_xul']);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
+		//p_saisi.appendChild(resultDoc.documentElement);
+	}
+	statement.reset();
 }
 function SetFichier(){
 	
@@ -475,19 +593,11 @@ try{
 		
 		var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,id_svg);
-		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		test =0;
 		j=0;
@@ -541,17 +651,10 @@ function svg_open_id(id_svg)
 		var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,id_svg);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		j=0;
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		choix_svg=myArray1[j]["figure_c"];
 		fig_svg=myArray1[j]["fichier"];
 		
@@ -594,18 +697,11 @@ try{
 		var statement = mDBConn.createStatement('SELECT * FROM svg ;');
 		//statement.bindUTF8StringParameter(0,id_svg);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		test =0;
 		j=0;
@@ -632,29 +728,17 @@ try{
 function get_list_SVG_user(){
 try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+
+		var mDBConn = connect_DB();
 		
 		var statement = mDBConn.createStatement('SELECT * FROM svg where id_user=?1;');
 		statement.bindUTF8StringParameter(0,id_user);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		test =0;
 		j=0;
@@ -684,30 +768,17 @@ try{
 function get_figure(id_svg){
 try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		//alert ("id_svg : "+id_svg);
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+
+		var mDBConn = connect_DB();
 		
 		var statement = mDBConn.createStatement('SELECT figure_c FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,id_svg);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		test =0;
 		j=0;
@@ -728,32 +799,19 @@ try{
 function login_user(){
 	try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+
+		var mDBConn = connect_DB();
 		login = document.getElementById("nom").value;
 		password = document.getElementById("passwd").value;
 		//alert (login +' : '+password);
 		var statement = mDBConn.createStatement('SELECT id,login,pwd FROM utilisateur where login=?1');
 		statement.bindUTF8StringParameter(0,login);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 			// return dataset;	
 		
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		test =0;
 		j=0;
@@ -867,6 +925,18 @@ function createDB(){
 	}
 }
 
+function connect_DB(){
+	var file = Components.classes["@mozilla.org/file/directory_service;1"]
+	                     .getService(Components.interfaces.nsIProperties)
+	                     .get("ProfD", Components.interfaces.nsIFile);
+		file.append(myDBFile);
+	
+		var storageService = Components.classes["@mozilla.org/storage/service;1"]
+	                        .getService(Components.interfaces.mozIStorageService);
+		var mDBConn = storageService.openDatabase(file);
+		return mDBConn;
+}
+
 function insert_user (){
 	try {
 		
@@ -875,14 +945,8 @@ function insert_user (){
 		login = document.getElementById("login_i").value;
 		password = document.getElementById("password_i").value;
 		//alert (login +' : '+password);
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-	                     .getService(Components.interfaces.nsIProperties)
-	                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-	
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-	                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+
+		var mDBConn = connect_DB();
 		var sql = 'INSERT INTO utilisateur(login,pwd) VALUES(?1,?2);';
 		var statement = mDBConn.createStatement(sql);
 	    statement.bindUTF8StringParameter(0, login);
@@ -897,16 +961,9 @@ function insert_user (){
 		var statement = mDBConn.createStatement('SELECT id,login,pwd FROM utilisateur where login=?1');
 		statement.bindUTF8StringParameter(0,login);
 		
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+	
 		
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 
 		for(var j=0;j<1;j++){
 			//alert("User : "+myArray1[j]['login']);			
@@ -930,16 +987,12 @@ function Save_SVG(){
 			return;
 		var nomFic = input.value;
 		createDB();
-		svg = getSVG();
-		alert ("SVG : "+svg);
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-	                     .getService(Components.interfaces.nsIProperties)
-	                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
+		doc = getSVG();
+		var serializer = new XMLSerializer();
+    	var svg = serializer.serializeToString(doc);
+		//alert ("SVG : "+svg);
 
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-	                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+		var mDBConn = connect_DB();
 		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
 		var statement = mDBConn.createStatement(sql);
 	    statement.bindUTF8StringParameter(0,svg);
@@ -1704,7 +1757,9 @@ function Valider_form(id_form)
     //alert(file.path);    
 
 	//x.setAttribute("hidden","true");
-	n1=id_form.charAt(id_form.length-1);
+	n=id_form.split("_",3);
+	n1=n[2];
+	//alert(n1);
 	listes=x.getElementsByTagName("menulist");
 	evt=listes[0].selectedItem.value;
 	fct=listes[1].selectedItem.value;
@@ -1715,14 +1770,8 @@ function Valider_form(id_form)
 		xul_complet=xul_complet+"</vbox>";
 		alert(xul_complet);
 		
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-		                     .getService(Components.interfaces.nsIProperties)
-		                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-	
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
+
+		var mDBConn = connect_DB();
 		
 		svg=document.getElementById("svg_1");
 		var serializer = new XMLSerializer();
@@ -1735,23 +1784,15 @@ function Valider_form(id_form)
 		statement.execute();
 		statement.reset();
 		
-		var statement = mDBConn.createStatement('SELECT  id_svg FROM svg ORDER BY id_svg DESC;');
-				
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');
+
 				// return dataset;	
 		j=0;
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		id_svg=myArray1[j]["id_svg"];
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,xul_complet);
+		statement.bindUTF8StringParameter(0,id_form);
 		statement.bindUTF8StringParameter(1,xul_complet);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
@@ -1761,17 +1802,10 @@ function Valider_form(id_form)
 		
 		var statement = mDBConn.createStatement('SELECT  id_xul FROM xul ORDER BY id_svg DESC;');
 				
-		var dataset = [];
-		while (statement.executeStep()){
-			var row = [];
-			for(var i=0,k=statement.columnCount; i<k; i++){
-				row[statement.getColumnName(i)] = statement.getUTF8String(i);
-			}
-			dataset.push(row);
-		}
+
 				// return dataset;	
 		j=0;
-		var myArray1 = dataset;
+		var myArray1 = boucle_select(statement);
 		id_xul=myArray1[j]["id_xul"];
 		alert("Base    :   "+id_xul);
 		alert(evt+" : "+fct+"('"+id_xul+"')");
@@ -1795,7 +1829,18 @@ function Valider_form(id_form)
 	
 	
 }
-
+function boucle_select(statement){
+		var dataset = [];
+		while (statement.executeStep()){
+			var row = [];
+			for(var i=0,k=statement.columnCount; i<k; i++){
+				row[statement.getColumnName(i)] = statement.getUTF8String(i);
+			}
+			dataset.push(row);
+		}
+		return dataset;
+	
+}
 function affiche_valid(elem)
 {
 	//alert("bt_"+c1+"_"+elem.parentNode.id);
@@ -2159,7 +2204,8 @@ function version_final()
 
 function test_evt(elem){
 	n=elem.parentNode.parentNode.id;
-	n1=n.charAt(n.length-1);
+	n1=n.split("_",3)[2];
+	//alert(n1);
 	//alert("v"+n1);
 	if (elem.selectedItem.value=="afficher_form")
 	{

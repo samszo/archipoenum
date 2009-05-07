@@ -36,18 +36,16 @@
 	<label hidden="false" value="    " />
 	<hbox hidden="false" id="save" >
 		<hbox>
-		
-			<toolbarbutton label="Exporter  " style='width:100px;' onclick="Export('p');"/>
-			<toolbarbutton label="Importer  " style='width:100px;' onclick="Import('p');"/>
-			<toolbarbutton label="Sauvegarder  " style='width:100px;' onclick="Save_SVG();"/>
-			<toolbarbutton label="Ouvrir  " style='width:100px;' onclick="Open();"/>
-
-			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="Ajouter_doc();"/>
-			
-		</hbox>
-		<hbox> 		
-		</hbox>
-		<hbox class="menubar">
+			<menubar id='Interface'>
+				<menu label=" Gestion de l'interface ->" >
+					<menupopup >
+						<menuitem id="cr" label="Créer " onclick="open_wizard();"/>
+						<menuitem id="mo" label="Modifier  " onclick="open_wizard2();"/>
+						<menuitem id="ch" label="Charger  " onclick="Open();"/>
+						<menuitem id="df" label="Interface par defaut " onclick="Open_default();"/>
+					</menupopup>
+				</menu>
+			</menubar>
 			<menubar id='navigation'>
 				<menu label="   Navigation ->" style='width:100px;'>
 					<menupopup id="test3">
@@ -66,16 +64,24 @@
 					</menupopup>
 				</menu>
 			</menubar>
-		</hbox>
-		<menubar id='Interface'>
-				<menu label=" Gestion de l'interface ->" >
-					<menupopup id="test3">
-						<menuitem id="ch1" label="Créer une interface  " onclick="open_wizard();"/>
-						<menuitem id="ch1" label="Modifier une interface  " onclick="open_wizard2();"/>
-						<menuitem id="ch1" label="Liste des interfaces disponibles  " onclick="open_wizard();"/>
+			<menubar id='Stockage'>
+				<menu label=" Stockage ->" >
+					<menupopup >
+						<menuitem id="exp" label="Exporter Sous format SVG " onclick="Export('p');"/>
+						<menuitem id="sav" label="Sauvegarder dans la base de données  " onclick="Save_SVG();"/>
+						<menuitem id="chr" label="Charger  " onclick="Open();"/>
 					</menupopup>
 				</menu>
 			</menubar>
+			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="Ajouter_doc();"/>
+			
+		</hbox>
+		<hbox> 		
+		</hbox>
+		<hbox class="menubar">
+			
+		</hbox>
+
 		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:60px;margin-top:7px;' />
 		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
     </hbox>
@@ -85,7 +91,6 @@
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
 		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" >			
-			<vbox id="ZonesSaisies" hidden="false" />
 			<vbox id="OntoActeur" hidden="true" flex="1" />
 			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
 		</vbox>
@@ -93,13 +98,10 @@
 			<grippy/>
 		</splitter>
 		<vbox id="C1" flex='1' >		
-			<iframe id="svgFrame" flex='1' hidden="true" />
 			<vbox id="logout" hidden="true">
 				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
 			</vbox>
-			<vbox id="fig_21" hidden="false" />
-			<vbox id="fig_18" hidden="true" />
-			<vbox id="fig_19" hidden="true" />
+
 			<vbox id="savoirs" flex='1' hidden="true" >
 				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />

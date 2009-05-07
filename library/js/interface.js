@@ -27,8 +27,8 @@ function  init(){
 	document.getElementById("ch1").setAttribute("label",user);
 	document.getElementById("u1").setAttribute("hidden","false");
 	document.getElementById("u2").setAttribute("hidden","false");
-	x=xmlDoc.getElementsByTagName("svg");
-	document.removeChild(x[x.length]); 
+	//x=xmlDoc.getElementsByTagName("svg");
+	//document.removeChild(x[x.length]); 
 	/*document.getElementById("fig_21_indexer").setAttribute("fill","green");
 	document.getElementById("fig_21_indexing").setAttribute("fill","green");
 	document.getElementById("fig_21_indexer_name").firstChild.data=user;

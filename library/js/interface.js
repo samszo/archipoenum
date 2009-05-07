@@ -123,12 +123,13 @@ function Open_default(){
 	j=0;
 		//alert (myArray1.length);
 	for(var j=0;j<myArray1.length;j++){
-		alert("SVG : "+myArray1[j]['fichier']);
+		//alert("SVG : "+myArray1[j]['fichier']);
 		var parser=new DOMParser();
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(myArray1[j]['fichier'],"text/xml");
-		resultDoc.documentElement.setAttribute("hidden","true");
-		if (j==0) resultDoc.documentElement.setAttribute("hidden","false");
+		
+		if (j==0) resultDoc.documentElement.getElementsByTagName("vbox")[0].setAttribute("hidden","false");
+		else resultDoc.documentElement.getElementsByTagName("vbox")[0].setAttribute("hidden","true");
 		p_interface.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
@@ -142,10 +143,12 @@ function Open_default(){
 	j=0;
 		//alert (myArray1.length);
 	for(var j=0;j<myArray1.length;j++){
-		alert("SVG : "+myArray1[j]['form_xul']);
+		//alert("SVG : "+myArray1[j]['form_xul']);
 		var parser=new DOMParser();
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
+		resultDoc.documentElement.setAttribute("hidden","false");
+		resultDoc.documentElement.setAttribute("flex","1");
 		p_saisi.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
@@ -1339,7 +1342,7 @@ function Ajouter_doc() {
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(xulData,"text/xml");
-
+	document.getElementById("S1").appendChild(resultDoc.documentElement);
 	var popup = resultDoc.getElementById("liste1");
 	var item1 = createMenuItem("Text");
 	item1.setAttribute("value","Text");
@@ -1362,7 +1365,7 @@ function Ajouter_doc() {
 	popup.appendChild(item5);
 	popup.appendChild(item6);
 	popup.appendChild(item7);
-	document.getElementById("S1").appendChild(resultDoc.documentElement);
+	
 			
 	var popup = document.getElementById("test"); // a <menupopup> element
 	var first = createMenu("Document_"+docs);

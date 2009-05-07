@@ -1,4 +1,6 @@
-
+<?xml version="1.0" ?>
+<?xml-stylesheet href="../../design/svg.css" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
 <vbox id="fig_21" flex="1" >
 <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="376.975px" height="333.55px" viewBox="0 0 376.975 333.55" enable-background="new 0 0 376.975 333.55">
@@ -38,3 +40,4 @@
 
 </vbox>
 
+</overlay>

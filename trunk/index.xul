@@ -86,8 +86,7 @@
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
 		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" >			
-			<vbox id="OntoActeur" hidden="true" flex="1" />
-			<vbox id="treeDicoIeml" hidden="true" flex="1"  />
+
 		</vbox>
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>

@@ -128,8 +128,8 @@ function Open_default(){
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(myArray1[j]['fichier'],"text/xml");
 		resultDoc.documentElement.setAttribute("hidden","true");
-		if (j==0) resultDoc.documentElement.setAttribute("hidden","true");
-		//p_interface.appendChild(resultDoc.documentElement);
+		if (j==0) resultDoc.documentElement.setAttribute("hidden","false");
+		p_interface.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
 	
@@ -146,7 +146,7 @@ function Open_default(){
 		var parser=new DOMParser();
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
-		//p_saisi.appendChild(resultDoc.documentElement);
+		p_saisi.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
 }

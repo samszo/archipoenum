@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
-<?xul-overlay href="library/xul/ZonesSaisies.xul" ?>
-<?xul-overlay href="library/xul/OntoActeur.xul" ?>
-<?xul-overlay href="library/xul/treeDicoIeml.xul" ?>
-<?xul-overlay href="library/xul/fig_18.xul" ?>
-<?xul-overlay href="library/xul/fig_19.xul" ?>
-<?xul-overlay href="library/xul/fig_21.xul" ?>
+
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>

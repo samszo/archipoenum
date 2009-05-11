@@ -37,7 +37,7 @@
 						<menuitem id="cr" label="Créer " onclick="open_wizard();"/>
 						<menuitem id="mo" label="Modifier  " onclick="open_wizard2();"/>
 						<menuitem id="ch" label="Charger  " onclick="Open();"/>
-						<menuitem id="df" label="Interface par defaut " onclick="Open_default();"/>
+						<menuitem id="df" label="Interface par defaut " onclick="Open_default(this);"/>
 					</menupopup>
 				</menu>
 			</menubar>
@@ -64,7 +64,7 @@
 					<menupopup >
 						<menuitem id="exp" label="Exporter Sous format SVG " onclick="Export('p');"/>
 						<menuitem id="sav" label="Sauvegarder dans la base de données  " onclick="Save_SVG();"/>
-						<menuitem id="chr" label="Charger  " onclick="Open();"/>
+						<menuitem id="chr" label="Charger  " onclick="Import('p');"/>
 					</menupopup>
 				</menu>
 			</menubar>
@@ -85,13 +85,16 @@
 </toolbox>
 <hbox flex='1' >
 	<groupbox orient="horizontal" flex="1" >
-		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" >			
-
+		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">			
+			
 		</vbox>
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>
 		</splitter>
-		<vbox id="C1" flex='1' >		
+		<vbox id="C1" flex='1' >
+			<vbox id="fig_p" hidden="false">
+				
+			</vbox>		
 			<vbox id="logout" hidden="true">
 				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
 			</vbox>
@@ -100,9 +103,7 @@
 				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
 				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
-			<box id="D2" width="200">
-  				<label hidden="false" value="    " />
-			</box>
+
 		</vbox>		
 	</groupbox>	
 </hbox>

@@ -658,42 +658,46 @@ function svg_open(choix_svg,fig_svg)
 
 function svg_open_id(id_svg)
 {
-		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
-		var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
-		statement.bindUTF8StringParameter(0,id_svg);
-		
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var file = Components.classes["@mozilla.org/file/directory_service;1"]
+                    .getService(Components.interfaces.nsIProperties)
+                    .get("ProfD", Components.interfaces.nsIFile);
+	file.append(myDBFile);
+	var storageService = Components.classes["@mozilla.org/storage/service;1"]
+	                        .getService(Components.interfaces.mozIStorageService);
+	var mDBConn = storageService.openDatabase(file);
+	var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
+	statement.bindUTF8StringParameter(0,id_svg);
+	
 
-			// return dataset;	
-		j=0;
-		var myArray1 = boucle_select(statement);
-		choix_svg=myArray1[j]["figure_c"];
-		fig_svg=myArray1[j]["fichier"];
-		
-		//xml = getSVG_DB(choix_svg);
-		//figure_courant=get_figure(input.value);
-		//alert ("fig : "+figure_courant);
-		//alert (input.value);
-		var parser=new DOMParser();
-		// Transformer le String en Objet DOM
-		var resultDoc=parser.parseFromString(fig_svg,"text/xml");
-		// Intégrer le DOM récupéré à l'interieur de document
-		doc=document.getElementById(choix_svg);
+		// return dataset;	
+	j=0;
+	var myArray1 = boucle_select(statement);
+	choix_svg=myArray1[j]["figure_c"];
+	fig_svg=myArray1[j]["fichier"];
+	
+	//xml = getSVG_DB(choix_svg);
+	//figure_courant=get_figure(input.value);
+	//alert ("fig : "+figure_courant);
+	//alert (input.value);
+	var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc=parser.parseFromString(fig_svg,"text/xml");
+	// Intégrer le DOM récupéré à l'interieur de document
+	doc=document.getElementById(choix_svg);
+	if (doc!=null){
 		if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
 		doc.appendChild(resultDoc.documentElement);
-		
 
 		if (figure_courant!=choix_svg)  {            
 			document.getElementById(choix_svg).setAttribute("hidden","true");
 			//alert ("hidden : true");	
 		}
+	}
+	else {
+		document.getElementById("C1").appendChild(resultDoc.documentElement);
+	}
 }
 function ok_svg(){
 	var fichier_svg=document.getElementById("choixSVG").selectedItem.getAttribute("fichier");
@@ -1108,11 +1112,11 @@ function AppendSVG(url,doc) {
 // Récupérer le SVG en cours d'utilisation
 function getSVG(){
 	try {
+		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var svg;
 		//alert(figure_courant);
-		svg=document.getElementById(figure_courant);
-		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-    
+		svg=document.getElementById(figure_courant).cloneNode(true);
+		    
 	    //alert(file.path);    
 	    var serializer = new XMLSerializer();
 	    var xml = serializer.serializeToString(svg);
@@ -1126,11 +1130,16 @@ function getSVG(){
 // Afficher le figure principale
 function afficher(){
 try{
-	document.getElementById(figure_courant).setAttribute("hidden","true");
-	document.getElementById("fig_18").setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","true");
-	document.getElementById("fig_21").setAttribute("hidden","false");
-	
+	if(document.getElementById(figure_courant)!=null)
+		document.getElementById(figure_courant).setAttribute("hidden","true");
+	if(document.getElementById("fig_18")!=null)
+		document.getElementById("fig_18").setAttribute("hidden","true");
+	if(document.getElementById("fig_19")!=null)
+		document.getElementById("fig_19").setAttribute("hidden","true");
+	if(document.getElementById("fig_p")!=null)
+		document.getElementById("fig_p").setAttribute("hidden","false");
+	if(document.getElementById("fig_21")!=null)
+		document.getElementById("fig_21").setAttribute("hidden","false");	
 	//document.getElementById("ch1").setAttribute("hidden","true");
 	//document.getElementById("ch2").setAttribute("hidden","true");
 } 
@@ -1140,11 +1149,16 @@ catch(ex2){alert("interface:afficher:"+ex2); }
 function afficher1(){
 try{
 	//alert(figure_courant);
-	document.getElementById(figure_courant).setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","true");
-	document.getElementById("fig_18").setAttribute("hidden","false");
-	document.getElementById("fig_21").setAttribute("hidden","true");
-	
+if(document.getElementById(figure_courant)!=null)
+		document.getElementById(figure_courant).setAttribute("hidden","true");
+	if(document.getElementById("fig_18")!=null)
+		document.getElementById("fig_18").setAttribute("hidden","false");
+	if(document.getElementById("fig_19")!=null)
+		document.getElementById("fig_19").setAttribute("hidden","true");
+	if(document.getElementById("fig_p")!=null)
+		document.getElementById("fig_p").setAttribute("hidden","false");
+	if(document.getElementById("fig_21")!=null)
+		document.getElementById("fig_21").setAttribute("hidden","true");	
 	//document.getElementById("ch2").setAttribute("hidden","true");
 	//document.getElementById("ch3").setAttribute("hidden","true");
 } 
@@ -1154,10 +1168,16 @@ catch(ex2){alert("interface:afficher1:"+ex2); }
 function afficher2(){
 try{
 	//alert("ch3");
-	document.getElementById(figure_courant).setAttribute("hidden","true");
-	document.getElementById("fig_18").setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","false");
-	document.getElementById("fig_21").setAttribute("hidden","true");
+	if(document.getElementById(figure_courant)!=null)
+		document.getElementById(figure_courant).setAttribute("hidden","true");
+	if(document.getElementById("fig_18")!=null)
+		document.getElementById("fig_18").setAttribute("hidden","true");
+	if(document.getElementById("fig_19")!=null)
+		document.getElementById("fig_19").setAttribute("hidden","false");
+	if(document.getElementById("fig_p")!=null)
+		document.getElementById("fig_p").setAttribute("hidden","false");
+	if(document.getElementById("fig_21")!=null)
+		document.getElementById("fig_21").setAttribute("hidden","true");	
 	
 	//document.getElementById("ch3").setAttribute("hidden","false");
 } 
@@ -1168,11 +1188,18 @@ function afficher3(id_svg){
 try{
 	//alert("ch3");
 	
-	document.getElementById(figure_courant).setAttribute("hidden","true");
-	document.getElementById("fig_18").setAttribute("hidden","true");
-	document.getElementById("fig_19").setAttribute("hidden","true");
-	document.getElementById("fig_21").setAttribute("hidden","true");
-	document.getElementById(id_svg).setAttribute("hidden","false");
+	if(document.getElementById(figure_courant)!=null)
+		document.getElementById(figure_courant).setAttribute("hidden","true");
+	if(document.getElementById("fig_18")!=null)
+		document.getElementById("fig_18").setAttribute("hidden","true");
+	if(document.getElementById("fig_19")!=null)
+		document.getElementById("fig_19").setAttribute("hidden","true");
+	if(document.getElementById("fig_p")!=null)
+		document.getElementById("fig_p").setAttribute("hidden","false");
+	if(document.getElementById("fig_21")!=null)
+		document.getElementById("fig_21").setAttribute("hidden","true");
+	if(document.getElementById(id_svg)!=null)
+		document.getElementById(id_svg).setAttribute("hidden","false");
 	figure_courant=id_svg;
 	//document.getElementById("ch3").setAttribute("hidden","false");
 } 
@@ -1525,6 +1552,9 @@ function createActionSaisie(c,graph,graph_c)
 	ch_c.setAttribute("id","cacher_"+c1);
 	label1=createLabel("Choisissez un evenement ");
 	l=createLabel(" ");
+	m_hist=createMenuList('Mhist'+c1);
+	l_hist=createMenuPopup('hist'+c1);
+	m_hist.appendChild(l_hist);
 	choix = createMenuList("choixEvenement_"+c1);
 	var pop = createMenuPopup("pop"+c1);
 	var evt1 = createMenuItem("Evenement en cliquant sur le graphique");
@@ -1614,6 +1644,7 @@ function createActionSaisie(c,graph,graph_c)
 
 	choix3.appendChild(pop3);
 	label4=createLabel("Choisissez un graphe :    ");
+	lh=createLabel("Historique :    ");
 	label4.setAttribute("id","label_"+c1);
 	g1.appendChild(label4);
 	g1.appendChild(choix3);
@@ -1624,7 +1655,9 @@ function createActionSaisie(c,graph,graph_c)
 	h1.appendChild(bt_3);
 	g1.appendChild(h1);
 	g1.appendChild(l);
-	first.appendChild(g1);		
+	first.appendChild(g1);
+	g1.appendChild(lh);	
+	g1.appendChild(m_hist);	
 	first.setAttribute("hidden",'true');
 	//alert(c1);
 	return(first);		
@@ -1642,6 +1675,21 @@ function create_saisie(x1, pop3, balise){
 		
 		//alert(z.id);
 	}
+
+	return pop3;
+
+}
+
+function create_saisie_graph(x, balise){
+
+		for (i=1;i<x.getElementsByTagName(balise).length;i++)
+		{	
+			//alert(c1);
+			y=x.getElementsByTagName(balise)[i].cloneNode(true);			
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+			c1++;
+		}
 
 	return pop3;
 
@@ -1804,19 +1852,31 @@ function Valider_form(id_form)
 		alert("Base    :   "+id_xul);
 		//alert(evt+" : "+fct+"('"+id_xul+"')");
 		document.getElementById(id_graph).setAttribute(evt,fct+"('"+id_xul+"','"+n1+"')");
+		hist=document.getElementById("hist"+n1);
+		var h1 = createMenuItem(" Affichage de formulaire numero : "+n1);
+		hist.appendChild(h1);
 	}
 
 	else if (fct=="cacher_graph"){
 		//alert(document.getElementById("cacher_"+n1).checked+"1");
 		document.getElementById(id_graph).setAttribute("hidden","true");
 		document.getElementById(id_graph).setAttribute("visibility","hidden");
+		hist=document.getElementById("hist"+n1);
+		var h1 = createMenuItem(" Ce graph a ete cacher ");
+		hist.appendChild(h1);
 	}
 	else if (fct=="affiche_graph"){
 		g1=listes[2].selectedItem.value;
 		alert(evt+" : "+fct+"('"+g1+"')");
 		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
+		hist=document.getElementById("hist"+n1);
+		var h1 = createMenuItem(" Affichage du graph numero : "+g1);
+		hist.appendChild(h1);
 	}
 	else if (fct=="affiche_interface"){
+		hist=document.getElementById("hist"+n1);
+		var h1 = createMenuItem("  Affichage de l'interface numero : ");
+		hist.appendChild(h1);
 	}
 	else{
 	}
@@ -2196,9 +2256,11 @@ function version_final()
 	if (container.hasChildNodes()==true){
 		container.removeChild(container.firstChild);	
 	}    
-	if (s1.hasChildNodes()==true){
-		s1.removeChild(s1.firstChild)	
-	}    
+	if (s1!=null){
+		if (s1.hasChildNodes()==true){
+			s1.removeChild(s1.firstChild)	
+		}
+	}   
 	container.appendChild(graph);
 }
 

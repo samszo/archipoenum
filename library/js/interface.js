@@ -448,15 +448,20 @@ function Import(cmp){
 				var parser=new DOMParser();
 				// Transformer le String en Objet DOM
 				var resultDoc=parser.parseFromString(xml,"text/xml");
+				doc=document.getElementById(figure_courant);
+				if (doc.hasChildNodes()){	
+					doc.removeChild(doc.firstChild);					
+				}  
 				// Intégrer le DOM récupéré à l'interieur de document
 				resultDoc.documentElement.setAttribute("id",fichier.leafName);
-				document.getElementById("C1").appendChild(resultDoc.documentElement);
+				doc.appendChild(resultDoc.documentElement);
+				//alert(figure_courant);
 				
-				doc=document.getElementById(figure_courant);
-				if (doc.hasChildNodes()==true)	
-					doc.removeChild(doc.firstChild);              
+
+				//alert(doc.hasChildNodes());
+            
 				document.getElementById(figure_courant).setAttribute("hidden","true	");
-				figure_courant=fichier.leafName;
+				//figure_courant=fichier.leafName;
 			}
 			else if (cmp=='a')
 			{
@@ -671,22 +676,24 @@ function svg_open_id(id_svg)
 		choix_svg=myArray1[j]["figure_c"];
 		fig_svg=myArray1[j]["fichier"];
 		
-			//xml = getSVG_DB(choix_svg);
-			//figure_courant=get_figure(input.value);
-			//alert ("fig : "+figure_courant);
-			//alert (input.value);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(fig_svg,"text/xml");
-			// Intégrer le DOM récupéré à l'interieur de document
-			document.getElementById(choix_svg).appendChild(resultDoc.documentElement);
-			
-			doc=document.getElementById(choix_svg);
+		//xml = getSVG_DB(choix_svg);
+		//figure_courant=get_figure(input.value);
+		//alert ("fig : "+figure_courant);
+		//alert (input.value);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(fig_svg,"text/xml");
+		// Intégrer le DOM récupéré à l'interieur de document
+		doc=document.getElementById(choix_svg);
+		if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
-			if (figure_courant!=choix_svg)  {            
-				document.getElementById(choix_svg).setAttribute("hidden","true");
-				//alert ("hidden : true");	
-			}
+		doc.appendChild(resultDoc.documentElement);
+		
+
+		if (figure_courant!=choix_svg)  {            
+			document.getElementById(choix_svg).setAttribute("hidden","true");
+			//alert ("hidden : true");	
+		}
 }
 function ok_svg(){
 	var fichier_svg=document.getElementById("choixSVG").selectedItem.getAttribute("fichier");
@@ -763,7 +770,7 @@ try{
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
 			var last = createMenuItem(myArray1[j]["id_svg"]+" : "+myArray1[j]["titre"]);
-			last.setAttribute("onclick","svg_open_id('"+myArray1[j]["id_svg"]+");");
+			last.setAttribute("onclick","svg_open_id('"+myArray1[j]["id_svg"]+"');");
 			pop.appendChild(last);
 
 		//	return myArray1[j]['fichier'];
@@ -1103,12 +1110,13 @@ function getSVG(){
 	try {
 		var svg;
 		//alert(figure_courant);
-		svg=document.getElementById(figure_courant).firstChild;
+		svg=document.getElementById(figure_courant);
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
     
 	    //alert(file.path);    
 	    var serializer = new XMLSerializer();
 	    var xml = serializer.serializeToString(svg);
+	    //alert(xml);
 		return svg;
 		
 	} 
@@ -1521,8 +1529,8 @@ function createActionSaisie(c,graph,graph_c)
 	var pop = createMenuPopup("pop"+c1);
 	var evt1 = createMenuItem("Evenement en cliquant sur le graphique");
 	evt1.setAttribute("value","onclick");
-	var evt2 = createMenuItem("Evenement en commande");
-	evt2.setAttribute("value","oncommand");
+	var evt2 = createMenuItem("Evenement en chargeant la page");
+	evt2.setAttribute("value","onload");
 	label2=createLabel("Choisissez l'action ");
 	label3=createLabel("Qu'est ce que vous voulez ajouter a la zone de saisie :    ");
 	choix2 = createMenuList("choixAction_"+c1);
@@ -1793,7 +1801,7 @@ function Valider_form(id_form)
 		
 		xul_complet='<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'+contruire_texte(n1)+contruire_liste(n1);
 		xul_complet=xul_complet+'<button id="bt_valider_'+n1+'" label="Valider" nb_elements="'+cp_elem+'" nb_texte="'+cp_texte+'" nb_list="'+cp_list+'" tooltiptext="Valider la saisie" onclick="Valider_saisi('+n1+',this);"/></vbox>';
-		alert(xul_complet);
+		//alert(xul_complet);
 		
 
 		var mDBConn = connect_DB();
@@ -1833,8 +1841,8 @@ function Valider_form(id_form)
 		var myArray1 = boucle_select(statement);
 		id_xul=myArray1[j]["id_xul"];
 		alert("Base    :   "+id_xul);
-		alert(evt+" : "+fct+"('"+id_xul+"')");
-		document.getElementById(id_graph).setAttribute(evt,fct+"('"+id_xul+"')");
+		//alert(evt+" : "+fct+"('"+id_xul+"')");
+		document.getElementById(id_graph).setAttribute(evt,fct+"('"+id_xul+"','"+n1+"')");
 	}
 
 	else if (fct=="cacher_graph"){
@@ -1851,8 +1859,7 @@ function Valider_form(id_form)
 	}
 	else{
 	}
-	
-	
+	alert(' La modification de '+id_graph+' est termine avec succes');  	
 }
 function boucle_select(statement){
 		var dataset = [];
@@ -2224,6 +2231,13 @@ function version_final()
 	s1.setAttribute("src","http://localhost/archipoenum/library/js/fonctions.js");
 	graph.appendChild(s1);
 	container=document.getElementById("vb1");
+	s1=document.getElementById("S1");
+	if (container.hasChildNodes()==true){
+		container.removeChild(container.firstChild);	
+	}    
+	if (s1.hasChildNodes()==true){
+		s1.removeChild(s1.firstChild)	
+	}    
 	container.appendChild(graph);
 }
 
@@ -2244,6 +2258,16 @@ function test_evt(elem){
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","false");
 		document.getElementById("label_"+n1).setAttribute("hidden","false");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
+	}
+	else if (elem.selectedItem.value=="cacher_graph"){
+		document.getElementById("v"+n1).setAttribute("hidden","true");
+		document.getElementById("label_"+n1).setAttribute("hidden","true");
+		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
+	}
+	else {
+		document.getElementById("v"+n1).setAttribute("hidden","true");
+		document.getElementById("label_"+n1).setAttribute("hidden","true");
+		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
 	}
 }
 
@@ -2291,8 +2315,8 @@ function add_svg(svg)
 {
 	doc=document.getElementById(figure_courant);
 	alert(figure_courant);
-	if (doc!=null){
-		document.getElementById("C1").removeChild(doc); 
+	if (doc.hasChildNodes()==true){
+		document.getElementById(figure_courant).removeChild(doc.firstChild); 
 		document.getElementById(figure_courant).setAttribute("hidden","true	");}
 	v1=createVbox("v1");
 	v1.appendChild(svg);
@@ -2302,6 +2326,7 @@ function add_svg(svg)
 
 function modif_interface(){
 	x=window.opener.getSVG();
+	//alert(x);
 	//alert(xmlDoc);
 	c1=1;
 		//x=xmlDoc.getElementsByTagName("svg")[0];

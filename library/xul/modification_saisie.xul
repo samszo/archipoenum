@@ -43,11 +43,14 @@
 			<splitter collapse="before" resizeafter="farthest">
 				<grippy/>
 			</splitter>
+			<vbox>
+				<hbox>
+					<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
+				</hbox>
 				<vbox id="vb1">
-					<hbox>
-						<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
-					</hbox>
+
 				</vbox>
+			</vbox>
 		</groupbox>
   </wizardpage>
  <script src="../js/fonctions.js"/>

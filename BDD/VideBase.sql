@@ -1,0 +1,6 @@
+DELETE FROM champs;
+DELETE FROM donnees;
+DELETE FROM svg;
+DELETE FROM forms;
+DELETE FROM xul;
+DELETE FROM valeurs;

@@ -43,7 +43,8 @@ function afficher_form (id_form,n1){
 		//alert(myArray1);
 		if (myArray1!=""){
 			id_f=myArray1[j]["id_f"];
-			j=nb_texte+nb_list;
+			//j=nb_texte+nb_list;
+			j=0;
 			for (i=1;i<=nb_texte;i++){
 				var statement = mDBConn.createStatement('SELECT id_c FROM champs where id_f=?1 ORDER BY id_c DESC;');
 				statement.bindUTF8StringParameter(0,id_f);
@@ -68,7 +69,7 @@ function afficher_form (id_form,n1){
 				//j=0;
 				valeur=myArray1[j]["valeur"];
 				alert("Valeur : "+valeur);
-				j--;
+				j++;
 				document.getElementById("zt"+n1+""+i).setAttribute("value",valeur);		
 							
 			}

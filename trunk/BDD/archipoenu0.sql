@@ -1,0 +1,11 @@
+CREATE TABLE champs (id_c INTEGER PRIMARY KEY AUTOINCREMENT, titre varchar(40), id_f uniqueidentifier);
+CREATE TABLE donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT,  id_f uniqueidentifier);
+CREATE TABLE forms (id_f INTEGER PRIMARY KEY AUTOINCREMENT,  nom varchar(40), id_svg uniqueidentifier);
+CREATE TABLE historique (id_hist INTEGER PRIMARY KEY AUTOINCREMENT, date varchar(40));
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE TABLE svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),figure_c text(40), id_user uniqueidentifier);
+CREATE TABLE tag (id_tag INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tag varchar(40), poids int, domaine varchar(40));
+CREATE TABLE tag_cloud (id_user uniqueidentifier , id_tag uniqueidentifier , id_hist uniqueidentifier);
+CREATE TABLE utilisateur (id INTEGER PRIMARY KEY AUTOINCREMENT,  login uniqueidentifier, pwd varchar(40));
+CREATE TABLE valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier);
+CREATE TABLE xul (id_xul INTEGER PRIMARY KEY AUTOINCREMENT,id_element integer, form_xul text(10000), id_svg uniqueidentifier);

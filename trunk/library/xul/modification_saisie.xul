@@ -13,6 +13,8 @@
 	 		<textbox  id="f_svg" value="" style='width:300px;' />
 	 		<button id="bt_svg" label="Import"  onclick="Import('a');"/>
 	 	</hbox>
+	 	<label id="l0" value="Donner un titre à votre interface" style='font-size:25px;color:red;'  hidden="true"/>
+ 		<textbox  id="titre_svg" value="" style='width:300px;' onclick="document.getElementById('l1').setAttribute('hidden','false');"  hidden="true" />
 	 	<label id="l1" value="Cliquer sur le bouton suivant" style='font-size:25px;color:red;'  hidden="true"/>
   </wizardpage>
   <wizardpage  onpageadvanced='version_final()'>

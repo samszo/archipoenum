@@ -443,6 +443,8 @@ function Import(cmp){
 			var chemin = fichier.path;	
 			if (cmp=='p')
 			{
+				//gestion de l'importation pour le menu stockage->charger
+				
 				//AppendSVG("chrome://archipoenum/content/sauvegardes/"+fichier.leafName,document.getElementById("fig_21"));
 				xml = read(chemin);
 				var parser=new DOMParser();
@@ -465,8 +467,10 @@ function Import(cmp){
 			}
 			else if (cmp=='a')
 			{
+				//gestion de l'importation pour l'assitant d'interface
 				document.getElementById("f_svg").setAttribute("value",chemin);
-				document.getElementById("l1").setAttribute("hidden","false");
+				document.getElementById('titre_svg').setAttribute('hidden','false');
+				document.getElementById('l0').setAttribute('hidden','false');
 				//var resultDoc=set_ids(chemin);
 			}
 			
@@ -483,8 +487,10 @@ function interface_modif()
 {
 try
 {
-	chemin=document.getElementById("f_svg").getAttribute("value");
+	var chemin=document.getElementById("f_svg").getAttribute("value");
+	var titre=document.getElementById("titre_svg").getAttribute("value");
 	//xml = read(chemin);
+	//rend dynamique les graphique du svg
 	var resultDoc=set_ids(chemin);
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
@@ -493,7 +499,7 @@ try
 	//resultDoc.documentElement.setAttribute("id","fig_svg");
 	doc=document.getElementById("v_svg");
 	
-	set_saisie(resultDoc);
+	//set_saisie(resultDoc);
 	if (doc.firstChild)
 		doc.removeChild(doc.firstChild);    
 	doc.appendChild(resultDoc);
@@ -1454,10 +1460,11 @@ function logout(){
 function set_ids(fichier_svg){
 try
 	{
-		xml=read(fichier_svg);
+		var xml=read(fichier_svg);
 		var parser=new DOMParser();
 		fct='<script xlink:href="http://localhost/archipoenum/library/js/fonctions.js" />';
 		//alert(fct);
+		//tester si on peut supprimer
 		xml2=RC(xml,"</svg>"," </svg>");
 		//alert(xml2);
 		// Transformer le String en Objet DOM
@@ -1528,6 +1535,9 @@ catch(ex2){alert("interface:set_ids:"+ex2); }
 }
 function createActionSaisie(c,graph,graph_c)
 {
+	//récupèration du numéro de graphique
+	var c1 = c.split("_")[2];
+
 	first= createVbox(c);
 	g=createG("root");
 	g3=createGroupbox("g3"+c1);
@@ -1756,6 +1766,11 @@ catch(ex2){alert("interface:set_saisie:"+ex2); }
 function init_svg(c_svg)
 {
 	//alert("saisie_"+c_svg.id);
+	if(!document.getElementById("saisie_"+c_svg.id)){
+		var resultDoc=createActionSaisie('saisie_'+c_svg.id,c_svg.cloneNode(true),document.getElementById("svg_1"));
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+	}
+	
 	if (document.getElementById("saisie_"+c_svg.id).getAttribute("hidden")=="true")
 		document.getElementById("saisie_"+c_svg.id).setAttribute("hidden","false");
 	else

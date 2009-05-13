@@ -61,6 +61,7 @@ function AppendResult(url,doc) {
    } catch(ex2){alert("ajax:AppendResult:"+ex2);}
 }
 
+
 function GetResult(url) {
   try {
 	dump("GetResult IN "+url+"\n");

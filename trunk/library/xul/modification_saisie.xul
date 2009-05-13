@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-
 <wizard id="const_interface" title="Construire votre interface " 
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   onwizardfinish="fin_assitant();">
-  <wizardpage id="import_svg" onpageadvanced='interface_modif();' canAdvance="false" >
+  <wizardpage id="import_svg" onpageadvanced='interface_modif();' 
+  canAdvance="false" 
+  >
 	 <description>
       Importer votre fichier SVG et cliquer sur suivant
 	 </description>

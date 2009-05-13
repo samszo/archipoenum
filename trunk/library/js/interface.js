@@ -1603,73 +1603,15 @@ function createActionSaisie(c,graph,graph_c)
 	choix3 = createMenuList("choixGraph_"+c1);
 	choix3.setAttribute("hidden","true");
 	var pop3 = createMenuPopup("pop3"+c1);
-	bt_3.setAttribute("onclick","cacher_form('"+c+");");
-	c2=1;
-	//alert("hello");
-	x1=graph_c;
-		for (j=1;j<x1.getElementsByTagName("g").length;i++)
-		{	
-			z=x1.getElementsByTagName("g")[j].cloneNode(false);
-			//alert(z.id+" : "+graph.id);
-			if (z.id!=graph.id){
-				var graph1 = createMenuItem(z.id).cloneNode(false);
-				graph1.setAttribute("value",z.id);
-				pop3.appendChild(graph1);
-				
-				c2++;
-			}
-			//alert(z.id);
-		}
-		
-		for (j=0;j<x1.getElementsByTagName("path").length;j++)
-		{	
+	bt_3.setAttribute("onclick","cacher_form('"+c+"');");
+	
+	//création des items du menu choissir un graphique
+	pop3 = create_saisie(graph_c, pop3, "g");
+	pop3 = create_saisie(graph_c, pop3, "path");
+	pop3 = create_saisie(graph_c, pop3, "text");
+	pop3 = create_saisie(graph_c, pop3, "polygon");
+	pop3 = create_saisie(graph_c, pop3, "rect");
 
-			z=x1.getElementsByTagName("path")[j].cloneNode(false);
-			//alert(z.id);
-			if (z.id!=graph.id){
-				var graph1 = createMenuItem(z.id).cloneNode(false);
-				graph1.setAttribute("value",z.id);
-				pop3.appendChild(graph1);
-				//alert(c2);
-				c2++;
-			}
-			//alert("hello : "+z.id);
-		}
-		for (j=0;j<x1.getElementsByTagName("text").length;j++)
-		{	
-			z=x1.getElementsByTagName("text")[j].cloneNode(false);
-			//alert(z.id);
-			if (z.id!=graph.id){
-				var graph1 = createMenuItem(z.id).cloneNode(false);
-				graph1.setAttribute("value",z.id);
-				pop3.appendChild(graph1);
-				c2++;
-			}
-		}
-		for (j=0;j<x1.getElementsByTagName("polygon").length;j++)
-		{	
-			z=x1.getElementsByTagName("polygon")[j].cloneNode(false);
-			//alert(z.id);
-			if (z.id!=graph.id){
-				var graph1 = createMenuItem(z.id).cloneNode(false);
-				graph1.setAttribute("value",z.id);
-				pop3.appendChild(graph1);
-				c2++;
-			}
-		}
-		
-		for (j=0;j<x1.getElementsByTagName("rect").length;j++)
-		{	
-
-			z=x1.getElementsByTagName("rect")[j].cloneNode(false);
-			//alert(z.id);
-			if (z.id!=graph.id){
-				var graph1 = createMenuItem(z.id);
-				graph1.setAttribute("value",z.id);
-				pop3.appendChild(graph1);
-				c2++;
-			}
-		}	
 	choix3.appendChild(pop3);
 	label4=createLabel("Choisissez un graphe :    ");
 	label4.setAttribute("id","label_"+c1);
@@ -1687,6 +1629,25 @@ function createActionSaisie(c,graph,graph_c)
 	//alert(c1);
 	return(first);		
 }
+
+function create_saisie(x1, pop3, balise){
+
+	for (j=0;j<x1.getElementsByTagName(balise).length;j++)
+	{	
+		z=x1.getElementsByTagName(balise)[j].cloneNode(false);
+		//alert(z.id+" : "+graph.id);
+		var graph1 = createMenuItem(z.id).cloneNode(false);
+		graph1.setAttribute("value",z.id);
+		pop3.appendChild(graph1);
+		
+		//alert(z.id);
+	}
+
+	return pop3;
+
+}
+
+
 function set_saisie(doc1){
 try
 	{

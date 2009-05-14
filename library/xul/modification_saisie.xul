@@ -57,5 +57,6 @@
   </wizardpage>
  <script src="../js/fonctions.js"/>
  <script src="../js/interface.js"/>
+ <script src="../js/xulListeModel.js"/>
  
 </wizard>

@@ -3,26 +3,27 @@
 
 <window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" 
-  onload="get_list_SVG_DB();"
+  onload="get_list_SVG_model('hbListModel');window.sizeToContent();"
+  title="Choisir un modèle"
   >
-  <script src="library/js/interface.js"/>
-<vbox style="align:center;width:200px;" flex="1">
-	<label hidden="false" value="Choisir le SVG " />
-	<label hidden="false" value=" " />
-	<hbox>
-		<menulist  id="choixSVG" style="align:center;width:210px;" >
-		    <menupopup id="SVG_list">
-			</menupopup>
-		</menulist>
-		<label hidden="false" value=" " />
+	<hbox flex="1" >
+		<vbox flex="1" >
+			<label value="Choisir le modèle de SVG que vous souhaitez utiliser" />
+			<hbox id="hbListModel" flex="1" >
+			</hbox>		
+			<label value="" />
+			<label value="" />
+			<hbox flex="1">
+				<button label="Valider  " onclick="ok_svg();"/>
+				<button label="Annuler  " onclick='annuler();'/>
+			</hbox>
+			<label value="" />
+			<label value="" />
+		</vbox>
+		<vbox style="width: 10px;" >
+			<label value="" />
+		</vbox>
 	</hbox>
-	<label hidden="false" value=" " />
-	<hbox>
-		<button label="Valider  " style='width:100px;' onclick="ok_svg();"/>
-		<button label="Annuler  " style='width:100px;' onclick='annuler();'/>
-	</hbox>
-</vbox>
-<vbox>
-
-</vbox>
+	<script src="library/js/interface.js"/>
+	<script src="library/js/xulListeModel.js"/>
 </window>

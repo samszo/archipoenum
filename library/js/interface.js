@@ -9,8 +9,11 @@ var docs=2;
 var doc_courant="";
 var user;
 var id_user;
+var g_idSvg=-1;
 var ladate=new Date();
 var xul_c='';
+var svgTitre;
+
 //var cmpt=1;
 function  init(){	
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -489,7 +492,7 @@ function interface_modif()
 try
 {
 	var chemin=document.getElementById("f_svg").getAttribute("value");
-	var titre=document.getElementById("titre_svg").getAttribute("value");
+	svgTitre=document.getElementById("titre_svg").value;
 	//xml = read(chemin);
 	//rend dynamique les graphique du svg
 	var resultDoc=set_ids(chemin);
@@ -520,8 +523,7 @@ function Open(){
 			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
 			if(!result)
 				return;*/
-			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal,width=320,height=200", "");
-			
+			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal", "");			
 
 }
 
@@ -710,14 +712,17 @@ function svg_open_id(id_svg)
 }
 function ok_svg(){
 	var fichier_svg=document.getElementById("choixSVG").selectedItem.getAttribute("fichier");
-	var figure_svg=document.getElementById("choixSVG").selectedItem.getAttribute("figure");
-	alert(figure_svg);
-	alert(fichier_svg);
+	//alert(fichier_svg);
 	window.close();
-	window.opener.svg_open(figure_svg,fichier_svg);
+	window.opener.svg_open("fig_p",fichier_svg);
 }
-function get_list_SVG_DB(){
-try{
+function get_list_SVG_model(idXul){
+		//ajoute la liste des modèles
+		var listModele = new xulListeModele("listModele", document.getElementById(idXul), myDBFile);
+		listModele.get_DB_list();
+		/*
+	try{
+		
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var file = Components.classes["@mozilla.org/file/directory_service;1"]
                      .getService(Components.interfaces.nsIProperties)
@@ -727,7 +732,7 @@ try{
 		                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
 		
-		var statement = mDBConn.createStatement('SELECT * FROM svg ;');
+		var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel='true' ;");
 		//statement.bindUTF8StringParameter(0,id_svg);
 		
 
@@ -739,13 +744,12 @@ try{
 		test =0;
 		j=0;
 		//alert (myArray1.length);
-		var popup = document.getElementById("SVG_list");
+		var popup = document.getElementById(idXul);
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
-			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']+ ' : id_user = '+myArray1[j]['id_user']);
+			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']);
 			m1.setAttribute("value",myArray1[j]['id_svg']);
 			m1.setAttribute("fichier",myArray1[j]['fichier']);
-			m1.setAttribute("figure",myArray1[j]['figure_c']);
 			popup.appendChild(m1);
 		//	return myArray1[j]['fichier'];
 		}
@@ -756,6 +760,7 @@ try{
 		statement.reset();
 		
 	}
+	*/
 } 
 
 function get_list_SVG_user(){
@@ -764,7 +769,7 @@ try{
 
 		var mDBConn = connect_DB();
 		
-		var statement = mDBConn.createStatement('SELECT * FROM svg where id_user=?1;');
+		var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel='false' AND id_user=?1;");
 		statement.bindUTF8StringParameter(0,id_user);
 		
 
@@ -1587,6 +1592,7 @@ function createActionSaisie(c,graph,graph_c)
 	fct3.setAttribute("value","affiche_interface");
 	var fct4 = createMenuItem("Cacher un graphique");
 	fct4.setAttribute("value","cacher_graph");
+		
 	var bt1= createButton("bt_"+c1,"Valider");
 	bt1.setAttribute("onclick", "Valider_form('"+c+"');");
 	//alert(c);
@@ -1663,6 +1669,11 @@ function createActionSaisie(c,graph,graph_c)
 	g1.appendChild(choix3);
 	g1.appendChild(l.cloneNode(false));
 	g1.appendChild(vb);
+		
+	//ajoute la liste des modèles
+	var listModele = new xulListeModele("listModele_"+c1, g1, myDBFile, true);
+	listModele.get_DB_list();
+		
 	h1= createHbox("h3"+c1);
 	h1.appendChild(bt1);
 	h1.appendChild(bt_3);
@@ -1824,37 +1835,48 @@ function Valider_form(id_form)
 	evt=listes[0].selectedItem.value;
 	fct=listes[1].selectedItem.value;
 	id_graph=RC(id_form,"saisie_","");
+
+
+	var mDBConn = connect_DB();
+	
+	svg=document.getElementById("svg_1");
+	var serializer = new XMLSerializer();
+   	var xml = serializer.serializeToString(svg);
+   	
+   	//vérifie si on a déjà enregistré le svg
+	if(g_idSvg==-1){    	
+		var sql = 'INSERT INTO svg(fichier,isModel,titre) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml);
+		statement.bindUTF8StringParameter(1,"true");
+		statement.bindUTF8StringParameter(2,svgTitre+" - "+user+" - model:"+ladate.toGMTString());
+		statement.execute();
+		statement.reset();			
+		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');	
+		// return dataset;	
+		j=0;
+		var myArray1 = boucle_select(statement);
+		g_idSvg=myArray1[j]["id_svg"];
+	}else{
+		var sql = 'UPDATE svg SET fichier ?1;';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml);
+		statement.execute();
+		statement.reset();			
+	}
+
+
 	if (fct=="afficher_form"){
 		
 		xul_complet='<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">'+contruire_texte(n1)+contruire_liste(n1);
 		xul_complet=xul_complet+'<button id="bt_valider_'+n1+'" label="Valider" nb_elements="'+cp_elem+'" nb_texte="'+cp_texte+'" nb_list="'+cp_list+'" tooltiptext="Valider la saisie" onclick="Valider_saisi('+n1+',this);"/></vbox>';
 		//alert(xul_complet);
 		
-
-		var mDBConn = connect_DB();
-		
-		svg=document.getElementById("svg_1");
-		var serializer = new XMLSerializer();
-    	var xml = serializer.serializeToString(svg);
-		var sql = 'INSERT INTO svg(fichier,figure_c,titre) VALUES(?1,?2,?3);';
-		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,xml);
-		statement.bindUTF8StringParameter(1,"fig_21");
-		statement.bindUTF8StringParameter(2,"test");
-		statement.execute();
-		statement.reset();
-		
-		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');
-
-				// return dataset;	
-		j=0;
-		var myArray1 = boucle_select(statement);
-		id_svg=myArray1[j]["id_svg"];
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,id_form);
 		statement.bindUTF8StringParameter(1,xul_complet);
-		statement.bindUTF8StringParameter(2,id_svg);
+		statement.bindUTF8StringParameter(2,g_idSvg);
 		statement.execute();
 		statement.reset();
 		//g1=listes[2].selectedItem.value;
@@ -1892,8 +1914,10 @@ function Valider_form(id_form)
 		hist.appendChild(h1);
 	}
 	else if (fct=="affiche_interface"){
+		g1=document.getElementById("listModele_"+n1).selectedItem.value;
+		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
 		hist=document.getElementById("hist"+n1);
-		var h1 = createMenuItem("  Affichage de l'interface numero : ");
+		var h1 = createMenuItem("Affichage du modèle: "+g1);
 		hist.appendChild(h1);
 	}
 	else{
@@ -2292,23 +2316,38 @@ function test_evt(elem){
 		document.getElementById("v"+n1).setAttribute("hidden","false");
 		document.getElementById("label_"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
+		document.getElementById("listModele_"+n1).setAttribute("hidden","true");
+		document.getElementById("label_listModele_"+n1).setAttribute("hidden","true");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
 	else if (elem.selectedItem.value=="affiche_graph"){
 		document.getElementById("v"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","false");
 		document.getElementById("label_"+n1).setAttribute("hidden","false");
+		document.getElementById("listModele_"+n1).setAttribute("hidden","true");
+		document.getElementById("label_listModele_"+n1).setAttribute("hidden","true");
 		//alert(document.getElementById("v"+n1).getAttribute("hidden"));
 	}
 	else if (elem.selectedItem.value=="cacher_graph"){
 		document.getElementById("v"+n1).setAttribute("hidden","true");
 		document.getElementById("label_"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
+		document.getElementById("listModele_"+n1).setAttribute("hidden","true");
+		document.getElementById("label_listModele_"+n1).setAttribute("hidden","true");
+	}
+	else if (elem.selectedItem.value=="affiche_interface"){
+		document.getElementById("v"+n1).setAttribute("hidden","true");
+		document.getElementById("label_"+n1).setAttribute("hidden","true");
+		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
+		document.getElementById("listModele_"+n1).setAttribute("hidden","false");
+		document.getElementById("label_listModele_"+n1).setAttribute("hidden","false");
 	}
 	else {
 		document.getElementById("v"+n1).setAttribute("hidden","true");
 		document.getElementById("label_"+n1).setAttribute("hidden","true");
 		document.getElementById("choixGraph_"+n1).setAttribute("hidden","true");
+		document.getElementById("listModele_"+n1).setAttribute("hidden","true");
+		document.getElementById("label_listModele_"+n1).setAttribute("hidden","true");
 	}
 }
 

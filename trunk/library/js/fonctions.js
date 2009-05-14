@@ -7,6 +7,11 @@ function affiche_graph(c)
 	//alert('hello');
 }
 
+function affiche_interface(c)
+{
+	alert(c);
+}
+
 function afficher_form (id_form,n1){
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	var mDBConn = connect_DB();

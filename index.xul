@@ -61,7 +61,7 @@
 			</menubar>
 			<menubar id='Stockage'>
 				<menu label=" Stockage ->" >
-					<menupopup >
+					<menupopup id="stock">
 						<menuitem id="exp" label="Exporter Sous format SVG " onclick="Export('p');"/>
 						<menuitem id="sav" label="Sauvegarder dans la base de données  " onclick="Save_SVG();"/>
 						<menuitem id="chr" label="Charger  " onclick="Import('p');"/>

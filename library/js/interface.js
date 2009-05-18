@@ -3,6 +3,7 @@ var sep=";";
 var xulDoc=window.parent.document;
 var arrValidation = new Array();
 var figure_courant="fig_p";
+var id_courant='1';
 var myDBFile="archipoenum.sqlite";
 var SVG_NS ="http://www.w3.org/2000/svg";
 var docs=2;
@@ -47,7 +48,7 @@ function createDefault(){
 	statement.bindUTF8StringParameter(0,0);
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
-	if (myArray1.length!=3)	{
+	if (myArray1.length<2)	{
 		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\fig_21.xul";	
 		che1="chrome://archipoenum/content/library/xul/fig_21.xul";	
 		chrm1=chromeToPath (che1);
@@ -73,29 +74,29 @@ function createDefault(){
 		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\ZonesSaisies.xul";	
 		che1="chrome://archipoenum/content/library/xul/ZonesSaisies.xull";	
 		chrm1=chromeToPath (che1);
-		xml1 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><hbox hidden="true" id="saisie_fig_21_indexer" ><label value="Name : " /><textbox id="saisie_fig_21_indexer_name" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexer\',\'fig_21_indexing\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_21_indexing" ><label value="Date : " /><datepicker id="saisie_fig_21_indexing_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_21_indexing_place" value="" /><label value="Id : " /><textbox id="saisie_fig_21_indexing_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexing\',\'fig_21_document\',\'\');"/></vbox><hbox hidden="true" id="saisie_fig_21_document" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_21;fig_18;saisie_fig_21_document\');"/></hbox><vbox hidden="true" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Listing" value="Listing"/><menuitem label="Pg" value="Pg"/><menuitem label="Video" value="Bats"/><menuitem label="Photo" value="Photo"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_document" ><label value="Title : " /><textbox id="saisie_fig_18_document_titre" value="" /><label value="Author : " /><textbox id="saisie_fig_18_document_auteur" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_document_date" type="popup" value=""/><label value="Adresse : " /><textbox id="saisie_fig_18_document_adresse" value="" /><label value="Circonstance : " /><menulist id="saisie_fig_18_document_circonstance" editable="true"><menupopup><menuitem label="Expo" value="Expo"/><menuitem label="Interview" value="Interview"/><menuitem label="Conference" value="Conference"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_document\',\'fig_18_section;fig_18_nature\',\'fig_18_type;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_format" ><label value="Format : " /><menulist id="saisie_fig_18_format_name" editable="true"><menupopup><menuitem label="mpeg" value="Mpeg"/><menuitem label="avi" value="avi"/><menuitem label="wawe" value="wawe"/><menuitem label="mp3" value="mp3"/><menuitem label="jpeg" value="jpeg"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_format\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_type\');"/></vbox><vbox hidden="true" id="saisie_fig_18_section" ><label value="Begining : " /><textbox id="saisie_fig_18_section_begin" value="" /><label value="End : " /><textbox id="saisie_fig_18_section_end" value="" /><label value="Id : " /><textbox id="saisie_fig_18_section_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_section\',\'fig_18_work;fig_18_actor\',\'fig_18_nature\');"/></vbox><vbox hidden="true" id="saisie_fig_18_nature" ><label value="Nature : " /><menulist id="saisie_fig_18_nature_name" editable="true"><menupopup><menuitem label="action" value="action"/><menuitem label="interview" value="interview"/><menuitem label="simulation" value="simulation"/><menuitem label="analyse" value="analyse"/><menuitem label="storage" value="storage"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_nature\',\'fig_18_work;fig_18_actor\',\'fig_18_section\');"/></vbox><hbox hidden="true" id="saisie_fig_18_actor" ><label value="Afficher la figure 19" /><button label="Valider" onclick="changer_interface(\'1\',\'2\',this);"/></hbox><hbox hidden="true" id="saisie_fig_18_work" ><label value="Title : " /><textbox id="saisie_fig_18_work_titre" value="" /><button label="Valider" onclick="Valider(\'fig_18_work\',\'fig_18_instance\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_18_instance" ><label value="Id : " /><textbox id="saisie_fig_18_instance_id" value="" /><label value="Authors : " /><textbox id="saisie_fig_18_instance_authors" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_instance_date" type="popup" value=""/><label value="Duration : " /><textbox id="saisie_fig_18_instance_duration" value="" /><label value="Place : " /><textbox id="saisie_fig_18_instance_place" value="" /><button label="Valider" onclick="Valider(\'fig_18_instance\',\'fig_18_physicpart\',\'\');"/></vbox><vbox hidden="true" id="saisie_fig_18_ontoactor" ><label value="Id : " /><textbox id="saisie_fig_18_ontoactor_id" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_ontoactor_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_18_ontoactor_place" value="" /><button label="Valider" onclick="afficher_last_interface();Valider(\'fig_18_ontoactor\',\'fig_18_concept\',\'\');MontrerCacherXul(\'OntoActeur;saisie_fig_18_concept\');"/></vbox><hbox hidden="true" id="saisie_fig_18_physicpart" ><label value="Afficher la figure 19" /><button label="Valider" onclick="MontrerCacherXul(\'fig_18;fig_19;saisie_fig_18_physicpart\');"/></hbox><hbox hidden="true" flex="1" id="saisie_fig_18_concept" ><label value="Name : " hidden="true" /><textbox id="saisie_fig_18_concept_name" value="" hidden="true" /><button label="Valider" onclick="Valider(\'fig_18_concept\',\'fig_18_instance\',\'\');MontrerCacherXul(\'fig_18;savoirs;OntoActeur\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyst" ><label value="Type : " /><menulist id="saisie_fig_19_analyst_type" editable="true"><menupopup><menuitem label="semiotician" value="semiotician"/><menuitem label="littereary analyse" value="littereary analyse"/></menupopup></menulist><button label="Valider" onclick="Valider(\'fig_19_analyst\',\'fig_19_analyse;fig_19_create;fig_19_observe\',\'\');ChangeAttributsValeur(\'fig_19_reader;fig_19_autor\',\'fill\',\'none\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse1" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse1\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse2" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse2\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse3" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse3\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse4" ><label value="Afficher la figure 18" /><button label="Valider" onclick="changer_interface(\'2\',\'1\',this);AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse5" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse5\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse6" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse6\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse7" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse7\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse8" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse8\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse9" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse9\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse10" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse10\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse11" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse11\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox></vbox>';
+		xml2 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><hbox hidden="true" id="saisie_fig_21_indexer" ><label value="Name : " /><textbox id="saisie_fig_21_indexer_name" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexer\',\'fig_21_indexing\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_21_indexing" ><label value="Date : " /><datepicker id="saisie_fig_21_indexing_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_21_indexing_place" value="" /><label value="Id : " /><textbox id="saisie_fig_21_indexing_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexing\',\'fig_21_document\',\'\');"/></vbox><hbox hidden="true" id="saisie_fig_21_document" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_21;fig_18;saisie_fig_21_document\');"/></hbox><vbox hidden="true" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Listing" value="Listing"/><menuitem label="Pg" value="Pg"/><menuitem label="Video" value="Bats"/><menuitem label="Photo" value="Photo"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_document" ><label value="Title : " /><textbox id="saisie_fig_18_document_titre" value="" /><label value="Author : " /><textbox id="saisie_fig_18_document_auteur" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_document_date" type="popup" value=""/><label value="Adresse : " /><textbox id="saisie_fig_18_document_adresse" value="" /><label value="Circonstance : " /><menulist id="saisie_fig_18_document_circonstance" editable="true"><menupopup><menuitem label="Expo" value="Expo"/><menuitem label="Interview" value="Interview"/><menuitem label="Conference" value="Conference"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_document\',\'fig_18_section;fig_18_nature\',\'fig_18_type;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_format" ><label value="Format : " /><menulist id="saisie_fig_18_format_name" editable="true"><menupopup><menuitem label="mpeg" value="Mpeg"/><menuitem label="avi" value="avi"/><menuitem label="wawe" value="wawe"/><menuitem label="mp3" value="mp3"/><menuitem label="jpeg" value="jpeg"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_format\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_type\');"/></vbox><vbox hidden="true" id="saisie_fig_18_section" ><label value="Begining : " /><textbox id="saisie_fig_18_section_begin" value="" /><label value="End : " /><textbox id="saisie_fig_18_section_end" value="" /><label value="Id : " /><textbox id="saisie_fig_18_section_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_section\',\'fig_18_work;fig_18_actor\',\'fig_18_nature\');"/></vbox><vbox hidden="true" id="saisie_fig_18_nature" ><label value="Nature : " /><menulist id="saisie_fig_18_nature_name" editable="true"><menupopup><menuitem label="action" value="action"/><menuitem label="interview" value="interview"/><menuitem label="simulation" value="simulation"/><menuitem label="analyse" value="analyse"/><menuitem label="storage" value="storage"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_nature\',\'fig_18_work;fig_18_actor\',\'fig_18_section\');"/></vbox><hbox hidden="true" id="saisie_fig_18_actor" ><label value="Afficher la figure 19" /><button label="Valider" onclick="changer_interface(\'1\',\'2\',this);"/></hbox><hbox hidden="true" id="saisie_fig_18_work" ><label value="Title : " /><textbox id="saisie_fig_18_work_titre" value="" /><button label="Valider" onclick="Valider(\'fig_18_work\',\'fig_18_instance\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_18_instance" ><label value="Id : " /><textbox id="saisie_fig_18_instance_id" value="" /><label value="Authors : " /><textbox id="saisie_fig_18_instance_authors" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_instance_date" type="popup" value=""/><label value="Duration : " /><textbox id="saisie_fig_18_instance_duration" value="" /><label value="Place : " /><textbox id="saisie_fig_18_instance_place" value="" /><button label="Valider" onclick="Valider(\'fig_18_instance\',\'fig_18_physicpart\',\'\');"/></vbox><vbox hidden="true" id="saisie_fig_18_ontoactor" ><label value="Id : " /><textbox id="saisie_fig_18_ontoactor_id" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_ontoactor_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_18_ontoactor_place" value="" /><button label="Valider" onclick="afficher_last_interface();Valider(\'fig_18_ontoactor\',\'fig_18_concept\',\'\');MontrerCacherXul(\'OntoActeur;saisie_fig_18_concept\');"/></vbox><hbox hidden="true" id="saisie_fig_18_physicpart" ><label value="Afficher la figure 19" /><button label="Valider" onclick="MontrerCacherXul(\'fig_18;fig_19;saisie_fig_18_physicpart\');"/></hbox><hbox hidden="true" flex="1" id="saisie_fig_18_concept" ><label value="Name : " hidden="true" /><textbox id="saisie_fig_18_concept_name" value="" hidden="true" /><button label="Valider" onclick="Valider(\'fig_18_concept\',\'fig_18_instance\',\'\');MontrerCacherXul(\'fig_p;savoirs;OntoActeur\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyst" ><label value="Type : " /><menulist id="saisie_fig_19_analyst_type" editable="true"><menupopup><menuitem label="semiotician" value="semiotician"/><menuitem label="littereary analyse" value="littereary analyse"/></menupopup></menulist><button label="Valider" onclick="Valider(\'fig_19_analyst\',\'fig_19_analyse;fig_19_create;fig_19_observe\',\'\');ChangeAttributsValeur(\'fig_19_reader;fig_19_autor\',\'fill\',\'none\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse1" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse1\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse2" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse2\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse3" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse3\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse4" ><label value="Afficher la figure 18" /><button label="Valider" onclick="changer_interface(\'2\',\'1\',this);AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse5" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse5\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse6" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse6\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse7" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse7\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse8" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse8\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse9" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse9\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse10" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse10\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse11" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse11\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox></vbox>';
 		//alert (xml1);	
 		//xml1 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><vbox hidden="false" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox></vbox>';
-		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');
+		var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');
 		var myArray1 = boucle_select(statement);
 		j=0;
 		id_svg=myArray1[j]["id_svg"];
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,"default0");
-		statement.bindUTF8StringParameter(1,xml1);
+		statement.bindUTF8StringParameter(1,xml2);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
 		statement.reset();	
 		
-		xml1 = '<vbox id="OntoActeur" flex="1" ><tree id="TreeOntoActeur"onselect="Select_Dictio(\'ieml\',\'treecol_ieml\',\'treecol_descp\');"flex="1"editable="true"><treecols ><treecol id="treecol_Tagdel" flex="1" primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol id="treecol_descp" flex="1" label="concept" persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol type="checkbox" label="select" editable="true" /></treecols><treechildren>    <treeitem container="true" open="true">      <treerow>        <treecell label="Actor ontology"/>        <treecell label=""/>      </treerow>      <treechildren>        <treeitem container="true" open="false">          <treerow>            <treecell label="litterature analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel-virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oulipo" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="palindrome" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="true">          <treerow>            <treecell label="semiotic analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération combinatoire" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération automatique de texte" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération avec modèle physique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération graphique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre interactive" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre hypertextuelle" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre collaborative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre participative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une Base de Données" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une gestion des flux" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre performative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="reader" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="animation" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="autor" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>      </treechildren>    </treeitem>  </treechildren></tree></vbox>';
+		xml3 = '<vbox id="OntoActeur" flex="1" ><tree id="TreeOntoActeur" onselect="Select_Dictio(\'ieml\',\'treecol_ieml\',\'treecol_descp\');" flex="1" editable="true"><treecols ><treecol id="treecol_Tagdel" flex="1" primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol id="treecol_descp" flex="1" label="concept" persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol type="checkbox" label="select" editable="true" /></treecols><treechildren>    <treeitem container="true" open="true">      <treerow>        <treecell label="Actor ontology"/>        <treecell label=""/>      </treerow>      <treechildren>        <treeitem container="true" open="false">          <treerow>            <treecell label="litterature analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel-virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oulipo" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="palindrome" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="true">          <treerow>            <treecell label="semiotic analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération combinatoire" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération automatique de texte" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération avec modèle physique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération graphique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre interactive" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre hypertextuelle" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre collaborative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre participative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une Base de Données" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une gestion des flux" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre performative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="reader" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="animation" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="autor" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>      </treechildren>    </treeitem>  </treechildren></tree></vbox>';
 		//alert (xml1);
 		
 		//figure_courant="fig_21";
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,"default1");
-		statement.bindUTF8StringParameter(1,xml1);
+		statement.bindUTF8StringParameter(1,xml3);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
 		statement.reset();
@@ -112,6 +113,26 @@ function createDefault(){
 		statement.bindUTF8StringParameter(1,"true");
 		statement.bindUTF8StringParameter(2,"default3");
 		statement.bindUTF8StringParameter(3,"0");
+		statement.execute();
+		statement.reset();
+		
+		var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');
+		var myArray1 = boucle_select(statement);
+		j=0;
+		id_svg=myArray1[j]["id_svg"];
+		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,"default0");
+		statement.bindUTF8StringParameter(1,xml2);
+		statement.bindUTF8StringParameter(2,id_svg);
+		statement.execute();
+		statement.reset();	
+		
+		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,"default1");
+		statement.bindUTF8StringParameter(1,xml3);
+		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
 		statement.reset();
 		//figure_courant="fig_21";
@@ -166,6 +187,31 @@ function Open_default(elem){
 		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
 		resultDoc.documentElement.setAttribute("hidden","false");
 		resultDoc.documentElement.setAttribute("flex","1");
+		p_saisi.appendChild(resultDoc.documentElement);
+	}
+	statement.reset();
+}
+
+function afficher_last_interface(){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var p_saisi=document.getElementById("S1");
+	var mDBConn = connect_DB();
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
+	statement.bindUTF8StringParameter(0,"default1");
+	// return dataset;	
+	var myArray1 = boucle_select(statement);
+		// Now you can loop through the array:
+	test =0;
+	j=0;
+		//alert (myArray1.length);
+	for(var j=0;j<myArray1.length;j++){
+		//alert("SVG : "+myArray1[j]['form_xul']);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
+		resultDoc.documentElement.setAttribute("hidden","false");
+		resultDoc.documentElement.setAttribute("flex","1");
+		
 		p_saisi.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
@@ -359,7 +405,7 @@ function MontrerCacherXul(idsDst){
 
 
 function changer_interface(idsSrc,idsDst,elem){
-	try {
+	
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var mDBConn = connect_DB();
 		var p_interface = document.getElementById("C1");
@@ -379,8 +425,11 @@ function changer_interface(idsSrc,idsDst,elem){
 		var test_model2=myArray1[j]['isModel'];
 		
 		doc=document.getElementById("fig_p");
+		p_saisi=document.getElementById("S1");
 		var serializer = new XMLSerializer();
     	var svg_src = serializer.serializeToString(doc.firstChild);
+    	var serializer = new XMLSerializer();
+    	var xul_src = serializer.serializeToString(p_saisi.firstChild);
 		//svg_src=doc.firstChild;
 		
 		var statement = mDBConn.createStatement('SELECT titre,isModel FROM svg where id_svg=?1;');
@@ -407,21 +456,30 @@ function changer_interface(idsSrc,idsDst,elem){
 			// Now you can loop through the array:
 			id_interface =myArray1[j]['id_svg'];
 			interface_modif=myArray1[j]['fichier'];
+			
+			var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,"saisie_"+id_interface);
+			statement.bindUTF8StringParameter(1,xul_src);
+			statement.bindUTF8StringParameter(2,id_interface);
+			statement.execute();
+			statement.reset();
+			
 	    	var pop = document.getElementById(racine_interface); // a <menupopup> element
 			var first = createMenu(titre);
 			var pop2=createMenuPopup("pop_interface_"+id_interface);
 			var last = createMenuItem(titre);
-			last.setAttribute("onclick","svg_open_id('"+id_interface+"');");
+			last.setAttribute("onclick","afficher_interface('"+id_interface+"');");
 			pop2.appendChild(last);
 			first.appendChild(pop2);
 			pop.appendChild(first);
 			racine_interface="pop_interface_"+id_interface;
-			
+			id_courant=idsDst;
 			
 		}
 		else {
-			alert(test_model+ "else");
-			var sql = 'UPDATE svg SET fichier ?1 WHERE id_svg=?2;';
+			//alert(test_model+ "else");
+			var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
 			var statement = mDBConn.createStatement(sql);
 			statement.bindUTF8StringParameter(0,svg_src);
 			statement.bindUTF8StringParameter(1,idsSrc);
@@ -448,26 +506,42 @@ function changer_interface(idsSrc,idsDst,elem){
 			var first = createMenu(titre2);
 			var pop2=createMenuPopup("pop_interface_"+id_interface2);
 			var last = createMenuItem(titre2);
-			last.setAttribute("onclick","svg_open_id('"+id_interface2+"');");
+			last.setAttribute("onclick","afficher_interface('"+id_interface2+"');");
 			pop2.appendChild(last);
 			first.appendChild(pop2);
 			pop.appendChild(first);
+			id_courant=id_interface2;
 			racine_interface="pop_interface_"+id_interface2;
 		}
 		else {
-			alert(test_model2+ "else");
+			var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,svg_src2);
+			statement.bindUTF8StringParameter(1,idsSrc);
+			statement.execute();
+			statement.reset();	
 		}
 		if (test_model=="true"){
 			xml2=RC(interface_modif,"changer_interface(\'"+idsSrc+"\',\'"+idsDst+"\',this)","changer_interface(\'"+id_interface+"\',\'"+id_interface2+"\',this)");
-			/*var sql = 'UPDATE svg SET fichier ?1 WHERE id_svg=?2;';
-			alert('UPDATE svg SET fichier '+xml2+' WHERE id_svg='+id_interface+';');
+			var sql = 'UPDATE svg SET fichier= ?1 WHERE id_svg=?2;';
+			//alert('UPDATE svg SET fichier= '+'hello'+' WHERE id_svg='+id_interface+';');
 			var statement = mDBConn.createStatement(sql);
 			statement.bindUTF8StringParameter(0,xml2);
 			statement.bindUTF8StringParameter(1,id_interface);
 			statement.execute();
-			statement.reset();*/
+			statement.reset();
 		}
-		
+		if (test_model2=="true"){
+			xml3=RC(svg_src2,"changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)","changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
+			var sql = 'UPDATE svg SET fichier= ?1 WHERE id_svg=?2;';
+			alert("changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)"+"  <---  changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
+			alert(xml3);
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,xml3);
+			statement.bindUTF8StringParameter(1,id_interface2);
+			statement.execute();
+			statement.reset();
+		}
 		if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
 		doc.appendChild(resultDoc.documentElement);
@@ -478,12 +552,26 @@ function changer_interface(idsSrc,idsDst,elem){
 		document.getElementById("fig_21_indexing_date").firstChild.data=ladate.getDate()+"-"+(ladate.getMonth()+1)+"-"+ladate.getFullYear();*/
 			
 		statement.reset();
-	} catch(ex2){alert("interface:changer_interface:"+ex2);}
+	//} catch(ex2){alert("interface:changer_interface:"+ex2);}
 }
 
 function afficher_interface(id_i)
 {
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	var mDBConn = connect_DB();
+	alert(id_courant+' '+id_i);
+	doc=document.getElementById("fig_p");
+	var serializer = new XMLSerializer();
+    var xml = serializer.serializeToString(doc.firstChild);
+	var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
+	alert('UPDATE svg SET fichier= WHERE id_svg='+id_courant+';');
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,xml);
+	statement.bindUTF8StringParameter(1,id_courant);
+	statement.execute();
+	statement.reset();	
+	
+	
 	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,id_i);
 	// return dataset;	
@@ -492,14 +580,16 @@ function afficher_interface(id_i)
 	test =0;
 	j=0;
 	//alert (myArray1.length);
-	alert("SVG : "+myArray1[j]['fichier']);
+	//alert("SVG : "+myArray1[j]['fichier']);
 	interface= myArray1[j]['fichier'];
 	statement.reset();
-	doc=document.getElementById("fig_p");
+	var parser=new DOMParser();
 	var resultDoc=parser.parseFromString(interface,"text/xml");
+	alert("Doc : -------"+resultDoc);
 	if (doc.hasChildNodes()==true)	
 		doc.removeChild(doc.firstChild);
-	doc.appendChild(resultDoc);
+	doc.appendChild(resultDoc.documentElement);
+	id_courant=id_i;
 }
 
 // Enregistrement d'un document dans un fichier

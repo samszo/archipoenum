@@ -5,6 +5,7 @@
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>
 	<script src="library/js/fonctions.js"/>
+	<script src="library/js/xulListeModel.js"/>
  <html:style>
  treechildren::-moz-tree-checkbox
  {
@@ -92,9 +93,7 @@
 			<grippy/>
 		</splitter>
 		<vbox id="C1" flex='1' >
-			<vbox id="fig_p" hidden="false">
-				
-			</vbox>		
+			<vbox id="fig_p" flex='1' style="overflow: auto;" />
 			<vbox id="logout" hidden="true">
 				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
 			</vbox>

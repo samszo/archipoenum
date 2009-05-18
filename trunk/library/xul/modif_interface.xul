@@ -29,12 +29,21 @@
 
   <wizardpage id="interface_zone">
 		<groupbox orient="horizontal" flex="1" >
-				<vbox id="vb1">
-					<hbox>
-						<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
-					</hbox>
-				</vbox>
+			<vbox id="S1" style="display: inline-block;" flex="1">
+			</vbox>
+			<splitter collapse="before" resizeafter="farthest">
+				<grippy/>
+			</splitter>
+			<vbox >
+				<hbox>
+					<button id="bt_export" style='width:30px;' label="Exporter"  onclick="Export('a');"/>
+				</hbox>
+				<vbox id="vb1"  style="overflow: auto;" />
+				<vbox id="fig_p" />
+			</vbox>
 		</groupbox>
   </wizardpage>
  <script src="../js/interface.js"/>
+ <script src="../js/xulListeModel.js"/>
+ <script src="../js/fonctions.js"/>
 </wizard>

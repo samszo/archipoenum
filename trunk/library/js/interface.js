@@ -11,6 +11,7 @@ var doc_courant="";
 var user;
 var id_user;
 var g_idSvg=-1;
+var g_idModel=-1;
 var ladate=new Date();
 var xul_c='';
 var svgTitre;
@@ -140,6 +141,7 @@ function createDefault(){
 }
 
 function Open_default(elem){
+	g_idModel = 1;
 	elem.setAttribute("disabled","true");
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	var mDBConn = connect_DB();
@@ -149,37 +151,25 @@ function Open_default(elem){
 	statement.bindUTF8StringParameter(0,'1');
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-	test =0;
-	j=0;
-		//alert (myArray1.length);
 
 	//alert("SVG : "+myArray1[j]['fichier']);
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(myArray1[j]['fichier'],"text/xml");
+	var resultDoc=parser.parseFromString(myArray1[0]['fichier'],"text/xml");
 	
 	doc=document.getElementById("fig_p");
 	resultDoc.documentElement.setAttribute("hidden","false");
 	if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
 	doc.appendChild(resultDoc.documentElement);
-	/*document.getElementById("fig_21_indexer").setAttribute("fill","green");
-	document.getElementById("fig_21_indexing").setAttribute("fill","green");
-	document.getElementById("fig_21_indexer_name").firstChild.data=user;
-	document.getElementById("fig_21_indexing_id").firstChild.data=id_user;
-	document.getElementById("fig_21_indexing_date").firstChild.data=ladate.getDate()+"-"+(ladate.getMonth()+1)+"-"+ladate.getFullYear();*/
-		
+
 	statement.reset();
 	
 	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
 	statement.bindUTF8StringParameter(0,"default0");
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-	test =0;
-	j=0;
-		//alert (myArray1.length);
+	//alert (myArray1.length);
 	for(var j=0;j<myArray1.length;j++){
 		//alert("SVG : "+myArray1[j]['form_xul']);
 		var parser=new DOMParser();
@@ -555,42 +545,6 @@ function changer_interface(idsSrc,idsDst,elem){
 	//} catch(ex2){alert("interface:changer_interface:"+ex2);}
 }
 
-function afficher_interface(id_i)
-{
-	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-	var mDBConn = connect_DB();
-	alert(id_courant+' '+id_i);
-	doc=document.getElementById("fig_p");
-	var serializer = new XMLSerializer();
-    var xml = serializer.serializeToString(doc.firstChild);
-	var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
-	alert('UPDATE svg SET fichier= WHERE id_svg='+id_courant+';');
-	var statement = mDBConn.createStatement(sql);
-	statement.bindUTF8StringParameter(0,xml);
-	statement.bindUTF8StringParameter(1,id_courant);
-	statement.execute();
-	statement.reset();	
-	
-	
-	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
-	statement.bindUTF8StringParameter(0,id_i);
-	// return dataset;	
-	var myArray1 = boucle_select(statement);
-	// Now you can loop through the array:
-	test =0;
-	j=0;
-	//alert (myArray1.length);
-	//alert("SVG : "+myArray1[j]['fichier']);
-	interface= myArray1[j]['fichier'];
-	statement.reset();
-	var parser=new DOMParser();
-	var resultDoc=parser.parseFromString(interface,"text/xml");
-	alert("Doc : -------"+resultDoc);
-	if (doc.hasChildNodes()==true)	
-		doc.removeChild(doc.firstChild);
-	doc.appendChild(resultDoc.documentElement);
-	id_courant=id_i;
-}
 
 // Enregistrement d'un document dans un fichier
 function serialize(doc,file,extra) {
@@ -745,18 +699,8 @@ catch(ex2){ alert("interface:interface_modif: "+ex2); }
 } 
 
 function Open(){
-			netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-  	
-			//saisi le libellï¿½ 
-			/*var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-			                        .getService(Components.interfaces.nsIPromptService);
-			var input = {value: ""};
-			var check = {value: false};
-			result = prompts.prompt(window, "Donner l'identifiant du SVG", "Saisir l'identifiant du SVG", input, null, check);
-			if(!result)
-				return;*/
-			 var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal", "");			
-
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var win = window.openDialog("http://localhost/archipoenum/Ouvrir.xul", "dlg", "dependent,dialog,modal", "");			
 }
 
 // bibliothï¿½que SQLite http://codesnippets.joyent.com/posts/show/1030
@@ -839,6 +783,22 @@ var $sqlite = {
 	}	
 
 }
+
+function getObjSVG_DB(id_svg){
+try{
+
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var strSvg=getSVG_DB(id_svg);
+		var resultDoc=parser.parseFromString(strSvg,"text/xml");		
+		return resultDoc.documentElement;
+
+	}
+	catch(ex2){ 
+		alert("interface:getObjSVG_DB: "+ex2); 		
+	}
+} 
+
 function getSVG_DB(id_svg){
 try{
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
@@ -855,8 +815,6 @@ try{
 
 			// return dataset;	
 		var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-		test =0;
 		j=0;
 		//alert (myArray1.length);
 		for(var j=0;j<myArray1.length;j++){
@@ -877,28 +835,19 @@ window.close();}
 
 function svg_open(choix_svg,fig_svg)
 {
-			//xml = getSVG_DB(choix_svg);
-			////figure_courant=get_figure(input.value);
-			//alert ("fig : "+figure_courant);
-			//alert (input.value);
-			var parser=new DOMParser();
-			// Transformer le String en Objet DOM
-			var resultDoc=parser.parseFromString(fig_svg,"text/xml");
-			// Intï¿½grer le DOM rï¿½cupï¿½rï¿½ ï¿½ l'interieur de document
-			if 	(document.getElementById(choix_svg)!=null)
-				document.getElementById(choix_svg).appendChild(resultDoc.documentElement);
-			else
-				document.getElementById(choix_svg).appendChild(resultDoc.documentElement);
-			doc=document.getElementById(choix_svg);
-			doc.removeChild(doc.firstChild);
-			if (figure_courant!=choix_svg)  {            
-				document.getElementById(choix_svg).setAttribute("hidden","true");
-				//alert ("hidden : true");	
-			}
+	var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc=parser.parseFromString(fig_svg,"text/xml");
+	var doc=document.getElementById(choix_svg);
+	while(doc.hasChildNodes())
+		doc.removeChild(doc.firstChild);
+	// Intï¿½grer le DOM rï¿½cupï¿½rï¿½ ï¿½ l'interieur de document
+	doc.appendChild(resultDoc.documentElement);
 }
 
 function svg_open_id(id_svg)
 {
+
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	var file = Components.classes["@mozilla.org/file/directory_service;1"]
                     .getService(Components.interfaces.nsIProperties)
@@ -912,7 +861,7 @@ function svg_open_id(id_svg)
 	alert('SELECT * FROM svg where id_svg='+id_svg);
 
 		// return dataset;	
-	j=0;
+	var j=0;
 	var myArray1 = boucle_select(statement);
 	choix_svg="fig_p";
 	fig_svg=myArray1[j]["fichier"];
@@ -941,56 +890,21 @@ function svg_open_id(id_svg)
 	}
 }
 function ok_svg(){
-	var fichier_svg=document.getElementById("choixSVG").selectedItem.getAttribute("fichier");
-	//alert(fichier_svg);
+	window.opener.g_idModel=document.getElementById("listModele").selectedItem.getAttribute("value");
 	window.close();
-	window.opener.svg_open("fig_p",fichier_svg);
+	window.opener.svg_open_id(window.opener.g_idModel);
 }
 function get_list_SVG_model(idXul){
+	try{
 		//ajoute la liste des modï¿½les
 		var listModele = new xulListeModele("listModele", document.getElementById(idXul), myDBFile);
 		listModele.get_DB_list();
-		/*
-	try{
-		
-		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-		var file = Components.classes["@mozilla.org/file/directory_service;1"]
-                     .getService(Components.interfaces.nsIProperties)
-                     .get("ProfD", Components.interfaces.nsIFile);
-		file.append(myDBFile);
-		var storageService = Components.classes["@mozilla.org/storage/service;1"]
-		                        .getService(Components.interfaces.mozIStorageService);
-		var mDBConn = storageService.openDatabase(file);
-		
-		var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel='true' ;");
-		//statement.bindUTF8StringParameter(0,id_svg);
-		
-
-			// return dataset;	
-		
-		
-		var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-		test =0;
-		j=0;
-		//alert (myArray1.length);
-		var popup = document.getElementById(idXul);
-		for(var j=0;j<myArray1.length;j++){
-			//alert("SVG : "+myArray1[j]['fichier']);
-			var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']);
-			m1.setAttribute("value",myArray1[j]['id_svg']);
-			m1.setAttribute("fichier",myArray1[j]['fichier']);
-			popup.appendChild(m1);
-		//	return myArray1[j]['fichier'];
-		}
-		statement.reset();
 	}
 	catch(ex2){ 
-		alert("interface:getSVG_DB: "+ex2); 
+		alert("interface:get_list_SVG_model: "+ex2); 
 		statement.reset();
 		
 	}
-	*/
 } 
 
 function get_list_SVG_user(){
@@ -1007,11 +921,6 @@ try{
 		
 		
 		var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-		test =0;
-		j=0;
-		//alert (myArray1.length);
-		
 		var popup = document.getElementById("stock"); // a <menupopup> element
 		var first = createMenu("List des SVG");
 		var pop = createMenuPopup("p"+docs);
@@ -1356,15 +1265,8 @@ function AppendSVG(url,doc) {
 // Rï¿½cupï¿½rer le SVG en cours d'utilisation
 function getSVG(){
 	try {
-		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var svg;
-		alert(figure_courant);
 		svg=document.getElementById(figure_courant).firstChild.cloneNode(true);
-		    
-	    //alert(file.path);    
-	    var serializer = new XMLSerializer();
-	    var xml = serializer.serializeToString(svg);
-	    //alert(xml);
 		return svg;
 		
 	} 
@@ -2088,9 +1990,10 @@ function Valider_form(id_form)
 		var myArray1 = boucle_select(statement);
 		g_idSvg=myArray1[j]["id_svg"];
 	}else{
-		var sql = 'UPDATE svg SET fichier ?1;';
+		var sql = 'UPDATE svg SET fichier = ?1 WHERE id_svg = ?2;';
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,xml);
+		statement.bindUTF8StringParameter(0,g_idSvg);
 		statement.execute();
 		statement.reset();			
 	}
@@ -2145,9 +2048,9 @@ function Valider_form(id_form)
 	}
 	else if (fct=="affiche_interface"){
 		g1=document.getElementById("listModele_"+n1).selectedItem.value;
-		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
+		document.getElementById(id_graph).setAttribute(evt,fct+"('vb1','"+g_idSvg+"','fig_p','"+g1+"')");
 		hist=document.getElementById("hist"+n1);
-		var h1 = createMenuItem("Affichage du modï¿½le: "+g1);
+		var h1 = createMenuItem("Affichage du modèle: "+g1);
 		hist.appendChild(h1);
 	}
 	else{
@@ -2635,13 +2538,12 @@ function add_svg(svg)
 }
 
 function modif_interface(){
-	x=window.opener.getSVG();
+	var x=window.opener.getObjSVG_DB(window.opener.g_idModel);
+	
 	//alert(x);
 	//alert(xmlDoc);
 	c1=1;
 		//x=xmlDoc.getElementsByTagName("svg")[0];
-		
-		doc1=x;
 		x.setAttribute("id",'svg_1');
 		x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
@@ -2703,7 +2605,7 @@ function modif_interface(){
 		for (i=0;i<x.getElementsByTagName("g").length;i++)
 		{	
 			y=x.getElementsByTagName("g")[i].cloneNode(true);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2712,7 +2614,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("path")[i].cloneNode(false);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 	
@@ -2722,7 +2624,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("text")[i].cloneNode(true);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2730,7 +2632,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}
@@ -2739,7 +2641,7 @@ function modif_interface(){
 		{	
 
 			y=x.getElementsByTagName("rect")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,doc1);
+			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
 			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
 			c1++;
 		}

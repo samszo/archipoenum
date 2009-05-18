@@ -27,13 +27,12 @@ function xulListeModele(id, cont, myDBFile, hidden) {
 			                        .getService(Components.interfaces.mozIStorageService);
 			var mDBConn = storageService.openDatabase(file);
 			
-			var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel='true' ;");
+			var statement = mDBConn.createStatement("SELECT id_svg, titre FROM svg WHERE isModel='true' ;");
 			var myArray1 = boucle_select(statement);
 			for(var j=0;j<myArray1.length;j++){
 				//alert("SVG : "+myArray1[j]['fichier']);
 				var m1=createMenuItem(myArray1[j]['id_svg']+' : '+myArray1[j]['titre']);
 				m1.setAttribute("value",myArray1[j]['id_svg']);
-				m1.setAttribute("fichier",myArray1[j]['fichier']);
 				this.pop.appendChild(m1);
 			}
 			statement.reset();

@@ -1,5 +1,14 @@
 var myDBFile="archipoenum.sqlite";
 
+function redim_svg(svg){
+
+	svg.setAttribute("viewBox","0 0 1000 1000");
+	svg.setAttribute("width","300px");
+	svg.setAttribute("height","200px");
+
+}
+
+
 function affiche_graph(c)
 {
 	document.getElementById(c).setAttribute("hidden","false");
@@ -7,9 +16,52 @@ function affiche_graph(c)
 	//alert('hello');
 }
 
-function affiche_interface(c)
+function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
 {
-	alert(c);
+	//enregistre la version courante du svg source
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
+	var doc=document.getElementById(idSrcCont);
+	var serializer = new XMLSerializer();
+    var xml = serializer.serializeToString(doc.firstChild);
+	var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,xml);
+	statement.bindUTF8StringParameter(1,idSrcSvg);
+	statement.execute();
+	statement.reset();	
+	
+	
+	//récupère le svg de destination
+	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
+	statement.bindUTF8StringParameter(0,idDstSvg);
+	// return dataset;	
+	var myArray1 = boucle_select(statement);
+	// Now you can loop through the array:
+	j=0;
+	//alert (myArray1.length);
+	//alert("SVG : "+myArray1[j]['fichier']);
+	interface= myArray1[j]['fichier'];
+	statement.reset();
+	var parser=new DOMParser();
+	var resultDoc=parser.parseFromString(interface,"text/xml");
+	alert("Doc : -------"+resultDoc);
+	
+	//met le svg de destination dans le conteneur de destination
+	doc=document.getElementById(idDstCont);
+	if (doc.hasChildNodes()==true)	
+		doc.removeChild(doc.firstChild);
+	doc.appendChild(resultDoc.documentElement);
+
+	//redimensionne les svg
+	if(idSrcCont!=idDstSvg){
+		//destination
+		redim_svg(doc.firstChild);
+		//source
+		doc=document.getElementById(idSrcCont);
+		redim_svg(doc.firstChild);
+	}
+	id_courant=idDstSvg;
 }
 
 function afficher_form (id_form,n1){

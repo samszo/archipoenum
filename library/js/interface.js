@@ -467,21 +467,21 @@ function changer_interface(idsSrc,idsDst,elem){
 		    	var pop = document.getElementById(racine_interface); // a <menupopup> element
 				var first = createMenu(titre);
 				var pop2=createMenuPopup("pop_interface_"+id_interface);
-				var last = createMenuItem(titre);
-				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
-				pop2.appendChild(last);
+				//var last = createMenuItem(titre);
+				first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				//pop2.appendChild(last);
 				first.appendChild(pop2);
 				pop.appendChild(first);
 				racine_interface="pop_interface_"+id_interface;
 				id_courant=idsDst;
 			}
-			else {
+			else if (idsSrc==idsDst){
 				var pop = document.getElementById("test3"); // a <menupopup> element
 				var first = createMenu(titre);
 				var pop2=createMenuPopup("pop_interface_"+id_interface);
-				var last = createMenuItem(titre);
-				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
-				pop2.appendChild(last);
+				//var last = createMenuItem(titre);
+				first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				//pop2.appendChild(last);
 				first.appendChild(pop2);
 				pop.appendChild(first);
 				racine_interface="pop_interface_"+id_interface;
@@ -534,9 +534,9 @@ function changer_interface(idsSrc,idsDst,elem){
 	    	var pop = document.getElementById(racine_interface); // a <menupopup> element
 			var first = createMenu(titre2);
 			var pop2=createMenuPopup("pop_interface_"+id_interface2);
-			var last = createMenuItem(titre2);
-			last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface2+"');");
-			pop2.appendChild(last);
+			//var last = createMenuItem(titre2);
+			first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface2+"');");
+			//pop2.appendChild(last);
 			first.appendChild(pop2);
 			pop.appendChild(first);
 			id_courant=id_interface2;

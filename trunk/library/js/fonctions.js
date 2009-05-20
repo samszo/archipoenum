@@ -20,6 +20,8 @@ function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
 {
 	//enregistre la version courante du svg source
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	document.getElementById("savoirs").setAttribute("hidden","true");
+	document.getElementById("fig_p").setAttribute("hidden","false");
 	var mDBConn = connect_DB();
 	var doc=document.getElementById(idSrcCont);
 	var serializer = new XMLSerializer();

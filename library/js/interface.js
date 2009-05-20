@@ -67,7 +67,7 @@ function createDefault(){
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,xml1);
 		statement.bindUTF8StringParameter(1,"true");
-		statement.bindUTF8StringParameter(2,"default2");
+		statement.bindUTF8StringParameter(2,"Document");
 		statement.bindUTF8StringParameter(3,"0");
 		statement.execute();
 		statement.reset();
@@ -75,7 +75,7 @@ function createDefault(){
 		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\ZonesSaisies.xul";	
 		che1="chrome://archipoenum/content/library/xul/ZonesSaisies.xull";	
 		chrm1=chromeToPath (che1);
-		xml2 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><hbox hidden="true" id="saisie_fig_21_indexer" ><label value="Name : " /><textbox id="saisie_fig_21_indexer_name" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexer\',\'fig_21_indexing\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_21_indexing" ><label value="Date : " /><datepicker id="saisie_fig_21_indexing_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_21_indexing_place" value="" /><label value="Id : " /><textbox id="saisie_fig_21_indexing_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexing\',\'fig_21_document\',\'\');"/></vbox><hbox hidden="true" id="saisie_fig_21_document" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_21;fig_18;saisie_fig_21_document\');"/></hbox><vbox hidden="true" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Listing" value="Listing"/><menuitem label="Pg" value="Pg"/><menuitem label="Video" value="Bats"/><menuitem label="Photo" value="Photo"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_document" ><label value="Title : " /><textbox id="saisie_fig_18_document_titre" value="" /><label value="Author : " /><textbox id="saisie_fig_18_document_auteur" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_document_date" type="popup" value=""/><label value="Adresse : " /><textbox id="saisie_fig_18_document_adresse" value="" /><label value="Circonstance : " /><menulist id="saisie_fig_18_document_circonstance" editable="true"><menupopup><menuitem label="Expo" value="Expo"/><menuitem label="Interview" value="Interview"/><menuitem label="Conference" value="Conference"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_document\',\'fig_18_section;fig_18_nature\',\'fig_18_type;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_format" ><label value="Format : " /><menulist id="saisie_fig_18_format_name" editable="true"><menupopup><menuitem label="mpeg" value="Mpeg"/><menuitem label="avi" value="avi"/><menuitem label="wawe" value="wawe"/><menuitem label="mp3" value="mp3"/><menuitem label="jpeg" value="jpeg"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_format\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_type\');"/></vbox><vbox hidden="true" id="saisie_fig_18_section" ><label value="Begining : " /><textbox id="saisie_fig_18_section_begin" value="" /><label value="End : " /><textbox id="saisie_fig_18_section_end" value="" /><label value="Id : " /><textbox id="saisie_fig_18_section_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_section\',\'fig_18_work;fig_18_actor\',\'fig_18_nature\');"/></vbox><vbox hidden="true" id="saisie_fig_18_nature" ><label value="Nature : " /><menulist id="saisie_fig_18_nature_name" editable="true"><menupopup><menuitem label="action" value="action"/><menuitem label="interview" value="interview"/><menuitem label="simulation" value="simulation"/><menuitem label="analyse" value="analyse"/><menuitem label="storage" value="storage"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_nature\',\'fig_18_work;fig_18_actor\',\'fig_18_section\');"/></vbox><hbox hidden="true" id="saisie_fig_18_actor" ><label value="Afficher la figure 19" /><button label="Valider" onclick="changer_interface(\'1\',\'2\',this);"/></hbox><hbox hidden="true" id="saisie_fig_18_work" ><label value="Title : " /><textbox id="saisie_fig_18_work_titre" value="" /><button label="Valider" onclick="Valider(\'fig_18_work\',\'fig_18_instance\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_18_instance" ><label value="Id : " /><textbox id="saisie_fig_18_instance_id" value="" /><label value="Authors : " /><textbox id="saisie_fig_18_instance_authors" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_instance_date" type="popup" value=""/><label value="Duration : " /><textbox id="saisie_fig_18_instance_duration" value="" /><label value="Place : " /><textbox id="saisie_fig_18_instance_place" value="" /><button label="Valider" onclick="Valider(\'fig_18_instance\',\'fig_18_physicpart\',\'\');"/></vbox><vbox hidden="true" id="saisie_fig_18_ontoactor" ><label value="Id : " /><textbox id="saisie_fig_18_ontoactor_id" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_ontoactor_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_18_ontoactor_place" value="" /><button label="Valider" onclick="afficher_last_interface();Valider(\'fig_18_ontoactor\',\'fig_18_concept\',\'\');MontrerCacherXul(\'OntoActeur;saisie_fig_18_concept\');"/></vbox><hbox hidden="true" id="saisie_fig_18_physicpart" ><label value="Afficher la figure 19" /><button label="Valider" onclick="MontrerCacherXul(\'fig_18;fig_19;saisie_fig_18_physicpart\');"/></hbox><hbox hidden="true" flex="1" id="saisie_fig_18_concept" ><label value="Name : " hidden="true" /><textbox id="saisie_fig_18_concept_name" value="" hidden="true" /><button label="Valider" onclick="Valider(\'fig_18_concept\',\'fig_18_instance\',\'\');MontrerCacherXul(\'fig_p;savoirs;OntoActeur\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyst" ><label value="Type : " /><menulist id="saisie_fig_19_analyst_type" editable="true"><menupopup><menuitem label="semiotician" value="semiotician"/><menuitem label="littereary analyse" value="littereary analyse"/></menupopup></menulist><button label="Valider" onclick="Valider(\'fig_19_analyst\',\'fig_19_analyse;fig_19_create;fig_19_observe\',\'\');ChangeAttributsValeur(\'fig_19_reader;fig_19_autor\',\'fill\',\'none\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse1" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse1\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse2" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse2\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse3" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse3\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse4" ><label value="Afficher la figure 18" /><button label="Valider" onclick="changer_interface(\'2\',\'1\',this);AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse5" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse5\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse6" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse6\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse7" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse7\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse8" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse8\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse9" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse9\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse10" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse10\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse11" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse11\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox></vbox>';
+		xml2 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><hbox hidden="true" id="saisie_fig_21_indexer" ><label value="Name : " /><textbox id="saisie_fig_21_indexer_name" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexer\',\'fig_21_indexing\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_21_indexing" ><label value="Date : " /><datepicker id="saisie_fig_21_indexing_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_21_indexing_place" value="" /><label value="Id : " /><textbox id="saisie_fig_21_indexing_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_21_indexing\',\'fig_21_document\',\'\');"/></vbox><hbox hidden="true" id="saisie_fig_21_document" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_21;fig_18;saisie_fig_21_document\');"/></hbox><vbox hidden="true" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Listing" value="Listing"/><menuitem label="Pg" value="Pg"/><menuitem label="Video" value="Bats"/><menuitem label="Photo" value="Photo"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_document" ><label value="Title : " /><textbox id="saisie_fig_18_document_titre" value="" /><label value="Author : " /><textbox id="saisie_fig_18_document_auteur" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_document_date" type="popup" value=""/><label value="Adresse : " /><textbox id="saisie_fig_18_document_adresse" value="" /><label value="Circonstance : " /><menulist id="saisie_fig_18_document_circonstance" editable="true"><menupopup><menuitem label="Expo" value="Expo"/><menuitem label="Interview" value="Interview"/><menuitem label="Conference" value="Conference"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_document\',\'fig_18_section;fig_18_nature\',\'fig_18_type;fig_18_format\');"/></vbox><vbox hidden="true" id="saisie_fig_18_format" ><label value="Format : " /><menulist id="saisie_fig_18_format_name" editable="true"><menupopup><menuitem label="mpeg" value="Mpeg"/><menuitem label="avi" value="avi"/><menuitem label="wawe" value="wawe"/><menuitem label="mp3" value="mp3"/><menuitem label="jpeg" value="jpeg"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_format\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_type\');"/></vbox><vbox hidden="true" id="saisie_fig_18_section" ><label value="Begining : " /><textbox id="saisie_fig_18_section_begin" value="" /><label value="End : " /><textbox id="saisie_fig_18_section_end" value="" /><label value="Id : " /><textbox id="saisie_fig_18_section_id" value="" /><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_section\',\'fig_18_work;fig_18_actor\',\'fig_18_nature\');"/></vbox><vbox hidden="true" id="saisie_fig_18_nature" ><label value="Nature : " /><menulist id="saisie_fig_18_nature_name" editable="true"><menupopup><menuitem label="action" value="action"/><menuitem label="interview" value="interview"/><menuitem label="simulation" value="simulation"/><menuitem label="analyse" value="analyse"/><menuitem label="storage" value="storage"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_nature\',\'fig_18_work;fig_18_actor\',\'fig_18_section\');"/></vbox><hbox hidden="true" id="saisie_fig_18_actor" ><label value="Afficher la figure 19" /><button label="Valider" onclick="changer_interface(\'1\',\'2\',this);"/></hbox><hbox hidden="true" id="saisie_fig_18_work" ><label value="Title : " /><textbox id="saisie_fig_18_work_titre" value="" /><button label="Valider" onclick="Valider(\'fig_18_work\',\'fig_18_instance\',\'\');"/></hbox><vbox hidden="true" id="saisie_fig_18_instance" ><label value="Id : " /><textbox id="saisie_fig_18_instance_id" value="" /><label value="Authors : " /><textbox id="saisie_fig_18_instance_authors" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_instance_date" type="popup" value=""/><label value="Duration : " /><textbox id="saisie_fig_18_instance_duration" value="" /><label value="Place : " /><textbox id="saisie_fig_18_instance_place" value="" /><button label="Valider" onclick="Valider(\'fig_18_instance\',\'fig_18_physicpart\',\'\');"/></vbox><vbox hidden="true" id="saisie_fig_18_ontoactor" ><label value="Id : " /><textbox id="saisie_fig_18_ontoactor_id" value="" /><label value="Date : " /><datepicker id="saisie_fig_18_ontoactor_date" type="popup" value=""/><label value="Place : " /><textbox id="saisie_fig_18_ontoactor_place" value="" /><button label="Valider" onclick="afficher_last_interface();Valider(\'fig_18_ontoactor\',\'fig_18_concept\',\'\');MontrerCacherXul(\'OntoActeur;saisie_fig_18_concept\');"/></vbox><hbox hidden="true" id="saisie_fig_18_physicpart" ><label value="Afficher la figure 19" /><button label="Valider" onclick="MontrerCacherXul(\'fig_18;fig_19;saisie_fig_18_physicpart\');"/></hbox><vbox hidden="true" flex="1" id="saisie_fig_18_concept" ><label value="Name : " hidden="true" /><textbox id="saisie_fig_18_concept_name" value="" hidden="true" /><button label="Valider" onclick="Valider(\'fig_18_concept\',\'fig_18_instance\',\'\');MontrerCacherXul(\'fig_p;savoirs;OntoActeur\');"/></vbox><hbox hidden="true" id="saisie_fig_19_analyst" ><label value="Type : " /><menulist id="saisie_fig_19_analyst_type" editable="true"><menupopup><menuitem label="semiotician" value="semiotician"/><menuitem label="littereary analyse" value="littereary analyse"/></menupopup></menulist><button label="Valider" onclick="Valider(\'fig_19_analyst\',\'fig_19_analyse;fig_19_create;fig_19_observe\',\'\');ChangeAttributsValeur(\'fig_19_reader;fig_19_autor\',\'fill\',\'none\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse1" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse1\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse2" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse2\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse3" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse3\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse4" ><label value="Afficher la figure 18" /><button label="Valider" onclick="changer_interface(\'2\',\'1\',this);AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse5" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse5\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse6" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse6\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse7" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse7\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse8" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse8\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse9" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse9\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse10" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse10\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox><hbox hidden="true" id="saisie_fig_19_analyse11" ><label value="Afficher la figure 18" /><button label="Valider" onclick="MontrerCacherXul(\'fig_19;fig_18;saisie_fig_19_analyse11\');AfficheValidation();MontrerSvg(\'fig_18_ontoactor\');"/></hbox></vbox>';
 		//alert (xml1);	
 		//xml1 = '<vbox id="ZonesSaisies" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"><vbox hidden="false" id="saisie_fig_18_type" ><label value="Type : " /><menulist id="saisie_fig_18_type_name" editable="true"><menupopup><menuitem label="Text" value="Text"/><menuitem label="Sound" value="Sound"/><menuitem label="Objet" value="Objet"/></menupopup></menulist><button label="Valider" tooltiptext="Valider la saisie" onclick="Valider(\'fig_18_type\',\'fig_18_section;fig_18_nature\',\'fig_18_document;fig_18_format\');"/></vbox></vbox>';
 		var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');
@@ -84,7 +84,7 @@ function createDefault(){
 		id_svg=myArray1[j]["id_svg"];
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,"default0");
+		statement.bindUTF8StringParameter(0,"Zones saisies");
 		statement.bindUTF8StringParameter(1,xml2);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
@@ -96,7 +96,7 @@ function createDefault(){
 		//figure_courant="fig_21";
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,"default1");
+		statement.bindUTF8StringParameter(0,"Ontologie acteurs");
 		statement.bindUTF8StringParameter(1,xml3);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
@@ -112,7 +112,7 @@ function createDefault(){
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,xml1);
 		statement.bindUTF8StringParameter(1,"true");
-		statement.bindUTF8StringParameter(2,"default3");
+		statement.bindUTF8StringParameter(2,"Acteur");
 		statement.bindUTF8StringParameter(3,"0");
 		statement.execute();
 		statement.reset();
@@ -123,7 +123,7 @@ function createDefault(){
 		id_svg=myArray1[j]["id_svg"];
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,"default0");
+		statement.bindUTF8StringParameter(0,"Zones saisies");
 		statement.bindUTF8StringParameter(1,xml2);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
@@ -131,7 +131,7 @@ function createDefault(){
 		
 		var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
 		var statement = mDBConn.createStatement(sql);
-		statement.bindUTF8StringParameter(0,"default1");
+		statement.bindUTF8StringParameter(0,"Ontologie acteur");
 		statement.bindUTF8StringParameter(1,xml3);
 		statement.bindUTF8StringParameter(2,id_svg);
 		statement.execute();
@@ -147,6 +147,9 @@ function Open_default(elem){
 	var mDBConn = connect_DB();
 	var p_interface = document.getElementById("C1");
 	var p_saisi=document.getElementById("S1");
+	while(p_saisi.hasChildNodes())	
+		p_saisi.removeChild(doc.firstChild);
+	
 	var statement = mDBConn.createStatement('SELECT fichier,isModel FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,'1');
 	// return dataset;	
@@ -161,14 +164,14 @@ function Open_default(elem){
 	doc=document.getElementById("fig_p");
 	resultDoc.documentElement.setAttribute("hidden","false");
 	resultDoc.documentElement.setAttribute("id_model","1");
-	if (doc.hasChildNodes()==true)	
+	while(doc.hasChildNodes())	
 			doc.removeChild(doc.firstChild);
 	doc.appendChild(resultDoc.documentElement);
 
 	statement.reset();
 	
-	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
-	statement.bindUTF8StringParameter(0,"default0");
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_xul=?1;');
+	statement.bindUTF8StringParameter(0,"1");
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
 	//alert (myArray1.length);
@@ -188,21 +191,19 @@ function Open_default(elem){
 function afficher_last_interface(){
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 	if (document.getElementById("OntoActeur")==null){
-		var p_saisi=document.getElementById("S1");
+		var p_saisi=document.getElementById("saisie_fig_18_concept");
 		var mDBConn = connect_DB();
-		var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
-		statement.bindUTF8StringParameter(0,"default1");
+		var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_xul=?1;');
+		statement.bindUTF8StringParameter(0,"2");
 		// return dataset;	
 		var myArray1 = boucle_select(statement);
 		j=0;
 		var parser=new DOMParser();
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
-		resultDoc.documentElement.setAttribute("hidden","false");
-		resultDoc.documentElement.setAttribute("flex","1");
 		
 		p_saisi.appendChild(resultDoc.documentElement);
-		document.getElementById("OntoActeur").setAttribute("hidden","false");
+		document.getElementById("OntoActeur").setAttribute("hidden","true");
 
 		statement.reset();
 	}
@@ -1611,8 +1612,8 @@ function Ajouter_doc() {
 	che="chrome://archipoenum/content/library/xul/DocSaisie.xul";	
 	chrm=chromeToPath(che);
 	var mDBConn = connect_DB();
-	var statement = mDBConn.createStatement('SELECT fichier FROM svg where titre=?1;');
-	statement.bindUTF8StringParameter(0,"default2");
+	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
+	statement.bindUTF8StringParameter(0,"1");
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
@@ -1635,8 +1636,8 @@ function Ajouter_doc() {
 		document.getElementById("C1").appendChild(resultDoc.documentElement);
 
 	chemin="C:\\wamp\\www\\archipoenum\\library\\xul\\DocSaisie.xul";	
-	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
-	statement.bindUTF8StringParameter(0,"default0");
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_xul=?1;');
+	statement.bindUTF8StringParameter(0,"1");
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:

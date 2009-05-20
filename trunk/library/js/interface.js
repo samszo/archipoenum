@@ -151,7 +151,7 @@ function Open_default(elem){
 	statement.bindUTF8StringParameter(0,'1');
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
-
+	document.getElementById("add_doc").setAttribute("disabled","false");
 	//alert("SVG : "+myArray1[j]['fichier']);
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM

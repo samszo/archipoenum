@@ -68,7 +68,7 @@
 					</menupopup>
 				</menu>
 			</menubar>
-			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="Ajouter_doc();"/>
+			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="changer_interface('1','1',this)"/>
 			
 		</hbox>
 		<hbox> 		

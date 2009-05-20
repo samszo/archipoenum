@@ -6,6 +6,7 @@
 	<script src="library/js/interface.js"/>
 	<script src="library/js/fonctions.js"/>
 	<script src="library/js/xulListeModel.js"/>
+	<script src="library/js/tree.js"/>
  <html:style>
  treechildren::-moz-tree-checkbox
  {
@@ -22,6 +23,14 @@
 }
   
  </html:style>
+
+<menupopup id="ContextOntoActeur">
+  <menuitem oncommand="AjoutOntoActeur()" label="Ajouter"/>
+  <menuitem oncommand="SuppOntoActeur()" label="Supprimer"/>
+</menupopup>
+ 
+ 
+ 
 <toolbox id="navigator-toolbox" hidden="false" >
 <toolbar id="nav-toolbar" >
 <hbox >											
@@ -86,7 +95,7 @@
 <hbox flex='1' >
 <!-- style="width:100px;height:100px"  -->
 	<groupbox orient="horizontal" flex="1" >
-		<vbox id="S1" flex="1" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">			
+		<vbox id="S1" flex="1" >			
 		</vbox>
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>

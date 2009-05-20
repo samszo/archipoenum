@@ -152,6 +152,8 @@ function Open_default(elem){
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
 	document.getElementById("add_doc").setAttribute("disabled","false");
+	document.getElementById("savoirs").setAttribute("hidden","true");
+	document.getElementById("fig_p").setAttribute("hidden","false");
 	//alert("SVG : "+myArray1[j]['fichier']);
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
@@ -460,18 +462,30 @@ function changer_interface(idsSrc,idsDst,elem){
 			statement.bindUTF8StringParameter(2,id_interface);
 			statement.execute();
 			statement.reset();
-			
-	    	var pop = document.getElementById(racine_interface); // a <menupopup> element
-			var first = createMenu(titre);
-			var pop2=createMenuPopup("pop_interface_"+id_interface);
-			var last = createMenuItem(titre);
-			last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
-			pop2.appendChild(last);
-			first.appendChild(pop2);
-			pop.appendChild(first);
-			racine_interface="pop_interface_"+id_interface;
-			id_courant=idsDst;
-			
+			if (idsSrc!=idsDst){
+		    	var pop = document.getElementById(racine_interface); // a <menupopup> element
+				var first = createMenu(titre);
+				var pop2=createMenuPopup("pop_interface_"+id_interface);
+				var last = createMenuItem(titre);
+				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+id_interface;
+				id_courant=idsDst;
+			}
+			else {
+				var pop = document.getElementById("test3"); // a <menupopup> element
+				var first = createMenu(titre);
+				var pop2=createMenuPopup("pop_interface_"+id_interface);
+				var last = createMenuItem(titre);
+				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+id_interface;
+				id_courant=idsDst;
+			}
 		}
 		else {
 			//alert(test_model+ "else");
@@ -890,6 +904,8 @@ window.close();}
 
 function svg_open(choix_svg,fig_svg)
 {
+	document.getElementById("savoirs").setAttribute("hidden","true");
+	document.getElementById("fig_p").setAttribute("hidden","false");
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(fig_svg,"text/xml");
@@ -916,7 +932,8 @@ function svg_open_id(id_svg)
 	var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,id_svg);
 	//alert('SELECT * FROM svg where id_svg='+id_svg);
-	
+	document.getElementById("savoirs").setAttribute("hidden","true");
+	document.getElementById("fig_p").setAttribute("hidden","false");
 		// return dataset;	
 	var j=0;
 	var myArray1 = boucle_select(statement);

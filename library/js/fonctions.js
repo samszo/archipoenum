@@ -85,7 +85,10 @@ function afficher_form (id_form,n1){
 		// Transformer le String en Objet DOM
 		var resultDoc=parser.parseFromString(form_xul,"text/xml");
 		//alert(resultDoc.documentElement);
+		
 		doc=document.getElementById("S1");
+		/*while (doc.hasChildNodes())	
+			doc.removeChild(p_saisi.firstChild);*/
 		resultDoc.documentElement.setAttribute("id","Vb_"+id_form);
 		
 		//alert(resultDoc.documentElement.getElementsByTagName("button")[0].id);

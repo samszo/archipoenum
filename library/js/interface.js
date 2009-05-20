@@ -90,7 +90,7 @@ function createDefault(){
 		statement.execute();
 		statement.reset();	
 		
-		xml3 = '<vbox id="OntoActeur" flex="1" ><tree id="TreeOntoActeur" onselect="Select_Dictio(\'ieml\',\'treecol_ieml\',\'treecol_descp\');" flex="1" editable="true"><treecols ><treecol id="treecol_Tagdel" flex="1" primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol id="treecol_descp" flex="1" label="concept" persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol type="checkbox" label="select" editable="true" /></treecols><treechildren>    <treeitem container="true" open="true">      <treerow>        <treecell label="Actor ontology"/>        <treecell label=""/>      </treerow>      <treechildren>        <treeitem container="true" open="false">          <treerow>            <treecell label="litterature analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel-virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oulipo" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="palindrome" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="true">          <treerow>            <treecell label="semiotic analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération combinatoire" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération automatique de texte" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération avec modèle physique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération graphique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre interactive" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre hypertextuelle" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre collaborative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre participative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une Base de Données" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une gestion des flux" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre performative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="reader" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="animation" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="autor" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>      </treechildren>    </treeitem>  </treechildren></tree></vbox>';
+		xml3 = '<vbox id="OntoActeur" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" flex="1" ><tree id="TreeOntoActeur" onselect="Select_Dictio(\'ieml\',\'treecol_ieml\',\'treecol_descp\');" flex="1" editable="true"><treecols ><treecol id="treecol_Tagdel" flex="1" primary="true" label="Type ontology"  persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol id="treecol_descp" flex="1" label="concept" persist="width ordinal hidden" editable="false" /><splitter class="tree-splitter"/><treecol type="checkbox" label="select" editable="true" /></treecols><treechildren>    <treeitem container="true" open="true">      <treerow>        <treecell label="Actor ontology"/>        <treecell label=""/>      </treerow>      <treechildren>        <treeitem container="true" open="false">          <treerow>            <treecell label="litterature analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="potentiel-virtuel" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oulipo" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="palindrome" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="true">          <treerow>            <treecell label="semiotic analyst" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération combinatoire" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération automatique de texte" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération avec modèle physique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération graphique" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre interactive" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre hypertextuelle" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre collaborative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre participative" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une Base de Données" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre utilisant une gestion des flux" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="oeuvre performative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="reader" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="transitoire observable" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="programme" />            <treecell value="false" />          </treerow>        </treeitem>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="animation" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>        <treeitem container="true" open="false">          <treerow>            <treecell label="autor" />            <treecell label="" />          </treerow>      <treechildren>        <treeitem>          <treerow>            <treecell label="" />            <treecell label="génération adaptative" />            <treecell value="false" />          </treerow>        </treeitem>      </treechildren>        </treeitem>      </treechildren>    </treeitem>  </treechildren></tree></vbox>';
 		//alert (xml1);
 		
 		//figure_courant="fig_21";
@@ -185,23 +185,25 @@ function Open_default(elem){
 
 function afficher_last_interface(){
 	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
-	var p_saisi=document.getElementById("S1");
-	var mDBConn = connect_DB();
-	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
-	statement.bindUTF8StringParameter(0,"default1");
-	// return dataset;	
-	var myArray1 = boucle_select(statement);
-	j=0;
-	var parser=new DOMParser();
-	// Transformer le String en Objet DOM
-	var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
-	resultDoc.documentElement.setAttribute("hidden","false");
-	resultDoc.documentElement.setAttribute("flex","1");
-	
-	p_saisi.appendChild(resultDoc.documentElement);
-	document.getElementById("OntoActeur").setAttribute("hidden","false");
+	if (document.getElementById("OntoActeur")==null){
+		var p_saisi=document.getElementById("S1");
+		var mDBConn = connect_DB();
+		var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_element=?1;');
+		statement.bindUTF8StringParameter(0,"default1");
+		// return dataset;	
+		var myArray1 = boucle_select(statement);
+		j=0;
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
+		resultDoc.documentElement.setAttribute("hidden","false");
+		resultDoc.documentElement.setAttribute("flex","1");
+		
+		p_saisi.appendChild(resultDoc.documentElement);
+		document.getElementById("OntoActeur").setAttribute("hidden","false");
 
-	statement.reset();
+		statement.reset();
+	}
 }
 
 function SetFichier(){
@@ -942,6 +944,7 @@ function svg_open_id(id_svg)
 	statement.bindUTF8StringParameter(0,id_svg);
 	var myArray1 = boucle_select(statement);		
 	form_xulDst=myArray1[0]['form_xul'];
+	//alert(form_xulDst);
 	var parser2=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc2=parser2.parseFromString(form_xulDst,"text/xml");
@@ -976,7 +979,7 @@ try{
 
 		var mDBConn = connect_DB();
 		
-		var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel='false' AND id_user=?1;");
+		var statement = mDBConn.createStatement("SELECT * FROM svg WHERE isModel<>'true' AND id_user=?1;");
 		statement.bindUTF8StringParameter(0,id_user);
 		
 
@@ -985,7 +988,7 @@ try{
 		
 		var myArray1 = boucle_select(statement);
 		var popup = document.getElementById("stock"); // a <menupopup> element
-		var first = createMenu("List des SVG");
+		var first = createMenu("Liste des SVG");
 		var pop = createMenuPopup("p"+docs);
 		for(var j=0;j<myArray1.length;j++){
 			//alert("SVG : "+myArray1[j]['fichier']);
@@ -1247,7 +1250,10 @@ function Save_SVG(){
 		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
 		id_interface =myArray1[j]['id_svg'];
+		
 		p_saisi=document.getElementById("S1");
+		//alert(p_saisi.firstChild);
+		//alert(id_interface);
     	var serializer = new XMLSerializer();
     	var xul_src = serializer.serializeToString(p_saisi.firstChild);
     
@@ -1799,7 +1805,7 @@ function createActionSaisie(c,graph,graph_c)
 	fct2.setAttribute("value","affiche_graph");
 	var fct3 = createMenuItem("Afficher une autre interface");
 	fct3.setAttribute("value","affiche_interface");
-	var fct4 = createMenuItem("Cacher un graphique");
+	var fct4 = createMenuItem("Cacher ce graphique");
 	fct4.setAttribute("value","cacher_graph");
 		
 	var bt1= createButton("bt_"+c1,"Valider");
@@ -2060,18 +2066,20 @@ function Valider_form(id_form)
 		statement.bindUTF8StringParameter(2,svgTitre+" - "+user+" - model:"+ladate.toGMTString());
 		statement.execute();
 		statement.reset();			
-		var statement = mDBConn.createStatement('SELECT last_insert_rowid() FROM svg ');	
+		var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');	
 		// return dataset;	
 		j=0;
 		var myArray1 = boucle_select(statement);
 		g_idSvg=myArray1[j]["id_svg"];
+		alert(g_idSvg);
 	}else{
 		var sql = 'UPDATE svg SET fichier = ?1 WHERE id_svg = ?2;';
 		var statement = mDBConn.createStatement(sql);
 		statement.bindUTF8StringParameter(0,xml);
-		statement.bindUTF8StringParameter(0,g_idSvg);
+		statement.bindUTF8StringParameter(1,g_idSvg);
 		statement.execute();
-		statement.reset();			
+		statement.reset();	
+		//alert("update : "+g_idSvg);		
 	}
 
 
@@ -2497,6 +2505,8 @@ function Ajouter_element_liste(elem,cpt,liste)
 
 function version_final()
 {
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
 	graph=document.getElementById("svg_1");
 	s1= createScript("s1");
 	//alert(read("http://localhost/archipoenum/library/js/fonctions.js"));
@@ -2504,6 +2514,9 @@ function version_final()
 	graph.appendChild(s1);
 	container=document.getElementById("vb1");
 	s1=document.getElementById("S1");
+	var serializer = new XMLSerializer();
+   	var xml = serializer.serializeToString(graph);
+	
 	if (container.hasChildNodes()==true){
 		container.removeChild(container.firstChild);	
 	}    
@@ -2562,38 +2575,42 @@ function test_evt(elem){
 
 function fin_assitant()
 {
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
 	graph=document.getElementById("svg_1");
-	for (i=0;i<x.getElementsByTagName("g").length;i++)
+	for (i=0;i<graph.getElementsByTagName("g").length;i++)
+	{
+		y=graph.getElementsByTagName("g")[i];
+		if (y.getAttribute("onclick")=='init_svg(this)')		
+			y.setAttribute("onclick",'');
+	}
+	
+	for (j=0;j<graph.getElementsByTagName("path").length;j++)
 	{	
-		y=x.getElementsByTagName("g")[i];
+		y=graph.getElementsByTagName("path")[j];
+		if (y.getAttribute("onclick")=='init_svg(this)')		
+			y.setAttribute("onclick",'');
+
+
+	}
+	
+	for (k=0;k<graph.getElementsByTagName("text").length;k++)
+	{	
+		y=graph.getElementsByTagName("text")[k];
 		if (y.getAttribute("onclick")=='init_svg(this)')
 			y.setAttribute("onclick",'');
 	}
 	
-	for (j=0;j<x.getElementsByTagName("path").length;j++)
+	for (l=0;l<graph.getElementsByTagName("polygon").length;l++)
 	{	
-		y=x.getElementsByTagName("path")[j];
+		y=graph.getElementsByTagName("polygon")[l];
 		if (y.getAttribute("onclick")=='init_svg(this)')
 			y.setAttribute("onclick",'');
 	}
 	
-	for (k=0;k<x.getElementsByTagName("text").length;k++)
+	for (m=0;m<graph.getElementsByTagName("rect").length;m++)
 	{	
-		y=x.getElementsByTagName("text")[k];
-		if (y.getAttribute("onclick")=='init_svg(this)')
-			y.setAttribute("onclick",'');
-	}
-	
-	for (l=0;l<x.getElementsByTagName("polygon").length;l++)
-	{	
-		y=x.getElementsByTagName("polygon")[l];
-		if (y.getAttribute("onclick")=='init_svg(this)')
-			y.setAttribute("onclick",'');
-	}
-	
-	for (m=0;m<x.getElementsByTagName("rect").length;m++)
-	{	
-		y=x.getElementsByTagName("rect")[m];
+		y=graph.getElementsByTagName("rect")[m];
 		if (y.getAttribute("onclick")=='init_svg(this)')
 			y.setAttribute("onclick",'');
 	}
@@ -2602,6 +2619,33 @@ function fin_assitant()
 	s1.setAttribute("src","http://localhost/archipoenum/library/js/fonctions.js");
 	graph.appendChild(s1);
 	//alert(graph);
+	doc=document.getElementById("svg_1");
+	var serializer = new XMLSerializer();
+   	var xml = serializer.serializeToString(doc);
+	if(g_idSvg==-1){    	
+		var sql = 'INSERT INTO svg(fichier,isModel,titre) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml);
+		statement.bindUTF8StringParameter(1,"true");
+		statement.bindUTF8StringParameter(2,svgTitre+" - "+user+" - model:"+ladate.toGMTString());
+		statement.execute();
+		statement.reset();			
+		var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');	
+		// return dataset;	
+		j=0;
+		var myArray1 = boucle_select(statement);
+		g_idSvg=myArray1[j]["id_svg"];
+		//alert(g_idSvg);
+	}else{
+		//alert("update : "+g_idSvg);
+		//alert(xml);
+		var sql = 'UPDATE svg SET fichier = ?1 WHERE id_svg = ?2;';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,xml);
+		statement.bindUTF8StringParameter(1,g_idSvg);
+		statement.execute();
+		statement.reset();			
+	}
 	window.opener.add_svg(graph);
 }
 function chromeToPath (aPath) {

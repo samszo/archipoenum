@@ -29,8 +29,8 @@ function  init(){
     user = unescape(temp[1]);
     id_user=unescape(temp2[1]);
     //alert(id_user+' : '+user);
-	document.getElementById("u1").setAttribute("value","Utilisateur Connecte : "+user);
-	document.getElementById("ch1").setAttribute("label",user);
+	document.getElementById("u1").setAttribute("value","Utilisateur Connecté  :  "+user);
+	//document.getElementById("ch1").setAttribute("label",user);
 	document.getElementById("u1").setAttribute("hidden","false");
 	document.getElementById("u2").setAttribute("hidden","false");
 	//x=xmlDoc.getElementsByTagName("svg");
@@ -105,7 +105,7 @@ function createDefault(){
 		chemin1="C:\\wamp\\www\\archipoenum\\library\\xul\\fig_19.xul";	
 		che1="chrome://archipoenum/content/library/xul/fig_19.xul";	
 		chrm1=chromeToPath (che1);
-		xml1 ='<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 width="1212.95px" height="528.726px" viewBox="0 0 1212.95 528.726" enable-background="new 0 0 1212.95 528.726"	 xml:space="preserve"><script xlink:href="../js/interface.js" />  <g>	<g id="fig_19_centre" onclick="changer(\'fig_19\');" fill="none" visibility="visible">		<polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="		326.8,40.15 862.976,40.15 862.976,325.899 326.8,325.899 326.8,40.15 	"/>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="488.8,57.025 			494.2,58.15 496.675,59.275 498.7,61.075 500.5,63.1 501.85,65.35 502.75,67.825 502.975,70.525 501.85,75.925 500.5,78.175 			498.7,80.2 496.675,81.775 494.2,82.9 491.5,83.8 488.8,84.025 449.65,84.025 445.15,84.025 439.75,82.9 437.275,81.775 			435.25,80.2 433.45,78.175 432.1,75.925 431.2,73.225 430.975,70.525 432.1,65.35 433.45,63.1 435.25,61.075 437.275,59.5 			439.75,58.15 442.45,57.25 445.15,57.025 482.275,57.025 488.8,57.025 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 456.4023 74.4082)">uses</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="517.825,205.75 			523.225,206.875 525.7,208 527.725,209.8 529.525,211.825 530.875,214.075 531.775,216.55 532,219.25 530.875,224.65 			529.525,226.9 527.725,228.925 525.7,230.5 523.225,231.625 520.525,232.525 517.825,232.75 478.675,232.75 474.175,232.75 			468.775,231.625 466.3,230.5 464.275,228.925 462.475,226.9 461.125,224.65 460.225,221.95 460,219.25 461.125,214.075 			462.475,211.825 464.275,209.8 466.3,208.225 468.775,206.875 471.475,205.975 474.175,205.75 511.3,205.75 517.825,205.75 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 475.9727 223.127)">compiles</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="650.351,205.75 			655.75,206.875 658.226,208 660.25,209.8 662.05,211.825 663.4,214.075 664.3,216.55 664.525,219.25 663.4,224.65 662.05,226.9 			660.25,228.925 658.226,230.5 655.75,231.625 653.05,232.525 650.351,232.75 611.2,232.75 606.7,232.75 601.3,231.625 			598.825,230.5 596.8,228.925 595,226.9 593.65,224.65 592.75,221.95 592.525,219.25 593.65,214.075 595,211.825 596.8,209.8 			598.825,208.225 601.3,206.875 604,205.975 606.7,205.75 643.825,205.75 650.351,205.75 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 609.1758 223.127)">products</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="338.05,60.175 			393.625,60.175 393.625,101.8 338.05,101.8 338.05,60.175 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 353.5742 84.9863)">datas</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="536.5,61.075 			588.7,61.075 588.7,100.225 536.5,100.225 536.5,61.075 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 556.9727 84.5332)">pg</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="470.125,267.851 			522.1,267.851 522.1,306.774 470.125,306.774 470.125,267.851 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 480.918 291.3145)">sources</text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="603.1,268.075 			654.175,268.075 654.175,306.325 603.1,306.325 603.1,268.075 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 624.4727 291.0801)">to</text>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="393.625" y1="69.85" x2="430.975" y2="70.525"/>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="502.975" y1="70.525" x2="536.5" y2="70.75"/>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="496" y1="232.75" x2="496.225" y2="267.851"/>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="628.525" y1="232.75" x2="628.525" y2="268.075"/>		<polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="496,205.75 			496,175.6 628.525,175.6 628.525,205.75 	"/>		<line fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="562.6" y1="100.225" x2="562.825" y2="175.6"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="521.2,182.697 521.2,169.525 535.509,169.525 			535.509,182.697 521.2,182.697 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 521.1992 179.4863)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="588.25,182.697 588.25,169.525 602.559,169.525 			602.559,182.697 588.25,182.697 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 588.2461 179.4863)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="621.325,265.048 621.325,251.875 635.634,251.875 			635.634,265.048 621.325,265.048 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 621.3242 261.8379)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">1</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="488.8,254.922 488.8,241.75 503.109,241.75 			503.109,254.922 488.8,254.922 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 488.793 251.7051)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="403.975,77.172 403.975,64 418.284,64 418.284,77.172 			403.975,77.172 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 403.9727 73.9629)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="512.65,77.848 512.65,64.675 526.959,64.675 			526.959,77.848 512.65,77.848 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 512.6523 74.6348)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="488.8,110.8 			494.2,111.925 496.675,113.05 498.7,114.85 500.5,116.875 501.85,119.125 502.75,121.6 502.975,124.3 501.85,129.7 500.5,131.95 			498.7,133.975 496.675,135.55 494.2,136.675 491.5,137.575 488.8,137.8 449.65,137.8 445.15,137.8 439.75,136.675 437.275,135.55 			435.25,133.975 433.45,131.95 432.1,129.7 431.2,127 430.975,124.3 432.1,119.125 433.45,116.875 435.25,114.85 437.275,113.275 			439.75,111.925 442.45,111.025 445.15,110.8 482.275,110.8 488.8,110.8 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 447.6211 128.1895)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">p</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">r</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">odu</tspan><tspan x="25.865" y="0" font-family="ArialMT" font-size="9.9">c</tspan><tspan x="30.815" y="0" font-family="ArialMT" font-size="9.9">t</tspan><tspan x="33.516" y="0" font-family="ArialMT" font-size="9.9">s</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="519.625,131.397 519.625,118.225 533.934,118.225 			533.934,131.397 519.625,131.397 	"/>		<text class="styleTxtAttribut"  transform="matrix(1 0 0 1 519.6211 128.1895)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="401.5,131.397 401.5,118.225 415.809,118.225 			415.809,131.397 401.5,131.397 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 401.4961 128.1895)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polygon fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="696.925,62.875 			702.325,64 704.8,65.125 706.825,66.925 708.625,68.95 709.976,71.2 710.875,73.675 711.101,76.375 709.976,81.775 708.625,84.025 			706.825,86.05 704.8,87.625 702.325,88.75 699.625,89.65 696.925,89.875 657.775,89.875 653.275,89.875 647.875,88.75 			645.4,87.625 643.375,86.05 641.575,84.025 640.226,81.775 639.325,79.075 639.101,76.375 640.226,71.2 641.575,68.95 			643.375,66.925 645.4,65.35 647.875,64 650.575,63.1 653.275,62.875 690.4,62.875 696.925,62.875 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 664.5273 80.2598)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">u</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">s</tspan><tspan x="10.574" y="0" font-family="ArialMT" font-size="9.9">e</tspan><tspan x="16.199" y="0" font-family="ArialMT" font-size="9.9">s</tspan></text>		<polygon fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="748.9,55.675 			804.476,55.675 804.476,97.3 748.9,97.3 748.9,55.675 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 762.168 80.4863)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">de</tspan><tspan x="11.249" y="0" font-family="ArialMT" font-size="9.9">v</tspan><tspan x="16.199" y="0" font-family="ArialMT" font-size="9.9">i</tspan><tspan x="18.448" y="0" font-family="ArialMT" font-size="9.9">ce</tspan></text>				<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="588.475" y1="80.2" x2="639.101" y2="80.2"/>				<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="711.101" y1="76.375" x2="748.9" y2="76.6"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="603.775,87.297 603.775,74.125 618.084,74.125 			618.084,87.297 603.775,87.297 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 603.7695 84.0879)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>			<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="721.45,83.473 721.45,70.3 735.759,70.3 735.759,83.473 			721.45,83.473 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 721.4492 80.2598)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>	</g>		<g id="fig_19_create" onclick="changer(\'fig_19\');" visibility="hidden">		<polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			203.95,67.6 209.35,68.725 211.825,69.85 213.85,71.65 215.65,73.675 217,75.925 217.9,78.4 218.125,81.1 217,86.5 215.65,88.75 			213.85,90.775 211.825,92.35 209.35,93.475 206.65,94.375 203.95,94.6 164.8,94.6 160.3,94.6 154.9,93.475 152.425,92.35 			150.4,90.775 148.6,88.75 147.25,86.5 146.35,83.8 146.125,81.1 147.25,75.925 148.6,73.675 150.4,71.65 152.425,70.075 			154.9,68.725 157.6,67.825 160.3,67.6 197.425,67.6 203.95,67.6 	"/>		<text class="styleTxtAttribut" transform="matrix(1 0 0 1 165.6992 84.9863)">Creates</text>		<polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" points="			294.4,269.649 299.8,270.774 302.275,271.899 304.3,273.7 306.1,275.726 307.45,277.976 308.35,280.45 308.575,283.149 			307.45,288.55 306.1,290.8 304.3,292.825 302.275,294.399 299.8,295.524 297.1,296.425 294.4,296.649 255.25,296.649 			250.75,296.649 245.35,295.524 242.875,294.399 240.85,292.825 239.05,290.8 237.7,288.55 236.8,285.851 236.575,283.149 			237.7,277.976 239.05,275.726 240.85,273.7 242.875,272.124 245.35,270.774 248.05,269.874 250.75,269.649 287.875,269.649 			294.4,269.649 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 256.1445 287.0332)">Creates</text>		<polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			1074.7,7.975 1080.101,9.1 1082.575,10.225 1084.601,12.025 1086.4,14.05 1087.75,16.3 1088.65,18.775 1088.875,21.475 			1087.75,26.875 1086.4,29.125 1084.601,31.15 1082.575,32.725 1080.101,33.85 1077.4,34.75 1074.7,34.975 1035.55,34.975 			1031.05,34.975 1025.65,33.85 1023.175,32.725 1021.15,31.15 1019.351,29.125 1018,26.875 1017.101,24.175 1016.875,21.475 			1018,16.3 1019.351,14.05 1021.15,12.025 1023.175,10.45 1025.65,9.1 1028.351,8.2 1031.05,7.975 1068.175,7.975 1074.7,7.975 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 1036.4492 25.3535)">Creates</text>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="80.65" y1="80.65" x2="146.125" y2="80.65"/>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="91" y1="282.024" x2="236.575" y2="282.024"/>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1088.875" y1="21.475" x2="1139.5" y2="21.475"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="white" points="112.6,88.079 112.6,74.35 127.45,74.35 127.45,88.079 			112.6,88.079 	"/>		<text transform="matrix(1 0 0 1 112.5977 84.3535)"><tspan x="0" y="0" font-family="\'Arial-BoldMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'Arial-BoldMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'Arial-BoldMT\'" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" points="109.9,289.122 109.9,275.95 124.209,275.95 			124.209,289.122 109.9,289.122 	"/>		<text transform="matrix(1 0 0 1 109.8945 285.9004)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" points="1022.275,296.097 1022.275,282.925 1036.584,282.925 			1036.584,296.097 1022.275,296.097 	"/>		<text transform="matrix(1 0 0 1 1022.2695 292.8848)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="white" points="1100.351,28.572 1100.351,15.4 1114.659,15.4 			1114.659,28.572 1100.351,28.572 	"/>		<text transform="matrix(1 0 0 1 1100.3398 25.3535)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1016.875,21.475 			365.95,21.475 365.95,60.175 	"/>		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="308.575,283.149 			308.575,287.425 360.775,287.425 362.125,284.274 363.7,283.374 365.275,282.925 368.425,284.274 369.325,285.851 369.775,287.425 			470.125,287.425 	"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="427.375,294.522 427.375,281.351 441.684,281.351 			441.684,294.522 427.375,294.522 	"/>		<text transform="matrix(1 0 0 1 427.3711 291.3145)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="964,28.572 964,15.4 978.309,15.4 978.309,28.572 			964,28.572 	"/>		<text transform="matrix(1 0 0 1 963.9961 25.3535)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="218.125" y1="81.1" x2="338.05" y2="81.1"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="304.525,88.197 304.525,75.025 318.834,75.025 			318.834,88.197 304.525,88.197 	"/>		<text transform="matrix(1 0 0 1 304.5273 84.9863)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="379.675,101.8 			379.675,124.3 430.975,124.3 	"/>		<polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="502.975,124.3 			549.55,124.3 549.55,100.225 	"/>	</g>	<g id="fig_19_autor" onclick="changer(\'fig_19\')" fill="red" visibility="visible">		<path stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M1,211.712			C1,108.525,21.95,25.975,48.138,25.975s47.138,82.55,47.138,185.737c0,103.187-20.95,185.738-47.138,185.738S1,314.899,1,211.712			L1,211.712z"/>		<text class="styleTxtTitre" transform="matrix(1 0 0 1 30 196.5879)">Author</text>		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 25.7461 320.3379)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">do</tspan><tspan x="11.25" y="0" font-family="ArialMT" font-size="9.9">c</tspan><tspan x="16.199" y="0" font-family="ArialMT" font-size="9.9">u</tspan><tspan x="21.824" y="0" font-family="ArialMT" font-size="9.9">m</tspan><tspan x="30.368" y="0" font-family="ArialMT" font-size="9.9">en</tspan><tspan x="41.617" y="0" font-family="ArialMT" font-size="9.9">t</tspan></text>	</g>	<g id="fig_19_reader" onclick="changer(\'fig_19\')" fill="red" visibility="visible">		<path stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M1108.675,194.5			c0-107.5,22.95-193.5,51.638-193.5s51.638,86,51.638,193.5c0,107.499-22.95,193.499-51.638,193.499			S1108.675,301.999,1108.675,194.5L1108.675,194.5z"/>		<text class="styleTxtTitre" transform="matrix(1 0 0 1 1146.6914 194.1035)">Reader</text>		<polygon transform="translate(1110, 1)" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 1135 320.3379)">document</text>	</g>	<g id="fig_19_analyst" onclick="Saisir(this.id,\'fig_19\');" fill="red" visibility="visible">		<path stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M91.225,485.763			c0-23.313,139.1-41.963,312.975-41.963s312.975,18.65,312.975,41.963s-139.1,41.963-312.975,41.963S91.225,509.075,91.225,485.763			L91.225,485.763z"/>		<text class="styleTxtTitre" transform="matrix(1 0 0 1 386.8711 485.2988)">Analyst</text>		<text id="fig_19_analyst_type" style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 400 500)">***</text>	</g>	<g id="fig_19_observe" onclick="changer(\'fig_19\')" fill="#FFFFFF" visibility="hidden">		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="993.7" y1="288.999" x2="1115.2" y2="288.999"/>		<polygon fill-rule="evenodd" clip-rule="evenodd" fill="white" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			979.525,275.499 984.925,276.624 987.4,277.749 989.425,279.55 991.226,281.575 992.575,283.825 993.476,286.3 993.7,288.999 			992.575,294.399 991.226,296.649 989.425,298.675 987.4,300.249 984.925,301.374 982.226,302.274 979.525,302.499 940.375,302.499 			935.875,302.499 930.476,301.374 928,300.249 925.976,298.675 924.175,296.649 922.825,294.399 921.925,291.7 921.7,288.999 			922.825,283.825 924.175,281.575 925.976,279.55 928,277.976 930.476,276.624 933.175,275.726 935.875,275.499 973,275.499 			979.525,275.499 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 937.2227 292.8848)">Observe</text>	</g>	<g id="fig_19_analyse" visibility="hidden" >		<polygon id="fig_19_analyse1" fill="white" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			201.025,339.624 206.425,340.749 208.9,341.874 210.925,343.675 212.725,345.7 214.075,347.95 214.975,350.425 215.2,353.124 			214.075,358.524 212.725,360.774 210.925,362.8 208.9,364.374 206.425,365.499 203.725,366.399 201.025,366.624 161.875,366.624 			157.375,366.624 151.975,365.499 149.5,364.374 147.475,362.8 145.675,360.774 144.325,358.524 143.425,355.825 143.2,353.124 			144.325,347.95 145.675,345.7 147.475,343.675 149.5,342.101 151.975,340.749 154.675,339.851 157.375,339.624 194.5,339.624 			201.025,339.624 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 159.3945 357.0176)">Analyse</text>		<polygon id="fig_19_analyse2" fill="white" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			294.4,392.726 299.8,393.851 302.275,394.976 304.3,396.774 306.1,398.8 307.45,401.05 308.35,403.524 308.575,406.226 			307.45,411.624 306.1,413.874 304.3,415.899 302.275,417.476 299.8,418.601 297.1,419.499 294.4,419.726 255.25,419.726 			250.75,419.726 245.35,418.601 242.875,417.476 240.85,415.899 239.05,413.874 237.7,411.624 236.8,408.925 236.575,406.226 			237.7,401.05 239.05,398.8 240.85,396.774 242.875,395.2 245.35,393.851 248.05,392.95 250.75,392.726 287.875,392.726 			294.4,392.726 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 252.7695 410.1113)">Analyse</text>		<polygon id="fig_19_analyse3" fill="white" onclick="Saisir(this.id,\'fig_19)\'" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			387.1,343.226 392.5,344.351 394.975,345.476 397,347.274 398.8,349.3 400.15,351.55 401.05,354.024 401.275,356.726 			400.15,362.124 398.8,364.374 397,366.399 394.975,367.976 392.5,369.101 389.8,369.999 387.1,370.226 347.95,370.226 			343.45,370.226 338.05,369.101 335.575,367.976 333.55,366.399 331.75,364.374 330.4,362.124 329.5,359.425 329.275,356.726 			330.4,351.55 331.75,349.3 333.55,347.274 335.575,345.7 338.05,344.351 340.75,343.45 343.45,343.226 380.575,343.226 			387.1,343.226 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 345.4727 360.6113)">Analyse</text>		<polygon id="fig_19_analyse4" fill="white" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			518.5,370.226 523.9,371.351 526.375,372.476 528.4,374.274 530.2,376.3 531.55,378.55 532.45,381.024 532.675,383.726 			531.55,389.124 530.2,391.374 528.4,393.399 526.375,394.976 523.9,396.101 521.2,396.999 518.5,397.226 479.35,397.226 			474.85,397.226 469.45,396.101 466.975,394.976 464.95,393.399 463.15,391.374 461.8,389.124 460.9,386.425 460.675,383.726 			461.8,378.55 463.15,376.3 464.95,374.274 466.975,372.7 469.45,371.351 472.15,370.45 474.85,370.226 511.975,370.226 			518.5,370.226 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 476.8711 387.6113)">Analyse</text>		<polygon id="fig_19_analyse5" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			649.45,363.476 654.851,364.601 657.325,365.726 659.351,367.524 661.15,369.55 662.5,371.8 663.4,374.274 663.625,376.976 			662.5,382.374 661.15,384.624 659.351,386.649 657.325,388.226 654.851,389.351 652.15,390.249 649.45,390.476 610.301,390.476 			605.8,390.476 600.4,389.351 597.925,388.226 595.9,386.649 594.1,384.624 592.75,382.374 591.85,379.675 591.625,376.976 			592.75,371.8 594.1,369.55 595.9,367.524 597.925,365.95 600.4,364.601 603.1,363.7 605.8,363.476 642.925,363.476 649.45,363.476 				"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 607.8242 380.8613)">Analyse</text>		<polygon id="fig_19_analyse6" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			983.125,362.575 988.525,363.7 991,364.825 993.025,366.624 994.825,368.649 996.175,370.899 997.075,373.374 997.3,376.075 			996.175,381.476 994.825,383.726 993.025,385.749 991,387.325 988.525,388.45 985.825,389.351 983.125,389.575 943.976,389.575 			939.476,389.575 934.075,388.45 931.601,387.325 929.575,385.749 927.775,383.726 926.425,381.476 925.525,378.774 925.3,376.075 			926.425,370.899 927.775,368.649 929.575,366.624 931.601,365.05 934.075,363.7 936.775,362.8 939.476,362.575 976.601,362.575 			983.125,362.575 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 941.4961 379.9629)">Analyse</text>			<polygon id="fig_19_analyse7" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			1182.25,409.825 1187.65,410.95 1190.125,412.075 1192.15,413.874 1193.95,415.899 1195.3,418.149 1196.2,420.624 			1196.425,423.325 1195.3,428.726 1193.95,430.976 1192.15,432.999 1190.125,434.575 1187.65,435.7 1184.95,436.601 			1182.25,436.825 1143.101,436.825 1138.601,436.825 1133.2,435.7 1130.726,434.575 1128.7,432.999 1126.9,430.976 1125.55,428.726 			1124.65,426.024 1124.425,423.325 1125.55,418.149 1126.9,415.899 1128.7,413.874 1130.726,412.3 1133.2,410.95 1135.9,410.05 			1138.601,409.825 1175.726,409.825 1182.25,409.825 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 1140.6133 427.2129)">Analyse</text>			<polygon id="fig_19_analyse8" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			68.275,414.55 73.675,415.675 76.15,416.8 78.175,418.601 79.975,420.624 81.325,422.874 82.225,425.351 82.45,428.05 			81.325,433.45 79.975,435.7 78.175,437.726 76.15,439.3 73.675,440.425 70.975,441.325 68.275,441.55 29.125,441.55 24.625,441.55 			19.225,440.425 16.75,439.3 14.725,437.726 12.925,435.7 11.575,433.45 10.675,430.749 10.45,428.05 11.575,422.874 			12.925,420.624 14.725,418.601 16.75,417.024 19.225,415.675 21.925,414.774 24.625,414.55 61.75,414.55 68.275,414.55 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 26.6445 431.9395)">Analyse</text>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="91.225,485.649 			46.45,485.649 46.45,441.55 	"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="272.575" y1="392.726" x2="272.575" y2="296.649"/>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="179.2,339.624 			179.2,286.524 182.35,285.175 183.25,283.601 183.7,282.024 182.35,278.874 180.775,277.976 179.2,277.524 179.2,94.6 	"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="177.625" y1="455.274" x2="179.2" y2="366.624"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="272.8" y1="447.399" x2="272.575" y2="419.726"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="365.5" y1="443.8" x2="365.275" y2="370.226"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="497.575" y1="445.825" x2="496.675" y2="397.226"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="496.675" y1="370.226" x2="496.225" y2="306.774"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="626.5" y1="453.7" x2="627.625" y2="390.476"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="627.625" y1="363.476" x2="628.525" y2="306.325"/>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="715.825,485.649 			1160.425,485.649 1160.425,436.825 	"/>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="715.825,485.649 			961.3,485.649 961.3,389.575 	"/>				<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="961.3" y1="362.575" x2="961.3" y2="302.499"/>				<polygon id="fig_19_analyse9" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			1078.75,362.575 1084.15,363.7 1086.625,364.825 1088.65,366.624 1090.45,368.649 1091.8,370.899 1092.7,373.374 1092.925,376.075 			1091.8,381.476 1090.45,383.726 1088.65,385.749 1086.625,387.325 1084.15,388.45 1081.45,389.351 1078.75,389.575 			1039.601,389.575 1035.101,389.575 1029.7,388.45 1027.226,387.325 1025.2,385.749 1023.4,383.726 1022.05,381.476 			1021.15,378.774 1020.925,376.075 1022.05,370.899 1023.4,368.649 1025.2,366.624 1027.226,365.05 1029.7,363.7 1032.4,362.8 			1035.101,362.575 1072.226,362.575 1078.75,362.575 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 1037.1211 379.9629)">Analyse</text>				<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1056.025" y1="485.649" x2="1056.925" y2="389.575"/>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			1056.925,362.575 1055.8,293.274 1058.726,291.925 1059.625,290.575 1060.075,288.999 1058.726,286.075 1057.375,285.175 			1055.8,284.726 1052.875,34.975 	"/>		<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="46.45" y1="414.55" x2="48.025" y2="336.925"/>		<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="365.275" y1="343.226" x2="365.95" y2="101.8"/>			<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1160.425" y1="409.825" x2="1160.2" y2="340.3"/>		<line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="775.9" y1="485.649" x2="776.575" y2="389.351"/>		<polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="776.575,362.351 			776.575,292.374 779.726,291.024 780.625,289.45 781.075,287.874 779.726,284.726 778.15,283.825 776.575,283.374 776.8,97.3 	"/>		<polygon id="fig_19_analyse10" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			798.4,362.351 803.8,363.476 806.275,364.601 808.3,366.399 810.101,368.425 811.45,370.675 812.351,373.149 812.575,375.851 			811.45,381.249 810.101,383.499 808.3,385.524 806.275,387.101 803.8,388.226 801.101,389.124 798.4,389.351 759.25,389.351 			754.75,389.351 749.351,388.226 746.875,387.101 744.851,385.524 743.05,383.499 741.7,381.249 740.8,378.55 740.575,375.851 			741.7,370.675 743.05,368.425 744.851,366.399 746.875,364.825 749.351,363.476 752.05,362.575 754.75,362.351 791.875,362.351 			798.4,362.351 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 756.7695 379.7285)">Analyse</text>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="921.7" y1="288.999" x2="654.175" y2="287.2"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="873.55,295.872 873.55,282.7 887.858,282.7 			887.858,295.872 873.55,295.872 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 873.5508 292.6582)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>		<polygon id="fig_19_analyse11" onclick="Saisir(this.id,\'fig_19\')" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="			979.976,180.1 985.375,181.225 987.851,182.35 989.875,184.15 991.675,186.175 993.025,188.425 993.925,190.9 994.15,193.6 			993.025,199 991.675,201.25 989.875,203.275 987.851,204.85 985.375,205.975 982.675,206.875 979.976,207.1 940.825,207.1 			936.325,207.1 930.925,205.975 928.45,204.85 926.425,203.275 924.625,201.25 923.275,199 922.375,196.3 922.15,193.6 			923.275,188.425 924.625,186.175 926.425,184.15 928.45,182.575 930.925,181.225 933.625,180.325 936.325,180.1 973.45,180.1 			979.976,180.1 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 938.3477 197.4863)">analyse</text>		<line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="958.15" y1="207.1" x2="957.7" y2="275.499"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="950.726,249.072 950.726,235.9 965.034,235.9 			965.034,249.072 950.726,249.072 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 950.7227 245.8613)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">1</tspan></text>		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="994.15,193.6 			1050.175,193.6 1051.525,190.45 1053.101,189.55 1054.675,189.1 1057.825,190.45 1058.726,192.025 1059.175,193.6 			1108.675,193.825 	"/>		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="1005.175,200.697 1005.175,187.525 1019.483,187.525 			1019.483,200.697 1005.175,200.697 	"/>		<text style="fill:#231F20;font-family:ArialMT;font-size:12px;" transform="matrix(1 0 0 1 1005.1758 197.4863)"><tspan x="0" y="0" font-family="ArialMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="ArialMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="ArialMT" font-size="9.9">n</tspan></text>	</g></g></svg>';
+		xml1 ='<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1212.95px" height="528.726px" viewBox="0 0 1212.95 528.726" enable-background="new 0 0 1212.95 528.726" xml:space="preserve"><script xlink:href="../js/interface.js" />  <g><g id="fig_19_centre" onclick="" fill="none" visibility="visible"><polygon fill-rule="evenodd" clip-rule="evenodd" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="326.8,40.15 862.976,40.15 862.976,325.899 326.8,325.899 326.8,40.15 "/><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="488.8,57.025 494.2,58.15 496.675,59.275 498.7,61.075 500.5,63.1 501.85,65.35 502.75,67.825 502.975,70.525 501.85,75.925 500.5,78.175 498.7,80.2 496.675,81.775 494.2,82.9 491.5,83.8 488.8,84.025 449.65,84.025 445.15,84.025 439.75,82.9 437.275,81.775 435.25,80.2 433.45,78.175 432.1,75.925 431.2,73.225 430.975,70.525 432.1,65.35 433.45,63.1 435.25,61.075 437.275,59.5 439.75,58.15 442.45,57.25 445.15,57.025 482.275,57.025 488.8,57.025 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 456.4023 74.4082)">uses</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="517.825,205.75 523.225,206.875 525.7,208 527.725,209.8 529.525,211.825 530.875,214.075 531.775,216.55 532,219.25 530.875,224.65 529.525,226.9 527.725,228.925 525.7,230.5 523.225,231.625 520.525,232.525 517.825,232.75 478.675,232.75 474.175,232.75 468.775,231.625 466.3,230.5 464.275,228.925 462.475,226.9 461.125,224.65 460.225,221.95 460,219.25 461.125,214.075 462.475,211.825 464.275,209.8 466.3,208.225 468.775,206.875 471.475,205.975 474.175,205.75 511.3,205.75 517.825,205.75 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 475.9727 223.127)">compiles</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="650.351,205.75 655.75,206.875 658.226,208 660.25,209.8 662.05,211.825 663.4,214.075 664.3,216.55 664.525,219.25 663.4,224.65 662.05,226.9 660.25,228.925 658.226,230.5 655.75,231.625 653.05,232.525 650.351,232.75 611.2,232.75 606.7,232.75 601.3,231.625 598.825,230.5 596.8,228.925 595,226.9 593.65,224.65 592.75,221.95 592.525,219.25 593.65,214.075 595,211.825 596.8,209.8 598.825,208.225 601.3,206.875 604,205.975 606.7,205.75 643.825,205.75 650.351,205.75 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 609.1758 223.127)">products</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="338.05,60.175 393.625,60.175 393.625,101.8 338.05,101.8 338.05,60.175 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 353.5742 84.9863)">datas</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="536.5,61.075 588.7,61.075 588.7,100.225 536.5,100.225 536.5,61.075 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 556.9727 84.5332)">pg</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="470.125,267.851 522.1,267.851 522.1,306.774 470.125,306.774 470.125,267.851 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 480.918 291.3145)">sources</text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="603.1,268.075 654.175,268.075 654.175,306.325 603.1,306.325 603.1,268.075 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 624.4727 291.0801)">to</text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="393.625" y1="69.85" x2="430.975" y2="70.525"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="502.975" y1="70.525" x2="536.5" y2="70.75"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="496" y1="232.75" x2="496.225" y2="267.851"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="628.525" y1="232.75" x2="628.525" y2="268.075"/><polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="496,205.75 496,175.6 628.525,175.6 628.525,205.75 "/><line fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="562.6" y1="100.225" x2="562.825" y2="175.6"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="521.2,182.697 521.2,169.525 535.509,169.525 535.509,182.697 521.2,182.697 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 521.1992 179.4863)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="588.25,182.697 588.25,169.525 602.559,169.525 602.559,182.697 588.25,182.697 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 588.2461 179.4863)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="621.325,265.048 621.325,251.875 635.634,251.875 635.634,265.048 621.325,265.048 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 621.3242 261.8379)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="488.8,254.922 488.8,241.75 503.109,241.75 503.109,254.922 488.8,254.922 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 488.793 251.7051)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="403.975,77.172 403.975,64 418.284,64 418.284,77.172 403.975,77.172 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 403.9727 73.9629)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="512.65,77.848 512.65,64.675 526.959,64.675 526.959,77.848 512.65,77.848 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 512.6523 74.6348)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polygon fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="488.8,110.8 494.2,111.925 496.675,113.05 498.7,114.85 500.5,116.875 501.85,119.125 502.75,121.6 502.975,124.3 501.85,129.7 500.5,131.95 498.7,133.975 496.675,135.55 494.2,136.675 491.5,137.575 488.8,137.8 449.65,137.8 445.15,137.8 439.75,136.675 437.275,135.55 435.25,133.975 433.45,131.95 432.1,129.7 431.2,127 430.975,124.3 432.1,119.125 433.45,116.875 435.25,114.85 437.275,113.275 439.75,111.925 442.45,111.025 445.15,110.8 482.275,110.8 488.8,110.8 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 447.6211 128.1895)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">p</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">r</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">odu</tspan><tspan x="25.865" y="0" font-family="\'ArialMT\'" font-size="9.9">c</tspan><tspan x="30.815" y="0" font-family="\'ArialMT\'" font-size="9.9">t</tspan><tspan x="33.516" y="0" font-family="\'ArialMT\'" font-size="9.9">s</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="519.625,131.397 519.625,118.225 533.934,118.225 533.934,131.397 519.625,131.397 "/><text class="styleTxtAttribut"  transform="matrix(1 0 0 1 519.6211 128.1895)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="401.5,131.397 401.5,118.225 415.809,118.225 415.809,131.397 401.5,131.397 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 401.4961 128.1895)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polygon fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="696.925,62.875 702.325,64 704.8,65.125 706.825,66.925 708.625,68.95 709.976,71.2 710.875,73.675 711.101,76.375 709.976,81.775 708.625,84.025 706.825,86.05 704.8,87.625 702.325,88.75 699.625,89.65 696.925,89.875 657.775,89.875 653.275,89.875 647.875,88.75 645.4,87.625 643.375,86.05 641.575,84.025 640.226,81.775 639.325,79.075 639.101,76.375 640.226,71.2 641.575,68.95 643.375,66.925 645.4,65.35 647.875,64 650.575,63.1 653.275,62.875 690.4,62.875 696.925,62.875 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 664.5273 80.2598)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">u</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">s</tspan><tspan x="10.574" y="0" font-family="\'ArialMT\'" font-size="9.9">e</tspan><tspan x="16.199" y="0" font-family="\'ArialMT\'" font-size="9.9">s</tspan></text><polygon fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="748.9,55.675 804.476,55.675 804.476,97.3 748.9,97.3 748.9,55.675 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 762.168 80.4863)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">de</tspan><tspan x="11.249" y="0" font-family="\'ArialMT\'" font-size="9.9">v</tspan><tspan x="16.199" y="0" font-family="\'ArialMT\'" font-size="9.9">i</tspan><tspan x="18.448" y="0" font-family="\'ArialMT\'" font-size="9.9">ce</tspan></text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="588.475" y1="80.2" x2="639.101" y2="80.2"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="711.101" y1="76.375" x2="748.9" y2="76.6"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="603.775,87.297 603.775,74.125 618.084,74.125 618.084,87.297 603.775,87.297 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 603.7695 84.0879)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="721.45,83.473 721.45,70.3 735.759,70.3 735.759,83.473 721.45,83.473 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 721.4492 80.2598)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text></g><g id="fig_19_create" onclick="" visibility="hidden"><polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="203.95,67.6 209.35,68.725 211.825,69.85 213.85,71.65 215.65,73.675 217,75.925 217.9,78.4 218.125,81.1 217,86.5 215.65,88.75 213.85,90.775 211.825,92.35 209.35,93.475 206.65,94.375 203.95,94.6 164.8,94.6 160.3,94.6 154.9,93.475 152.425,92.35 150.4,90.775 148.6,88.75 147.25,86.5 146.35,83.8 146.125,81.1 147.25,75.925 148.6,73.675 150.4,71.65 152.425,70.075 154.9,68.725 157.6,67.825 160.3,67.6 197.425,67.6 203.95,67.6 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 165.6992 84.9863)">Creates</text><polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-linecap="square" stroke-miterlimit="10" points="294.4,269.649 299.8,270.774 302.275,271.899 304.3,273.7 306.1,275.726 307.45,277.976 308.35,280.45 308.575,283.149 307.45,288.55 306.1,290.8 304.3,292.825 302.275,294.399 299.8,295.524 297.1,296.425 294.4,296.649 255.25,296.649 250.75,296.649 245.35,295.524 242.875,294.399 240.85,292.825 239.05,290.8 237.7,288.55 236.8,285.851 236.575,283.149 237.7,277.976 239.05,275.726 240.85,273.7 242.875,272.124 245.35,270.774 248.05,269.874 250.75,269.649 287.875,269.649 294.4,269.649 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 256.1445 287.0332)">Creates</text><polygon fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1074.7,7.975 1080.101,9.1 1082.575,10.225 1084.601,12.025 1086.4,14.05 1087.75,16.3 1088.65,18.775 1088.875,21.475 1087.75,26.875 1086.4,29.125 1084.601,31.15 1082.575,32.725 1080.101,33.85 1077.4,34.75 1074.7,34.975 1035.55,34.975 1031.05,34.975 1025.65,33.85 1023.175,32.725 1021.15,31.15 1019.351,29.125 1018,26.875 1017.101,24.175 1016.875,21.475 1018,16.3 1019.351,14.05 1021.15,12.025 1023.175,10.45 1025.65,9.1 1028.351,8.2 1031.05,7.975 1068.175,7.975 1074.7,7.975 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 1036.4492 25.3535)">Creates</text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="80.65" y1="80.65" x2="146.125" y2="80.65"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="91" y1="282.024" x2="236.575" y2="282.024"/><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1088.875" y1="21.475" x2="1139.5" y2="21.475"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="white" points="112.6,88.079 112.6,74.35 127.45,74.35 127.45,88.079 112.6,88.079 "/><text transform="matrix(1 0 0 1 112.5977 84.3535)"><tspan x="0" y="0" font-family="Arial-BoldMT" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="Arial-BoldMT" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="Arial-BoldMT" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" points="109.9,289.122 109.9,275.95 124.209,275.95 124.209,289.122 109.9,289.122 "/><text transform="matrix(1 0 0 1 109.8945 285.9004)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" fill="#FFFFFF" clip-rule="evenodd" points="1022.275,296.097 1022.275,282.925 1036.584,282.925 1036.584,296.097 1022.275,296.097 "/><text transform="matrix(1 0 0 1 1022.2695 292.8848)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="white" points="1100.351,28.572 1100.351,15.4 1114.659,15.4 1114.659,28.572 1100.351,28.572 "/><text transform="matrix(1 0 0 1 1100.3398 25.3535)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1016.875,21.475 365.95,21.475 365.95,60.175 "/><polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="308.575,283.149 308.575,287.425 360.775,287.425 362.125,284.274 363.7,283.374 365.275,282.925 368.425,284.274 369.325,285.851 369.775,287.425 470.125,287.425 "/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="427.375,294.522 427.375,281.351 441.684,281.351 441.684,294.522 427.375,294.522 "/><text transform="matrix(1 0 0 1 427.3711 291.3145)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="964,28.572 964,15.4 978.309,15.4 978.309,28.572 964,28.572 "/><text transform="matrix(1 0 0 1 963.9961 25.3535)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="218.125" y1="81.1" x2="338.05" y2="81.1"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="304.525,88.197 304.525,75.025 318.834,75.025 318.834,88.197 304.525,88.197 "/><text transform="matrix(1 0 0 1 304.5273 84.9863)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="379.675,101.8 379.675,124.3 430.975,124.3 "/><polyline fill="none" stroke="#008080" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="502.975,124.3 549.55,124.3 549.55,100.225 "/></g><g id="fig_19_autor" onclick="" fill="red" visibility="visible"><path stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M1,211.712C1,108.525,21.95,25.975,48.138,25.975s47.138,82.55,47.138,185.737c0,103.187-20.95,185.738-47.138,185.738S1,314.899,1,211.712L1,211.712z"/><text class="styleTxtTitre" transform="matrix(1 0 0 1 30 196.5879)">Author</text><polygon fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 25.7461 320.3379)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">do</tspan><tspan x="11.25" y="0" font-family="\'ArialMT\'" font-size="9.9">c</tspan><tspan x="16.199" y="0" font-family="\'ArialMT\'" font-size="9.9">u</tspan><tspan x="21.824" y="0" font-family="\'ArialMT\'" font-size="9.9">m</tspan><tspan x="30.368" y="0" font-family="\'ArialMT\'" font-size="9.9">en</tspan><tspan x="41.617" y="0" font-family="\'ArialMT\'" font-size="9.9">t</tspan></text></g><g id="fig_19_reader" onclick="" fill="red" visibility="visible"><path stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M1108.675,194.5c0-107.5,22.95-193.5,51.638-193.5s51.638,86,51.638,193.5c0,107.499-22.95,193.499-51.638,193.499S1108.675,301.999,1108.675,194.5L1108.675,194.5z"/><text class="styleTxtTitre" transform="matrix(1 0 0 1 1146.6914 194.1035)">Reader</text><polygon transform="translate(1110, 1)" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="20.8,295.976 75.25,295.976 75.25,336.925 20.8,336.925 20.8,295.976 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 1135 320.3379)">document</text></g><g id="fig_19_analyst" onclick="Saisir(this.id)" fill="red" visibility="visible"><path stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M91.225,485.763c0-23.313,139.1-41.963,312.975-41.963s312.975,18.65,312.975,41.963s-139.1,41.963-312.975,41.963S91.225,509.075,91.225,485.763L91.225,485.763z"/><text class="styleTxtTitre" transform="matrix(1 0 0 1 386.8711 485.2988)">Analyst</text><text id="fig_19_analyst_type" class="styleTxtAttribut" transform="matrix(1 0 0 1 400 500)">***</text></g><g id="fig_19_observe" onclick="" fill="#FFFFFF" visibility="hidden"><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="993.7" y1="288.999" x2="1115.2" y2="288.999"/><polygon fill-rule="evenodd" clip-rule="evenodd" fill="white" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="979.525,275.499 984.925,276.624 987.4,277.749 989.425,279.55 991.226,281.575 992.575,283.825 993.476,286.3 993.7,288.999 992.575,294.399 991.226,296.649 989.425,298.675 987.4,300.249 984.925,301.374 982.226,302.274 979.525,302.499 940.375,302.499 935.875,302.499 930.476,301.374 928,300.249 925.976,298.675 924.175,296.649 922.825,294.399 921.925,291.7 921.7,288.999 922.825,283.825 924.175,281.575 925.976,279.55 928,277.976 930.476,276.624 933.175,275.726 935.875,275.499 973,275.499 979.525,275.499 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 937.2227 292.8848)">Observe</text></g><g id="fig_19_analyse" visibility="hidden"><polygon id="fig_19_analyse1" fill="white" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="201.025,339.624 206.425,340.749 208.9,341.874 210.925,343.675 212.725,345.7 214.075,347.95 214.975,350.425 215.2,353.124 214.075,358.524 212.725,360.774 210.925,362.8 208.9,364.374 206.425,365.499 203.725,366.399 201.025,366.624 161.875,366.624 157.375,366.624 151.975,365.499 149.5,364.374 147.475,362.8 145.675,360.774 144.325,358.524 143.425,355.825 143.2,353.124 144.325,347.95 145.675,345.7 147.475,343.675 149.5,342.101 151.975,340.749 154.675,339.851 157.375,339.624 194.5,339.624 201.025,339.624 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 159.3945 357.0176)">Analyse</text><polygon id="fig_19_analyse2" fill="white" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="294.4,392.726 299.8,393.851 302.275,394.976 304.3,396.774 306.1,398.8 307.45,401.05 308.35,403.524 308.575,406.226 307.45,411.624 306.1,413.874 304.3,415.899 302.275,417.476 299.8,418.601 297.1,419.499 294.4,419.726 255.25,419.726 250.75,419.726 245.35,418.601 242.875,417.476 240.85,415.899 239.05,413.874 237.7,411.624 236.8,408.925 236.575,406.226 237.7,401.05 239.05,398.8 240.85,396.774 242.875,395.2 245.35,393.851 248.05,392.95 250.75,392.726 287.875,392.726 294.4,392.726 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 252.7695 410.1113)">Analyse</text><polygon id="fig_19_analyse3" fill="white" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="387.1,343.226 392.5,344.351 394.975,345.476 397,347.274 398.8,349.3 400.15,351.55 401.05,354.024 401.275,356.726 400.15,362.124 398.8,364.374 397,366.399 394.975,367.976 392.5,369.101 389.8,369.999 387.1,370.226 347.95,370.226 343.45,370.226 338.05,369.101 335.575,367.976 333.55,366.399 331.75,364.374 330.4,362.124 329.5,359.425 329.275,356.726 330.4,351.55 331.75,349.3 333.55,347.274 335.575,345.7 338.05,344.351 340.75,343.45 343.45,343.226 380.575,343.226 387.1,343.226 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 345.4727 360.6113)">Analyse</text><polygon id="fig_19_analyse4" fill="white" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="518.5,370.226 523.9,371.351 526.375,372.476 528.4,374.274 530.2,376.3 531.55,378.55 532.45,381.024 532.675,383.726 531.55,389.124 530.2,391.374 528.4,393.399 526.375,394.976 523.9,396.101 521.2,396.999 518.5,397.226 479.35,397.226 474.85,397.226 469.45,396.101 466.975,394.976 464.95,393.399 463.15,391.374 461.8,389.124 460.9,386.425 460.675,383.726 461.8,378.55 463.15,376.3 464.95,374.274 466.975,372.7 469.45,371.351 472.15,370.45 474.85,370.226 511.975,370.226 518.5,370.226 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 476.8711 387.6113)">Analyse</text><polygon id="fig_19_analyse5" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="649.45,363.476 654.851,364.601 657.325,365.726 659.351,367.524 661.15,369.55 662.5,371.8 663.4,374.274 663.625,376.976 662.5,382.374 661.15,384.624 659.351,386.649 657.325,388.226 654.851,389.351 652.15,390.249 649.45,390.476 610.301,390.476 605.8,390.476 600.4,389.351 597.925,388.226 595.9,386.649 594.1,384.624 592.75,382.374 591.85,379.675 591.625,376.976 592.75,371.8 594.1,369.55 595.9,367.524 597.925,365.95 600.4,364.601 603.1,363.7 605.8,363.476 642.925,363.476 649.45,363.476 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 607.8242 380.8613)">Analyse</text><polygon id="fig_19_analyse6" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="983.125,362.575 988.525,363.7 991,364.825 993.025,366.624 994.825,368.649 996.175,370.899 997.075,373.374 997.3,376.075 996.175,381.476 994.825,383.726 993.025,385.749 991,387.325 988.525,388.45 985.825,389.351 983.125,389.575 943.976,389.575 939.476,389.575 934.075,388.45 931.601,387.325 929.575,385.749 927.775,383.726 926.425,381.476 925.525,378.774 925.3,376.075 926.425,370.899 927.775,368.649 929.575,366.624 931.601,365.05 934.075,363.7 936.775,362.8 939.476,362.575 976.601,362.575 983.125,362.575 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 941.4961 379.9629)">Analyse</text><polygon id="fig_19_analyse7" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1182.25,409.825 1187.65,410.95 1190.125,412.075 1192.15,413.874 1193.95,415.899 1195.3,418.149 1196.2,420.624 1196.425,423.325 1195.3,428.726 1193.95,430.976 1192.15,432.999 1190.125,434.575 1187.65,435.7 1184.95,436.601 1182.25,436.825 1143.101,436.825 1138.601,436.825 1133.2,435.7 1130.726,434.575 1128.7,432.999 1126.9,430.976 1125.55,428.726 1124.65,426.024 1124.425,423.325 1125.55,418.149 1126.9,415.899 1128.7,413.874 1130.726,412.3 1133.2,410.95 1135.9,410.05 1138.601,409.825 1175.726,409.825 1182.25,409.825 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 1140.6133 427.2129)">Analyse</text><polygon id="fig_19_analyse8" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="68.275,414.55 73.675,415.675 76.15,416.8 78.175,418.601 79.975,420.624 81.325,422.874 82.225,425.351 82.45,428.05 81.325,433.45 79.975,435.7 78.175,437.726 76.15,439.3 73.675,440.425 70.975,441.325 68.275,441.55 29.125,441.55 24.625,441.55 19.225,440.425 16.75,439.3 14.725,437.726 12.925,435.7 11.575,433.45 10.675,430.749 10.45,428.05 11.575,422.874 12.925,420.624 14.725,418.601 16.75,417.024 19.225,415.675 21.925,414.774 24.625,414.55 61.75,414.55 68.275,414.55 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 26.6445 431.9395)">Analyse</text><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="91.225,485.649 46.45,485.649 46.45,441.55 "/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="272.575" y1="392.726" x2="272.575" y2="296.649"/><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="179.2,339.624 179.2,286.524 182.35,285.175 183.25,283.601 183.7,282.024 182.35,278.874 180.775,277.976 179.2,277.524 179.2,94.6 "/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="177.625" y1="455.274" x2="179.2" y2="366.624"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="272.8" y1="447.399" x2="272.575" y2="419.726"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="365.5" y1="443.8" x2="365.275" y2="370.226"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="497.575" y1="445.825" x2="496.675" y2="397.226"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="496.675" y1="370.226" x2="496.225" y2="306.774"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="626.5" y1="453.7" x2="627.625" y2="390.476"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="627.625" y1="363.476" x2="628.525" y2="306.325"/><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="715.825,485.649 1160.425,485.649 1160.425,436.825 "/><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="715.825,485.649 961.3,485.649 961.3,389.575 "/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="961.3" y1="362.575" x2="961.3" y2="302.499"/><polygon id="fig_19_analyse9" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1078.75,362.575 1084.15,363.7 1086.625,364.825 1088.65,366.624 1090.45,368.649 1091.8,370.899 1092.7,373.374 1092.925,376.075 1091.8,381.476 1090.45,383.726 1088.65,385.749 1086.625,387.325 1084.15,388.45 1081.45,389.351 1078.75,389.575 1039.601,389.575 1035.101,389.575 1029.7,388.45 1027.226,387.325 1025.2,385.749 1023.4,383.726 1022.05,381.476 1021.15,378.774 1020.925,376.075 1022.05,370.899 1023.4,368.649 1025.2,366.624 1027.226,365.05 1029.7,363.7 1032.4,362.8 1035.101,362.575 1072.226,362.575 1078.75,362.575 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 1037.1211 379.9629)">Analyse</text><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1056.025" y1="485.649" x2="1056.925" y2="389.575"/><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="1056.925,362.575 1055.8,293.274 1058.726,291.925 1059.625,290.575 1060.075,288.999 1058.726,286.075 1057.375,285.175 1055.8,284.726 1052.875,34.975 "/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="46.45" y1="414.55" x2="48.025" y2="336.925"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="365.275" y1="343.226" x2="365.95" y2="101.8"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="1160.425" y1="409.825" x2="1160.2" y2="340.3"/><line fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="775.9" y1="485.649" x2="776.575" y2="389.351"/><polyline fill="none" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="776.575,362.351 776.575,292.374 779.726,291.024 780.625,289.45 781.075,287.874 779.726,284.726 778.15,283.825 776.575,283.374 776.8,97.3 "/><polygon id="fig_19_analyse10" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#C08040" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="798.4,362.351 803.8,363.476 806.275,364.601 808.3,366.399 810.101,368.425 811.45,370.675 812.351,373.149 812.575,375.851 811.45,381.249 810.101,383.499 808.3,385.524 806.275,387.101 803.8,388.226 801.101,389.124 798.4,389.351 759.25,389.351 754.75,389.351 749.351,388.226 746.875,387.101 744.851,385.524 743.05,383.499 741.7,381.249 740.8,378.55 740.575,375.851 741.7,370.675 743.05,368.425 744.851,366.399 746.875,364.825 749.351,363.476 752.05,362.575 754.75,362.351 791.875,362.351 798.4,362.351 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 756.7695 379.7285)">Analyse</text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="921.7" y1="288.999" x2="654.175" y2="287.2"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="873.55,295.872 873.55,282.7 887.858,282.7 887.858,295.872 873.55,295.872 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 873.5508 292.6582)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text><polygon id="fig_19_analyse11" onclick="Saisir(this.id)" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="979.976,180.1 985.375,181.225 987.851,182.35 989.875,184.15 991.675,186.175 993.025,188.425 993.925,190.9 994.15,193.6 993.025,199 991.675,201.25 989.875,203.275 987.851,204.85 985.375,205.975 982.675,206.875 979.976,207.1 940.825,207.1 936.325,207.1 930.925,205.975 928.45,204.85 926.425,203.275 924.625,201.25 923.275,199 922.375,196.3 922.15,193.6 923.275,188.425 924.625,186.175 926.425,184.15 928.45,182.575 930.925,181.225 933.625,180.325 936.325,180.1 973.45,180.1 979.976,180.1 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 938.3477 197.4863)">analyse</text><line fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" x1="958.15" y1="207.1" x2="957.7" y2="275.499"/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="950.726,249.072 950.726,235.9 965.034,235.9 965.034,249.072 950.726,249.072 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 950.7227 245.8613)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">1</tspan></text><polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="994.15,193.6 1050.175,193.6 1051.525,190.45 1053.101,189.55 1054.675,189.1 1057.825,190.45 1058.726,192.025 1059.175,193.6 1108.675,193.825 "/><polyline fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" points="1005.175,200.697 1005.175,187.525 1019.483,187.525 1019.483,200.697 1005.175,200.697 "/><text class="styleTxtAttribut" transform="matrix(1 0 0 1 1005.1758 197.4863)"><tspan x="0" y="0" font-family="\'ArialMT\'" font-size="9.9">0</tspan><tspan x="5.625" y="0" font-family="\'ArialMT\'" font-size="9.9">-</tspan><tspan x="8.991" y="0" font-family="\'ArialMT\'" font-size="9.9">n</tspan></text></g></g></svg>';
 		//alert (xml1);	
 		//figure_courant="fig_19";
 		var sql = 'INSERT INTO svg(fichier,isModel,titre,id_user) VALUES(?1,?2,?3,?4);';
@@ -147,7 +147,7 @@ function Open_default(elem){
 	var mDBConn = connect_DB();
 	var p_interface = document.getElementById("C1");
 	var p_saisi=document.getElementById("S1");
-	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
+	var statement = mDBConn.createStatement('SELECT fichier,isModel FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,'1');
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
@@ -156,9 +156,9 @@ function Open_default(elem){
 	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
 	var resultDoc=parser.parseFromString(myArray1[0]['fichier'],"text/xml");
-	
 	doc=document.getElementById("fig_p");
 	resultDoc.documentElement.setAttribute("hidden","false");
+	resultDoc.documentElement.setAttribute("id_model","1");
 	if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
 	doc.appendChild(resultDoc.documentElement);
@@ -180,6 +180,7 @@ function Open_default(elem){
 		p_saisi.appendChild(resultDoc.documentElement);
 	}
 	statement.reset();
+	document.getElementById("mo").setAttribute("disabled","false");
 }
 
 function afficher_last_interface(){
@@ -190,22 +191,19 @@ function afficher_last_interface(){
 	statement.bindUTF8StringParameter(0,"default1");
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-	test =0;
 	j=0;
-		//alert (myArray1.length);
-	for(var j=0;j<myArray1.length;j++){
-		//alert("SVG : "+myArray1[j]['form_xul']);
-		var parser=new DOMParser();
-		// Transformer le String en Objet DOM
-		var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
-		resultDoc.documentElement.setAttribute("hidden","false");
-		resultDoc.documentElement.setAttribute("flex","1");
-		
-		p_saisi.appendChild(resultDoc.documentElement);
-	}
+	var parser=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc=parser.parseFromString(myArray1[j]['form_xul'],"text/xml");
+	resultDoc.documentElement.setAttribute("hidden","false");
+	resultDoc.documentElement.setAttribute("flex","1");
+	
+	p_saisi.appendChild(resultDoc.documentElement);
+	document.getElementById("OntoActeur").setAttribute("hidden","false");
+
 	statement.reset();
 }
+
 function SetFichier(){
 	
   try {
@@ -332,7 +330,12 @@ function ModifChampsSvg(idSrc){
 				//r�cup�re le texte
 					var texte = champ.value;
 				//replace le texte
-				document.getElementById(idDst).firstChild.data= texte; 	
+				texte1=document.getElementById(idDst)
+				if (texte!="")
+					texte1.firstChild.data= texte;
+				else 
+					texte1.firstChild.data= "***"; 	
+				
 			}
 			i++;
 			//alert(i);
@@ -399,17 +402,12 @@ function changer_interface(idsSrc,idsDst,elem){
 		netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 		var mDBConn = connect_DB();
 		var p_interface = document.getElementById("C1");
-		var statement = mDBConn.createStatement('SELECT fichier,titre,isModel FROM svg where id_svg=?1;');
+		var statement = mDBConn.createStatement('SELECT id_svg,fichier,titre,isModel FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,idsDst);
 		// return dataset;	
 		var myArray1 = boucle_select(statement);
-		// Now you can loop through the array:
-		test =0;
-		j=0;
-		
-		var parser=new DOMParser();
-		// Transformer le String en Objet DOM
-		var resultDoc=parser.parseFromString(myArray1[j]['fichier'],"text/xml");
+		j=0;	
+		var	id_m2=myArray1[j]['id_svg'];
 		var svg_src2 = myArray1[j]['fichier'];
 		var titre2=myArray1[j]['titre'];
 		var test_model2=myArray1[j]['isModel'];
@@ -422,20 +420,26 @@ function changer_interface(idsSrc,idsDst,elem){
     	var xul_src = serializer.serializeToString(p_saisi.firstChild);
 		//svg_src=doc.firstChild;
 		
-		var statement = mDBConn.createStatement('SELECT titre,isModel FROM svg where id_svg=?1;');
+		var statement = mDBConn.createStatement('SELECT id_svg,titre,isModel FROM svg where id_svg=?1;');
 		statement.bindUTF8StringParameter(0,idsSrc);
 		var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
-		test_model =myArray1[j]['isModel'];
-		titre=myArray1[j]['titre'];
-		alert(test_model+ "else");
-		j=0;
+		var id_m=myArray1[j]['id_svg'];
+		var test_model =myArray1[j]['isModel'];		
+		var titre=myArray1[j]['titre'];
+		
+		var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_svg=?1;');
+		statement.bindUTF8StringParameter(0,idsDst);
+		//alert(idsDst);
+		var myArray1 = boucle_select(statement);		
+		form_xulDst=myArray1[j]['form_xul'];
+		//alert(test_model+ "else");
 		if (test_model=="true"){
 			//alert(elem.id);
 			var sql = 'INSERT INTO svg(fichier,isModel,titre,id_user) VALUES(?1,?2,?3,?4);';
 			var statement = mDBConn.createStatement(sql);
 		    statement.bindUTF8StringParameter(0,svg_src);
-		    statement.bindUTF8StringParameter(1,"false");
+		    statement.bindUTF8StringParameter(1,id_m);
 		    statement.bindUTF8StringParameter(2,titre+" - "+user+" - "+ladate.toGMTString());
 		    statement.bindUTF8StringParameter(3,id_user);
 		    statement.execute();
@@ -459,7 +463,7 @@ function changer_interface(idsSrc,idsDst,elem){
 			var first = createMenu(titre);
 			var pop2=createMenuPopup("pop_interface_"+id_interface);
 			var last = createMenuItem(titre);
-			last.setAttribute("onclick","afficher_interface('"+id_interface+"');");
+			last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
 			pop2.appendChild(last);
 			first.appendChild(pop2);
 			pop.appendChild(first);
@@ -475,6 +479,13 @@ function changer_interface(idsSrc,idsDst,elem){
 			statement.bindUTF8StringParameter(1,idsSrc);
 			statement.execute();
 			statement.reset();	
+			
+			var sql = 'UPDATE xul SET form_xul=?1 WHERE id_svg=?2;';
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,xul_src);
+			statement.bindUTF8StringParameter(1,idsSrc);
+			statement.execute();
+			statement.reset();	
 		}
 		
 		if (test_model2=="true"){
@@ -482,7 +493,7 @@ function changer_interface(idsSrc,idsDst,elem){
 			var sql = 'INSERT INTO svg(fichier,isModel,titre,id_user) VALUES(?1,?2,?3,?4);';
 			var statement = mDBConn.createStatement(sql);
 		    statement.bindUTF8StringParameter(0,svg_src2);
-		    statement.bindUTF8StringParameter(1,"false");
+		    statement.bindUTF8StringParameter(1,id_m2);
 		    statement.bindUTF8StringParameter(2,titre2+" - "+user+" - "+ladate.toGMTString());
 		    statement.bindUTF8StringParameter(3,id_user);
 		    statement.execute();
@@ -492,25 +503,29 @@ function changer_interface(idsSrc,idsDst,elem){
 			var myArray1 = boucle_select(statement);
 			// Now you can loop through the array:
 			id_interface2 =myArray1[j]['id_svg'];
+			
+			var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,"saisie_"+id_interface2);
+			statement.bindUTF8StringParameter(1,form_xulDst);
+			statement.bindUTF8StringParameter(2,id_interface2);
+			statement.execute();
+			statement.reset();
+			
+			// Now you can loop through the array:
+			form_xul =myArray1[j]['form_xul'];
 	    	var pop = document.getElementById(racine_interface); // a <menupopup> element
 			var first = createMenu(titre2);
 			var pop2=createMenuPopup("pop_interface_"+id_interface2);
 			var last = createMenuItem(titre2);
-			last.setAttribute("onclick","afficher_interface('"+id_interface2+"');");
+			last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface2+"');");
 			pop2.appendChild(last);
 			first.appendChild(pop2);
 			pop.appendChild(first);
 			id_courant=id_interface2;
 			racine_interface="pop_interface_"+id_interface2;
 		}
-		else {
-			var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
-			var statement = mDBConn.createStatement(sql);
-			statement.bindUTF8StringParameter(0,svg_src2);
-			statement.bindUTF8StringParameter(1,idsSrc);
-			statement.execute();
-			statement.reset();	
-		}
+
 		if (test_model=="true"){
 			xml2=RC(interface_modif,"changer_interface(\'"+idsSrc+"\',\'"+idsDst+"\',this)","changer_interface(\'"+id_interface+"\',\'"+id_interface2+"\',this)");
 			var sql = 'UPDATE svg SET fichier= ?1 WHERE id_svg=?2;';
@@ -520,21 +535,58 @@ function changer_interface(idsSrc,idsDst,elem){
 			statement.bindUTF8StringParameter(1,id_interface);
 			statement.execute();
 			statement.reset();
+			
+			xml4=RC(xul_src,"changer_interface(\'"+idsSrc+"\',\'"+idsDst+"\',this)","changer_interface(\'"+id_interface+"\',\'"+id_interface2+"\',this)");
+			var sql = 'UPDATE xul SET form_xul= ?1 WHERE id_svg=?2;';
+			//alert('UPDATE svg SET fichier= '+'hello'+' WHERE id_svg='+id_interface+';');
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,xml4);
+			statement.bindUTF8StringParameter(1,id_interface);
+			statement.execute();
+			statement.reset();
+		}
+		else {
+			xml2=interface_modif;
+			xml4=xul_src;
 		}
 		if (test_model2=="true"){
 			xml3=RC(svg_src2,"changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)","changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
 			var sql = 'UPDATE svg SET fichier= ?1 WHERE id_svg=?2;';
-			alert("changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)"+"  <---  changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
-			alert(xml3);
+			//alert("changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)"+"  <---  changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
+			//alert(xml3);
 			var statement = mDBConn.createStatement(sql);
 			statement.bindUTF8StringParameter(0,xml3);
 			statement.bindUTF8StringParameter(1,id_interface2);
 			statement.execute();
+			statement.reset();	
+
+			xml5=RC(form_xulDst,"changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)","changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
+			var sql = 'UPDATE xul SET form_xul= ?1 WHERE id_svg=?2;';
+			//alert("changer_interface(\'"+idsDst+"\',\'"+idsSrc+"\',this)"+"  <---  changer_interface(\'"+id_interface2+"\',\'"+id_interface+"\',this)");
+			//alert(xml3);
+			var statement = mDBConn.createStatement(sql);
+			statement.bindUTF8StringParameter(0,xml5);
+			statement.bindUTF8StringParameter(1,id_interface2);
+			statement.execute();
 			statement.reset();
 		}
-		if (doc.hasChildNodes()==true)	
+		else {
+			xml3=svg_src2;
+			xml5=form_xulDst
+		}
+		while (doc.hasChildNodes())	
 			doc.removeChild(doc.firstChild);
+		var parser=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc=parser.parseFromString(xml3,"text/xml");
+		resultDoc.documentElement.setAttribute("id_model",id_m2);
 		doc.appendChild(resultDoc.documentElement);
+		var parser2=new DOMParser();
+		// Transformer le String en Objet DOM
+		var resultDoc2=parser2.parseFromString(xml5,"text/xml");
+		while (p_saisi.hasChildNodes())	
+			p_saisi.removeChild(p_saisi.firstChild);
+		p_saisi.appendChild(resultDoc2.documentElement);
 		/*document.getElementById("fig_21_indexer").setAttribute("fill","green");
 		document.getElementById("fig_21_indexing").setAttribute("fill","green");
 		document.getElementById("fig_21_indexer_name").firstChild.data=user;
@@ -654,6 +706,7 @@ function Import(cmp){
             
 				document.getElementById(figure_courant).setAttribute("hidden","true	");
 				////figure_courant=fichier.leafName;
+				document.getElementById("mo").setAttribute("disabled","false");
 			}
 			else if (cmp=='a')
 			{
@@ -818,7 +871,7 @@ try{
 		j=0;
 		//alert (myArray1.length);
 		for(var j=0;j<myArray1.length;j++){
-			alert("SVG : "+myArray1[j]['fichier']);
+			//alert("SVG : "+myArray1[j]['fichier']);
 			return myArray1[j]['fichier'];
 		}
 		statement.reset();
@@ -843,6 +896,7 @@ function svg_open(choix_svg,fig_svg)
 		doc.removeChild(doc.firstChild);
 	// Int�grer le DOM r�cup�r� � l'interieur de document
 	doc.appendChild(resultDoc.documentElement);
+	document.getElementById("mo").setAttribute("disabled","false");
 }
 
 function svg_open_id(id_svg)
@@ -853,25 +907,21 @@ function svg_open_id(id_svg)
                     .getService(Components.interfaces.nsIProperties)
                     .get("ProfD", Components.interfaces.nsIFile);
 	file.append(myDBFile);
+	p_saisi=document.getElementById("S1");
 	var storageService = Components.classes["@mozilla.org/storage/service;1"]
 	                        .getService(Components.interfaces.mozIStorageService);
 	var mDBConn = storageService.openDatabase(file);
 	var statement = mDBConn.createStatement('SELECT * FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,id_svg);
-	alert('SELECT * FROM svg where id_svg='+id_svg);
-
+	//alert('SELECT * FROM svg where id_svg='+id_svg);
+	
 		// return dataset;	
 	var j=0;
 	var myArray1 = boucle_select(statement);
 	choix_svg="fig_p";
 	fig_svg=myArray1[j]["fichier"];
-	
-	//xml = getSVG_DB(choix_svg);
-	////figure_courant=get_figure(input.value);
-	//alert ("fig : "+figure_courant);
-	//alert (input.value);
-	var parser=new DOMParser();
 	// Transformer le String en Objet DOM
+	var parser=new DOMParser();
 	var resultDoc=parser.parseFromString(fig_svg,"text/xml");
 	// Int�grer le DOM r�cup�r� � l'interieur de document
 	doc=document.getElementById(choix_svg);
@@ -879,7 +929,7 @@ function svg_open_id(id_svg)
 		if (doc.hasChildNodes()==true)	
 			doc.removeChild(doc.firstChild);
 		doc.appendChild(resultDoc.documentElement);
-		alert(doc);
+		//alert(doc);
 		if (figure_courant!=choix_svg)  {            
 			document.getElementById(choix_svg).setAttribute("hidden","true");
 			//alert ("hidden : true");	
@@ -888,7 +938,20 @@ function svg_open_id(id_svg)
 	else {
 		document.getElementById("C1").appendChild(resultDoc.documentElement);
 	}
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_svg=?1;');
+	statement.bindUTF8StringParameter(0,id_svg);
+	var myArray1 = boucle_select(statement);		
+	form_xulDst=myArray1[0]['form_xul'];
+	var parser2=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc2=parser2.parseFromString(form_xulDst,"text/xml");
+	while (p_saisi.hasChildNodes())	
+		p_saisi.removeChild(p_saisi.firstChild);
+	p_saisi.appendChild(resultDoc2.documentElement);
+	document.getElementById("mo").setAttribute("disabled","false");
 }
+
+
 function ok_svg(){
 	window.opener.g_idModel=document.getElementById("listModele").selectedItem.getAttribute("value");
 	window.close();
@@ -1050,17 +1113,17 @@ function afficher_zone(ch1)
 			//alert(ch1.getAttribute("checked"));
 			ch3.setAttribute("hidden","true");
 		}
-		else alert("Else");
+		else {}//alert("Else");
 	}
 function get_nb_saisies(){
 	nb_zt=document.getElementById("nb_zt").value;
 	nb_ld=document.getElementById("nb_ld").value;
-	alert(nb_zt+" : "+nb_ld);
+	//alert(nb_zt+" : "+nb_ld);
 	afficher_nb_saisies(nb_zt,nb_ld);
 }
 function afficher_nb_saisies(nb_zt,nb_ld)
 {
-	alert(nb_zt+" |:| "+nb_ld);
+	//alert(nb_zt+" |:| "+nb_ld);
 	page_assistant=document.getElementById("interface_zone");
 	for (i=1;i<nb_zt;i++)
 	{
@@ -1082,7 +1145,7 @@ function createDB(){
 		var myCreateDBQuery6 = 'CREATE TABLE IF NOT EXISTS donnees (id_d INTEGER PRIMARY KEY AUTOINCREMENT,  id_f uniqueidentifier);';  
 		var myCreateDBQuery7 = 'CREATE TABLE IF NOT EXISTS valeurs (id_v INTEGER PRIMARY KEY AUTOINCREMENT, valeur varchar(40), id_c uniqueidentifier, id_d uniqueidentifier);';
 		var myCreateDBQuery8 = 'CREATE TABLE IF NOT EXISTS historique (id_hist INTEGER PRIMARY KEY AUTOINCREMENT, date varchar(40));';  
-		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),isModel boolean, id_user uniqueidentifier);';
+		var myCreateDBQuery9 = 'CREATE TABLE IF NOT EXISTS svg (id_svg INTEGER PRIMARY KEY AUTOINCREMENT,  titre text(40), fichier text(1000),isModel varchar(40), id_user uniqueidentifier);';
 		var myCreateDBQuery10 = 'CREATE TABLE IF NOT EXISTS xul (id_xul INTEGER PRIMARY KEY AUTOINCREMENT,id_element integer, form_xul text(10000), id_svg uniqueidentifier);';   
 		$sqlite._initService(myDBFile);
 		$sqlite.cmd(myDBFile,myCreateDBQuery);
@@ -1167,18 +1230,35 @@ function Save_SVG(){
 		doc = getSVG();
 		var serializer = new XMLSerializer();
     	var svg = serializer.serializeToString(doc);
-		alert ("SVG : "+svg);
+		//alert ("SVG : "+svg);
 
 		var mDBConn = connect_DB();
-		var sql = 'INSERT INTO svg(fichier,figure_c,titre,id_user) VALUES(?1,?2,?3,?4);';
+		var sql = 'INSERT INTO svg(fichier,isModel,titre,id_user) VALUES(?1,?2,?3,?4);';
 		var statement = mDBConn.createStatement(sql);
 	    statement.bindUTF8StringParameter(0,svg);
-	    statement.bindUTF8StringParameter(1,figure_courant);
+	    statement.bindUTF8StringParameter(1,"false");
 	    statement.bindUTF8StringParameter(2,nomFic);
 	    statement.bindUTF8StringParameter(3,id_user);
 	    //statement.bindUTF8StringParameter(1, password);
 	    statement.execute();
 	    statement.reset();
+    	j=0;
+	    var statement = mDBConn.createStatement('SELECT id_svg FROM svg ORDER BY id_svg DESC;');
+		var myArray1 = boucle_select(statement);
+		// Now you can loop through the array:
+		id_interface =myArray1[j]['id_svg'];
+		p_saisi=document.getElementById("S1");
+    	var serializer = new XMLSerializer();
+    	var xul_src = serializer.serializeToString(p_saisi.firstChild);
+    
+    	var sql = 'INSERT INTO xul(id_element,form_xul,id_svg) VALUES(?1,?2,?3);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,"saisie_"+id_interface);
+		statement.bindUTF8StringParameter(1,xul_src);
+		statement.bindUTF8StringParameter(2,id_interface);
+		statement.execute();
+		statement.reset();
+			
 }
 
 function read(filepath) {
@@ -1234,7 +1314,7 @@ function AppendSVG(url,doc) {
 	p.send(null);
 
 	if (p.status != "200" ){
-	      alert("R�ception erreur " + p.status);
+	      alert("Réception erreur " + p.status);
 	}else{
 
 	    var response = p.responseText;
@@ -1521,7 +1601,7 @@ function Ajouter_doc() {
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
 	xml4=RC(xml3,"fig_19","Document_"+docs);
-	alert(xml4);
+	//alert(xml4);
 	xulData=xml4 ;
 	//AppendSVG("http://localhost/archipoenum/library/xul/doc.xul",document.getElementById("C1"));
 	var parser=new DOMParser();
@@ -1537,10 +1617,7 @@ function Ajouter_doc() {
 	// return dataset;	
 	var myArray1 = boucle_select(statement);
 		// Now you can loop through the array:
-	test =0;
 	j=0;
-		//alert (myArray1.length);
-		
 	xml = myArray1[j]['form_xul'];
 	xml2=RC(xml,"fig_18","Document_"+docs);
 	xml3=RC(xml2,"fig_21","Document_"+docs);
@@ -1580,7 +1657,7 @@ try{
 			document.getElementById("user_c").setAttribute("label","Creer un nouveau utilisateur");
 	}
 	else{
-		alert (document.getElementById("form_user").getAttribute("hidden"));
+		//alert (document.getElementById("form_user").getAttribute("hidden"));
 	}
 
 
@@ -1591,7 +1668,7 @@ catch(ex2){alert("interface:afficher_form_user:"+ex2); }
 
 function logout(){
 	document.getElementById("logout").setAttribute("hidden","false");
-	document.getElementById("logout_user").setAttribute("value",user+" est deconnecter");
+	document.getElementById("logout_user").setAttribute("value",user+" est deconnecté");
 	document.getElementById(figure_courant).setAttribute("hidden","true");
 	alert(user+" est deconnecter");
 	window.close();
@@ -1968,7 +2045,6 @@ function Valider_form(id_form)
 	fct=listes[1].selectedItem.value;
 	id_graph=RC(id_form,"saisie_","");
 
-
 	var mDBConn = connect_DB();
 	
 	svg=document.getElementById("svg_1");
@@ -2022,7 +2098,7 @@ function Valider_form(id_form)
 		j=0;
 		var myArray1 = boucle_select(statement);
 		id_xul=myArray1[j]["id_xul"];
-		alert("Base    :   "+id_xul);
+		//alert("Base    :   "+id_xul);
 		//alert(evt+" : "+fct+"('"+id_xul+"')");
 		document.getElementById(id_graph).setAttribute(evt,fct+"('"+id_xul+"','"+n1+"')");
 		hist=document.getElementById("hist"+n1);
@@ -2040,7 +2116,7 @@ function Valider_form(id_form)
 	}
 	else if (fct=="affiche_graph"){
 		g1=listes[2].selectedItem.value;
-		alert(evt+" : "+fct+"('"+g1+"')");
+		//alert(evt+" : "+fct+"('"+g1+"')");
 		document.getElementById(id_graph).setAttribute(evt,fct+"('"+g1+"')");
 		hist=document.getElementById("hist"+n1);
 		var h1 = createMenuItem(" Affichage du graph numero : "+g1);
@@ -2050,7 +2126,7 @@ function Valider_form(id_form)
 		g1=document.getElementById("listModele_"+n1).selectedItem.value;
 		document.getElementById(id_graph).setAttribute(evt,fct+"('vb1','"+g_idSvg+"','fig_p','"+g1+"')");
 		hist=document.getElementById("hist"+n1);
-		var h1 = createMenuItem("Affichage du mod�le: "+g1);
+		var h1 = createMenuItem("Affichage du mod�le: "+g1);
 		hist.appendChild(h1);
 	}
 	else{
@@ -2143,7 +2219,7 @@ function Ajouter_zone(elem,cpt)
 		
 		if (elem.label=="Nouveau"){
 			racine.appendChild(first);
-			alert(elem.label);	
+			//alert(elem.label);	
 		}
 		else{}
 			//racine.parentNode.appendChild(first);
@@ -2487,6 +2563,40 @@ function test_evt(elem){
 function fin_assitant()
 {
 	graph=document.getElementById("svg_1");
+	for (i=0;i<x.getElementsByTagName("g").length;i++)
+	{	
+		y=x.getElementsByTagName("g")[i];
+		if (y.getAttribute("onclick")=='init_svg(this)')
+			y.setAttribute("onclick",'');
+	}
+	
+	for (j=0;j<x.getElementsByTagName("path").length;j++)
+	{	
+		y=x.getElementsByTagName("path")[j];
+		if (y.getAttribute("onclick")=='init_svg(this)')
+			y.setAttribute("onclick",'');
+	}
+	
+	for (k=0;k<x.getElementsByTagName("text").length;k++)
+	{	
+		y=x.getElementsByTagName("text")[k];
+		if (y.getAttribute("onclick")=='init_svg(this)')
+			y.setAttribute("onclick",'');
+	}
+	
+	for (l=0;l<x.getElementsByTagName("polygon").length;l++)
+	{	
+		y=x.getElementsByTagName("polygon")[l];
+		if (y.getAttribute("onclick")=='init_svg(this)')
+			y.setAttribute("onclick",'');
+	}
+	
+	for (m=0;m<x.getElementsByTagName("rect").length;m++)
+	{	
+		y=x.getElementsByTagName("rect")[m];
+		if (y.getAttribute("onclick")=='init_svg(this)')
+			y.setAttribute("onclick",'');
+	}
 	s1= createScript("s1");
 	//alert(read("http://localhost/archipoenum/library/js/fonctions.js"));
 	s1.setAttribute("src","http://localhost/archipoenum/library/js/fonctions.js");
@@ -2531,10 +2641,8 @@ function add_svg(svg)
 	if (doc.hasChildNodes()==true){
 		document.getElementById(figure_courant).removeChild(doc.firstChild); 
 		document.getElementById(figure_courant).setAttribute("hidden","true	");}
-	v1=createVbox("v1");
-	v1.appendChild(svg);
-	document.getElementById("C1").appendChild(v1);
-	
+	doc.appendChild(svg);	
+	document.getElementById("mo").setAttribute("disabled","false");
 }
 
 function modif_interface(){
@@ -2543,108 +2651,108 @@ function modif_interface(){
 	//alert(x);
 	//alert(xmlDoc);
 	c1=1;
-		//x=xmlDoc.getElementsByTagName("svg")[0];
-		x.setAttribute("id",'svg_1');
-		x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
-		for (i=0;i<x.getElementsByTagName("g").length;i++)
-		{	
-			y=x.getElementsByTagName("g")[i];
-			y.setAttribute("id",'graph_'+c1);
-			y.setAttribute("onclick",'init_svg(this)');
-			y.setAttribute("hidden",'false');
-			y.setAttribute("visibility","visible");
-			//alert(y.id);
-			c1++;
-		}
+	//x=xmlDoc.getElementsByTagName("svg")[0];
+	x.setAttribute("id",'svg_1');
+	x.setAttribute("xmlns:xlink",'http://www.w3.org/1999/xlink');
+	for (i=0;i<x.getElementsByTagName("g").length;i++)
+	{	
+		y=x.getElementsByTagName("g")[i];
+		y.setAttribute("id",'graph_'+c1);
+		y.setAttribute("onclick",'init_svg(this)');
+		y.setAttribute("hidden",'false');
+		y.setAttribute("visibility","visible");
+		//alert(y.id);
+		c1++;
+	}
+	
+	for (j=0;j<x.getElementsByTagName("path").length;j++)
+	{	
 		
-		for (j=0;j<x.getElementsByTagName("path").length;j++)
-		{	
-			
-			y=x.getElementsByTagName("path")[j];
-			y.setAttribute("id",'graph_'+c1);
-			y.setAttribute("onclick",'init_svg(this)');
-			y.setAttribute("hidden",'false');
-			y.setAttribute("visibility","visible");
-			c1++;
-		}
-		
-		for (k=0;k<x.getElementsByTagName("text").length;k++)
-		{	
-			y=x.getElementsByTagName("text")[k];
-			y.setAttribute("id",'graph_'+c1);
-			y.setAttribute("onclick",'init_svg(this)');
-			y.setAttribute("hidden",'false');
-			y.setAttribute("visibility","visible");
-			//alert(y.id);
-			c1++;
-		}
-		
-		for (l=0;l<x.getElementsByTagName("polygon").length;l++)
-		{	
-			y=x.getElementsByTagName("polygon")[l];
-			y.setAttribute("id",'graph_'+c1);
-			y.setAttribute("onclick",'init_svg(this)');
-			y.setAttribute("hidden",'false');
-			y.setAttribute("visibility","visible");
-			//alert(y.id);
-			c1++;
-		}
-		
-		for (l=0;l<x.getElementsByTagName("rect").length;l++)
-		{	
-			y=x.getElementsByTagName("rect")[l];
-			y.setAttribute("id",'graph_'+c1);
-			y.setAttribute("onclick",'init_svg(this)');
-			y.setAttribute("hidden",'false');
-			y.setAttribute("visibility","visible");
-			//alert(y.id);
-			c1++;
-		}
+		y=x.getElementsByTagName("path")[j];
+		y.setAttribute("id",'graph_'+c1);
+		y.setAttribute("onclick",'init_svg(this)');
+		y.setAttribute("hidden",'false');
+		y.setAttribute("visibility","visible");
+		c1++;
+	}
+	
+	for (k=0;k<x.getElementsByTagName("text").length;k++)
+	{	
+		y=x.getElementsByTagName("text")[k];
+		y.setAttribute("id",'graph_'+c1);
+		y.setAttribute("onclick",'init_svg(this)');
+		y.setAttribute("hidden",'false');
+		y.setAttribute("visibility","visible");
+		//alert(y.id);
+		c1++;
+	}
+	
+	for (l=0;l<x.getElementsByTagName("polygon").length;l++)
+	{	
+		y=x.getElementsByTagName("polygon")[l];
+		y.setAttribute("id",'graph_'+c1);
+		y.setAttribute("onclick",'init_svg(this)');
+		y.setAttribute("hidden",'false');
+		y.setAttribute("visibility","visible");
+		//alert(y.id);
+		c1++;
+	}
+	
+	for (l=0;l<x.getElementsByTagName("rect").length;l++)
+	{	
+		y=x.getElementsByTagName("rect")[l];
+		y.setAttribute("id",'graph_'+c1);
+		y.setAttribute("onclick",'init_svg(this)');
+		y.setAttribute("hidden",'false');
+		y.setAttribute("visibility","visible");
+		//alert(y.id);
+		c1++;
+	}
 	c1=1;
 	doc=document.getElementById("v_svg");
-		for (i=0;i<x.getElementsByTagName("g").length;i++)
-		{	
-			y=x.getElementsByTagName("g")[i].cloneNode(true);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
-			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
-			c1++;
-		}
-		
-		for (i=0;i<x.getElementsByTagName("path").length;i++)
-		{	
-
-			y=x.getElementsByTagName("path")[i].cloneNode(false);			
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
-			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
-			c1++;
+	for (i=0;i<x.getElementsByTagName("g").length;i++)
+	{	
+		y=x.getElementsByTagName("g")[i].cloneNode(true);			
+		var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+		c1++;
+	}
 	
-			
-		}
-		for (i=0;i<x.getElementsByTagName("text").length;i++)
-		{	
+	for (i=0;i<x.getElementsByTagName("path").length;i++)
+	{	
 
-			y=x.getElementsByTagName("text")[i].cloneNode(true);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
-			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
-			c1++;
-		}
-		for (i=0;i<x.getElementsByTagName("polygon").length;i++)
-		{	
+		y=x.getElementsByTagName("path")[i].cloneNode(false);			
+		var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+		c1++;
 
-			y=x.getElementsByTagName("polygon")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
-			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
-			c1++;
-		}
 		
-		for (i=0;i<x.getElementsByTagName("rect").length;i++)
-		{	
+	}
+	for (i=0;i<x.getElementsByTagName("text").length;i++)
+	{	
 
-			y=x.getElementsByTagName("rect")[i].cloneNode(false);
-			var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
-			document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
-			c1++;
-		}
+		y=x.getElementsByTagName("text")[i].cloneNode(true);
+		var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+		c1++;
+	}
+	for (i=0;i<x.getElementsByTagName("polygon").length;i++)
+	{	
+
+		y=x.getElementsByTagName("polygon")[i].cloneNode(false);
+		var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+		c1++;
+	}
+	
+	for (i=0;i<x.getElementsByTagName("rect").length;i++)
+	{	
+
+		y=x.getElementsByTagName("rect")[i].cloneNode(false);
+		var resultDoc=createActionSaisie('saisie_graph_'+c1,y,x);
+		document.getElementById("modifs").appendChild(resultDoc.cloneNode(true));
+		c1++;
+	}
 	if (doc.firstChild)
 		doc.removeChild(doc.firstChild);    
 	doc.appendChild(x);

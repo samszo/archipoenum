@@ -36,16 +36,15 @@
 				<menu label=" Gestion de l'interface ->" >
 					<menupopup >
 						<menuitem id="cr" label="Créer " onclick="open_wizard();"/>
-						<menuitem id="mo" label="Modifier  " onclick="open_wizard2();"/>
+						<menuitem id="mo" label="Modifier  " disabled='true' oncommand="open_wizard2();"/>
 						<menuitem id="ch" label="Charger  " onclick="Open();"/>
-						<menuitem id="df" label="Interface par defaut " onclick="Open_default(this);"/>
+						<menuitem id="df" label="Interface par defaut " oncommand="Open_default(this);"/>
 					</menupopup>
 				</menu>
 			</menubar>
 			<menubar id='navigation'>
 				<menu label="   Navigation ->" style='width:100px;'>
 					<menupopup id="test3">
-						<menuitem id="ch1" label="Figure Principale" oncommand="afficher();"/>
 						<menu id="ch2" label="Documents" hidden="true" >
 							<menupopup id="test">
 								<menu id="D1" label="Document_1" hidden="true">
@@ -79,7 +78,7 @@
 		</hbox>
 
 		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:60px;margin-top:7px;' />
-		<label id="u2" hidden="false" value="Deconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
+		<label id="u2" hidden="false" value="Déconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
     </hbox>
 </hbox>
 </toolbar>

@@ -33,6 +33,7 @@ function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
 	
 	
 	//récupère le svg de destination
+	
 	var statement = mDBConn.createStatement('SELECT fichier FROM svg where id_svg=?1;');
 	statement.bindUTF8StringParameter(0,idDstSvg);
 	// return dataset;	
@@ -45,16 +46,16 @@ function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
 	statement.reset();
 	var parser=new DOMParser();
 	var resultDoc=parser.parseFromString(interface,"text/xml");
-	alert("Doc : -------"+resultDoc);
-	
+	//alert("Doc : -------"+resultDoc);
+
 	//met le svg de destination dans le conteneur de destination
 	doc=document.getElementById(idDstCont);
 	if (doc.hasChildNodes()==true)	
 		doc.removeChild(doc.firstChild);
 	doc.appendChild(resultDoc.documentElement);
-
+	
 	//redimensionne les svg
-	if(idSrcCont!=idDstSvg){
+	if(idSrcCont!=idDstSvg && idSrcSvg!=""){
 		//destination
 		redim_svg(doc.firstChild);
 		//source
@@ -70,7 +71,7 @@ function afficher_form (id_form,n1){
 	
 	if (document.getElementById("Vb_"+id_form)==null)
 	{
-		alert("Formulaire:"+id_form);
+		//alert("Formulaire:"+id_form);
 		var statement = mDBConn.createStatement('SELECT  form_xul FROM xul where id_xul=?1');
 		statement.bindUTF8StringParameter(0,id_form);		
 
@@ -93,7 +94,7 @@ function afficher_form (id_form,n1){
 		nb_list=parseInt(bt_v.getAttribute("nb_list"));	
 		doc.appendChild(resultDoc.documentElement);
 		var statement = mDBConn.createStatement('SELECT id_f FROM forms where id_svg=?1;');
-		alert('SELECT id_f FROM forms where id_svg='+id_form);
+		//alert('SELECT id_f FROM forms where id_svg='+id_form);
 		statement.bindUTF8StringParameter(0,id_form);
 		j=0;
 		var myArray1 = boucle_select(statement);
@@ -116,7 +117,7 @@ function afficher_form (id_form,n1){
 				var myArray1 = boucle_select(statement);
 				id_d=myArray1[jjj]["id_d"];
 				jj++;
-				alert('SELECT valeur FROM forms,champs,valeurs,donnees where forms.id_svg='+id_form+' and champs.id_c='+id_champ+' and donnees.id_d='+id_d+' and forms.id_f=champs.id_f ORDER BY id_v DESC;');
+				//alert('SELECT valeur FROM forms,champs,valeurs,donnees where forms.id_svg='+id_form+' and champs.id_c='+id_champ+' and donnees.id_d='+id_d+' and forms.id_f=champs.id_f ORDER BY id_v DESC;');
 				var statement = mDBConn.createStatement('SELECT valeur FROM forms,champs,valeurs,donnees where forms.id_svg=?1 and champs.id_c=?2 and donnees.id_d=?3 and forms.id_f=champs.id_f ORDER BY id_v DESC;');
 				statement.bindUTF8StringParameter(0,id_f);
 				statement.bindUTF8StringParameter(1,id_champ);
@@ -125,7 +126,7 @@ function afficher_form (id_form,n1){
 				var myArray1 = boucle_select(statement);
 				//j=0;
 				valeur=myArray1[j]["valeur"];
-				alert("Valeur : "+valeur);
+				//alert("Valeur : "+valeur);
 				j++;
 				document.getElementById("zt"+n1+""+i).setAttribute("value",valeur);		
 							
@@ -144,7 +145,7 @@ function afficher_form (id_form,n1){
 			j=0;
 			var myArray1 = boucle_select(statement);
 			id_f=myArray1[j]["id_f"];
-			alert("form inserted : "+id_f);	
+			//alert("form inserted : "+id_f);	
 			for (i=1;i<=nb_texte;i++){
 				//alert(("zt"+n1+""+i));
 				txt=document.getElementById("zt"+n1+""+i).value;
@@ -210,7 +211,7 @@ function Valider_saisi(n,elem){
 	statement.reset();*/
 	
 	var statement = mDBConn.createStatement('SELECT id_f FROM forms where id_svg=?1;');
-	alert('SELECT id_f FROM forms where id_f='+form);
+	//alert('SELECT id_f FROM forms where id_f='+form);
 	statement.bindUTF8StringParameter(0,form);
 	j=0;
 	var myArray1 = boucle_select(statement);
@@ -310,7 +311,7 @@ function Valider_saisi(n,elem){
 		j=0;
 		var myArray1 = boucle_select(statement);
 		valeur=myArray1[j]["valeur"];
-		alert("Valeur : "+valeur);
+		//alert("Valeur : "+valeur);
 	}
 	alert ("les valeurs sont sauvegardes");
 

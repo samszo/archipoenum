@@ -13,11 +13,11 @@ function xulListeModele(id, cont, myDBFile, hidden) {
 			this.choix = createMenuList(id);
 			this.choix.setAttribute("hidden",this.hidden); 
 			this.pop = createMenuPopup("popModele");
-			var label = createLabel("Liste des modèles :");
+			var label = createLabel("Liste des modÃ¨les :");
 			label.setAttribute("id","label_"+id); 
 			label.setAttribute("hidden",this.hidden); 
 			
-			//récupération des données dans la base
+			//rï¿½cupï¿½ration des donnï¿½es dans la base
 			netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
 			var file = Components.classes["@mozilla.org/file/directory_service;1"]
 	                     .getService(Components.interfaces.nsIProperties)

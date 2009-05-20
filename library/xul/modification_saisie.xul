@@ -23,16 +23,12 @@
     </description>
     <groupbox orient="horizontal" flex="1" >
 		    <hbox>
-		    	<vbox id="modifs">
-	
-							
+		    	<vbox id="modifs" style="overflow: auto;">							
 				</vbox>
 				<splitter collapse="before" resizeafter="farthest" >
 					<grippy/>
 				</splitter>
-				<vbox id="c_svg">
-					<vbox id="v_svg">
-					</vbox>
+				<vbox id="v_svg" style="overflow: auto;">
 				</vbox>
 			</hbox>
 	</groupbox>

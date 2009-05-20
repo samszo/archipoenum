@@ -464,24 +464,26 @@ function changer_interface(idsSrc,idsDst,elem){
 			statement.execute();
 			statement.reset();
 			if (idsSrc!=idsDst){
+			alert("!=");
 		    	var pop = document.getElementById(racine_interface); // a <menupopup> element
-				var first = createMenu(titre);
+				var first = createMenu(titre+"s");
 				var pop2=createMenuPopup("pop_interface_"+id_interface);
-				//var last = createMenuItem(titre);
-				first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
-				//pop2.appendChild(last);
+				var last = createMenuItem(titre);
+				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				pop2.appendChild(last);
 				first.appendChild(pop2);
 				pop.appendChild(first);
 				racine_interface="pop_interface_"+id_interface;
 				id_courant=idsDst;
 			}
 			else if (idsSrc==idsDst){
+				alert('==');
 				var pop = document.getElementById("test3"); // a <menupopup> element
-				var first = createMenu(titre);
+				var first = createMenu(titre+"s");
 				var pop2=createMenuPopup("pop_interface_"+id_interface);
-				//var last = createMenuItem(titre);
-				first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
-				//pop2.appendChild(last);
+				var last = createMenuItem(titre);
+				last.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface+"');");
+				pop2.appendChild(last);
 				first.appendChild(pop2);
 				pop.appendChild(first);
 				racine_interface="pop_interface_"+id_interface;
@@ -503,6 +505,33 @@ function changer_interface(idsSrc,idsDst,elem){
 			statement.bindUTF8StringParameter(1,idsSrc);
 			statement.execute();
 			statement.reset();	
+			
+			if (idsSrc!=idsDst){
+			alert("!=");
+		    	var pop = document.getElementById(racine_interface); // a <menupopup> element
+				var first = createMenu(titre+"s");
+				var pop2=createMenuPopup("pop_interface_"+idsSrc);
+				var last = createMenuItem(titre);
+				last.setAttribute("oncommand","affiche_interface('fig_p','','fig_p','"+idsSrc+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+idsSrc;
+				id_courant=idsDst;
+			}
+			else if (idsSrc==idsDst){
+				alert('==');
+				var pop = document.getElementById("test3"); // a <menupopup> element
+				var first = createMenu(titre+"s");
+				var pop2=createMenuPopup("pop_interface_"+idsSrc);
+				var last = createMenuItem(titre);
+				last.setAttribute("oncommand","affiche_interface('fig_p','','fig_p','"+idsSrc+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+idsSrc;
+				id_courant=idsDst;
+			}
 		}
 		
 		if (test_model2=="true"){
@@ -531,16 +560,32 @@ function changer_interface(idsSrc,idsDst,elem){
 			
 			// Now you can loop through the array:
 			form_xul =myArray1[j]['form_xul'];
-	    	var pop = document.getElementById(racine_interface); // a <menupopup> element
-			var first = createMenu(titre2);
-			var pop2=createMenuPopup("pop_interface_"+id_interface2);
-			//var last = createMenuItem(titre2);
-			first.setAttribute("onclick","affiche_interface('fig_p','','fig_p','"+id_interface2+"');");
-			//pop2.appendChild(last);
-			first.appendChild(pop2);
-			pop.appendChild(first);
-			id_courant=id_interface2;
-			racine_interface="pop_interface_"+id_interface2;
+			if (idsSrc!=idsDst){
+			alert("!=");
+		    	var pop = document.getElementById(racine_interface); // a <menupopup> element
+				var first = createMenu(titre2+"s");
+				var pop2=createMenuPopup("pop_interface_"+idsDst);
+				var last = createMenuItem(titre);
+				last.setAttribute("oncommand","affiche_interface('fig_p','','fig_p','"+idsDst+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+idsDst;
+				id_courant=idsDst;
+			}
+			else if (idsSrc==idsDst){
+				alert('==');
+				var pop = document.getElementById("test3"); // a <menupopup> element
+				var first = createMenu(titre2+"s");
+				var pop2=createMenuPopup("pop_interface_"+idsDst);
+				var last = createMenuItem(titre);
+				last.setAttribute("oncommand","affiche_interface('fig_p','','fig_p','"+idsDst+"');");
+				pop2.appendChild(last);
+				first.appendChild(pop2);
+				pop.appendChild(first);
+				racine_interface="pop_interface_"+idsDst;
+				id_courant=idsDst;
+			}
 		}
 
 		if (test_model=="true"){

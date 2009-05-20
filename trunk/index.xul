@@ -84,9 +84,9 @@
 </toolbar>
 </toolbox>
 <hbox flex='1' >
+<!-- style="width:100px;height:100px"  -->
 	<groupbox orient="horizontal" flex="1" >
-		<vbox style="display: -moz-inline-box;display:inline-block" id="S1" flex="1" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">			
-			
+		<vbox id="S1" flex="1" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">			
 		</vbox>
         <splitter collapse="before" resizeafter="farthest" >
 			<grippy/>

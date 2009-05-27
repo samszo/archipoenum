@@ -77,8 +77,15 @@
 					</menupopup>
 				</menu>
 			</menubar>
-			<toolbarbutton id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" style='width:150px;color:blue;' oncommand="changer_interface('1','1',this)"/>
-			
+			<menubar id='Ajouter'>
+				<menu label=" Ajouter ->" >
+					<menupopup id="ajout">
+						<menuitem id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
+						<menuitem id='add_doc' label="Ajouter un Acteur  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
+						<menuitem id='add_doc' label="Ajouter une Section  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
+					</menupopup>
+				</menu>
+			</menubar>			
 		</hbox>
 		<hbox> 		
 		</hbox>

@@ -1,6 +1,128 @@
 var start = new Object();
 var end = new Object();
 
+function getthetree() {
+	return document.getElementById('TreeOntoActeur');
+}
+
+function RenameCurrent(treename,cellname){
+	var tree = document.getElementById(treename);
+	alert(cellname);
+	var currentitem = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex);
+	alert(tree.currentIndex);
+	 var currentlabel = tree.view.getCellText(tree.currentIndex, tree.columns.getColumnAt(0));
+	var newlabel = prompt("Donner un nom :",currentlabel);
+	alert(currentlabel);
+	
+	if (newlabel!=false) {
+	   var currentcell = currentitem.getElementsByTagName("treecell")[0];
+	   currentcell.setAttribute("label",newlabel);
+	}
+	this.BuildPopups();
+}
+
+function DeleteCurrent(treename){
+
+   if (confirm("Voulez-vous supprimer ce noeud ?") == true) {
+      var tree = document.getElementById(treename);
+      var currentelement = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex);
+      currentelement.parentNode.removeChild(currentelement);
+   }
+}
+
+function CreateSubTree(treeid,content){
+	var tree = document.getElementById(treeid);
+	var currentitem = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex);
+	var currentid = tree.treeBoxObject.view.getItemAtIndex(
+	          tree.currentIndex).getAttribute("id");
+	if (currentid != "") {
+	   content = prompt('Donner un nom pour le noeud : ','undefined');
+	   var parentid = tree.treeBoxObject.view.getItemAtIndex(
+	              tree.currentIndex).parentNode.getAttribute("id");
+	   var parent = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex).parentNode;
+	
+	   // create Treerow with id (rowid is a global variable so that
+	   // we do not use the same id twice)
+	   var tr = document.createElement("treerow");
+	   tr.setAttribute("id", "treerow" + this.rowid);
+	   var tc = document.createElement("treecell");
+	   tc.setAttribute("label", content);
+	   tc.setAttribute("id","cell-of-treeitem" + this.itemid);
+	   tr.appendChild(tc);
+	   this.rowid++;
+	
+	   // create treeitem with id (itemid is a global variable so 
+	   // that we do not use the same id twice)
+	   var ti = document.createElement("treeitem");
+	   ti.setAttribute("id", "treeitem" + this.itemid);
+	   ti.appendChild(tr);
+	   this.itemid++;
+	
+	   // we distinguish the case that
+	   // the container of the item is empty --> create new treechildren
+	   // object and append item a treechildren-object already exists --> 
+	   // get the id and append new item to this one
+	   if (currentitem.getAttribute("container") != "true") {
+	      currentitem.setAttribute("container", "true");
+	      var tch = document.createElement("treechildren");
+	      tch.setAttribute("id", "treechildren" + this.treechildrenid);
+	      tch.appendChild(ti);
+	      this.treechildrenid++;
+	      currentitem.appendChild(tch);
+	   } else {
+	      var existingtreechildren = 
+	          document.getElementById(currentitem.childNodes.item(0).getAttribute("id"));
+	      existingtreechildren.appendChild(ti);
+	   }
+	   // set open status of the item
+	   currentitem.setAttribute("open", "true");
+	}
+}
+function Select_Dictio(p1,p2,p3){}
+
+
+function topcategory(childrenobject,content){
+	thetree = document.getElementById(childrenobject);
+	var tr = document.createElement("treerow");
+	tr.setAttribute("id", "treerow" + this.rowid);
+	this.rowid++;
+	var tc = document.createElement("treecell");
+	tc.setAttribute("label", content);
+	tc.setAttribute("id","cell-of-treeitem" + this.itemid);
+	tr.appendChild(tc);
+	this.rowid++;
+	var ti = document.createElement("treeitem");
+	ti.setAttribute("id", "treeitem" + this.itemid);
+	ti.appendChild(tr);
+	this.itemid++;
+	thetree.appendChild(ti);
+}
+function event_handler(elem){
+        var treeBox = elem.treeBoxObject;
+        var row = {};
+        var col = {};
+        var obj = {};
+		//alert("hello : "+col);
+        //treeBox.getCellAt(event.clientX,event.clientY,row,col,obj);
+         var cellnode = this.getCellNodeAt(row.value,col.value);
+         alert(cellnode.id);
+}
+         
+function getCellNodeAt(row,col){
+	var view;
+	try {
+	  view = this.contentView;
+	} catch (ex){}
+	if (view){
+	  var elem = view.getItemAtIndex(row);
+	  if (elem){
+	    var pos = ((document.getElementById(col).ordinal - 1) >> 1);
+	    return elem.firstChild.childNodes[pos];
+	  }
+	}
+	return null;
+}
+      
 function GetCellSelect(col){
 
   try {

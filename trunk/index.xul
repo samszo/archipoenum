@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
 <?xml-stylesheet href="../../design/svg.css" type="text/css"?>
+<?xml-stylesheet href="../../design/tree.css" type="text/css"?>
 <window xmlns:html="http://www.w3.org/1999/xhtml"
 		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"  onload="init();">
 	<script src="library/js/interface.js"/>
@@ -25,8 +26,10 @@
  </html:style>
 
 <menupopup id="ContextOntoActeur">
-  <menuitem oncommand="AjoutOntoActeur()" label="Ajouter"/>
-  <menuitem oncommand="SuppOntoActeur()" label="Supprimer"/>
+      <menuitem label="Ajouter un Racine" oncommand="topcategory('thetreechildren', prompt('Please enter a categoryname','Name of Category'));"/>
+      <menuitem label="Ajouter un Noeud" oncommand="CreateSubTree('TreeOntoActeur', '');"/>
+      <menuitem label="Supprimer" oncommand="DeleteCurrent('TreeOntoActeur');"/>
+      <menuitem label="Renommer" oncommand="RenameCurrent('TreeOntoActeur','category');"/>
 </menupopup>
  
  

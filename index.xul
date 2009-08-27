@@ -26,10 +26,9 @@
  </html:style>
 
 <menupopup id="ContextOntoActeur">
-      <menuitem label="Ajouter un Racine" oncommand="topcategory('thetreechildren', prompt('Please enter a categoryname','Name of Category'));"/>
-      <menuitem label="Ajouter un Noeud" oncommand="CreateSubTree('TreeOntoActeur', '');"/>
+      <menuitem label="Ajouter une Branche" oncommand="topcategory('thetreechildren', prompt('Please enter a categoryname','Name of Category'));"/>
+      <menuitem label="Ajouter un fils" oncommand="CreateSubTree('TreeOntoActeur', '');"/>
       <menuitem label="Supprimer" oncommand="DeleteCurrent('TreeOntoActeur');"/>
-      <menuitem label="Renommer" oncommand="RenameCurrent('TreeOntoActeur','category');"/>
 </menupopup>
  
  
@@ -45,7 +44,7 @@
 	<hbox hidden="false" id="save" >
 		<hbox>
 			<menubar id='Interface'>
-				<menu label=" Gestion de l'interface ->" >
+				<menu label=" Gestion de l'interface ->" style='width:100px;color:black;'>
 					<menupopup >
 						<menuitem id="cr" label="Créer " onclick="open_wizard();"/>
 						<menuitem id="mo" label="Modifier  " disabled='true' oncommand="open_wizard2();"/>
@@ -55,7 +54,7 @@
 				</menu>
 			</menubar>
 			<menubar id='navigation'>
-				<menu label="   Navigation ->" style='width:100px;'>
+				<menu label="   Navigation ->" style='width:100px;color:black;'>
 					<menupopup id="test3">
 						<menu id="ch2" label="Documents" hidden="true" >
 							<menupopup id="test">
@@ -72,7 +71,7 @@
 				</menu>
 			</menubar>
 			<menubar id='Stockage'>
-				<menu label=" Stockage ->" >
+				<menu label=" Stockage ->" style='width:100px;color:black;'>
 					<menupopup id="stock">
 						<menuitem id="exp" label="Exporter Sous format SVG " onclick="Export('p');"/>
 						<menuitem id="sav" label="Sauvegarder dans la base de données  " onclick="Save_SVG();"/>
@@ -81,11 +80,11 @@
 				</menu>
 			</menubar>
 			<menubar id='Ajouter'>
-				<menu label=" Ajouter ->" >
+				<menu label=" Ajouter ->" style='color:black;'>
 					<menupopup id="ajout">
-						<menuitem id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
-						<menuitem id='add_doc' label="Ajouter un Acteur  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
-						<menuitem id='add_doc' label="Ajouter une Section  " disabled='true' hidden="false" oncommand="changer_interface('1','1',this)"/>
+						<menuitem id='add_doc' label="Ajouter un Document  " disabled='true' hidden="false" oncommand="changer_interface('','1',this)"/>
+						<menuitem id='add_act' label="Ajouter un Acteur  " disabled='false' hidden="false" oncommand="changer_interface('','2',this)"/>
+						<menuitem id='add_sec' label="Ajouter une Section  " disabled='true' hidden="false" oncommand="changer_interface('','1',this)"/>
 					</menupopup>
 				</menu>
 			</menubar>			
@@ -98,6 +97,10 @@
 
 		<label id="u1" hidden="true" value="Utilisateur Connecté : " style='margin-left:60px;margin-top:7px;' />
 		<label id="u2" hidden="false" value="Déconnexion" style='margin-top:7px;color:red;' onclick="logout();"/>
+		
+		<textbox id="recherche" value="" style='width:170px;margin-left:100px;' />
+		<toolbarbutton  id="b_rechercher" hidden="false" label="Rechercher"   onclick="rechercher_index();" />
+		
     </hbox>
 </hbox>
 </toolbar>
@@ -116,9 +119,9 @@
 				<label id="logout_user" value="" style='margin-top:7px;font:italic small-caps bold 30px arial'/>
 			</vbox>
 
-			<vbox id="savoirs" flex='1' hidden="true" >
-				<image flex='1' hidden="false" src="images/savoir-1.jpg" />
-				<image flex='1' hidden="true" src="images/savoir-2.jpg" />
+			<vbox id="savoirs"  hidden="true" height="480" width="600" >
+				<image id="sav" flex='1' hidden="false" src="images/savoir-1.jpg" />
+				<image flex='1'  hidden="true" src="images/savoir-2.jpg" />
 			</vbox>
 
 		</vbox>		

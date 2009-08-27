@@ -28,6 +28,7 @@ function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
     var xml = serializer.serializeToString(doc.firstChild);
 	var sql = 'UPDATE svg SET fichier=?1 WHERE id_svg=?2;';
 	var statement = mDBConn.createStatement(sql);
+	var p_saisi=document.getElementById("S1");
 	statement.bindUTF8StringParameter(0,xml);
 	statement.bindUTF8StringParameter(1,idSrcSvg);
 	statement.execute();
@@ -55,8 +56,23 @@ function affiche_interface(idSrcCont, idSrcSvg, idDstCont, idDstSvg)
 	if (doc.hasChildNodes()==true)	
 		doc.removeChild(doc.firstChild);
 	doc.appendChild(resultDoc.documentElement);
-	
+	while (p_saisi.hasChildNodes())	
+			p_saisi.removeChild(p_saisi.firstChild);
 	//redimensionne les svg
+	
+	var statement = mDBConn.createStatement('SELECT form_xul FROM xul where id_svg=?1;');
+	statement.bindUTF8StringParameter(0,idDstSvg);
+	var myArray1 = boucle_select(statement);		
+	form_xulDst=myArray1[0]['form_xul'];
+	//alert(form_xulDst);
+	var parser2=new DOMParser();
+	// Transformer le String en Objet DOM
+	var resultDoc2=parser2.parseFromString(form_xulDst,"text/xml");
+
+	while (p_saisi.hasChildNodes())	
+		p_saisi.removeChild(p_saisi.firstChild);
+	p_saisi.appendChild(resultDoc2.documentElement);
+
 	if(idSrcCont!=idDstSvg && idSrcSvg!=""){
 		//destination
 		redim_svg(doc.firstChild);
@@ -176,7 +192,7 @@ function afficher_form (id_form,n1){
 	}
 }
 
-function connect_DB(){
+/*function connect_DB(){
 	var file = Components.classes["@mozilla.org/file/directory_service;1"]
 	                     .getService(Components.interfaces.nsIProperties)
 	                     .get("ProfD", Components.interfaces.nsIFile);
@@ -186,7 +202,7 @@ function connect_DB(){
 	                        .getService(Components.interfaces.mozIStorageService);
 		var mDBConn = storageService.openDatabase(file);
 		return mDBConn;
-}
+}*/
 
 function boucle_select(statement){
 		var dataset = [];

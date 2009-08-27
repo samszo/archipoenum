@@ -35,8 +35,9 @@ function CreateSubTree(treeid,content){
 	var currentitem = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex);
 	var currentid = tree.treeBoxObject.view.getItemAtIndex(
 	          tree.currentIndex).getAttribute("id");
-	if (currentid != "") {
-	   content = prompt('Donner un nom pour le noeud : ','undefined');
+	//alert(currentitem);
+	if (currentitem != null) {
+	   content = prompt('Donner un nom pour le noeud : ','Noeud');
 	   var parentid = tree.treeBoxObject.view.getItemAtIndex(
 	              tree.currentIndex).parentNode.getAttribute("id");
 	   var parent = tree.treeBoxObject.view.getItemAtIndex(tree.currentIndex).parentNode;
@@ -44,17 +45,23 @@ function CreateSubTree(treeid,content){
 	   // create Treerow with id (rowid is a global variable so that
 	   // we do not use the same id twice)
 	   var tr = document.createElement("treerow");
-	   tr.setAttribute("id", "treerow" + this.rowid);
+	   //tr.setAttribute("id", "treerow" + this.rowid);
 	   var tc = document.createElement("treecell");
-	   tc.setAttribute("label", content);
-	   tc.setAttribute("id","cell-of-treeitem" + this.itemid);
+	   tc.setAttribute("label", "");
+	   var tc1 = document.createElement("treecell");
+	   tc1.setAttribute("label", content);
+	   var tc2 = document.createElement("treecell");
+	   tc.setAttribute("value", "false");
+	   //tc.setAttribute("id","cell-of-treeitem" + this.itemid);
 	   tr.appendChild(tc);
+	   tr.appendChild(tc1);
+	   tr.appendChild(tc2);
 	   this.rowid++;
 	
 	   // create treeitem with id (itemid is a global variable so 
 	   // that we do not use the same id twice)
 	   var ti = document.createElement("treeitem");
-	   ti.setAttribute("id", "treeitem" + this.itemid);
+	   //ti.setAttribute("id", "treeitem" + this.itemid);
 	   ti.appendChild(tr);
 	   this.itemid++;
 	
@@ -62,20 +69,12 @@ function CreateSubTree(treeid,content){
 	   // the container of the item is empty --> create new treechildren
 	   // object and append item a treechildren-object already exists --> 
 	   // get the id and append new item to this one
-	   if (currentitem.getAttribute("container") != "true") {
-	      currentitem.setAttribute("container", "true");
-	      var tch = document.createElement("treechildren");
-	      tch.setAttribute("id", "treechildren" + this.treechildrenid);
-	      tch.appendChild(ti);
+
 	      this.treechildrenid++;
-	      currentitem.appendChild(tch);
-	   } else {
-	      var existingtreechildren = 
-	          document.getElementById(currentitem.childNodes.item(0).getAttribute("id"));
-	      existingtreechildren.appendChild(ti);
-	   }
+	      parent.appendChild(ti);
+
 	   // set open status of the item
-	   currentitem.setAttribute("open", "true");
+	   //currentitem.setAttribute("open", "true");
 	}
 }
 function Select_Dictio(p1,p2,p3){}
@@ -88,11 +87,11 @@ function topcategory(childrenobject,content){
 	this.rowid++;
 	var tc = document.createElement("treecell");
 	tc.setAttribute("label", content);
-	tc.setAttribute("id","cell-of-treeitem" + this.itemid);
+	//tc.setAttribute("id","cell-of-treeitem" + this.itemid);
 	tr.appendChild(tc);
 	this.rowid++;
 	var ti = document.createElement("treeitem");
-	ti.setAttribute("id", "treeitem" + this.itemid);
+	//ti.setAttribute("id", "treeitem" + this.itemid);
 	ti.appendChild(tr);
 	this.itemid++;
 	thetree.appendChild(ti);
@@ -105,7 +104,7 @@ function event_handler(elem){
 		//alert("hello : "+col);
         //treeBox.getCellAt(event.clientX,event.clientY,row,col,obj);
          var cellnode = this.getCellNodeAt(row.value,col.value);
-         alert(cellnode.id);
+         //alert(cellnode.id);
 }
          
 function getCellNodeAt(row,col){
@@ -286,7 +285,7 @@ function Tree_AddItem(parentitem, cells)
 	if(trace)
 		console.log("tree:Tree_AddItem:parent="+parentitem);
 	var item = document.createElement("treeitem");
-	item.setAttribute("id", "treeitem" + cells[0]);
+	//item.setAttribute("id", "treeitem" + cells[0]);
 	var row = document.createElement("treerow");
 	
 	//création des colonnes du tree
@@ -435,5 +434,232 @@ function SaveTree(file)
   } catch(ex){ dump(ex); }
 
 	dump("SaveTree finite\n");
+}
+
+function getSelectedConcept()
+{
+	var SelectedConcepts=new Array();
+	var tree=document.getElementById('TreeOntoActeur');
+	treeRows=tree.getElementsByTagName("treerow");
+	j=0;
+	//alert(treeRows.length);
+	for (i=0;i<treeRows.length;i++)
+	{
+		var treeCells=treeRows[i].getElementsByTagName("treecell");
+		if (treeCells[2]){
+			if (treeCells[2].getAttribute("value")=="true"){
+				SelectedConcepts[j]=treeCells[1].getAttribute("label");
+				//alert(SelectedConcepts[j]);
+				j++;
+			}			
+		}
+	}
+	//alert(SelectedConcepts.length);
+	p_saisi=document.getElementById("S1");
+	svg_tags='<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg   xmlns:svg="http://www.w3.org/2000/svg"   xmlns="http://www.w3.org/2000/svg" xml:space="preserve"  version="1.0"   width="120mm"   height="297mm"   id="tagCloud">  <defs     id="defs4" /> ';
+	for (i=0;i<SelectedConcepts.length;i++){
+		svg_tags=svg_tags+insertIntoTag(SelectedConcepts[i],i);
+	}
+	svg_tags=svg_tags+"</svg>";
+	var parser=new DOMParser();
+	var xmlDoc=parser.parseFromString(svg_tags,"text/xml");
+	p_saisi.appendChild(xmlDoc.documentElement);
+	//alert(svg_tags);
+}
+
+function insertIntoTag(tag,i){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
+	
+	if (verfierTag(tag)==0){
+		var sql = 'INSERT INTO tag(tag,poids) VALUES(?1,?2);';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,tag);
+		statement.bindUTF8StringParameter(1,"1");
+		statement.execute();
+		statement.reset();
+		var op=0.25;
+		var statement = mDBConn.createStatement('SELECT id_tag FROM tag ORDER BY id_tag DESC;');
+		var myArray1 = boucle_select(statement);
+		var id_tag=myArray1[0]["id_tag"];
+		var id_hist=insertIntoHist();
+		insertIntoTagCloud(id_tag,id_hist,g_idSvg,id_user);
+		svg_tag='<text x = "10" y = "25" dx="'+((i%2)*100)+'" dy="'+(i*20)+'" style="opacity:'+op+';" fill = "navy" font-size = "'+10+'">'+tag+' </text>';
+		return svg_tag;
+	}
+	else {
+		var statement = mDBConn.createStatement('SELECT id_tag,poids FROM tag where tag=?1;');
+		statement.bindUTF8StringParameter(0,tag);
+		var myArray1 = boucle_select(statement);
+		var id_tag=myArray1[0]["id_tag"];
+		var poids=parseInt(myArray1[0]['poids']);
+		//alert(poids);
+		if (poids=="NaN")
+			nouveau_poids=1;
+		else 
+			nouveau_poids=poids+1;
+		//alert(nouveau_poids);
+		var sql = 'UPDATE tag SET poids=?1 WHERE tag=?2;';
+		var statement = mDBConn.createStatement(sql);
+		statement.bindUTF8StringParameter(0,nouveau_poids);
+		statement.bindUTF8StringParameter(1,tag);
+		statement.execute();
+		statement.reset();	
+		var id_hist=insertIntoHist();
+		insertIntoTagCloud(id_tag,id_hist,g_idSvg,id_user);
+		if (nouveau_poids<=10) {op=0.25;poid=10;}
+		else if (nouveau_poids<=30){ op=0.50;poid=20;}
+		else if (nouveau_poids<=50) {op=0.75;poid=30;}
+		else if (nouveau_poids>50) {op=0.99;poid=40;}
+		svg_tag='<text x = "10" y = "25" dx="'+((i%2)*100)+'" dy="'+(i*20)+'" style="opacity:'+op+';" fill = "navy" font-size = "'+poid+'">'+tag+' </text>';
+		return svg_tag;
+	}
+}
+
+function insertIntoTagCloud(id_tag,id_hist,id_svg,id_user){
+	var mDBConn = connect_DB();
+	var sql = 'INSERT INTO tag_cloud(id_tag,id_hist,id_svg,id_user) VALUES(?1,?2,?3,?4);';
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,id_tag);
+	statement.bindUTF8StringParameter(1,id_hist);
+	statement.bindUTF8StringParameter(2,id_svg);
+	statement.bindUTF8StringParameter(3,id_user);
+	statement.execute();
+	statement.reset();
+}
+
+function insertIntoHist(){
+	var mDBConn = connect_DB();
+	var sql = 'INSERT INTO historique(date) VALUES(?1);';
+	var statement = mDBConn.createStatement(sql);
+	statement.bindUTF8StringParameter(0,ladate.toGMTString());
+	statement.execute();
+	statement.reset();
+	var statement = mDBConn.createStatement('SELECT id_hist FROM historique ORDER BY id_hist DESC;');
+	var myArray1 = boucle_select(statement);
+	id_hist=myArray1[0]["id_hist"];
+	return id_hist;
+}
+
+function verfierTag(tag)
+{
+	var mDBConn = connect_DB();
+	var statement = mDBConn.createStatement('SELECT tag FROM tag where tag=?1;');
+	statement.bindUTF8StringParameter(0,tag);
+	var myArray1 = boucle_select(statement);
+	if (myArray1.length==0)
+		return 0;
+	else return 1;
+}
+
+function rechercher_index(){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	var mDBConn = connect_DB();
+	tags=document.getElementById("recherche").value;
+	tags_splited = new Array();
+	tags_splited=tags.split(' ');
+	var load=-1;
+	for (i=0;i<tags_splited.length;i++){
+		current_tag=tags_splited[i];
+		var statement = mDBConn.createStatement('SELECT id_tag FROM tag where tag LIKE ?1;');
+		statement.bindUTF8StringParameter(0,"%"+current_tag+"%");
+		var myArray1 = boucle_select(statement);
+		
+		if (myArray1.length!=0){
+			load = window.open('http://localhost/archipoenum/library/xul/res_search.xul?'+tags,'','scrollbars=2,menubar=no,height=300,width=700,resizable=no,toolbar=no,location=no,status=no');
+			load.moveTo(400,100);
+			break;
+		}
+		else continue;
+	}
+	if (load==-1) alert ("Aucune resultat est trouvee");
+}
+
+function afficher_res_rech(){
+	netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');
+	
+	var parameters = location.search.substring(1).split("&");
+	createDefault();	
+    var tags = parameters[0];
+    
+	var mDBConn = connect_DB();
+	tags_splited = new Array();
+	tags_splited=tags.split('%20');
+	//alert(tags_splited);
+	for (i=0;i<tags_splited.length;i++){
+		current_tag=tags_splited[i];
+		var statement = mDBConn.createStatement('SELECT id_tag FROM tag where tag LIKE ?1;');
+		statement.bindUTF8StringParameter(0,"%"+current_tag+"%");
+		var myArray1 = boucle_select(statement);
+		//alert(current_tag);
+		if (myArray1.length!=0){
+			for (k=0;k<myArray1.length;k++){
+				var id_tag=myArray1[k]["id_tag"];
+				var statement = mDBConn.createStatement('SELECT DISTINCT id_svg FROM tag_cloud where id_tag=?1 ORDER BY id_hist DESC;');
+				statement.bindUTF8StringParameter(0,id_tag);
+				var myArray2 = boucle_select(statement);
+				for (j=0;j<myArray2.length;j++){
+					id_svg_trouver=(myArray2[j]["id_svg"]);
+					//alert(id_svg_trouver);
+					var statement = mDBConn.createStatement('SELECT titre,fichier FROM svg where id_svg=?1;');
+					statement.bindUTF8StringParameter(0,id_svg_trouver);
+					var myArray1 = boucle_select(statement);
+					fichier_svg = myArray1[0]['fichier'];
+					titre_svg = myArray1[0]['titre'];
+					var parser=new DOMParser();
+					// Transformer le String en Objet DOM
+					var graph=parser.parseFromString(fichier_svg,"text/xml");
+					svg=createSvg("svg");
+					graph.documentElement.setAttribute("id","svgTrouverNumero"+j);
+					g=createG("root");
+					g.appendChild(graph.documentElement);
+					svg.appendChild(g);
+					svg.setAttribute("version","1.1");
+					svg.setAttribute("preserveAspectRatio","xMinYMin meet");
+					svg.setAttribute("baseprofile","full");
+					svg.setAttribute("xmlns","http://www.w3.org/2000/svg");
+					svg.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
+					svg.setAttribute("xmlns:ev","http://www.w3.org/2001/xml-events");
+					svg.setAttribute("visibility",'visible');
+					svg.setAttribute("viewBox","0 0 1000 1000");
+					svg.setAttribute("width","100px");
+					svg.setAttribute("height","100px");
+					p_res_search= document.getElementById("res_search");
+					group=createGroupbox("group"+j);
+					
+					firstVbox= createVbox("v1"+j);
+					firstHbox= createHbox("h1"+j);
+					
+					firstHbox.setAttribute("onclick","ouvrir_svg("+id_svg_trouver+")");
+					var statement = mDBConn.createStatement('SELECT DISTINCT tag.tag FROM tag_cloud,tag WHERE id_svg=?1 AND tag_cloud.id_tag=tag.id_tag ORDER BY id_hist DESC;');
+					statement.bindUTF8StringParameter(0,id_svg_trouver);
+					var myArray3 = boucle_select(statement);
+					var tags_svg="";
+					for (j=0;j<myArray3.length;j++){
+						if (j<myArray3.length-1)
+							tags_svg=tags_svg+myArray3[j]['tag']+' , ';
+						else tags_svg=tags_svg+myArray3[j]['tag'];
+					}
+					label_titre=createLabel("Titre de SVG : "+titre_svg);
+					label_tags=createLabel("Mot Clef utilisees sont : "+tags_svg);
+					label_vide=createLabel("                            "   );
+					firstHbox.appendChild(svg);
+					firstVbox.appendChild(label_titre);
+					firstVbox.appendChild(label_tags);
+					firstHbox.appendChild(label_vide);
+					firstHbox.appendChild(firstVbox);
+					group.appendChild(firstHbox);
+
+					p_res_search.appendChild(group);
+				}
+				
+			}
+		}
+	}
+}
+
+function ouvrir_svg (id_svg){
+	self.close;
+	window.opener.svg_open_id(id_svg);
 }
  

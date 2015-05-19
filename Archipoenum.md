@@ -1,0 +1,96 @@
+# Sommaire #
+
+
+
+# Introduction #
+
+La poésie numérique est une forme de littérature électronique qui peut être générée à l’aide de l’ordinateur, et peut être publiée sur Internet, CD, DVD.
+
+Dans le but d’indexer la poésie numérique une application a été développée par le laboratoire Paragraphe (M. Philippe Bootz et M. Samuel Szoniecky) pour construire et présenter sous forme graphique des points de vue sur la poésie numérique.
+
+
+
+# Details de Projet #
+
+Les langages utilisés dans ce projet sont les suivants :
+
+## XUL ##
+XUL (prononcez zool) pour XML-based User interface Language a été créé  pour permettre un développement du navigateur Mozilla plus facile et plus rapide. C'est un langage XML donc il possède toutes les caractéristiques disponibles dans XML qui est un langage de balisage permet le transfère de structure de document et son contenu.
+<br><br>
+Caractéristiques :<br>
+<br>
+• Open Source <br>
+• Permet de construire des plugins FireFox <br>
+• Permet d’utiliser des objets (widgets) prédéfinis pour construire l’interface (arbre, barre d'outils  menus etc..). <br>
+• Peut décrire des fenêtres contenant plusieurs documents HTML. <br>
+• XUL est représenté par un ensemble d'objet appelé AOM (Application Object Model) <br>
+• Une application XUL peut être lancée soit dans un navigateur Firefox soit de façon autonome avec le XUL-RUNNER (documentation). <br>
+• Permet de faire du multi-thread <br>
+• Peut utiliser des bibliothèques externes (C, C++, Java) <br>
+<br><br>
+<h2>SVG</h2>
+SVG (Scalable Vector Graphics ), couramment abrégé par le sigle SVG, est un format de données conçu pour décrire des ensembles de graphiques vectoriels et basé sur XML. Ce format est spécifié par le World Wide Web Consortium. Il est nativement pris en compte par XUL<br>
+<br><br>
+<h2>Javascript</h2>
+JavaScript est un langage de programmation de scripts principalement utilisé pour les pages web interactives. C'est un langage orienté objets à prototype, c'est-à-dire que les bases du langage et ses principales interfaces sont fournies par des objets qui ne sont pas instanciés au sein de classes mais qui sont chacun équipés de constructeurs permettant de générer leurs propriétés, et notamment une propriété de prototypage qui permet d'en générer des objets héritiers personnalisés.<br>
+
+<h1>Conception</h1>
+<h2>Schéma de Base de données</h2>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/base_de_%20donnees.png' /><br><br>
+<h2>Digrammes UML</h2>
+Pour concevoir une telle application, on a utilisé le langage UML qui décrit bien l'interface et les différentes fonctionalités proposées.<br>
+<br><br>
+<h3>Cas d'utilisation</h3>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_CDU_1.png' />
+<br><br>
+Dans notre application l’utilisateur est le seul acteur dans le système et il peut effectuer plusieurs opérations :<br>
+- Indexer un nouveau document de poésie numérique en ajoutant les informations dans l’interface de l’application.<br>
+- Ouvrir un document déjà indexé et stoqué dans la base données.<br>
+- Sauvegarder l’état actuel du document dans la base de données.<br>
+- S'authentifier par un "login" et mot de passe.<br>
+- Exporter le document sous format SVG.<br>
+- Importer un fichier SVG dans l'interface.<br>
+- Modifier et personaliser l'interface de l'application.<br>
+- Partager les documents indexés.<br>
+<br><br>
+<h3>Diagrammes D'activités</h3>
+
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1.png' />
+<br><br>
+Ce diagramme décrit les différentes étapes pour arriver à exporter le document en cours sous format SVG.<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2.png' /><br><br>
+Ce diagramme décrit les différentes étapes pour importer un fichier SVG dans l'interface de l'application.<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA3.png' /><br><br>
+Ce diagramme décrit les différentes étapes pour sauvegarder un fichier SVG dans la base de données<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA4.png' /><br><br>
+Ce diagramme décrit les différentes étapes pour ouvrir un fichier SVG à partir de la base de données.<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA5.png' /><br><br>
+Ce diagramme décrit l'authentification d'un utilisateur dans l'application.<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA6.png' /><br><br>
+Ce diagramme décrit comment l'utilisateur peut personaliser son interface.<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA7.png' /><br><br>
+Ce diagramme décrit les différentes étapes pour indexer un document dans l'application.<br>
+<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8.png' /><br><br>
+Ce diagramme décrit les différentes étapes pour partager un docuement avec d'autres utilisateur.<br>
+<br><br>
+<h3>Diagrammes Etat-Transition</h3>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1.png' /><br><br>
+Ce diagramme décrit l'état du système pendant la phase d'exportation.<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2.png' /><br><br>
+Ce diagramme décrit l'état du système pendant la phase d'importation.<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET3.png' /><br><br>
+Ce diagramme décrit l'état du système pendant la phase de sauvegarde de fichier dans la base données.<br><br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4.png' /><br><br>
+Ce diagramme décrit l'état du système pendant la phase d'ouverture d'un document à partir de la base de données.<br><br>
+<h1>Fonctionnement de l'application</h1>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%233%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /><br><br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%235%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-2.png" /><br><br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%236%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1-3.png" /><br><br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%237%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /><br><br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%239%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /><br><br>

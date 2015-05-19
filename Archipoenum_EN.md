@@ -1,0 +1,95 @@
+# Summary #
+
+
+
+# Introduction #
+
+Digital poetry is a form of literature that can be generated using the computer, and may be published on the Internet, CD, DVD.
+
+In order to index the digital poetry, an  application was developed by the Paragraph laboratory (Philippe Bootz and Samuel Szoniecky) to construct and present in graphic form, views on digital poetry.
+
+# Project Details #
+
+The languages used in this project are:
+
+## XUL ##
+XUL (pronounced zool) for XML-based User interface Language was created to enable the development of Mozilla browser easier and faster. This is an XML language so it has all the features available in XML is a markup language allows the transfer of document structure and content.
+<br> <br>
+Features:<br>
+<br>
+• Open Source <br>
+• Allows to build plugins FireFox <br>
+• Allows you to use objects (widgets) to build pre-defined interface (tree, toolbar menus etc. ..). <br>
+• Can describe windows that contain several HTML documents. <br>
+• XUL is represented by a set of objects called AOM (Application Object Model) <br>
+• A XUL application can be launched either in a Firefox browser or independently with the XUL-RUNNER (documentation). <br>
+• Allows you to make the multi-thread <br>
+• Can use external libraries (C, C + +, Java) <br>
+<br> <br>
+<h2>SVG</h2>
+SVG (Scalable Vector Graphics), commonly abbreviated by the acronym SVG is a format designed to describe data sets and vector graphics based on XML. This format is specified by the World Wide Web Consortium. It is natively included in XUL<br>
+<br> <br>
+<h2>Javascript</h2>
+JavaScript is a scripting language mainly used for interactive web pages. It is an object oriented language to prototype, ie that the basis of language and its key interfaces are provided by objects that are not instantiated in class but which are each equipped with manufacturers to generate their properties, including a prototype property which allows to generate custom objects heirs. <br>
+
+<h1>Design Process</h1>
+<h2>Database schema</h2>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/base_de_%20donnees.png' /><br><br>
+<h2>UML Diagrams</h2>
+To design such an application, we used the UML language that describes the interface and various features offered.<br>
+<br> <br>
+<h3>Use cases</h3>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_CDU_EN.png' />
+<br> <br>
+In our application the user is the only player in the system and can perform several operations:<br>
+- A new document Indexer poetry by adding digital information in the application interface. <br>
+- Open a document already indexed and stored in the database. <br>
+- Save the current document in the database. <br>
+- Authenticate by a login and password. <br>
+- Export the document as SVG. <br>
+- Import an SVG file in the interface. <br>
+- Edit and customize the application interface. <br>
+- Share documents indexed. <br>
+<br> <br>
+<h3>Activity diagrams</h3>
+This diagram describes the different steps to get to export the current document format SVG. <br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA1_EN.png' />
+<br> <br>
+This diagram describes the different steps to import a SVG file in the application interface.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA2_EN.png' /> <br> <br>
+This diagram describes the different steps to import a SVG file in the application interface.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA3_EN.png' /> <br> <br>
+This diagram describes the steps to save an SVG file in the database<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA4_EN.png' /> <br> <br>
+This diagram describes the steps to open a SVG file from the database.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA5_EN.png' /> <br> <br>
+This diagram describes the authentication of a user in the application.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA6_EN.png' /> <br> <br>
+This diagram describes how users can customize its interface.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA7_EN.png' /> <br> <br>
+This diagram describes the different stages for indexing a document in the application.<br>
+<br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_DA8_EN.png' /> <br> <br>
+This diagram describes the different steps to share a document with other users.<br>
+<br> <br>
+<h3>State Chart Diagram</h3>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET1_EN.png' /> <br> <br>
+This diagram describes the state of the system during the export. <br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET2_EN.png' /> <br> <br>
+This diagram describes the state of the system during the import. <br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET3_EN.png' /> <br> <br>
+This diagram describes the system state during the backup file in the database. <br> <br>
+<img src='http://archipoenum.googlecode.com/svn/trunk/wiki/Mon_Projet_ET4_EN.png' /> <br> <br>
+This diagram describes the state of the system during the opening phase of a document from the database. <br> <br>
+<h1>How is it Working</h1>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2310%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /> <br> <br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2311%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /> <br> <br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2312%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /> <br> <br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2315%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /> <br> <br>
+<img src="http://archipoenum.googlecode.com/svn/trunk/wiki/FireShot%20capture%20%2314%20-%20''%20-%20localhost_archipoenum_index_xul_login=admin&id=1.png" /> <br> <br>

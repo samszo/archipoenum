@@ -1,0 +1,7 @@
+Nous avons commencé à concevoir et réaliser (Bootz & Szoniecky, 2008) un outil d’indexation de tous types de documents ayant traits à la poésie numérique à partir d’une schématisation fonctionnelle commune de l’ontologie spinoziste et du modèle procédural.
+
+Cet outil réalisé sous forme d’un plugin Firefox est accessible librement par l’ensemble de la communauté en littérature numérique mais aussi par les développeurs intéressés par ce projet Open Source.
+
+L’outil n’implémentera pas l’indexation dans le document lui-même mais dans des fichiers XML indépendants. Les documents seront repérés dans un réseau RDF par rapport à trois axes fondamentaux : l’espace, le temps, la sémantique (OWL). Chaque indexation structurera le document en fonction du point de vue adopté. Dès lors, tous types de documents peuvent être indexés, de la performance éphémère à l’article imprimé en passant par le programme d’une œuvre exécutable en ligne.
+
+L’outil pourra être utilisé de façon autonome ou connecté au WEB. Un protocole de synchronisation permettra de gérer facilement les multiples versions des fichiers d’indexation et leurs conflits éventuels. L’accessibilité des données sera assurée par la mise en place d’un entrepôt OAI (archive ouverte). Il donnera accès aux documents et œuvres indexés publiés en ligne.
